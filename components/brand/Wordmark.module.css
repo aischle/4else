@@ -1,0 +1,21 @@
+.wordmark {
+  display: flex;
+  align-items: baseline;
+  gap: 1px;
+  font-weight: var(--w-bold);
+  font-size: 24px;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+
+.wordmark:hover {
+  color: var(--ink);
+}
+
+.suffix {
+  margin-left: 6px;
+  font-size: 13px;
+  font-weight: var(--w-medium);
+  letter-spacing: 0;
+  color: var(--text-muted);
+}

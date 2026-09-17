@@ -1,0 +1,75 @@
+/* ============================================================
+   4else — pill buttons
+   ------------------------------------------------------------
+   Three looks from the design: solid ink, outlined, and the two
+   inverted variants used on the dark CTA band.
+   ============================================================ */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 26px;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  font-family: inherit;
+  font-weight: var(--w-semibold);
+  font-size: 15px;
+  line-height: 1.55;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--dur), border-color var(--dur), color var(--dur);
+}
+
+.pill:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.solid {
+  background: var(--ink);
+  color: var(--text-on-ink);
+}
+
+.solid:hover {
+  background: var(--ink-hover);
+  color: var(--text-on-ink);
+}
+
+.outline {
+  background: var(--surface);
+  border-color: var(--hairline-strong);
+  color: var(--ink);
+}
+
+.outline:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.inverse {
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.inverse:hover {
+  background: var(--lilac);
+  color: var(--ink);
+}
+
+.ghostOnInk {
+  background: transparent;
+  border-color: var(--line-on-ink);
+  color: var(--text-on-ink);
+}
+
+.ghostOnInk:hover {
+  border-color: var(--text-on-ink);
+  color: var(--text-on-ink);
+}
+
+/* Compact size used in the nav. */
+.small {
+  padding: 10px 18px;
+  font-size: 14px;
+}

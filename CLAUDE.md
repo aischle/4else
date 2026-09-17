@@ -1,0 +1,154 @@
+# CLAUDE.md — 4else
+## Persistent project instructions for Claude Code
+
+Read this before changing code. It records what has already been decided.
+If something is not covered here, ask before inventing.
+
+**Before you touch git, read §8.** Commits to `main` are pre-authorised;
+pushing and branching are not.
+
+---
+
+## 1. What this project is
+
+**4else** (fourelse ag, Hüntwangen) is a Swiss event platform: organisers
+design an event page, take registrations and collect payment in one flow.
+**4else.com** organises (event pages, registration, participants);
+**4else.one** takes the money (TWINT, card, invoice, PayPal, via Payrexx).
+
+This repository is the public website. It starts with the start page, built
+from the design `4else Startseite 02 - (standalone).html`
+(`Z:\GoogleDrive\projects\4else\`). The design system sheet lives in the same
+folder (`4else Design System Sheet.dc.html`).
+
+---
+
+## 2. Stack (mirrors temu.swiss)
+
+The tech stack deliberately matches temu.swiss
+(`D:\CloudStation\www\www-local\temu_SWISS`). When in doubt about a pattern,
+look at how temu.swiss does it.
+
+- **Framework:** Next.js 14 (App Router), React 18.3, TypeScript 5.5 (strict)
+- **i18n:** next-intl v4, all routes under `app/[locale]/`
+- **Styling:** CSS Modules on a token layer (`styles/tokens.css`); no CSS framework
+- **Hosting:** Vercel, with `@vercel/analytics` and `@vercel/speed-insights`
+- **Lint:** `next/core-web-vitals`
+- **Installed but not wired yet** (same as temu.swiss, ready when needed):
+  `@sanity/client`, `@sanity/image-url`, `@portabletext/react`,
+  `@supabase/supabase-js`, `next-themes`, `lucide-react`
+
+Scripts:
+
+| Command | What it does |
+|---|---|
+| `npm run dev` | Dev server on **port 3007** |
+| `npm run typecheck` | `tsc --noEmit` |
+| `npm run lint` | ESLint |
+| `npm run check:i18n` | Message-file integrity (§4) |
+| `npm run build` | Production build |
+
+**Build safety:** never run `npm run build` while `npm run dev` is running —
+both write to `.next/` and corrupt it. Use `npm run typecheck` to verify
+instead, or stop the dev server first and restart it afterwards.
+
+---
+
+## 3. Design system
+
+- **Typeface: Instrument Sans**, weights 400/500/600/700, loaded with
+  `next/font/google` in `app/[locale]/layout.tsx` (self-hosted at build time,
+  no runtime request to Google). Exposed as `--font`.
+- **Tokens:** every colour, radius, shadow and layout width is a custom
+  property in `styles/tokens.css`. Do not hardcode hex values in component CSS.
+- **One accent:** `--accent` (#5B5BD6, violet). Pastel card grounds
+  (`--lilac`, `--mint`, `--peach`) are surfaces, not accents.
+- **Ground:** `--page` (#F7F6F2, warm off-white); ink `--ink` (#111111).
+- **Buttons:** pills from `components/ui/Button.module.css` — `solid`,
+  `outline`, and `inverse` / `ghostOnInk` for the dark CTA band.
+- **Light only.** The design has no dark mode; `next-themes` is installed but
+  not used.
+
+---
+
+## 4. Language and copy
+
+- **All visible copy lives in `messages/*.json`** and is read with next-intl
+  (`useTranslations` / `t.rich`). No UI string is hardcoded in JSX — that
+  includes `alt`, `aria-label` and `placeholder`.
+- **German is the default and the only authored language.** `lib/i18n.ts`
+  declares `de`, `en`, `fr`, `it`; routes for the last three resolve but fall
+  back to German until their message files exist. Add a language by creating
+  its message file and adding it to `enabledLocales`.
+- **URLs:** `localePrefix: 'as-needed'` — German is served bare (`/`), other
+  locales get a prefix (`/en`). `localeDetection` is **off**, so an English
+  browser is not redirected to an untranslated `/en`.
+- **Register: `du`.** The design addresses organisers informally
+  ("Dein Event", "du brauchst"). Keep it consistent.
+- **Swiss orthography:** `ss`, never `ß` (enforced by `npm run check:i18n`).
+- **Emphasis lives in the messages:** `<accent>` (violet) and `<b>` tags,
+  rendered by `t.rich()` in the page, so a translation can place emphasis
+  differently.
+- **Internal links** use the typed `Link` from `lib/navigation.ts`, never
+  `next/link`. Same-page anchors (`#tun`, `#warum`, `#ablauf`) are plain `<a>`.
+
+`npm run check:i18n` treats `de.json` as the source: every other message file
+must have the same keys, rich-text tags and ICU placeholders.
+
+---
+
+## 5. Start page
+
+`app/[locale]/page.tsx`, sections in order: hero → statement → what we do
+(three cards) → payment banner → why 4else → how it works → testimonials →
+dark CTA band → newsletter. Nav (`components/header`) and footer
+(`components/footer`) come from the locale layout.
+
+Things to know:
+
+- **Placeholder destinations.** Pricing, About, Login, Demo, the card links,
+  every CTA and the footer link columns point at `#` — the design has no
+  targets yet. The footer e-mail and phone are real `mailto:`/`tel:` links.
+- **Newsletter form is UI only** (`components/home/NewsletterForm.tsx`):
+  submitting does nothing. Connect it to a list provider before launch.
+- **Testimonials are the design's sample quotes.** Replace them with real,
+  approved customer statements before going live.
+- **No mobile menu.** Like the design, the nav's section links hide below
+  1000px; only the wordmark, Login and Demo remain.
+- **Images** live in `public/images/home/` and render through `next/image`.
+  `participant.png` is 1.4 MB at source; `next/image` serves it resized.
+
+---
+
+## 6. SEO
+
+- Title and description come from `messages/*.json` (`meta` namespace) in the
+  layout's `generateMetadata`.
+- `app/robots.ts` and `app/sitemap.ts` build absolute URLs from
+  `NEXT_PUBLIC_SITE_URL` (see `.env.example`), falling back to
+  `http://localhost:3007`. **Set it in Vercel** once the production domain is
+  chosen. The sitemap lists every route in `lib/routing.ts` automatically.
+
+---
+
+## 7. Environment
+
+Copy `.env.example` to `.env.local`. Never commit `.env.local`.
+
+| Variable | Purpose |
+|---|---|
+| `NEXT_PUBLIC_SITE_URL` | Canonical origin for metadata, robots and sitemap |
+
+---
+
+## 8. Git — committing, pushing, branching
+
+**Commit to `main` freely. Never push, and never branch, without Robin's
+explicit order.**
+
+- **Commit** — pre-authorised. Commit whenever the work warrants it.
+- **Push** — gated. Stop after the commit and say what is waiting. Once
+  Vercel is connected, a push to `main` deploys.
+- **Branch** — gated. Work on `main` unless asked otherwise.
+
+Remote: `https://github.com/aischle/4else.git`.

@@ -1,0 +1,154 @@
+{
+  "meta": {
+    "homeTitle": "4else — Dein Event. Massgeschneidert gestaltet. Direkt bezahlt.",
+    "homeDescription": "4else gestaltet Kurse, Workshops und Events genau so, wie du sie brauchst – mit Eventseite, Anmeldung und integrierter Zahlungslösung. TWINT, Kreditkarte oder Rechnung: alles in einem Fluss."
+  },
+  "brand": {
+    "name": "4else",
+    "suffix": ".events",
+    "homeLabel": "4else – zur Startseite"
+  },
+  "nav": {
+    "label": "Hauptnavigation",
+    "services": "Was wir tun",
+    "why": "Wieso 4else",
+    "steps": "So funktioniert's",
+    "pricing": "Preise",
+    "about": "Über uns",
+    "login": "Login",
+    "demo": "Demo ausprobieren"
+  },
+  "hero": {
+    "badge": "Schweizer Plattform · 4else.com organisiert, 4else.one kassiert",
+    "headline": "Dein Event. Massgeschneidert gestaltet. <accent>Direkt bezahlt.</accent>",
+    "body": "4else gestaltet Kurse, Workshops und Events genau so, wie du sie brauchst – mit Eventseite, Anmeldung und integrierter Zahlungslösung. TWINT, Kreditkarte oder Rechnung: alles in einem Fluss.",
+    "ctaPrimary": "Jetzt Event erstellen",
+    "ctaSecondary": "Demo ausprobieren",
+    "imageAlt": "Event mit Publikum",
+    "statValue": "10 Minuten",
+    "statLabel": "bis zum ersten Event",
+    "statNote": "Kostenlos bis 10 Events · keine Kreditkarte nötig"
+  },
+  "statement": {
+    "eyebrow": "Willkommen bei 4else",
+    "text": "Wir machen Eventorganisation zukunftsfähig: <accent>individuell gestaltet, automatisch abgerechnet</accent> – für weniger Technikstress, weniger offene Rechnungen und mehr Zeit für deinen Anlass."
+  },
+  "services": {
+    "eyebrow": "Was wir tun",
+    "heading": "Was wir tun",
+    "intro": "Drei Bausteine, ein System. Du entscheidest, wie viel davon dein Event braucht.",
+    "s1Label": "(01) GESTALTEN",
+    "s1Title": "Massgeschneiderte Eventseiten",
+    "s1Body": "Individuelle Landingpages, Kurs- und Veranstaltungsseiten oder eine komplette Website in deinem Branding – Farben, Logo, Bilder, Anmeldefragen: alles anpassbar.",
+    "s1Link": "Landingpages entdecken",
+    "s2Label": "(02) ORGANISIEREN",
+    "s2Title": "Anmeldung & Teilnehmer",
+    "s2Body": "Online-Anmeldung ohne Account, automatische Tickets als PDF, QR-Check-in, Teilnehmerlisten, Erinnerungen und ein Kurskalender, der sich auf deiner Website selbst aktualisiert.",
+    "s2Link": "Funktionen erkunden",
+    "s3Label": "(03) KASSIEREN",
+    "s3Title": "Integrierte Zahlungslösung",
+    "s3Body": "Teilnehmer zahlen direkt bei der Anmeldung – per TWINT, Kreditkarte oder Rechnung. Powered by 4else.one: virtuelles Terminal, Rechnungsversand, eigener Onlineshop.",
+    "s3Link": "Zahlungslösung kennenlernen"
+  },
+  "payment": {
+    "eyebrow": "Anmelden. Bezahlen. Ticket.",
+    "heading": "Keine offenen Rechnungen mehr. <accent>Nie mehr Zahlungen nachrennen.</accent>",
+    "body": "Die Zahlung ist Teil der Anmeldung – nicht ein Schritt danach. Das Ticket kommt automatisch, die Zahlungsübersicht führt sich selbst.",
+    "chipsLabel": "Unterstützte Zahlungsarten und Funktionen",
+    "chipTwint": "TWINT",
+    "chipCard": "Kreditkarte",
+    "chipInvoice": "Rechnung",
+    "chipPaypal": "PayPal",
+    "chipCheckin": "QR-Check-in",
+    "cta": "Mehr zur Shoplösung",
+    "poweredBy": "Powered by <b>4else.one</b> · Sichere Whitelabel-Abwicklung über Payrexx · Hosting in der Schweiz",
+    "imageAlt": "Muster-Ticket"
+  },
+  "why": {
+    "eyebrow": "Wieso 4else",
+    "heading": "<accent>Wieso</accent> 4else?",
+    "imageAlt": "Teilnehmerin an einem Event",
+    "r1Num": "(01)",
+    "r1Title": "Gestaltung statt Schablone",
+    "r1Body": "Jeder Event erhält eine eigene Seite, die du teilen oder einbetten kannst – im eigenen Look, mit freien Fragen, Bilderauswahl und individuellen Anmeldegruppen.",
+    "r2Num": "(02)",
+    "r2Title": "Organisieren und Kassieren in einem",
+    "r2Body": "Statt Mail, Excel und Tickettool bringt 4else Anmeldung, Teilnehmerverwaltung und Zahlung an einen Ort. Ohne Plattformprovisionen, ohne Installation.",
+    "r3Num": "(03)",
+    "r3Title": "Schweizer Praxis seit 2015",
+    "r3Body": "Entstanden aus echter Eventorganisation, laufend weiterentwickelt mit Veranstaltern – DSG-konform, in der Schweiz gehostet, mit persönlichem Support.",
+    "cta": "Erfahre mehr über uns"
+  },
+  "steps": {
+    "eyebrow": "So funktioniert's",
+    "heading": "In drei Schritten zu deinem Event",
+    "s1Num": "(01)",
+    "s1Digit": "1",
+    "s1Title": "Event gestalten",
+    "s1Body": "Kurs, Workshop oder Anlass anlegen, Seite nach deinem Branding anpassen, Preis und Zahlungsarten festlegen.",
+    "s2Num": "(02)",
+    "s2Digit": "2",
+    "s2Title": "Eventseite teilen",
+    "s2Body": "Link versenden, auf der eigenen Website einbetten oder im automatisch aktuellen Kurskalender anzeigen.",
+    "s3Num": "(03)",
+    "s3Digit": "3",
+    "s3Title": "Anmeldung & Zahlung laufen",
+    "s3Body": "Teilnehmer melden sich an, bezahlen direkt und erhalten ihr Ticket. Du siehst Liste und Zahlungen in Echtzeit."
+  },
+  "testimonials": {
+    "eyebrow": "Stimmen",
+    "heading": "Veranstalter über 4else",
+    "ratingLabel": "5 von 5 Sternen",
+    "t1Quote": "„Super, dass ich jetzt nicht mehr ausstehenden Zahlungen nachrennen muss – die Kurse verwalten sich fast von selbst.“",
+    "t1Author": "Anna Müller, Reitlehrerin",
+    "t2Quote": "„Mit der Shoplösung ist die Buchung meiner Events einfacher als je zuvor. Meine Kunden lieben die unkomplizierte Erfahrung.“",
+    "t2Author": "Thomas Schmidt, Event-Manager",
+    "t3Quote": "„Die Anpassungsmöglichkeiten sind perfekt für mein Branding. Inzwischen plane ich auch private Anlässe damit.“",
+    "t3Author": "Lisa Weber, Marketing"
+  },
+  "cta": {
+    "heading": "Dein nächster Event startet mit einer Entscheidung.",
+    "sub": "Mach den ersten Schritt – kostenlos, in unter 2 Minuten registriert.",
+    "primary": "Jetzt kostenlos starten",
+    "secondary": "Schreib uns"
+  },
+  "newsletter": {
+    "heading": "Tipps für Veranstalter – <accent>direkt ins Postfach.</accent>",
+    "emailLabel": "E-Mail-Adresse",
+    "placeholder": "Deine E-Mail-Adresse",
+    "submit": "Abonnieren"
+  },
+  "footer": {
+    "company": "fourelse ag",
+    "street": "Bahnhofstrasse 27",
+    "city": "CH-8194 Hüntwangen",
+    "email": "info@4else.com",
+    "phone": "+41 79 712 56 51",
+    "startHeading": "Loslegen",
+    "startDemo": "Demo ausprobieren",
+    "startRegister": "Registrieren",
+    "startLogin": "Login",
+    "startPricing": "Preise",
+    "knowHeading": "Gut zu wissen",
+    "knowTerminal": "Virtuelles Terminal",
+    "knowWordpress": "WordPress-Plugin",
+    "knowWebshop": "One-Page Webshop",
+    "knowSupport": "Support",
+    "followHeading": "Folge uns",
+    "followLinkedin": "LinkedIn",
+    "followInstagram": "Instagram",
+    "followTelegram": "Telegram",
+    "wordmark": "Gestaltet.\nOrganisiert.\n<b>Bezahlt.</b>",
+    "copyright": "© 2026 fourelse ag. All rights reserved.",
+    "legalLabel": "Rechtliches",
+    "imprint": "Impressum",
+    "terms": "AGB",
+    "privacy": "Datenschutz"
+  },
+  "notFound": {
+    "eyebrow": "404",
+    "headline": "Diese Seite gibt es nicht.",
+    "body": "Vielleicht wurde sie verschoben, oder der Link ist falsch.",
+    "cta": "Zur Startseite"
+  }
+}

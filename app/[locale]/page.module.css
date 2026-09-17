@@ -1,0 +1,612 @@
+/* ============================================================
+   4else — start page
+   ------------------------------------------------------------
+   Values mirror the design "4else Startseite 02". Colours, radii
+   and layout widths come from styles/tokens.css; the fluid
+   clamp() type sizes are the design's own.
+   ============================================================ */
+
+/* ── Shared ─────────────────────────────────────────────────── */
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.section {
+  padding: clamp(60px, 7vw, 110px) 0;
+}
+
+.accent {
+  color: var(--accent);
+}
+
+.strong {
+  font-weight: var(--w-semibold);
+  color: var(--ink);
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 12px;
+  font-weight: var(--w-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.headStack {
+  display: grid;
+  gap: 14px;
+}
+
+.sectionHeading {
+  margin: 0;
+  font-size: clamp(32px, 4.4vw, 56px);
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+}
+
+.lead {
+  margin: 0;
+  max-width: 46ch;
+  font-size: 18px;
+  color: var(--text-body);
+}
+
+.buttonRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.cover {
+  object-fit: cover;
+}
+
+/* ── Hero ───────────────────────────────────────────────────── */
+
+.hero {
+  padding: clamp(64px, 9vw, 120px) 0 0;
+}
+
+.heroIntro {
+  display: grid;
+  justify-items: center;
+  gap: 28px;
+  text-align: center;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px 8px 10px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  font-size: 13px;
+  font-weight: var(--w-medium);
+  line-height: 1.35;
+  color: var(--text-strong);
+}
+
+.badgeDot {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.heroHeadline {
+  margin: 0;
+  max-width: 15ch;
+  font-size: clamp(44px, 7.4vw, 104px);
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.heroBody {
+  margin: 0;
+  max-width: 56ch;
+  font-size: clamp(18px, 1.6vw, 22px);
+  color: var(--text-body);
+  text-wrap: pretty;
+}
+
+.heroMediaWrap {
+  margin-top: clamp(40px, 6vw, 72px);
+}
+
+.heroMedia {
+  position: relative;
+  aspect-ratio: 16 / 8;
+  border-radius: var(--radius-panel);
+  overflow: hidden;
+  background: var(--fill-soft);
+  box-shadow: var(--shadow-hero);
+}
+
+.stat {
+  position: absolute;
+  left: clamp(16px, 3vw, 32px);
+  bottom: clamp(16px, 3vw, 32px);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 4px 12px;
+  padding: 14px 18px;
+  border-radius: var(--radius-badge);
+  background: var(--surface);
+  box-shadow: var(--shadow-float);
+}
+
+.statValue {
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+}
+
+.statLabel {
+  font-size: 14px;
+  color: var(--text-strong);
+}
+
+.statNote {
+  grid-column: 1 / -1;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ── Statement ──────────────────────────────────────────────── */
+
+.statement {
+  padding: clamp(80px, 10vw, 150px) 0 clamp(40px, 5vw, 70px);
+}
+
+.statementGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 24px;
+}
+
+.statementText {
+  grid-column: span 3;
+  margin: 0;
+  max-width: 26ch;
+  font-size: clamp(28px, 3.6vw, 52px);
+  font-weight: var(--w-medium);
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.statementText .accent {
+  font-weight: var(--w-semibold);
+}
+
+/* ── What we do ─────────────────────────────────────────────── */
+
+.servicesHead {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: end;
+  gap: 24px;
+  margin-bottom: 44px;
+}
+
+.servicesIntro {
+  margin: 0;
+  max-width: 40ch;
+  font-size: 18px;
+  color: var(--text-body);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 360px;
+  padding: 34px 30px;
+  border-radius: var(--radius-card);
+  transition: transform var(--dur);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.lilac { background: var(--lilac); }
+.mint { background: var(--mint); }
+.peach { background: var(--peach); }
+
+.cardLabel {
+  font-size: 13px;
+  font-weight: var(--w-semibold);
+  letter-spacing: 0.06em;
+  color: var(--text-body);
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 28px;
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+.cardBody {
+  flex: 1;
+  margin: 0;
+  font-size: 16px;
+  color: var(--text-strong);
+}
+
+.cardLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: var(--w-semibold);
+}
+
+/* ── Banners (payment, CTA) ─────────────────────────────────── */
+
+.bannerSection {
+  padding: 0 var(--gutter);
+}
+
+.banner {
+  max-width: var(--container);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  align-items: stretch;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-panel);
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.bannerText {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 24px;
+  padding: clamp(36px, 5vw, 72px);
+}
+
+.bannerHeading {
+  margin: 0;
+  font-size: clamp(34px, 4.4vw, 60px);
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chip {
+  padding: 8px 14px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-pill);
+  background: var(--page);
+  font-size: 14px;
+  font-weight: var(--w-semibold);
+}
+
+.poweredBy {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.bannerMedia {
+  position: relative;
+  min-height: 360px;
+  background: var(--lilac);
+}
+
+/* ── Why 4else ──────────────────────────────────────────────── */
+
+.why {
+  padding: clamp(80px, 9vw, 130px) 0;
+}
+
+.whyGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  align-items: center;
+  gap: clamp(32px, 6vw, 90px);
+}
+
+.whyMedia {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-panel);
+  overflow: hidden;
+  background: var(--mint);
+}
+
+.whyEyebrow {
+  margin-bottom: 14px;
+}
+
+.whyHeading {
+  margin: 0 0 36px;
+  font-size: clamp(34px, 4.4vw, 58px);
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+}
+
+.reasons {
+  border-bottom: 1px solid var(--hairline);
+}
+
+.reason {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 12px;
+  padding: 24px 0;
+  border-top: 1px solid var(--hairline);
+}
+
+.reasonNum {
+  padding-top: 4px;
+  font-size: 14px;
+  font-weight: var(--w-semibold);
+  color: var(--text-muted);
+}
+
+.reasonTitle {
+  margin: 0 0 8px;
+  font-size: 22px;
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.reasonBody {
+  margin: 0;
+  font-size: 16px;
+  color: var(--text-body);
+}
+
+.whyCta {
+  margin-top: 32px;
+}
+
+/* ── How it works ───────────────────────────────────────────── */
+
+.steps {
+  padding: clamp(60px, 7vw, 110px) 0;
+  background: var(--surface);
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.stepsHead {
+  margin-bottom: 56px;
+}
+
+.stepsHeading {
+  max-width: 20ch;
+}
+
+.stepList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 32px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  padding-top: 24px;
+  border-top: 2px solid var(--ink);
+}
+
+.stepNum {
+  font-size: 14px;
+  font-weight: var(--w-semibold);
+  color: var(--text-muted);
+}
+
+.stepDigit {
+  font-size: clamp(56px, 7vw, 96px);
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  color: var(--accent);
+}
+
+.stepTitle {
+  margin: 8px 0 0;
+  font-size: 24px;
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.stepBody {
+  margin: 0;
+  font-size: 16px;
+  color: var(--text-body);
+}
+
+/* ── Testimonials ───────────────────────────────────────────── */
+
+.testimonialsHead {
+  margin-bottom: 44px;
+}
+
+.quotes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  align-items: start;
+  gap: 16px;
+}
+
+.quoteCard {
+  margin: 0;
+  display: grid;
+  border-radius: var(--radius-card);
+  background: var(--surface);
+}
+
+.quoteWithImage {
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+}
+
+.quotePlain {
+  align-content: start;
+  gap: 18px;
+  padding: 30px 28px;
+  border: 1px solid var(--hairline);
+}
+
+.quoteLilac {
+  border-color: transparent;
+  background: var(--lilac);
+}
+
+.quoteImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.quoteInner {
+  display: grid;
+  gap: 18px;
+  padding: 28px 28px 30px;
+}
+
+.stars {
+  font-size: 14px;
+  letter-spacing: 3px;
+  color: var(--accent);
+}
+
+.quote {
+  margin: 0;
+  font-size: 20px;
+  font-weight: var(--w-medium);
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+
+.author {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.authorStrong {
+  color: var(--text-body);
+}
+
+/* ── CTA band ───────────────────────────────────────────────── */
+
+.ctaBand {
+  max-width: var(--container);
+  margin: 0 auto;
+  display: grid;
+  justify-items: center;
+  gap: 22px;
+  padding: clamp(56px, 8vw, 110px) clamp(24px, 5vw, 80px);
+  border-radius: var(--radius-panel);
+  background: var(--ink);
+  color: var(--text-on-ink);
+  text-align: center;
+}
+
+.ctaHeading {
+  margin: 0;
+  max-width: 16ch;
+  font-size: clamp(38px, 5.6vw, 80px);
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+  text-wrap: balance;
+  color: var(--text-on-ink);
+}
+
+.ctaSub {
+  margin: 0;
+  max-width: 44ch;
+  font-size: 20px;
+  line-height: 1.4;
+  color: var(--text-on-ink-muted);
+}
+
+.ctaButtons {
+  margin-top: 8px;
+}
+
+/* ── Newsletter ─────────────────────────────────────────────── */
+
+.newsletter {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  align-items: center;
+  gap: 40px;
+  padding: clamp(60px, 7vw, 100px) 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.newsletterHeading {
+  margin: 0;
+  font-size: clamp(28px, 3.4vw, 44px);
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+/* ── Focus ──────────────────────────────────────────────────── */
+
+.cardLink:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ── Narrow screens ─────────────────────────────────────────── */
+
+/* The design's statement spans three auto-fit columns; below that
+   width the grid has fewer tracks, so the span would create empty
+   implicit columns. Let it take a single full row instead. */
+@media (max-width: 1000px) {
+  .statementText {
+    grid-column: 1 / -1;
+  }
+}
