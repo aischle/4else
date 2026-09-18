@@ -179,7 +179,7 @@ export default function HomePage({
               alt={tWhy('imageAlt')}
               fill
               sizes="(min-width: 1240px) 527px, (min-width: 760px) 45vw, 100vw"
-              className={styles.cover}
+              className={`${styles.cover} ${styles.whyImage}`}
             />
           </div>
           <div>

@@ -350,6 +350,15 @@
   background: var(--mint);
 }
 
+/* The photo is landscape (1376×768) in a 4/5 portrait frame, so cover
+   shows only the middle ~45% of it. She sits at about 63% of the source
+   width, which the default centred crop pushes to the right edge of the
+   frame; moving the crop window right brings her in, a little right of
+   centre. */
+.whyImage {
+  object-position: 65% 50%;
+}
+
 .whyEyebrow {
   margin-bottom: 14px;
 }
