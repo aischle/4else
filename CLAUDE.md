@@ -113,13 +113,17 @@ Things to know:
   submitting does nothing. Connect it to a list provider before launch.
 - **Testimonials are the design's sample quotes.** Replace them with real,
   approved customer statements before going live.
-- **FAQ questions are placeholders** (`faq` namespace, `f1`–`f3`). The section
-  follows temu.swiss: native `<details>`/`<summary>`, never a client-side
-  accordion, so every answer sits in the server-rendered HTML whether the item
-  is open or closed. To add a pair, extend the `faqs` array in the page and add
-  the `fNQuestion`/`fNAnswer` keys. Real copy should also bring the `FAQPage`
-  JSON-LD, ported from `temu_SWISS/components/seo/FaqJsonLd.tsx` — deliberately
-  left out while the questions are dummy.
+- **FAQ** (`faq` namespace, `f1`–`f11`). Eleven pairs taken from the live site
+  4else.events, verbatim apart from the `du` casing (§4) and one title
+  rephrased as a question. The section follows temu.swiss: native
+  `<details>`/`<summary>`, never a client-side accordion, so every answer sits
+  in the server-rendered HTML whether the item is open or closed.
+  `components/seo/FaqJsonLd.tsx` emits the `FAQPage` schema from the same
+  message keys, so copy and structured data cannot drift. **To add or remove a
+  pair, edit `FAQ_IDS` there and the `fNQuestion`/`fNAnswer` keys** — never
+  hand-write the schema text. Note the transaction fee (4,8 % + CHF 0.20) and
+  the payment methods are now stated both here and on 4else.events; keep them
+  in step.
 - **No mobile menu.** Like the design, the nav's section links hide below
   1000px; only the wordmark, Login and Demo remain.
 - **Images** live in `public/images/home/` and render through `next/image`.

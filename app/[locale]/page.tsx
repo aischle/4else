@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { NewsletterForm } from '@/components/home/NewsletterForm';
+import { FaqJsonLd, FAQ_IDS } from '@/components/seo/FaqJsonLd';
 import buttons from '@/components/ui/Button.module.css';
 import styles from './page.module.css';
 
@@ -56,7 +57,6 @@ export default function HomePage({
 
   const reasons = ['r1', 'r2', 'r3'] as const;
   const steps = ['s1', 's2', 's3'] as const;
-  const faqs = ['f1', 'f2', 'f3'] as const;
   const chips = ['chipTwint', 'chipCard', 'chipInvoice', 'chipPaypal', 'chipCheckin'] as const;
 
   return (
@@ -286,7 +286,7 @@ export default function HomePage({
             </h2>
           </div>
           <div className={styles.faqList}>
-            {faqs.map((id) => (
+            {FAQ_IDS.map((id) => (
               <details key={id} className={styles.faqItem}>
                 <summary className={styles.faqQuestion}>
                   <span>{tFaq(`${id}Question`)}</span>
@@ -299,6 +299,7 @@ export default function HomePage({
             ))}
           </div>
         </div>
+        <FaqJsonLd />
       </section>
 
       {/* ── CTA ──────────────────────────────────────────────── */}
