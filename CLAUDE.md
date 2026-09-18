@@ -135,6 +135,12 @@ Things to know:
 
 - Title and description come from `messages/*.json` (`meta` namespace) in the
   layout's `generateMetadata`.
+- **Favicon:** `app/icon.png` (512px), `app/apple-icon.png` (180px) and
+  `app/favicon.ico` (32px). Next.js picks these up by filename and emits the
+  link tags itself — no `<head>` markup anywhere. The source is the mark from
+  4else.events (`cropped-4e_violett.png`, white "4e" on violet). Its violet is
+  `#60608B`, which is **not** the site's `--accent` (#5B5BD6); the apple icon
+  is flattened onto that same violet because iOS renders transparency black.
 - `app/robots.ts` and `app/sitemap.ts` build absolute URLs from
   `NEXT_PUBLIC_SITE_URL` (see `.env.example`), falling back to
   `http://localhost:3007`. **Set it in Vercel** once the production domain is
