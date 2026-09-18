@@ -535,6 +535,135 @@
   color: var(--text-body);
 }
 
+/* ── FAQ ────────────────────────────────────────────────────── */
+
+.faqGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  align-items: start;
+  gap: clamp(32px, 6vw, 72px);
+}
+
+
+/* Heading left, list right across two of the three tracks — the
+   design's proportion. Below the breakpoint the grid has fewer tracks
+   and the list takes the full row instead (see "Narrow screens").
+   The hairline rules are the .reasons vocabulary above: a line under
+   the last item, a line above each one. */
+.faqList {
+  grid-column: span 2;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.faqItem {
+  border-top: 1px solid var(--hairline);
+}
+
+/* The question row. display:flex replaces the default list-item box,
+   which drops the disclosure triangle; the -webkit rule covers
+   Safari's separate marker. The state is carried by the drawn glyph. */
+.faqQuestion {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 0;
+  list-style: none;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: var(--w-medium);
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.faqQuestion::-webkit-details-marker {
+  display: none;
+}
+
+/* Plus/minus drawn from two bars rather than typed — no glyph string
+   in CSS, nothing to translate, no icon dependency. The vertical bar
+   fades out on open, leaving a minus. */
+.faqMarker {
+  position: relative;
+  flex: 0 0 auto;
+  align-self: center;
+  width: 16px;
+  height: 16px;
+}
+
+.faqMarker::before,
+.faqMarker::after {
+  content: '';
+  position: absolute;
+  background: var(--text-muted);
+  transition: opacity var(--dur), background-color var(--dur);
+}
+
+.faqMarker::before {
+  top: 7px;
+  left: 0;
+  width: 16px;
+  height: 2px;
+}
+
+.faqMarker::after {
+  top: 0;
+  left: 7px;
+  width: 2px;
+  height: 16px;
+}
+
+.faqItem[open] .faqMarker::before,
+.faqItem[open] .faqMarker::after {
+  background: var(--ink);
+}
+
+.faqItem[open] .faqMarker::after {
+  opacity: 0;
+}
+
+/* The disclosure animation, CSS only: ::details-content as a grid row
+   from 0fr to 1fr. content-visibility with allow-discrete is what
+   animates the close — without it the answer vanishes the instant
+   [open] is removed. Browsers that do not know ::details-content drop
+   this block and open the item instantly, which is still correct. */
+.faqItem::details-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  content-visibility: hidden;
+  transition:
+    grid-template-rows var(--dur),
+    content-visibility var(--dur) allow-discrete;
+}
+
+.faqItem[open]::details-content {
+  grid-template-rows: 1fr;
+  content-visibility: visible;
+}
+
+/* min-height:0 lets the row actually reach 0fr — without it the
+   paragraph's min-content height is the floor and nothing collapses. */
+.faqAnswer {
+  min-height: 0;
+  margin: 0;
+  padding: 0 0 26px;
+  max-width: 62ch;
+  font-size: 16px;
+  color: var(--text-body);
+}
+
+/* Not 0s: allow-discrete needs a non-zero duration to hold the answer
+   through the close. */
+@media (prefers-reduced-motion: reduce) {
+  .faqItem::details-content,
+  .faqItem[open]::details-content,
+  .faqMarker::before,
+  .faqMarker::after {
+    transition-duration: 0.01ms;
+  }
+}
+
 /* ── CTA band ───────────────────────────────────────────────── */
 
 .ctaBand {
@@ -595,7 +724,8 @@
 
 /* ── Focus ──────────────────────────────────────────────────── */
 
-.cardLink:focus-visible {
+.cardLink:focus-visible,
+.faqQuestion:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
@@ -606,7 +736,8 @@
    width the grid has fewer tracks, so the span would create empty
    implicit columns. Let it take a single full row instead. */
 @media (max-width: 1000px) {
-  .statementText {
+  .statementText,
+  .faqList {
     grid-column: 1 / -1;
   }
 }

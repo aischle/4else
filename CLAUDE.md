@@ -101,7 +101,7 @@ must have the same keys, rich-text tags and ICU placeholders.
 
 `app/[locale]/page.tsx`, sections in order: hero → statement → what we do
 (three cards) → payment banner → why 4else → how it works → testimonials →
-dark CTA band → newsletter. Nav (`components/header`) and footer
+FAQ → dark CTA band → newsletter. Nav (`components/header`) and footer
 (`components/footer`) come from the locale layout.
 
 Things to know:
@@ -113,6 +113,13 @@ Things to know:
   submitting does nothing. Connect it to a list provider before launch.
 - **Testimonials are the design's sample quotes.** Replace them with real,
   approved customer statements before going live.
+- **FAQ questions are placeholders** (`faq` namespace, `f1`–`f3`). The section
+  follows temu.swiss: native `<details>`/`<summary>`, never a client-side
+  accordion, so every answer sits in the server-rendered HTML whether the item
+  is open or closed. To add a pair, extend the `faqs` array in the page and add
+  the `fNQuestion`/`fNAnswer` keys. Real copy should also bring the `FAQPage`
+  JSON-LD, ported from `temu_SWISS/components/seo/FaqJsonLd.tsx` — deliberately
+  left out while the questions are dummy.
 - **No mobile menu.** Like the design, the nav's section links hide below
   1000px; only the wordmark, Login and Demo remain.
 - **Images** live in `public/images/home/` and render through `next/image`.

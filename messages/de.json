@@ -106,6 +106,16 @@
     "t3Quote": "„Die Anpassungsmöglichkeiten sind perfekt für mein Branding. Inzwischen plane ich auch private Anlässe damit.“",
     "t3Author": "Lisa Weber, Marketing"
   },
+  "faq": {
+    "eyebrow": "Fragen",
+    "heading": "Häufige Fragen",
+    "f1Question": "Frage Nummer eins",
+    "f1Answer": "Dies ist ein Platzhalter für die Frage Nummer eins.",
+    "f2Question": "Frage Nummer zwei",
+    "f2Answer": "Dies ist ein Platzhalter für die Frage Nummer zwei.",
+    "f3Question": "Dies ist Frage Nummer drei",
+    "f3Answer": "Dies ist ein Platzhalter für die Frage Nummer drei."
+  },
   "cta": {
     "heading": "Dein nächster Event startet mit einer Entscheidung.",
     "sub": "Mach den ersten Schritt – kostenlos, in unter 2 Minuten registriert.",

@@ -11,8 +11,8 @@ import styles from './page.module.css';
    ------------------------------------------------------------
    Built from the design "4else Startseite 02". Sections, in
    order: hero → statement → what we do → payment banner → why
-   4else → how it works → testimonials → CTA → newsletter; the
-   nav and footer come from the locale layout.
+   4else → how it works → testimonials → FAQ → CTA → newsletter;
+   the nav and footer come from the locale layout.
 
    All copy lives in messages/de.json. Emphasis sits in the
    messages as <accent> (brand violet) and <b> tags, rendered by
@@ -44,6 +44,7 @@ export default function HomePage({
   const tWhy = useTranslations('why');
   const tSteps = useTranslations('steps');
   const tTestimonials = useTranslations('testimonials');
+  const tFaq = useTranslations('faq');
   const tCta = useTranslations('cta');
   const tNewsletter = useTranslations('newsletter');
 
@@ -55,6 +56,7 @@ export default function HomePage({
 
   const reasons = ['r1', 'r2', 'r3'] as const;
   const steps = ['s1', 's2', 's3'] as const;
+  const faqs = ['f1', 'f2', 'f3'] as const;
   const chips = ['chipTwint', 'chipCard', 'chipInvoice', 'chipPaypal', 'chipCheckin'] as const;
 
   return (
@@ -266,6 +268,35 @@ export default function HomePage({
                 {tTestimonials('t3Author')}
               </figcaption>
             </figure>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ──────────────────────────────────────────────── */}
+      {/* Native <details>, never a client-side accordion: the page
+          stays a server component and every answer sits in the
+          server-rendered HTML whether the item is open or closed, so
+          crawlers and assistants read all three regardless of state. */}
+      <section id="faq" className={styles.section} aria-labelledby="faq-heading">
+        <div className={`${styles.container} ${styles.faqGrid}`}>
+          <div className={styles.headStack}>
+            <p className={styles.eyebrow}>{tFaq('eyebrow')}</p>
+            <h2 id="faq-heading" className={styles.sectionHeading}>
+              {tFaq('heading')}
+            </h2>
+          </div>
+          <div className={styles.faqList}>
+            {faqs.map((id) => (
+              <details key={id} className={styles.faqItem}>
+                <summary className={styles.faqQuestion}>
+                  <span>{tFaq(`${id}Question`)}</span>
+                  {/* Drawn plus/minus. Decorative only — <details> already
+                      conveys the expanded state to assistive technology. */}
+                  <span className={styles.faqMarker} aria-hidden="true" />
+                </summary>
+                <p className={styles.faqAnswer}>{tFaq(`${id}Answer`)}</p>
+              </details>
+            ))}
           </div>
         </div>
       </section>
