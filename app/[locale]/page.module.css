@@ -631,11 +631,21 @@
   opacity: 0;
 }
 
-/* The disclosure animation, CSS only: ::details-content as a grid row
-   from 0fr to 1fr. content-visibility with allow-discrete is what
-   animates the close — without it the answer vanishes the instant
-   [open] is removed. Browsers that do not know ::details-content drop
-   this block and open the item instantly, which is still correct. */
+/* The disclosure animation, CSS only, in two techniques — keep both.
+   ------------------------------------------------------------------
+   This one, the grid row from 0fr to 1fr, is the cross-browser
+   baseline. content-visibility with allow-discrete is what animates
+   the close; without it the answer vanishes the instant [open] is
+   removed. Browsers that do not know ::details-content drop the block
+   and open the item instantly, which is still correct.
+
+   Its weakness is the close: an fr row resolves its height against
+   the content of the very element that content-visibility contains,
+   so the measurement can collapse early and the collapse stutters.
+   The @supports block below therefore overrides it with a pixel
+   animation wherever interpolate-size exists (Chromium today). Firefox
+   and Safari have no interpolate-size and cannot animate to auto, so
+   they stay on this one and keep a working slide. */
 .faqItem::details-content {
   display: grid;
   grid-template-rows: 0fr;
@@ -649,6 +659,35 @@
 .faqItem[open]::details-content {
   grid-template-rows: 1fr;
   content-visibility: visible;
+}
+
+/* Where interpolate-size exists, animate the height in pixels instead.
+   `auto` is resolved once when the transition starts, so nothing
+   re-measures mid-flight and the close runs as smoothly as the open.
+   interpolate-size sits on .faqItem rather than :root: it inherits
+   into ::details-content, which is all that needs it, and it does not
+   quietly change how every future height:auto transition behaves.
+
+   This must stay ABOVE the reduced-motion block — that block only sets
+   transition-duration, this one sets the transition shorthand, and at
+   equal specificity the later rule wins. */
+@supports (interpolate-size: allow-keywords) {
+  .faqItem {
+    interpolate-size: allow-keywords;
+  }
+
+  .faqItem::details-content {
+    display: block;
+    block-size: 0;
+    overflow: clip;
+    transition:
+      block-size var(--dur),
+      content-visibility var(--dur) allow-discrete;
+  }
+
+  .faqItem[open]::details-content {
+    block-size: auto;
+  }
 }
 
 /* min-height:0 lets the row actually reach 0fr — without it the
