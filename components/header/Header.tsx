@@ -4,20 +4,23 @@ import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Wordmark } from '@/components/brand/Wordmark';
 import { usePathname } from '@/lib/navigation';
-import { NAV_THEME_SENTINEL } from './navTheme';
+import { NAV_FADE_MARKS, NAV_FADE_START, NAV_FADE_TEXT, NAV_FADE_END } from './navTheme';
 import buttons from '@/components/ui/Button.module.css';
 import styles from './Header.module.css';
 
 /* ============================================================
    4else — sticky navigation bar
    ------------------------------------------------------------
-   Glass bar that mirrors whatever ground it sits over: dark
-   while it is above the mascot hero and its fade, light once
-   the page ground has taken over.
+   Glass bar that mirrors whatever ground it sits over. Over the
+   hero it is dark glass; through the hero's fade it carries no
+   tint at all, so the blur alone reproduces the gradient behind
+   it; over the page it is the light glass the rest of the site
+   knows. Its own text switches from light to ink halfway down
+   the fade.
 
-   The flip is driven by a single sentinel element that the
-   start page puts at the end of that fade (NAV_THEME_SENTINEL,
-   see ./navTheme.ts). A page without the sentinel — the 404 —
+   The three points are marked by the start page — see
+   ./navTheme.ts and the statement section in
+   app/[locale]/page.tsx. A page without them, like the 404,
    keeps the light bar throughout.
 
    The section links jump to anchors on the start page and hide
@@ -25,6 +28,11 @@ import styles from './Header.module.css';
    Pricing, About, Login and Demo have no destination yet and
    point at "#".
    ============================================================ */
+
+type Passed = Partial<Record<string, boolean>>;
+
+/* What a page that marks nothing looks like: the light bar. */
+const ALL_PASSED: Passed = Object.fromEntries(NAV_FADE_MARKS.map((id) => [id, true]));
 
 function navHeight() {
   const value = getComputedStyle(document.documentElement).getPropertyValue('--nav-h');
@@ -35,33 +43,54 @@ export function Header() {
   const t = useTranslations('nav');
   const pathname = usePathname();
 
-  /* The start page opens on the dark hero, so the bar is already dark in
-     the server-rendered HTML — no light flash before the observer runs. */
-  const [onDark, setOnDark] = useState(() => pathname === '/');
+  /* The start page opens on the dark hero with nothing passed yet, so the
+     bar is already dark in the server-rendered HTML — no light flash before
+     the observer runs. Every other route starts, and stays, light. */
+  const [passed, setPassed] = useState<Passed>(() => (pathname === '/' ? {} : ALL_PASSED));
 
   useEffect(() => {
-    const sentinel = document.getElementById(NAV_THEME_SENTINEL);
+    const marks = NAV_FADE_MARKS.map((id) => document.getElementById(id)).filter(
+      (el): el is HTMLElement => el !== null,
+    );
 
-    if (!sentinel) {
-      setOnDark(false);
+    if (marks.length === 0) {
+      setPassed(ALL_PASSED);
       return;
     }
 
     /* Shrinking the root by the bar's height puts the trigger line at the
-       bar's lower edge: the ground is dark for as long as the sentinel is
-       still below it. */
+       bar's lower edge, so a mark counts as passed the moment it slips
+       under the bar. */
     const offset = navHeight();
     const observer = new IntersectionObserver(
-      ([entry]) => setOnDark(entry.boundingClientRect.top > offset),
+      (entries) =>
+        setPassed((current) => {
+          const next = { ...current };
+          for (const entry of entries) {
+            next[entry.target.id] = entry.boundingClientRect.top <= offset;
+          }
+          return next;
+        }),
       { rootMargin: `-${offset}px 0px 0px 0px`, threshold: 0 },
     );
 
-    observer.observe(sentinel);
+    marks.forEach((mark) => observer.observe(mark));
     return () => observer.disconnect();
   }, [pathname]);
 
+  const tint = !passed[NAV_FADE_START]
+    ? styles.tintDark
+    : !passed[NAV_FADE_END]
+      ? styles.tintClear
+      : '';
+  const lightText = !passed[NAV_FADE_TEXT];
+
   return (
-    <header className={`${styles.bar}${onDark ? ` ${styles.onDark}` : ''}`}>
+    <header
+      className={[styles.bar, tint, lightText ? styles.textLight : '']
+        .filter(Boolean)
+        .join(' ')}
+    >
       <div className={styles.inner}>
         <Wordmark />
 
@@ -77,7 +106,7 @@ export function Header() {
           <a href="#" className={styles.login}>{t('login')}</a>
           <a
             href="#"
-            className={`${buttons.pill} ${onDark ? buttons.inverse : buttons.solid} ${buttons.small}`}
+            className={`${buttons.pill} ${lightText ? buttons.inverse : buttons.solid} ${buttons.small}`}
           >
             {t('demo')}
           </a>

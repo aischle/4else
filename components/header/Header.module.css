@@ -9,14 +9,26 @@
   transition: background-color var(--dur-theme), border-color var(--dur-theme);
 }
 
-/* Over the dark hero and its fade. The two custom properties recolour the
-   wordmark from here; everything else is a plain override. */
-.onDark {
-  --wordmark-ink: var(--text-on-ink);
-  --wordmark-suffix: var(--text-on-dark-muted);
-
+/* Over the hero's flat dark ground. The tint is what keeps the nav legible
+   while the hero's own content scrolls behind it. */
+.tintDark {
   background: var(--nav-glass-dark);
   border-bottom-color: var(--surface-on-dark-strong);
+}
+
+/* Through the fade. No tint and no line: the blur alone reproduces the
+   gradient behind the bar, so there is nothing to mismatch. */
+.tintClear {
+  background: transparent;
+  border-bottom-color: transparent;
+}
+
+/* Light text, for as long as the ground behind the bar is dark. The two
+   custom properties recolour the wordmark from here; the rest are plain
+   overrides. */
+.textLight {
+  --wordmark-ink: var(--text-on-ink);
+  --wordmark-suffix: var(--text-on-dark-muted);
 }
 
 .inner {
@@ -50,11 +62,11 @@
   color: var(--ink);
 }
 
-.onDark .link {
+.textLight .link {
   color: var(--text-on-dark-strong);
 }
 
-.onDark .link:hover {
+.textLight .link:hover {
   background: var(--surface-on-dark-strong);
   color: var(--text-on-ink);
 }
@@ -83,11 +95,11 @@
   color: var(--ink);
 }
 
-.onDark .login {
+.textLight .login {
   color: var(--text-on-ink);
 }
 
-.onDark .login:hover {
+.textLight .login:hover {
   background: var(--surface-on-dark-strong);
   color: var(--text-on-ink);
 }
@@ -98,8 +110,8 @@
   outline-offset: 2px;
 }
 
-.onDark .link:focus-visible,
-.onDark .login:focus-visible {
+.textLight .link:focus-visible,
+.textLight .login:focus-visible {
   outline-color: var(--accent-bright);
 }
 

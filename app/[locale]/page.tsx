@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { NewsletterForm } from '@/components/home/NewsletterForm';
 import { TicketCard } from '@/components/home/TicketCard';
-import { NAV_THEME_SENTINEL } from '@/components/header/navTheme';
+import { NAV_FADE_START, NAV_FADE_TEXT, NAV_FADE_END } from '@/components/header/navTheme';
 import { FaqJsonLd, FAQ_IDS } from '@/components/seo/FaqJsonLd';
 import buttons from '@/components/ui/Button.module.css';
 import styles from './page.module.css';
@@ -19,7 +19,7 @@ import styles from './page.module.css';
    The hero is the mascot redesign: a dark ground that the
    statement section fades back into the page ground. The nav
    floats over it and takes its colours from whichever ground it
-   is over — see the sentinel in the statement section below.
+   is over — see the three marks in the statement section below.
 
    All copy lives in messages/de.json. Emphasis sits in the
    messages as <accent> (brand violet) and <b> tags, rendered by
@@ -108,10 +108,13 @@ export default function HomePage({
 
       {/* ── Statement ────────────────────────────────────────── */}
       {/* The gradient here carries the hero's dark ground down to the page
-          ground. The sentinel sits where that fade is finished: the nav
-          watches it and swaps to its light colours as it passes. */}
+          ground. The three marks are for the nav, which has no tint of its
+          own between the first and the last and so mirrors the gradient
+          exactly — see components/header/navTheme.ts. */}
       <section className={styles.statement}>
-        <div id={NAV_THEME_SENTINEL} className={styles.navSentinel} aria-hidden="true" />
+        <span id={NAV_FADE_START} className={styles.fadeStart} aria-hidden="true" />
+        <span id={NAV_FADE_TEXT} className={styles.fadeText} aria-hidden="true" />
+        <span id={NAV_FADE_END} className={styles.fadeEnd} aria-hidden="true" />
         <div className={`${styles.container} ${styles.statementGrid}`}>
           <p className={styles.eyebrow}>{tStatement('eyebrow')}</p>
           <h2 className={styles.statementText}>{tStatement.rich('text', rich)}</h2>

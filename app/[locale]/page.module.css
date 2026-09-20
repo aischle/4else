@@ -200,17 +200,37 @@
   );
 }
 
-/* Watched by the nav (components/header/Header.tsx): the bar's lower edge
-   meets this line, and the bar swaps its colours there. 40% puts the swap
-   where the fade is halfway in brightness, so the bar is equally slightly
-   off on either side of it rather than badly off on one. */
-.navSentinel {
+/* The three points the nav watches (components/header/Header.tsx). Each is
+   reached when the bar's lower edge meets it:
+
+     0%   the gradient starts, so the nav drops its dark tint
+     31%  the ground has passed the middle of the fade in brightness, so the
+          nav's text switches from light to ink
+     68%  the gradient has arrived at --page, so the light glass comes back
+
+   The first and last swaps are invisible — a tint over the ground it was
+   taken from renders as that ground. Only the text switch shows, and 31% is
+   where light and ink read about equally well. */
+.fadeStart,
+.fadeText,
+.fadeEnd {
   position: absolute;
-  top: 40%;
   left: 0;
   right: 0;
   height: 1px;
   pointer-events: none;
+}
+
+.fadeStart {
+  top: 0;
+}
+
+.fadeText {
+  top: 31%;
+}
+
+.fadeEnd {
+  top: 68%;
 }
 
 .statementGrid {

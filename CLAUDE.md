@@ -119,12 +119,14 @@ Things to know:
   sticky nav (`margin-top: calc(var(--nav-h) * -1)`) so the dark ground runs
   behind the bar.
 - **The nav mirrors the ground it is over.** `components/header/Header.tsx` is
-  a client component: it watches a sentinel that the statement section places
-  at the middle of the fade (`components/header/navTheme.ts`) and swaps
-  between dark and light colours as the sentinel passes under the bar. The
-  sentinel's `top` in `.navSentinel` (`page.module.css`) is the one value tuned
-  by eye — move it if the swap reads early or late. A page without the
-  sentinel, like the 404, keeps the light bar.
+  a client component. It watches three marks the statement section places down
+  the fade (`components/header/navTheme.ts`, `.fadeStart/.fadeText/.fadeEnd` in
+  `page.module.css`) and has three looks: dark glass over the hero, **no tint
+  at all through the fade** — the blur alone reproduces the gradient, so there
+  is nothing to mismatch — and the site's light glass once the fade is done.
+  Its text switches from light to ink at the middle mark (31%), the only swap
+  that shows; move that percentage if it reads early or late. A page without
+  the marks, like the 404, keeps the light bar.
 - **Placeholder destinations.** Pricing, About, Login, Demo, the card links,
   every CTA and the footer link columns point at `#` — the design has no
   targets yet. The footer e-mail and phone are real `mailto:`/`tel:` links.
