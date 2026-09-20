@@ -3,6 +3,8 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { NewsletterForm } from '@/components/home/NewsletterForm';
+import { TicketCard } from '@/components/home/TicketCard';
+import { NAV_THEME_SENTINEL } from '@/components/header/navTheme';
 import { FaqJsonLd, FAQ_IDS } from '@/components/seo/FaqJsonLd';
 import buttons from '@/components/ui/Button.module.css';
 import styles from './page.module.css';
@@ -10,10 +12,14 @@ import styles from './page.module.css';
 /* ============================================================
    4else — start page
    ------------------------------------------------------------
-   Built from the design "4else Startseite 02". Sections, in
-   order: hero → statement → what we do → payment banner → why
-   4else → how it works → testimonials → FAQ → CTA → newsletter;
-   the nav and footer come from the locale layout.
+   Sections, in order: hero → statement → what we do → payment
+   banner → why 4else → how it works → testimonials → FAQ → CTA
+   → newsletter; the nav and footer come from the locale layout.
+
+   The hero is the mascot redesign: a dark ground that the
+   statement section fades back into the page ground. The nav
+   floats over it and takes its colours from whichever ground it
+   is over — see the sentinel in the statement section below.
 
    All copy lives in messages/de.json. Emphasis sits in the
    messages as <accent> (brand violet) and <b> tags, rendered by
@@ -61,48 +67,51 @@ export default function HomePage({
 
   return (
     <main>
-      {/* ── Hero ─────────────────────────────────────────────── */}
+      {/* ── Hero ───────────────────────────────────── */}
       <section className={styles.hero} aria-labelledby="hero-headline">
-        <div className={`${styles.container} ${styles.heroIntro}`}>
-          <span className={styles.badge}>
-            <i className={styles.badgeDot} aria-hidden="true" />
-            {tHero('badge')}
-          </span>
-          <h1 id="hero-headline" className={styles.heroHeadline}>
-            {tHero.rich('headline', rich)}
-          </h1>
-          <p className={styles.heroBody}>{tHero('body')}</p>
-          <div className={styles.buttonRow}>
-            <a href="#" className={`${buttons.pill} ${buttons.solid}`}>
-              {tHero('ctaPrimary')} <Arrow />
-            </a>
-            <a href="#" className={`${buttons.pill} ${buttons.outline}`}>
-              {tHero('ctaSecondary')}
-            </a>
-          </div>
-        </div>
+        <div className={styles.heroGlow} aria-hidden="true" />
 
-        <div className={`${styles.container} ${styles.heroMediaWrap}`}>
-          <div className={styles.heroMedia}>
+        <div className={`${styles.container} ${styles.heroGrid}`}>
+          <div className={styles.heroMascot}>
             <Image
-              src="/images/home/hero-event.jpg"
-              alt={tHero('imageAlt')}
-              fill
+              src="/images/home/mascot.png"
+              alt={tHero('mascotAlt')}
+              width={810}
+              height={871}
               priority
-              sizes="(min-width: 1240px) 1144px, 92vw"
-              className={styles.cover}
+              sizes="(min-width: 900px) 640px, 92vw"
+              className={styles.mascot}
             />
-            <div className={styles.stat}>
-              <b className={styles.statValue}>{tHero('statValue')}</b>
-              <span className={styles.statLabel}>{tHero('statLabel')}</span>
-              <small className={styles.statNote}>{tHero('statNote')}</small>
+          </div>
+
+          <div className={styles.heroIntro}>
+            <span className={styles.badge}>
+              <i className={styles.badgeDot} aria-hidden="true" />
+              {tHero('badge')}
+            </span>
+            <h1 id="hero-headline" className={styles.heroHeadline}>
+              {tHero.rich('headline', rich)}
+            </h1>
+            <p className={styles.heroBody}>{tHero('body')}</p>
+            <div className={styles.buttonRow}>
+              <a href="#" className={`${buttons.pill} ${buttons.violet}`}>
+                {tHero('ctaPrimary')} <Arrow />
+              </a>
+              <a href="#" className={`${buttons.pill} ${buttons.ghostOnInk}`}>
+                {tHero('ctaSecondary')}
+              </a>
             </div>
+            <TicketCard />
           </div>
         </div>
       </section>
 
       {/* ── Statement ────────────────────────────────────────── */}
+      {/* The gradient here carries the hero's dark ground down to the page
+          ground. The sentinel sits where that fade is finished: the nav
+          watches it and swaps to its light colours as it passes. */}
       <section className={styles.statement}>
+        <div id={NAV_THEME_SENTINEL} className={styles.navSentinel} aria-hidden="true" />
         <div className={`${styles.container} ${styles.statementGrid}`}>
           <p className={styles.eyebrow}>{tStatement('eyebrow')}</p>
           <h2 className={styles.statementText}>{tStatement.rich('text', rich)}</h2>

@@ -63,3 +63,61 @@
   /* Motion */
   --dur: 0.2s;
 }
+
+/* ------------------------------------------------------------
+   Dark ground — the mascot hero and its fade into the page.
+   Used by the hero section, the ticket card and the nav while
+   the nav is over the dark part of the page. Nothing below the
+   statement section touches these.
+   ------------------------------------------------------------ */
+
+:root {
+  /* Grounds */
+  --hero-ground: #0F0A1B;
+  --ink-deep: #120C1D;
+  --hero-glow-core: rgba(49, 32, 75, 0.9);
+  --hero-glow-violet: rgba(91, 91, 214, 0.16);
+
+  /* Violets — brighter than --accent, which is meant for light grounds */
+  --accent-bright: #A78BFA;
+  --accent-violet: #7C5CF0;
+  --accent-violet-hover: #8F73F5;
+  --accent-violet-shadow: rgba(124, 92, 240, 0.35);
+
+  /* The brand lime, used for the paid state on the ticket */
+  --lime: #B2C626;
+
+  /* Text on the dark ground */
+  --text-on-dark-strong: #D6D1E6;
+  --text-on-dark-body: #C9C3DC;
+  --text-on-dark-muted: #B9B3D1;
+
+  /* Surfaces and lines on the dark ground */
+  --surface-on-dark: rgba(255, 255, 255, 0.06);
+  --surface-on-dark-strong: rgba(255, 255, 255, 0.08);
+  --line-on-dark: rgba(255, 255, 255, 0.14);
+  --line-on-dark-soft: rgba(255, 255, 255, 0.12);
+  --line-on-dark-dash: rgba(255, 255, 255, 0.18);
+  --nav-glass-dark: rgba(15, 10, 27, 0.55);
+
+  /* Ticket card */
+  --shadow-ticket: 0 30px 80px rgba(0, 0, 0, 0.45);
+  --radius-ticket: 22px;
+  --radius-thumb: 14px;
+  --radius-tile: 10px;
+  --avatar-ring: #1B1430;
+  --avatar-lilac: #C9A7F5;
+  --avatar-peach: #F4B36B;
+  --ticket-stub: rgba(0, 0, 0, 0.18);
+  --thumb-ground: linear-gradient(160deg, #5B4A8A, #2A1E48);
+
+  /* Stops of the fade from the hero ground down to the page ground,
+     used by the statement section. */
+  --fade-deep: #2A2140;
+  --fade-mid: #8E86A3;
+  --fade-light: #DCD9D5;
+
+  /* The nav's crossfade between the two grounds — slower than --dur,
+     because it follows the scroll rather than a pointer. */
+  --dur-theme: 0.35s;
+}

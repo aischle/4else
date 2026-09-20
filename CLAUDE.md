@@ -106,6 +106,25 @@ FAQ → dark CTA band → newsletter. Nav (`components/header`) and footer
 
 Things to know:
 
+- **The hero is the mascot redesign** (handoff:
+  `Z:\GoogleDrive\projects\4else\design_handoff_4else_homepage\`). A dark
+  ground (`--hero-ground`) with two radial glows, the mascot left, and right
+  the badge, headline, lead, two buttons and a glass sample ticket
+  (`components/home/TicketCard.tsx`). The mascot's edges are feathered with a
+  two-gradient CSS mask so the artwork has no rectangle. The ticket shows the
+  design's fictional event (Reitkurs, Anna Müller, CHF 45.–) — sample data,
+  like the testimonials.
+- **The dark ground fades back to the page ground across the statement
+  section** — one CSS gradient, no scroll JS. The hero is pulled up under the
+  sticky nav (`margin-top: calc(var(--nav-h) * -1)`) so the dark ground runs
+  behind the bar.
+- **The nav mirrors the ground it is over.** `components/header/Header.tsx` is
+  a client component: it watches a sentinel that the statement section places
+  at the middle of the fade (`components/header/navTheme.ts`) and swaps
+  between dark and light colours as the sentinel passes under the bar. The
+  sentinel's `top` in `.navSentinel` (`page.module.css`) is the one value tuned
+  by eye — move it if the swap reads early or late. A page without the
+  sentinel, like the 404, keeps the light bar.
 - **Placeholder destinations.** Pricing, About, Login, Demo, the card links,
   every CTA and the footer link columns point at `#` — the design has no
   targets yet. The footer e-mail and phone are real `mailto:`/`tel:` links.
@@ -127,7 +146,8 @@ Things to know:
 - **No mobile menu.** Like the design, the nav's section links hide below
   1000px; only the wordmark, Login and Demo remain.
 - **Images** live in `public/images/home/` and render through `next/image`.
-  `participant.png` is 1.4 MB at source; `next/image` serves it resized.
+  `mascot.png` (1.3 MB) and `participant.png` (1.4 MB) are large at source;
+  `next/image` serves them resized.
 
 ---
 

@@ -1,8 +1,9 @@
 /* ============================================================
    4else — pill buttons
    ------------------------------------------------------------
-   Three looks from the design: solid ink, outlined, and the two
-   inverted variants used on the dark CTA band.
+   Four looks from the design: solid ink, outlined, the violet
+   hero button, and the two inverted variants used on the dark
+   hero and the dark CTA band.
    ============================================================ */
 
 .pill {
@@ -36,6 +37,17 @@
   color: var(--text-on-ink);
 }
 
+.violet {
+  background: var(--accent-violet);
+  color: var(--text-on-ink);
+  box-shadow: 0 10px 30px var(--accent-violet-shadow);
+}
+
+.violet:hover {
+  background: var(--accent-violet-hover);
+  color: var(--text-on-ink);
+}
+
 .outline {
   background: var(--surface);
   border-color: var(--hairline-strong);
@@ -64,6 +76,7 @@
 }
 
 .ghostOnInk:hover {
+  background: var(--surface-on-dark);
   border-color: var(--text-on-ink);
   color: var(--text-on-ink);
 }

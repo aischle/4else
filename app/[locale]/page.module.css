@@ -59,7 +59,6 @@
 .buttonRow {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 12px;
 }
 
@@ -67,17 +66,74 @@
   object-fit: cover;
 }
 
-/* ── Hero ───────────────────────────────────────────────────── */
+/* ── Hero ─────────────────────────────────────────── */
 
 .hero {
-  padding: clamp(64px, 9vw, 120px) 0 0;
+  position: relative;
+  overflow: hidden;
+  background: var(--hero-ground);
+  color: var(--text-on-ink);
+  /* The sticky bar sits in the flow above the page, so the hero is pulled
+     up under it and pads its own content back down: the dark ground runs
+     behind the nav, which is what gives the nav something dark to mirror. */
+  margin-top: calc(var(--nav-h) * -1);
+  padding: calc(var(--nav-h) + clamp(24px, 4vw, 56px)) 0 clamp(56px, 7vw, 96px);
+}
+
+/* Two soft lights on the ground: one behind the mascot, one cooler one
+   up on the right behind the headline. */
+.heroGlow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 60% at 28% 50%, var(--hero-glow-core) 0%, transparent 72%),
+    radial-gradient(ellipse 50% 40% at 78% 30%, var(--hero-glow-violet) 0%, transparent 70%);
+}
+
+.heroGrid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+}
+
+.heroMascot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 360px;
+}
+
+/* The artwork is feathered at its edges so it melts into the ground
+   instead of ending on a rectangle. The two gradients are mask alpha,
+   not colour — black is "keep", transparent is "drop" — and the left
+   side is deliberately softer than the right. */
+.mascot {
+  width: 100%;
+  max-width: 640px;
+  height: auto;
+  --feather-x: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.35) 10%,
+    #000 26%,
+    #000 92%,
+    transparent 100%
+  );
+  --feather-y: linear-gradient(180deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  -webkit-mask-image: var(--feather-x), var(--feather-y);
+  -webkit-mask-composite: source-in;
+  mask-image: var(--feather-x), var(--feather-y);
+  mask-composite: intersect;
 }
 
 .heroIntro {
   display: grid;
-  justify-items: center;
-  gap: 28px;
-  text-align: center;
+  justify-items: start;
+  gap: 26px;
 }
 
 .badge {
@@ -85,13 +141,13 @@
   align-items: center;
   gap: 10px;
   padding: 8px 14px 8px 10px;
-  border: 1px solid var(--hairline);
+  border: 1px solid var(--line-on-dark);
   border-radius: var(--radius-pill);
-  background: var(--surface);
+  background: var(--surface-on-dark);
   font-size: 13px;
   font-weight: var(--w-medium);
   line-height: 1.35;
-  color: var(--text-strong);
+  color: var(--text-on-dark-strong);
 }
 
 .badgeDot {
@@ -100,75 +156,61 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--accent);
+  background: var(--accent-bright);
 }
 
 .heroHeadline {
   margin: 0;
-  max-width: 15ch;
-  font-size: clamp(44px, 7.4vw, 104px);
+  font-size: clamp(42px, 5.4vw, 80px);
   font-weight: var(--w-semibold);
   letter-spacing: -0.035em;
   line-height: 0.98;
   text-wrap: balance;
 }
 
+/* The <accent> tag in the message needs the brighter violet here: the
+   light-ground --accent is too dark to read on the hero. */
+.heroHeadline .accent {
+  color: var(--accent-bright);
+}
+
 .heroBody {
   margin: 0;
-  max-width: 56ch;
-  font-size: clamp(18px, 1.6vw, 22px);
-  color: var(--text-body);
+  max-width: 52ch;
+  font-size: clamp(17px, 1.3vw, 20px);
+  color: var(--text-on-dark-body);
   text-wrap: pretty;
-}
-
-.heroMediaWrap {
-  margin-top: clamp(40px, 6vw, 72px);
-}
-
-.heroMedia {
-  position: relative;
-  aspect-ratio: 16 / 8;
-  border-radius: var(--radius-panel);
-  overflow: hidden;
-  background: var(--fill-soft);
-  box-shadow: var(--shadow-hero);
-}
-
-.stat {
-  position: absolute;
-  left: clamp(16px, 3vw, 32px);
-  bottom: clamp(16px, 3vw, 32px);
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: center;
-  gap: 4px 12px;
-  padding: 14px 18px;
-  border-radius: var(--radius-badge);
-  background: var(--surface);
-  box-shadow: var(--shadow-float);
-}
-
-.statValue {
-  font-size: 22px;
-  letter-spacing: -0.02em;
-  color: var(--accent);
-}
-
-.statLabel {
-  font-size: 14px;
-  color: var(--text-strong);
-}
-
-.statNote {
-  grid-column: 1 / -1;
-  font-size: 13px;
-  color: var(--text-muted);
 }
 
 /* ── Statement ──────────────────────────────────────────────── */
 
 .statement {
-  padding: clamp(80px, 10vw, 150px) 0 clamp(40px, 5vw, 70px);
+  position: relative;
+  /* -1px closes the hairline seam under the hero. */
+  margin-top: -1px;
+  padding: clamp(164px, 22.75vw, 304px) 0 clamp(40px, 5vw, 70px);
+  background: linear-gradient(
+    180deg,
+    var(--hero-ground) 0px,
+    var(--fade-deep) 10%,
+    var(--fade-mid) 32%,
+    var(--fade-light) 52%,
+    var(--page) 68%,
+    var(--page) 100%
+  );
+}
+
+/* Watched by the nav (components/header/Header.tsx): the bar's lower edge
+   meets this line, and the bar swaps its colours there. 40% puts the swap
+   where the fade is halfway in brightness, so the bar is equally slightly
+   off on either side of it rather than badly off on one. */
+.navSentinel {
+  position: absolute;
+  top: 40%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  pointer-events: none;
 }
 
 .statementGrid {
@@ -747,6 +789,7 @@
 }
 
 .ctaButtons {
+  justify-content: center;
   margin-top: 8px;
 }
 

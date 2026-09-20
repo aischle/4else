@@ -24,10 +24,19 @@
     "body": "4else gestaltet Kurse, Workshops und Events genau so, wie du sie brauchst – mit Eventseite, Anmeldung und integrierter Zahlungslösung. TWINT, Kreditkarte oder Rechnung: alles in einem Fluss.",
     "ctaPrimary": "Jetzt Event erstellen",
     "ctaSecondary": "Demo ausprobieren",
-    "imageAlt": "Event mit Publikum",
-    "statValue": "10 Minuten",
-    "statLabel": "bis zum ersten Event",
-    "statNote": "Kostenlos bis 10 Events · keine Kreditkarte nötig"
+    "mascotAlt": "4else – das Maskottchen",
+    "ticketLabel": "Beispiel eines 4else-Tickets",
+    "ticketDate": "Do, 10. Dez. 2026 · 18:30",
+    "ticketStatus": "Bezahlt · TWINT",
+    "ticketTitle": "Reitkurs für Anfänger",
+    "ticketPlace": "Reithalle Hüntwangen · 12 Plätze",
+    "ticketCount": "9 Anmeldungen",
+    "ticketAvatar1": "AM",
+    "ticketAvatar2": "TS",
+    "ticketAvatar3": "LW",
+    "ticketHolder": "Ticket · Anna Müller",
+    "ticketCode": "4E-2026-0347",
+    "ticketPrice": "CHF 45.–"
   },
   "statement": {
     "eyebrow": "Willkommen bei 4else",

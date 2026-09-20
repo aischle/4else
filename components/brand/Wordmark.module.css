@@ -1,3 +1,6 @@
+/* The two colours are custom properties so a dark parent — the nav over
+   the hero — can recolour the wordmark without reaching into this module. */
+
 .wordmark {
   display: flex;
   align-items: baseline;
@@ -5,11 +8,12 @@
   font-weight: var(--w-bold);
   font-size: 24px;
   letter-spacing: -0.04em;
-  color: var(--ink);
+  color: var(--wordmark-ink, var(--ink));
+  transition: color var(--dur-theme);
 }
 
 .wordmark:hover {
-  color: var(--ink);
+  color: var(--wordmark-ink, var(--ink));
 }
 
 .suffix {
@@ -17,5 +21,6 @@
   font-size: 13px;
   font-weight: var(--w-medium);
   letter-spacing: 0;
-  color: var(--text-muted);
+  color: var(--wordmark-suffix, var(--text-muted));
+  transition: color var(--dur-theme);
 }

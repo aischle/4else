@@ -6,6 +6,17 @@
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--hairline);
+  transition: background-color var(--dur-theme), border-color var(--dur-theme);
+}
+
+/* Over the dark hero and its fade. The two custom properties recolour the
+   wordmark from here; everything else is a plain override. */
+.onDark {
+  --wordmark-ink: var(--text-on-ink);
+  --wordmark-suffix: var(--text-on-dark-muted);
+
+  background: var(--nav-glass-dark);
+  border-bottom-color: var(--surface-on-dark-strong);
 }
 
 .inner {
@@ -31,12 +42,21 @@
   border-radius: var(--radius-pill);
   color: var(--text-strong);
   white-space: nowrap;
-  transition: background-color var(--dur), color var(--dur);
+  transition: background-color var(--dur), color var(--dur-theme);
 }
 
 .link:hover {
   background: var(--fill-soft);
   color: var(--ink);
+}
+
+.onDark .link {
+  color: var(--text-on-dark-strong);
+}
+
+.onDark .link:hover {
+  background: var(--surface-on-dark-strong);
+  color: var(--text-on-ink);
 }
 
 .actions {
@@ -55,7 +75,7 @@
   font-size: 14px;
   color: var(--ink);
   white-space: nowrap;
-  transition: background-color var(--dur);
+  transition: background-color var(--dur), color var(--dur-theme);
 }
 
 .login:hover {
@@ -63,10 +83,32 @@
   color: var(--ink);
 }
 
+.onDark .login {
+  color: var(--text-on-ink);
+}
+
+.onDark .login:hover {
+  background: var(--surface-on-dark-strong);
+  color: var(--text-on-ink);
+}
+
 .link:focus-visible,
 .login:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+.onDark .link:focus-visible,
+.onDark .login:focus-visible {
+  outline-color: var(--accent-bright);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar,
+  .link,
+  .login {
+    transition: none;
+  }
 }
 
 @media (max-width: 1000px) {
