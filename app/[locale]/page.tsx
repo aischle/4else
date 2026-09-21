@@ -281,7 +281,10 @@ export default function HomePage({
       {/* Native <details>, never a client-side accordion: the page
           stays a server component and every answer sits in the
           server-rendered HTML whether the item is open or closed, so
-          crawlers and assistants read all three regardless of state. */}
+          crawlers and assistants read them all regardless of state.
+          The shared name makes the items one exclusive group — the
+          browser closes the open one when another opens — and the
+          first starts open. */}
       <section id="faq" className={styles.section} aria-labelledby="faq-heading">
         <div className={`${styles.container} ${styles.faqGrid}`}>
           <div className={styles.headStack}>
@@ -292,7 +295,12 @@ export default function HomePage({
           </div>
           <div className={styles.faqList}>
             {FAQ_IDS.map((id) => (
-              <details key={id} className={styles.faqItem}>
+              <details
+                key={id}
+                name="faq"
+                open={id === FAQ_IDS[0]}
+                className={styles.faqItem}
+              >
                 <summary className={styles.faqQuestion}>
                   <span>{tFaq(`${id}Question`)}</span>
                   {/* Drawn plus/minus. Decorative only — <details> already

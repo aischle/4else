@@ -107,7 +107,7 @@ FAQ → dark CTA band → newsletter. Nav (`components/header`) and footer
 Things to know:
 
 - **The hero is the mascot redesign** (handoff:
-  `Z:\GoogleDrive\projectselse\design_handoff_4else_homepage\`). A dark
+  `Z:\GoogleDrive\projects\4else\design_handoff_4else_homepage\`). A dark
   ground (`--hero-ground`) with two radial glows, the living mascot left, and
   right the badge, headline, lead, two buttons and a glass sample ticket
   (`components/home/TicketCard.tsx`). The ticket shows the design's fictional
@@ -115,7 +115,7 @@ Things to know:
   testimonials.
 - **The mascot is a silent video loop** (`components/home/MascotVideo.tsx`),
   generated in Adobe Firefly (16:9) with
-  `Z:\GoogleDrive\projectselseideo-keyframe\mascot-keyframe-16x9.png`
+  `Z:\GoogleDrive\projects\4else\video-keyframe\mascot-keyframe-16x9.png`
   as both first and last frame. Files: `public/videos/home/mascot-loop.webm`
   + `.mp4` (square, 1080px), poster `public/images/home/mascot-poster.webp`
   (the loop's first frame, so the page looks the same before the video
@@ -155,7 +155,11 @@ Things to know:
   4else.events, verbatim apart from the `du` casing (§4) and one title
   rephrased as a question. The section follows temu.swiss: native
   `<details>`/`<summary>`, never a client-side accordion, so every answer sits
-  in the server-rendered HTML whether the item is open or closed.
+  in the server-rendered HTML whether the item is open or closed. The items
+  share `name="faq"`, which makes them an exclusive group in the browser
+  itself: the first opens with the page, and opening another closes it. No
+  script involved; a browser without `name` support (pre-2024) simply lets
+  several stay open.
   `components/seo/FaqJsonLd.tsx` emits the `FAQPage` schema from the same
   message keys, so copy and structured data cannot drift. **To add or remove a
   pair, edit `FAQ_IDS` there and the `fNQuestion`/`fNAnswer` keys** — never
