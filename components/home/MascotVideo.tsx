@@ -6,8 +6,9 @@ import styles from './MascotVideo.module.css';
 /* ============================================================
    4else — the living mascot in the hero
    ------------------------------------------------------------
-   A silent 7-second loop (Firefly, cropped to 2:3, its loop
-   point closed with a crossfade). The poster is the loop's
+   A silent 7.5-second loop (Firefly, 16:9, cropped to a square
+   around the creature and its orbiting icons; the loop point
+   smoothed with a half-second crossfade). The poster is the loop's
    first frame, so the page looks identical before, during and
    after the video loads.
 
@@ -68,7 +69,7 @@ export function MascotVideo({ label }: { label: string }) {
     <video
       ref={ref}
       className={styles.video}
-      width={720}
+      width={1080}
       height={1080}
       poster="/images/home/mascot-poster.webp"
       preload="none"

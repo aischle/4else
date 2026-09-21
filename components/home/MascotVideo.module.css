@@ -1,35 +1,48 @@
 /* ============================================================
    4else — the living mascot in the hero
    ------------------------------------------------------------
-   The clip's own background is lighter than the hero ground, so
-   its edges are feathered wide enough that no rectangle shows.
-   The creature nearly fills the clip's width, so the feather
-   also softens the outer rim of its body a little — the same
-   soft edge the design gave the still mascot. The gradients are
-   mask alpha, not colour: black is "keep", transparent "drop".
+   The clip is square: the creature in the middle, its four icons
+   orbiting around it. The clip's own background is lighter than
+   the hero ground, so its edges are feathered until no square
+   shows — the orbits stay clear of the feather except at their
+   outermost point. The gradients are mask alpha, not colour:
+   black is "keep", transparent is "drop".
    ============================================================ */
 
 .video {
   display: block;
   width: 100%;
-  max-width: 560px;
   height: auto;
-  aspect-ratio: 2 / 3;
+  aspect-ratio: 1;
   object-fit: cover;
-  --feather-x: linear-gradient(90deg, transparent 0%, #000 16%, #000 86%, transparent 100%);
-  --feather-y: linear-gradient(180deg, transparent 0%, #000 8%, #000 90%, transparent 100%);
+  --feather-x: linear-gradient(90deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
+  --feather-y: linear-gradient(180deg, transparent 0%, #000 10%, #000 88%, transparent 100%);
   -webkit-mask-image: var(--feather-x), var(--feather-y);
   -webkit-mask-composite: source-in;
   mask-image: var(--feather-x), var(--feather-y);
   mask-composite: intersect;
 }
 
-/* Stacked hero (mascot above the text): keep the tall clip from
-   pushing the headline off the first screen. Tied to the screen's
+/* Side by side with the text. A square clip leaves the creature
+   shorter than the text column, so the clip reaches past its own
+   column into the hero's left margin — only its transparent
+   feather lands there — and keeps the mascot at the size the
+   design gave it. From 1000px, safely past the point (~970px)
+   where the hero grid puts the two columns side by side; the
+   nav switches at the same width. */
+@media (min-width: 1000px) {
+  .video {
+    width: calc(100% + 64px);
+    max-width: 680px;
+    margin-left: -64px;
+  }
+}
+
+/* Stacked hero (mascot above the text): sized by the screen's
    height as well as its width, so a short phone gets a smaller
    mascot rather than a headline below the fold. */
-@media (max-width: 900px) {
+@media (max-width: 999px) {
   .video {
-    max-width: min(100%, 360px, 34svh);
+    max-width: min(100%, 420px, 46svh);
   }
 }

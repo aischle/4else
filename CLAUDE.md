@@ -114,19 +114,23 @@ Things to know:
   event (Reitkurs, Anna Müller, CHF 45.–) — sample data, like the
   testimonials.
 - **The mascot is a silent video loop** (`components/home/MascotVideo.tsx`),
-  generated in Adobe Firefly from the keyframe
-  `Z:\GoogleDrive\projectselseideo-keyframe\mascot-keyframe-1052.png`.
-  Files: `public/videos/home/mascot-loop.webm` + `.mp4`, poster
-  `public/images/home/mascot-poster.webp` (the loop's first frame, so the page
-  looks the same before the video loads). The component starts playback
-  itself: not for reduced motion (poster only, no download), paused while
-  off-screen or in a hidden tab. Its edges are feathered by a CSS mask so no
-  rectangle shows against the hero ground.
+  generated in Adobe Firefly (16:9) with
+  `Z:\GoogleDrive\projectselseideo-keyframe\mascot-keyframe-16x9.png`
+  as both first and last frame. Files: `public/videos/home/mascot-loop.webm`
+  + `.mp4` (square, 1080px), poster `public/images/home/mascot-poster.webp`
+  (the loop's first frame, so the page looks the same before the video
+  loads). The component starts playback itself: not for reduced motion
+  (poster only, no download), paused while off-screen or in a hidden tab.
+  Its edges are feathered by a CSS mask so no square shows against the hero
+  ground; from 1000px it reaches into the hero's left margin to keep the
+  mascot at design size.
   **To replace the clip**, run the new Firefly export through the same
-  pipeline (ffmpeg): close the loop by crossfading its last second into its
-  first (`trim` 1s→end, `xfade` fade 1s against 0→1s), crop to 2:3 around the
-  creature, encode without audio — H.264 `-crf 26 -movflags +faststart` and
-  VP9 `-crf 36 -b:v 0` — and take the poster from frame 0 of the result.
+  pipeline (ffmpeg): smooth the loop point by crossfading its last half
+  second into its first (`trim` 0.5s→end, `xfade` fade 0.5s against
+  0→0.5s), crop a square around the creature and its icon orbits (for a
+  1920×1080 export: `crop=1080:1080:440:0`), encode without audio — H.264
+  `-crf 26 -movflags +faststart` and VP9 `-crf 36 -b:v 0` — and take the
+  poster from frame 0 of the result.
 - **The dark ground fades back to the page ground across the statement
   section** — one CSS gradient, no scroll JS. The hero is pulled up under the
   sticky nav (`margin-top: calc(var(--nav-h) * -1)`) so the dark ground runs
