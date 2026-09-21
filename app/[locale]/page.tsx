@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { NewsletterForm } from '@/components/home/NewsletterForm';
+import { MascotVideo } from '@/components/home/MascotVideo';
 import { TicketCard } from '@/components/home/TicketCard';
 import { NAV_FADE_START, NAV_FADE_TEXT, NAV_FADE_END } from '@/components/header/navTheme';
 import { FaqJsonLd, FAQ_IDS } from '@/components/seo/FaqJsonLd';
@@ -73,15 +74,7 @@ export default function HomePage({
 
         <div className={`${styles.container} ${styles.heroGrid}`}>
           <div className={styles.heroMascot}>
-            <Image
-              src="/images/home/mascot.png"
-              alt={tHero('mascotAlt')}
-              width={810}
-              height={871}
-              priority
-              sizes="(min-width: 900px) 640px, 92vw"
-              className={styles.mascot}
-            />
+            <MascotVideo label={tHero('mascotAlt')} />
           </div>
 
           <div className={styles.heroIntro}>

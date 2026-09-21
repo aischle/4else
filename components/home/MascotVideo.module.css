@@ -1,0 +1,35 @@
+/* ============================================================
+   4else — the living mascot in the hero
+   ------------------------------------------------------------
+   The clip's own background is lighter than the hero ground, so
+   its edges are feathered wide enough that no rectangle shows.
+   The creature nearly fills the clip's width, so the feather
+   also softens the outer rim of its body a little — the same
+   soft edge the design gave the still mascot. The gradients are
+   mask alpha, not colour: black is "keep", transparent "drop".
+   ============================================================ */
+
+.video {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  --feather-x: linear-gradient(90deg, transparent 0%, #000 16%, #000 86%, transparent 100%);
+  --feather-y: linear-gradient(180deg, transparent 0%, #000 8%, #000 90%, transparent 100%);
+  -webkit-mask-image: var(--feather-x), var(--feather-y);
+  -webkit-mask-composite: source-in;
+  mask-image: var(--feather-x), var(--feather-y);
+  mask-composite: intersect;
+}
+
+/* Stacked hero (mascot above the text): keep the tall clip from
+   pushing the headline off the first screen. Tied to the screen's
+   height as well as its width, so a short phone gets a smaller
+   mascot rather than a headline below the fold. */
+@media (max-width: 900px) {
+  .video {
+    max-width: min(100%, 360px, 34svh);
+  }
+}

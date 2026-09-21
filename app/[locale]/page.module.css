@@ -89,6 +89,13 @@
   background:
     radial-gradient(ellipse 55% 60% at 28% 50%, var(--hero-glow-core) 0%, transparent 72%),
     radial-gradient(ellipse 50% 40% at 78% 30%, var(--hero-glow-violet) 0%, transparent 70%);
+  /* The lights die out before the hero ends, so its last row is plain
+     --hero-ground — the colour the statement's fade starts from. Left
+     on, they lift the hero's bottom edge above the fade's first row,
+     and the step reads as a line. The fade's eased start (.statement)
+     takes care of the rest. */
+  -webkit-mask-image: linear-gradient(180deg, #000 72%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 72%, transparent 100%);
 }
 
 .heroGrid {
@@ -105,29 +112,6 @@
   align-items: center;
   justify-content: center;
   min-height: 360px;
-}
-
-/* The artwork is feathered at its edges so it melts into the ground
-   instead of ending on a rectangle. The two gradients are mask alpha,
-   not colour — black is "keep", transparent is "drop" — and the left
-   side is deliberately softer than the right. */
-.mascot {
-  width: 100%;
-  max-width: 640px;
-  height: auto;
-  --feather-x: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(0, 0, 0, 0.35) 10%,
-    #000 26%,
-    #000 92%,
-    transparent 100%
-  );
-  --feather-y: linear-gradient(180deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
-  -webkit-mask-image: var(--feather-x), var(--feather-y);
-  -webkit-mask-composite: source-in;
-  mask-image: var(--feather-x), var(--feather-y);
-  mask-composite: intersect;
 }
 
 .heroIntro {
@@ -189,10 +173,17 @@
   /* -1px closes the hairline seam under the hero. */
   margin-top: -1px;
   padding: clamp(164px, 22.75vw, 304px) 0 clamp(40px, 5vw, 70px);
+  /* The first stops ease the fade in. Starting it as a straight ramp
+     puts a kink right under the hero, and the eye reads a kink in a
+     gradient as a line (a Mach band) even though no pixel has one.
+     Together with the glow fading out above (.heroGlow), the hero now
+     runs into the fade without an edge. */
   background: linear-gradient(
     180deg,
     var(--hero-ground) 0px,
-    var(--fade-deep) 10%,
+    color-mix(in srgb, var(--fade-deep) 6%, var(--hero-ground)) 3%,
+    color-mix(in srgb, var(--fade-deep) 30%, var(--hero-ground)) 6.5%,
+    var(--fade-deep) 12%,
     var(--fade-mid) 32%,
     var(--fade-light) 52%,
     var(--page) 68%,
