@@ -1,6 +1,6 @@
-import type { ReactNode } from 'react';
 import { useTranslations } from 'next-intl';
 import { Wordmark } from '@/components/brand/Wordmark';
+import { FooterWordmark } from './FooterWordmark';
 import styles from './Footer.module.css';
 
 /* ============================================================
@@ -9,11 +9,10 @@ import styles from './Footer.module.css';
    Address block, three link columns, the giant wordmark, and
    the legal bar. Link destinations are not built yet and point
    at "#"; the e-mail and phone are real mailto/tel links.
-   ============================================================ */
 
-const rich = {
-  b: (chunks: ReactNode) => <b className={styles.wordmarkStrong}>{chunks}</b>,
-};
+   The closing wordmark is its own component: it shows on the
+   start page only (see ./FooterWordmark.tsx).
+   ============================================================ */
 
 export function Footer() {
   const t = useTranslations('footer');
@@ -72,9 +71,7 @@ export function Footer() {
         </div>
       </div>
 
-      <p className={styles.wordmark} aria-hidden="true">
-        {t.rich('wordmark', rich)}
-      </p>
+      <FooterWordmark />
 
       <div className={styles.legal}>
         <span>{t('copyright')}</span>

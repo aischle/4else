@@ -174,6 +174,43 @@ Things to know:
 
 ---
 
+## 5b. Contact page
+
+`app/[locale]/kontakt/page.tsx` (+ `page.module.css`), route registered in
+`lib/routing.ts` — `app/sitemap.ts` reads `routing.pathnames`, so the page
+lists itself. Design handoff:
+`Z:\GoogleDrive\projects\4else\design_handoff_4else_kontakt\` (its
+`reference/index.html` is a self-unpacking bundle; the markup sits in the
+JSON-escaped string near the end of the file).
+
+Sections: hero → form + three pastel cards → FAQ → dark CTA band. Copy in the
+`kontakt` namespace, page title/description in `meta.kontakt*`.
+
+- **No dark hero, no mascot** — those stay exclusive to the start page. Hero
+  and form share one white block that is pulled up under the sticky nav
+  (`.white`, the same `margin-top: calc(var(--nav-h) * -1)` trick the start
+  page's hero uses), so the glass bar reads as white here.
+- **The form has no backend** (`components/contact/ContactForm.tsx`). Submitting
+  shows a notice saying so — deliberately *not* the design's success state,
+  whose copy promises an answer within 24 hours and a copy in the sender's
+  inbox. **When a handler exists**: POST the fields plus the chosen topic in
+  `onSubmit` (Support → support@4else.com, everything else → info@4else.com),
+  then swap the notice for the success state in the handoff's README §2.
+- **FAQ**: four pairs (`k1`–`k4`), same native `<details name>` pattern as the
+  start page. **No `FaqJsonLd` here on purpose** — all four are re-phrasings of
+  start-page questions, and the same Q&A on two URLs competes with itself.
+- **The nav** gained Kontakt, the one item with a real route; it marks itself
+  with `aria-current="page"` and `.linkActive`. Away from the start page the
+  section links carry the route in front of the hash (`/#tun`), so they lead
+  home and scroll there.
+- **The footer's giant wordmark is start-page only**
+  (`components/footer/FooterWordmark.tsx`, a client component because the
+  layout renders the footer and does not know the route). Without it the legal
+  row uses its 56px top margin; under the wordmark a sibling rule pulls it back
+  to 40px.
+- **Still open:** "Antwort innert 24 h" is the handoff's assumption, not a
+  confirmed promise. Datenschutz, Zum Login and both CTA buttons point at `#`.
+
 ## 6. SEO
 
 - Title and description come from `messages/*.json` (`meta` namespace) in the

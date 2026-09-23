@@ -36,6 +36,9 @@
   --accent: #5B5BD6;
   --accent-ring: rgba(91, 91, 214, 0.2);
 
+  /* Ink on the lilac ground (the contact page's avatar tile) */
+  --text-on-lilac: #3D3951;
+
   /* Pastel card grounds */
   --lilac: #E9E5FF;
   --mint: #DDF3E4;
@@ -50,9 +53,14 @@
   --radius-badge: 16px;
   --radius-card: 24px;
   --radius-panel: 28px;
+  --radius-field: 14px;
+  /* The avatar tile on the contact page: round on one diagonal, sharp on
+     the other. */
+  --radius-leaf: 32px 8px 32px 8px;
 
   /* Shadows */
   --shadow-hero: 0 30px 80px rgba(17, 17, 17, 0.10);
+  --shadow-card: 0 20px 60px rgba(17, 17, 17, 0.06);
   --shadow-float: 0 8px 24px rgba(17, 17, 17, 0.12);
 
   /* Layout */

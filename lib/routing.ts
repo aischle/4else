@@ -20,5 +20,6 @@ export const routing = defineRouting({
   localeDetection: false,
   pathnames: {
     '/': '/',
+    '/kontakt': '/kontakt',
   },
 });

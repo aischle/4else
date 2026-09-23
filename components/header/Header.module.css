@@ -66,6 +66,19 @@
   color: var(--text-on-dark-strong);
 }
 
+/* The page the visitor is on; aria-current carries the same fact. */
+.linkActive,
+.linkActive:hover {
+  background: var(--fill-soft);
+  color: var(--ink);
+}
+
+.textLight .linkActive,
+.textLight .linkActive:hover {
+  background: var(--surface-on-dark-strong);
+  color: var(--text-on-ink);
+}
+
 .textLight .link:hover {
   background: var(--surface-on-dark-strong);
   color: var(--text-on-ink);

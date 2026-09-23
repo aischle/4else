@@ -1,9 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Wordmark } from '@/components/brand/Wordmark';
-import { usePathname } from '@/lib/navigation';
+import { Link, getPathname, usePathname } from '@/lib/navigation';
+import type { Locale } from '@/lib/i18n';
 import { NAV_FADE_MARKS, NAV_FADE_START, NAV_FADE_TEXT, NAV_FADE_END } from './navTheme';
 import buttons from '@/components/ui/Button.module.css';
 import styles from './Header.module.css';
@@ -25,6 +26,10 @@ import styles from './Header.module.css';
 
    The section links jump to anchors on the start page and hide
    below 1000px, as in the design (there is no mobile menu yet).
+   Away from the start page they carry the route in front of the
+   hash, so they lead home and scroll there. Kontakt is the one
+   item with a real route, and marks itself when the visitor is
+   on it.
    Pricing, About, Login and Demo have no destination yet and
    point at "#".
    ============================================================ */
@@ -41,12 +46,19 @@ function navHeight() {
 
 export function Header() {
   const t = useTranslations('nav');
+  const locale = useLocale();
   const pathname = usePathname();
 
   /* The start page opens on the dark hero with nothing passed yet, so the
      bar is already dark in the server-rendered HTML — no light flash before
      the observer runs. Every other route starts, and stays, light. */
   const [passed, setPassed] = useState<Passed>(() => (pathname === '/' ? {} : ALL_PASSED));
+
+  /* On the start page the section links are plain same-page anchors; from
+     anywhere else they need the route in front of the hash. */
+  const home = pathname === '/' ? '' : getPathname({ locale: locale as Locale, href: '/' });
+  const section = (hash: string) => `${home}#${hash}`;
+  const onContact = pathname === '/kontakt';
 
   useEffect(() => {
     const marks = NAV_FADE_MARKS.map((id) => document.getElementById(id)).filter(
@@ -95,11 +107,18 @@ export function Header() {
         <Wordmark />
 
         <nav className={styles.links} aria-label={t('label')}>
-          <a href="#tun" className={styles.link}>{t('services')}</a>
-          <a href="#warum" className={styles.link}>{t('why')}</a>
-          <a href="#ablauf" className={styles.link}>{t('steps')}</a>
+          <a href={section('tun')} className={styles.link}>{t('services')}</a>
+          <a href={section('warum')} className={styles.link}>{t('why')}</a>
+          <a href={section('ablauf')} className={styles.link}>{t('steps')}</a>
           <a href="#" className={styles.link}>{t('pricing')}</a>
           <a href="#" className={styles.link}>{t('about')}</a>
+          <Link
+            href="/kontakt"
+            aria-current={onContact ? 'page' : undefined}
+            className={`${styles.link}${onContact ? ` ${styles.linkActive}` : ''}`}
+          >
+            {t('contact')}
+          </Link>
         </nav>
 
         <div className={styles.actions}>

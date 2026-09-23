@@ -1,0 +1,453 @@
+/* ============================================================
+   4else — contact page
+   ------------------------------------------------------------
+   Values from the contact handoff. Colours, radii and layout
+   widths come from styles/tokens.css; the fluid clamp() type
+   sizes are the design's own. The FAQ disclosure reuses the
+   start page's technique — see the comments there.
+   ============================================================ */
+
+/* ── Shared ─────────────────────────────────────────────────── */
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.accent {
+  color: var(--accent);
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 12px;
+  font-weight: var(--w-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── White block ────────────────────────────────────────────── */
+
+/* Hero and form share one white ground. The sticky bar sits in the
+   flow above the page, so the block is pulled up under it and pads
+   its content back down — that is what makes the glass bar read as
+   white here instead of as the off-white page ground. */
+.white {
+  margin-top: calc(var(--nav-h) * -1);
+  padding-top: var(--nav-h);
+  background: var(--surface);
+}
+
+/* ── Hero ───────────────────────────────────────────────────── */
+
+.hero {
+  padding: clamp(56px, 7vw, 104px) 0 clamp(40px, 5vw, 64px);
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  align-items: end;
+  gap: clamp(24px, 4vw, 56px);
+}
+
+.heroIntro {
+  display: grid;
+  justify-items: start;
+  gap: 26px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px 8px 10px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-pill);
+  background: var(--page);
+  font-size: 13px;
+  font-weight: var(--w-medium);
+  color: var(--text-body);
+  white-space: nowrap;
+}
+
+.badgeDot {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--lime);
+}
+
+.headline {
+  margin: 0;
+  font-size: clamp(42px, 5.4vw, 80px);
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.lead {
+  margin: 0;
+  max-width: 44ch;
+  font-size: clamp(17px, 1.3vw, 20px);
+  color: var(--text-body);
+  text-wrap: pretty;
+}
+
+/* ── Form and contact cards ─────────────────────────────────── */
+
+.contact {
+  padding: clamp(16px, 2vw, 24px) 0 clamp(60px, 7vw, 110px);
+}
+
+.contactRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.cards {
+  flex: 1 1 320px;
+  min-width: 0;
+  display: grid;
+  gap: 16px;
+}
+
+.card {
+  display: grid;
+  gap: 12px;
+  padding: 30px 28px;
+  border-radius: var(--radius-card);
+}
+
+.lilac {
+  gap: 14px;
+  background: var(--lilac);
+}
+
+.mint {
+  background: var(--mint);
+}
+
+.peach {
+  background: var(--peach);
+}
+
+.cardLabel {
+  font-size: 13px;
+  font-weight: var(--w-semibold);
+  letter-spacing: 0.06em;
+  color: var(--text-body);
+}
+
+.person {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.avatar {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-leaf);
+  background: var(--surface);
+  font-size: 15px;
+  font-weight: var(--w-bold);
+  color: var(--text-on-lilac);
+}
+
+.personName {
+  display: block;
+  font-size: 18px;
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.01em;
+}
+
+.personRole {
+  display: block;
+  font-size: 14px;
+  color: var(--text-body);
+}
+
+.cardLinks {
+  display: grid;
+  gap: 4px;
+}
+
+.cardBody {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-strong);
+}
+
+.cardStrong {
+  font-weight: var(--w-semibold);
+  color: var(--ink);
+}
+
+.cardMail {
+  font-size: 16px;
+  font-weight: var(--w-semibold);
+}
+
+.cardPhone {
+  font-size: 16px;
+  color: var(--text-strong);
+}
+
+.cardLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: var(--w-semibold);
+}
+
+/* ── FAQ ────────────────────────────────────────────────────── */
+
+.faq {
+  padding: clamp(60px, 7vw, 110px) 0;
+  border-top: 1px solid var(--hairline);
+  background: var(--page);
+}
+
+.faqGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  align-items: start;
+  gap: clamp(32px, 6vw, 90px);
+}
+
+.faqIntro {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+}
+
+.faqHeading {
+  margin: 0;
+  font-size: clamp(32px, 4.4vw, 56px);
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+}
+
+.faqLead {
+  margin: 0;
+  max-width: 36ch;
+  font-size: 18px;
+  color: var(--text-body);
+}
+
+.faqList {
+  grid-column: span 2;
+  min-width: 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.faqItem {
+  border-top: 1px solid var(--hairline);
+}
+
+/* The design's three-column row: number, question, sign. display:grid
+   replaces the default list-item box, which drops the disclosure
+   triangle; the -webkit rule covers Safari's separate marker. */
+.faqQuestion {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 0;
+  list-style: none;
+  cursor: pointer;
+}
+
+.faqQuestion::-webkit-details-marker {
+  display: none;
+}
+
+.faqNum {
+  font-size: 14px;
+  font-weight: var(--w-semibold);
+  color: var(--text-muted);
+}
+
+.faqText {
+  font-size: 21px;
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+/* Plus/minus drawn from two bars, as on the start page: no glyph in
+   CSS, nothing to translate. The vertical bar fades out on open. */
+.faqMarker {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  margin: 0 7px;
+}
+
+.faqMarker::before,
+.faqMarker::after {
+  content: '';
+  position: absolute;
+  background: var(--accent);
+  transition: opacity var(--dur);
+}
+
+.faqMarker::before {
+  top: 8px;
+  left: 0;
+  width: 18px;
+  height: 2px;
+}
+
+.faqMarker::after {
+  top: 0;
+  left: 8px;
+  width: 2px;
+  height: 18px;
+}
+
+.faqItem[open] .faqMarker::after {
+  opacity: 0;
+}
+
+/* Same two-technique disclosure animation as the start page: the
+   grid-row baseline for every browser, and a pixel animation where
+   interpolate-size exists. The long form of the reasoning is in
+   app/[locale]/page.module.css. */
+.faqItem::details-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  content-visibility: hidden;
+  transition:
+    grid-template-rows var(--dur),
+    content-visibility var(--dur) allow-discrete;
+}
+
+.faqItem[open]::details-content {
+  grid-template-rows: 1fr;
+  content-visibility: visible;
+}
+
+@supports (interpolate-size: allow-keywords) {
+  .faqItem {
+    interpolate-size: allow-keywords;
+  }
+
+  .faqItem::details-content {
+    display: block;
+    block-size: 0;
+    overflow: clip;
+    transition:
+      block-size var(--dur),
+      content-visibility var(--dur) allow-discrete;
+  }
+
+  .faqItem[open]::details-content {
+    block-size: auto;
+  }
+}
+
+.faqAnswer {
+  min-height: 0;
+  margin: 0;
+  padding: 0 44px 26px 68px;
+  max-width: 64ch;
+  font-size: 16px;
+  color: var(--text-body);
+}
+
+/* ── CTA ────────────────────────────────────────────────────── */
+
+.ctaSection {
+  padding: clamp(60px, 7vw, 100px) var(--gutter) 0;
+}
+
+/* A row here, not the start page's centred band: heading left,
+   buttons right, wrapping to two lines when there is no room. */
+.ctaBand {
+  max-width: var(--container);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: clamp(48px, 6vw, 88px) clamp(24px, 5vw, 80px);
+  border-radius: var(--radius-panel);
+  background: var(--ink);
+  color: var(--text-on-ink);
+}
+
+.ctaHeading {
+  margin: 0;
+  max-width: 18ch;
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.035em;
+  line-height: 1;
+  text-wrap: balance;
+  color: var(--text-on-ink);
+}
+
+.ctaButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ── Focus ──────────────────────────────────────────────────── */
+
+.cardLink:focus-visible,
+.cardMail:focus-visible,
+.cardPhone:focus-visible,
+.faqQuestion:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ── Narrow screens ─────────────────────────────────────────── */
+
+/* The list spans two of the grid's tracks; below this width the grid
+   has fewer tracks, so the span would create empty implicit columns.
+   Let it take a full row instead, and pull the answer's indent back
+   so it does not eat a phone's line length. */
+@media (max-width: 1000px) {
+  .faqList {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 620px) {
+  .faqQuestion {
+    grid-template-columns: 40px minmax(0, 1fr) auto;
+  }
+
+  .faqAnswer {
+    padding: 0 0 26px 52px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faqItem::details-content,
+  .faqItem[open]::details-content,
+  .faqMarker::before,
+  .faqMarker::after {
+    transition-duration: 0.01ms;
+  }
+}
