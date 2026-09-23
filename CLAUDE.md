@@ -103,7 +103,8 @@ Every route gets the same frame from `app/[locale]/layout.tsx`: nav
 (`components/header`), the page, footer (`components/footer`). Unknown URLs
 land on `app/[locale]/not-found.tsx` through the catch-all in
 `app/[locale]/[...rest]/page.tsx` — without that they fall through to Next's
-own global 404, which renders outside the layout with no nav and no footer.
+own global 404, which renders outside the layout with no nav and no footer. See
+§5c for the 404 page itself.
 
 `app/[locale]/page.tsx`, sections in order: hero → statement → what we do
 (three cards) → payment banner → why 4else → how it works → testimonials →
@@ -215,6 +216,38 @@ Sections: hero → form + three pastel cards → FAQ → dark CTA band. Copy in 
   the start page; Robin asked for one footer instead, so that variant is gone.
 - **Still open:** "Antwort innert 24 h" is the handoff's assumption, not a
   confirmed promise. Datenschutz, Zum Login and both CTA buttons point at `#`.
+
+---
+
+## 5c. 404 page
+
+`app/[locale]/not-found.tsx` (+ `not-found.module.css`), from the handoff
+`Z:\GoogleDrive\projects\4else\design_handoff_4else_404\`. The **0 of "404" is a
+porthole Else peeks through**, then the headline, one sentence and four ways
+back. Copy in the `notFound` namespace.
+
+- **White ground, full-bleed**, pulled up under the sticky nav like the
+  contact page's white block, so the glass bar reads as white.
+- **The porthole** is sized in `em` (`0.843em` of the numerals), so it stays a
+  circle in the same proportion at every width. Its ring is three stacked
+  box-shadows ending in `--shadow-porthole`.
+- **The image** is `public/images/404/else-porthole.webp`, cut from
+  `public/images/home/mascot-poster.webp` (the video's first frame, the
+  sharpest source there is) with `crop=268:268:498:227`, scaled to 536px. The
+  handoff ships an 800px PNG of the same framing, but it is an upscale of that
+  same 268px region — the fresh cut is visibly sharper. **To re-cut it**, run
+  that crop again; for anything bigger, Else's face has to be rendered anew in
+  Firefly, not upscaled.
+- **She drifts** ±4px over 6s, off under `prefers-reduced-motion`.
+- **The numerals are a `<p>`**, not a heading — the page's heading is the
+  sentence below. "Fehler 404" is announced by a visually hidden span (the
+  global `srOnly` class); `aria-label` on a `<p>` has no role to hang on.
+- **Title and noindex** come from `generateMetadata` in the catch-all, and
+  Next keeps them even though that segment throws `notFound()` (verified:
+  "Seite nicht gefunden — 4else", `noindex, follow`). The 404 status is what
+  actually keeps it out of search indexes.
+
+---
 
 ## 6. SEO
 

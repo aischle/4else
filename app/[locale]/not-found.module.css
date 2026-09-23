@@ -1,32 +1,133 @@
+/* ============================================================
+   4else — 404
+   ------------------------------------------------------------
+   Values from the 404 handoff. Colours, radii and shadows are
+   tokens from styles/tokens.css; the fluid clamp() sizes are the
+   design's own.
+   ============================================================ */
+
+/* White ground, not the page's off-white. Like the contact page's
+   white block it is pulled up under the sticky bar and pads its
+   content back down, so the glass nav reads as white here too. */
 .wrap {
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: clamp(80px, 12vw, 160px) var(--gutter);
+  /* Full-bleed: the ground is white edge to edge, not a white slab on
+     the page ground. The content centres itself inside it. */
+  margin-top: calc(var(--nav-h) * -1);
+  padding: calc(var(--nav-h) + clamp(56px, 8vw, 64px)) var(--gutter)
+    clamp(64px, 8vw, 72px);
+  min-height: 62svh;
   display: grid;
   justify-items: center;
-  gap: 20px;
+  align-content: center;
+  gap: 28px;
+  background: var(--surface);
   text-align: center;
 }
 
-.eyebrow {
-  font-size: 12px;
+/* ── The numerals and the porthole ──────────────────────────── */
+
+.code {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 1.5vw, 20px);
+  margin: 0;
+  font-size: clamp(140px, 22vw, 280px);
   font-weight: var(--w-semibold);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-muted);
+  letter-spacing: -0.06em;
+  line-height: 0.8;
+}
+
+/* Sized in em, so the window stays a circle of the same
+   proportion as the numerals at every width. */
+.porthole {
+  position: relative;
+  flex-shrink: 0;
+  width: 0.843em;
+  height: 0.843em;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--hero-ground);
+  box-shadow:
+    0 0 0 10px var(--surface),
+    0 0 0 11px var(--hairline),
+    var(--shadow-porthole);
+}
+
+.portholeImage {
+  object-fit: cover;
+  animation: drift 6s ease-in-out infinite;
+}
+
+/* Else keeps watch: a slow drift, small enough to notice only
+   when you look at her. */
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(-4px);
+  }
+
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+/* ── Text ───────────────────────────────────────────────────── */
+
+.text {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  margin-top: 12px;
 }
 
 .headline {
   margin: 0;
-  font-size: clamp(36px, 5vw, 64px);
+  max-width: 18ch;
+  font-size: clamp(34px, 4.2vw, 52px);
   font-weight: var(--w-semibold);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.035em;
   line-height: 1.02;
+  text-wrap: balance;
+}
+
+.accent {
+  color: var(--accent);
 }
 
 .body {
-  margin: 0 0 12px;
-  max-width: 44ch;
-  font-size: 18px;
+  margin: 0;
+  max-width: 46ch;
+  font-size: clamp(17px, 1.4vw, 19px);
   color: var(--text-body);
+  text-wrap: pretty;
+}
+
+/* ── Ways back ──────────────────────────────────────────────── */
+
+.ways {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* The shared outline pill, on the page ground rather than white —
+   on this white page that is what makes it read as a button. */
+.soft {
+  padding: 14px 22px;
+  border: 1px solid var(--hairline);
+  background: var(--page);
+  color: var(--ink);
+}
+
+.soft:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portholeImage {
+    animation: none;
+  }
 }

@@ -253,9 +253,14 @@
     "privacy": "Datenschutz"
   },
   "notFound": {
-    "eyebrow": "404",
-    "headline": "Diese Seite gibt es nicht.",
-    "body": "Vielleicht wurde sie verschoben, oder der Link ist falsch.",
-    "cta": "Zur Startseite"
+    "codeLabel": "Fehler 404",
+    "imageAlt": "Else, die 4else-Figur, späht durch die Null",
+    "headline": "Wir haben nachgeschaut. <accent>Hier kreist nichts.</accent>",
+    "body": "Die Seite gibt es nicht oder nicht mehr. Else hält weiter Ausschau – Du findest inzwischen schneller auf einem dieser Wege weiter:",
+    "home": "Startseite",
+    "howItWorks": "So funktioniert's",
+    "pricing": "Preise",
+    "contact": "Kontakt",
+    "metaTitle": "Seite nicht gefunden"
   }
 }
