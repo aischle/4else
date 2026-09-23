@@ -5,6 +5,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { WipDialog } from '@/components/ui/WipDialog';
 import { routing } from '@/lib/routing';
 import { locales, type Locale } from '@/lib/i18n';
 import { BASE_URL, SITE_NAME } from '@/lib/seo';
@@ -69,6 +70,7 @@ export default async function LocaleLayout({
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
+          <WipDialog />
         </NextIntlClientProvider>
         <Analytics />
         <SpeedInsights />

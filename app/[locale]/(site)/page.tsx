@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { NewsletterForm } from '@/components/home/NewsletterForm';
+import { Link } from '@/lib/navigation';
 import { MascotVideo } from '@/components/home/MascotVideo';
 import { TicketCard } from '@/components/home/TicketCard';
 import { NAV_FADE_START, NAV_FADE_TEXT, NAV_FADE_END } from '@/components/header/navTheme';
@@ -87,10 +88,18 @@ export default function HomePage({
             </h1>
             <p className={styles.heroBody}>{tHero('body')}</p>
             <div className={styles.buttonRow}>
-              <a href="#" className={`${buttons.pill} ${buttons.violet}`}>
+              <a
+                href="#"
+                data-wip="backend"
+                className={`${buttons.pill} ${buttons.violet}`}
+              >
                 {tHero('ctaPrimary')} <Arrow />
               </a>
-              <a href="#" className={`${buttons.pill} ${buttons.ghostOnInk}`}>
+              <a
+                href="#"
+                data-wip="backend"
+                className={`${buttons.pill} ${buttons.ghostOnInk}`}
+              >
                 {tHero('ctaSecondary')}
               </a>
             </div>
@@ -321,12 +330,16 @@ export default function HomePage({
           <h2 id="cta-heading" className={styles.ctaHeading}>{tCta('heading')}</h2>
           <p className={styles.ctaSub}>{tCta('sub')}</p>
           <div className={`${styles.buttonRow} ${styles.ctaButtons}`}>
-            <a href="#" className={`${buttons.pill} ${buttons.inverse}`}>
+            <a
+              href="#"
+              data-wip="backend"
+              className={`${buttons.pill} ${buttons.inverse}`}
+            >
               {tCta('primary')} <Arrow />
             </a>
-            <a href="#" className={`${buttons.pill} ${buttons.ghostOnInk}`}>
+            <Link href="/kontakt" className={`${buttons.pill} ${buttons.ghostOnInk}`}>
               {tCta('secondary')}
-            </a>
+            </Link>
           </div>
         </div>
       </section>

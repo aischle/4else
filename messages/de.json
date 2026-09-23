@@ -225,6 +225,14 @@
     "ctaSecondary": "Demo ausprobieren",
     "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Bahnhofstrasse+27%2C+8194+H%C3%BCntwangen"
   },
+  "wip": {
+    "backendTitle": "Dafür fehlt noch das Backend.",
+    "backendBody": "Diese Funktion gehört zur 4else-Applikation hinter der Website. Das Design steht – die technische Anbindung ist noch nicht umgesetzt.",
+    "pageTitle": "Diese Seite ist noch nicht gestaltet.",
+    "pageBody": "Die Website startet mit Startseite und Kontakt. Weitere Seiten entstehen, sobald sie gestaltet und getextet sind.",
+    "close": "Verstanden",
+    "contact": "Kontakt aufnehmen"
+  },
   "footer": {
     "company": "fourelse ag",
     "street": "Bahnhofstrasse 27",

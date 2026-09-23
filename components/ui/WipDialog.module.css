@@ -1,0 +1,94 @@
+/* ============================================================
+   4else — "not built yet" dialog
+   ------------------------------------------------------------
+   A panel in the site's own vocabulary: white card, pill
+   buttons, the lilac icon disc from the contact form's notice.
+   ============================================================ */
+
+.dialog {
+  max-width: 460px;
+  width: calc(100% - 2 * var(--gutter));
+  padding: 0;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-panel);
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-hero);
+}
+
+.dialog::backdrop {
+  background: rgba(15, 10, 27, 0.45);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+/* Both the card and the backdrop fade in. display is part of the
+   transition (allow-discrete), because a dialog goes from
+   display:none to display:block when it opens. */
+.dialog,
+.dialog::backdrop {
+  opacity: 0;
+  transition:
+    opacity var(--dur) ease,
+    display var(--dur) allow-discrete,
+    overlay var(--dur) allow-discrete;
+}
+
+.dialog[open],
+.dialog[open]::backdrop {
+  opacity: 1;
+}
+
+@starting-style {
+  .dialog[open],
+  .dialog[open]::backdrop {
+    opacity: 0;
+  }
+}
+
+.inner {
+  display: grid;
+  justify-items: start;
+  gap: 16px;
+  padding: clamp(28px, 5vw, 36px);
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--lilac);
+  color: var(--accent);
+}
+
+.title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.body {
+  margin: 0;
+  font-size: 16px;
+  color: var(--text-body);
+  text-wrap: pretty;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dialog,
+  .dialog::backdrop {
+    transition-duration: 0.01ms;
+  }
+}

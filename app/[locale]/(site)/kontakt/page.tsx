@@ -105,7 +105,7 @@ export default function KontaktPage({
                 <a href={`mailto:${t('c2Email')}`} className={styles.cardMail}>
                   {t('c2Email')}
                 </a>
-                <a href="#" className={styles.cardLink}>
+                <a href="#" data-wip="backend" className={styles.cardLink}>
                   {t('c2Link')} <Arrow />
                 </a>
               </div>
@@ -178,10 +178,18 @@ export default function KontaktPage({
             {t('ctaHeading')}
           </h2>
           <div className={styles.ctaButtons}>
-            <a href="#" className={`${buttons.pill} ${buttons.inverse}`}>
+            <a
+              href="#"
+              data-wip="backend"
+              className={`${buttons.pill} ${buttons.inverse}`}
+            >
               {t('ctaPrimary')} <Arrow />
             </a>
-            <a href="#" className={`${buttons.pill} ${buttons.ghostOnInk}`}>
+            <a
+              href="#"
+              data-wip="backend"
+              className={`${buttons.pill} ${buttons.ghostOnInk}`}
+            >
               {t('ctaSecondary')}
             </a>
           </div>

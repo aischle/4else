@@ -122,9 +122,10 @@ export function Header() {
         </nav>
 
         <div className={styles.actions}>
-          <a href="#" className={styles.login}>{t('login')}</a>
+          <a href="#" data-wip="backend" className={styles.login}>{t('login')}</a>
           <a
             href="#"
+            data-wip="backend"
             className={`${buttons.pill} ${lightText ? buttons.inverse : buttons.solid} ${buttons.small}`}
           >
             {t('demo')}

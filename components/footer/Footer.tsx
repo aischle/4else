@@ -51,9 +51,9 @@ export function Footer() {
         <div>
           <h2 className={styles.heading}>{t('startHeading')}</h2>
           <ul className={styles.list}>
-            <li><a href="#" className={styles.link}>{t('startDemo')}</a></li>
-            <li><a href="#" className={styles.link}>{t('startRegister')}</a></li>
-            <li><a href="#" className={styles.link}>{t('startLogin')}</a></li>
+            <li><a href="#" data-wip="backend" className={styles.link}>{t('startDemo')}</a></li>
+            <li><a href="#" data-wip="backend" className={styles.link}>{t('startRegister')}</a></li>
+            <li><a href="#" data-wip="backend" className={styles.link}>{t('startLogin')}</a></li>
             <li><a href="#" className={styles.link}>{t('startPricing')}</a></li>
           </ul>
         </div>

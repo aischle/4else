@@ -156,9 +156,9 @@ Things to know:
   Its text switches from light to ink at the middle mark (31%), the only swap
   that shows; move that percentage if it reads early or late. A page without
   the marks, like the 404, keeps the light bar.
-- **Placeholder destinations.** Pricing, About, Login, Demo, the card links,
-  every CTA and the footer link columns point at `#` — the design has no
-  targets yet. The footer e-mail and phone are real `mailto:`/`tel:` links.
+- **Placeholder destinations** point at `#` and open the dialog described in
+  §5d instead of navigating. The footer e-mail and phone are real
+  `mailto:`/`tel:` links.
 - **Newsletter form is UI only** (`components/home/NewsletterForm.tsx`):
   submitting does nothing. Connect it to a list provider before launch.
 - **Testimonials are the design's sample quotes.** Replace them with real,
@@ -252,6 +252,35 @@ back. Copy in the `notFound` namespace.
   Next keeps them even though that segment throws `notFound()` (verified:
   "Seite nicht gefunden — 4else", `noindex, follow`). The 404 status is what
   actually keeps it out of search indexes.
+
+---
+
+## 5d. Unfinished features — the "wip" dialog
+
+The client bought the website design, not the application behind it. Every
+control that would need something unbuilt keeps `href="#"` and opens
+`components/ui/WipDialog.tsx`, which explains why nothing happens.
+
+- **It is mounted once**, in `app/[locale]/layout.tsx`, so it also covers the
+  404, which sits outside the `(site)` group.
+- **It catches clicks centrally**: one document listener picks up every
+  `a[href="#"]`. **A new placeholder needs no wiring** — give it `href="#"`
+  and it is covered.
+- **Two explanations**, chosen by a data attribute on the link:
+
+  | Link | Says |
+  |---|---|
+  | `data-wip="backend"` | *Dafür fehlt noch das Backend.* — Login, Demo, Registrieren, Jetzt Event erstellen, Zum Login |
+  | no attribute | *Diese Seite ist noch nicht gestaltet.* — Preise, Über uns, the card links, Impressum, AGB, Datenschutz |
+
+- Copy lives in the `wip` namespace. Native `<dialog>`, so the backdrop,
+  Escape, the focus trap and the focus return come from the browser; a click
+  on the backdrop closes it too.
+- **When a feature lands**, give the link its real destination and the dialog
+  stops applying to it by itself.
+- **Still unhandled on purpose:** the three social links (LinkedIn, Instagram,
+  Telegram) also point at `#` and so claim to be "not designed yet". They need
+  real profile URLs — ask Robin.
 
 ---
 
