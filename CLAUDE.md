@@ -113,6 +113,8 @@ FAQ → dark CTA band → newsletter. Nav (`components/header`) and footer
 
 Things to know:
 
+- **The figure is called Else** — not "das Maskottchen". Use the name in copy
+  and alt text (`hero.mascotAlt`, `notFound.imageAlt`).
 - **The hero is the mascot redesign** (handoff:
   `Z:\GoogleDrive\projects\4else\design_handoff_4else_homepage\`). A dark
   ground (`--hero-ground`) with two radial glows, the living mascot left, and
@@ -120,7 +122,7 @@ Things to know:
   (`components/home/TicketCard.tsx`). The ticket shows the design's fictional
   event (Reitkurs, Anna Müller, CHF 45.–) — sample data, like the
   testimonials.
-- **The mascot is a silent video loop** (`components/home/MascotVideo.tsx`),
+- **Else is a silent video loop** (`components/home/MascotVideo.tsx`),
   generated in Adobe Firefly (16:9) with
   `Z:\GoogleDrive\projects\4else\video-keyframe\mascot-keyframe-16x9.png`
   as both first and last frame. Files: `public/videos/home/mascot-loop.webm`
@@ -129,8 +131,8 @@ Things to know:
   loads). The component starts playback itself: not for reduced motion
   (poster only, no download), paused while off-screen or in a hidden tab.
   Its edges are feathered by a CSS mask so no square shows against the hero
-  ground; from 1000px it reaches into the hero's left margin to keep the
-  mascot at design size.
+  ground; from 1000px it reaches into the hero's left margin to keep her at
+  design size.
   **To replace the clip**, run the new Firefly export through the same
   pipeline (ffmpeg): smooth the loop point by crossfading its last half
   second into its first (`trim` 0.5s→end, `xfade` fade 0.5s against
