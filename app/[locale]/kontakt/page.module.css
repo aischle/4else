@@ -374,8 +374,11 @@
 
 /* ── CTA ────────────────────────────────────────────────────── */
 
+/* The bottom padding matches the start page's last section (its
+   newsletter), so the distance from the last block to the footer reads
+   the same on both pages: this padding plus the footer's own 64px. */
 .ctaSection {
-  padding: clamp(60px, 7vw, 100px) var(--gutter) 0;
+  padding: clamp(60px, 7vw, 100px) var(--gutter);
 }
 
 /* A row here, not the start page's centred band: heading left,
