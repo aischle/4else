@@ -99,12 +99,15 @@ must have the same keys, rich-text tags and ICU placeholders.
 
 ## 5. Start page
 
-Every route gets the same frame from `app/[locale]/layout.tsx`: nav
-(`components/header`), the page, footer (`components/footer`). Unknown URLs
-land on `app/[locale]/not-found.tsx` through the catch-all in
-`app/[locale]/[...rest]/page.tsx` — without that they fall through to Next's
-own global 404, which renders outside the layout with no nav and no footer. See
-§5c for the 404 page itself.
+**Route structure.** `app/[locale]/layout.tsx` holds the html, the fonts and
+the messages for everything. The nav and footer live one level down in the
+**`(site)` route group** (`app/[locale]/(site)/layout.tsx`), which the real
+pages sit inside — a route group adds nothing to the URL, so `/kontakt` is
+still `/kontakt`. The 404 sits *outside* that group, which is how it renders
+with the html, fonts and German but without nav or footer (§5c). Unknown URLs
+reach it through the catch-all in `app/[locale]/[...rest]/page.tsx`; without
+that they fall through to Next's own global 404, which renders outside the
+locale layout entirely.
 
 `app/[locale]/page.tsx`, sections in order: hero → statement → what we do
 (three cards) → payment banner → why 4else → how it works → testimonials →
@@ -228,8 +231,9 @@ Sections: hero → form + three pastel cards → FAQ → dark CTA band. Copy in 
 porthole Else peeks through**, then the headline, one sentence and four ways
 back. Copy in the `notFound` namespace.
 
-- **White ground, full-bleed**, pulled up under the sticky nav like the
-  contact page's white block, so the glass bar reads as white.
+- **It stands alone:** no nav and no footer, because it is outside the
+  `(site)` group. White ground, `min-height: 100svh`, content centred both
+  ways.
 - **The porthole** is sized in `em` (`0.843em` of the numerals), so it stays a
   circle in the same proportion at every width. Its ring is three stacked
   box-shadows ending in `--shadow-porthole`.

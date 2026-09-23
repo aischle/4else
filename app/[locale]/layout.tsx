@@ -5,13 +5,15 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { Header } from '@/components/header/Header';
-import { Footer } from '@/components/footer/Footer';
 import { routing } from '@/lib/routing';
 import { locales, type Locale } from '@/lib/i18n';
 import { BASE_URL, SITE_NAME } from '@/lib/seo';
 import '@/styles/tokens.css';
 import '../globals.css';
+
+/* The html, the fonts, the messages — everything every route needs.
+   The nav and footer are one level down, in the (site) route group,
+   so the 404 can render inside this layout without them. */
 
 /* Instrument Sans, self-hosted by next/font (no request to Google at
    runtime). Exposed as --font-instrument; styles/tokens.css builds
@@ -66,9 +68,7 @@ export default async function LocaleLayout({
     <html lang={locale} className={instrumentSans.variable}>
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <Header />
-          <div className="appContent">{children}</div>
-          <Footer />
+          {children}
         </NextIntlClientProvider>
         <Analytics />
         <SpeedInsights />

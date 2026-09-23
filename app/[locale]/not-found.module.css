@@ -6,16 +6,12 @@
    design's own.
    ============================================================ */
 
-/* White ground, not the page's off-white. Like the contact page's
-   white block it is pulled up under the sticky bar and pads its
-   content back down, so the glass nav reads as white here too. */
+/* The 404 stands on its own: no nav, no footer (it sits outside the
+   (site) route group), so it takes the whole viewport and centres
+   itself in it, on white rather than the page's off-white. */
 .wrap {
-  /* Full-bleed: the ground is white edge to edge, not a white slab on
-     the page ground. The content centres itself inside it. */
-  margin-top: calc(var(--nav-h) * -1);
-  padding: calc(var(--nav-h) + clamp(56px, 8vw, 64px)) var(--gutter)
-    clamp(64px, 8vw, 72px);
-  min-height: 62svh;
+  min-height: 100svh;
+  padding: clamp(40px, 8vw, 64px) var(--gutter);
   display: grid;
   justify-items: center;
   align-content: center;

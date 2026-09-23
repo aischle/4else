@@ -13,10 +13,12 @@ import styles from './not-found.module.css';
    Guckloch)": the 0 of "404" is a porthole Else peeks through,
    then the headline, one sentence and four ways back.
 
-   It sits inside the locale segment, so the nav, the footer and
-   the visitor's language come from the layout. Unknown URLs
-   reach it through the catch-all in ./[...rest]/page.tsx, which
-   is also what makes the response a real 404.
+   It sits inside the locale segment but outside the (site)
+   route group, so it keeps the html, the fonts and the
+   visitor's language while standing alone — no nav, no footer,
+   the content centred in the viewport. Unknown URLs reach it
+   through the catch-all in ./[...rest]/page.tsx, which is also
+   what makes the response a real 404.
 
    The numerals are a <p>, not a heading: the page's heading is
    the sentence below them. The code is announced by a visually
