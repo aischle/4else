@@ -53,9 +53,7 @@
   color: var(--ink);
 }
 
-/* Decorative closing line; aria-hidden in the markup, and only
-   rendered on the start page. Its presence pulls the legal row's
-   56px back to the 40px the start-page design shows. */
+/* Decorative closing line; aria-hidden in the markup. */
 .wordmark {
   margin: 70px 0 0;
   font-weight: var(--w-semibold);
@@ -77,15 +75,11 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 16px;
-  margin-top: 56px;
+  margin-top: 40px;
   padding-top: 24px;
   border-top: 1px solid var(--hairline);
   font-size: 13px;
   color: var(--text-muted);
-}
-
-.wordmark + .legal {
-  margin-top: 40px;
 }
 
 .legalLink {

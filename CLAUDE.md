@@ -99,6 +99,12 @@ must have the same keys, rich-text tags and ICU placeholders.
 
 ## 5. Start page
 
+Every route gets the same frame from `app/[locale]/layout.tsx`: nav
+(`components/header`), the page, footer (`components/footer`). Unknown URLs
+land on `app/[locale]/not-found.tsx` through the catch-all in
+`app/[locale]/[...rest]/page.tsx` — without that they fall through to Next's
+own global 404, which renders outside the layout with no nav and no footer.
+
 `app/[locale]/page.tsx`, sections in order: hero → statement → what we do
 (three cards) → payment banner → why 4else → how it works → testimonials →
 FAQ → dark CTA band → newsletter. Nav (`components/header`) and footer
@@ -203,11 +209,10 @@ Sections: hero → form + three pastel cards → FAQ → dark CTA band. Copy in 
   with `aria-current="page"` and `.linkActive`. Away from the start page the
   section links carry the route in front of the hash (`/#tun`), so they lead
   home and scroll there.
-- **The footer's giant wordmark is start-page only**
-  (`components/footer/FooterWordmark.tsx`, a client component because the
-  layout renders the footer and does not know the route). Without it the legal
-  row uses its 56px top margin; under the wordmark a sibling rule pulls it back
-  to 40px.
+- **The footer is the same everywhere.** `components/footer/Footer.tsx` is
+  rendered once by the locale layout, so every route carries it in full,
+  closing wordmark included. The contact handoff drops the wordmark away from
+  the start page; Robin asked for one footer instead, so that variant is gone.
 - **Still open:** "Antwort innert 24 h" is the handoff's assumption, not a
   confirmed promise. Datenschutz, Zum Login and both CTA buttons point at `#`.
 

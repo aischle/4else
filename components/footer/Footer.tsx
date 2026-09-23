@@ -1,6 +1,6 @@
+import type { ReactNode } from 'react';
 import { useTranslations } from 'next-intl';
 import { Wordmark } from '@/components/brand/Wordmark';
-import { FooterWordmark } from './FooterWordmark';
 import styles from './Footer.module.css';
 
 /* ============================================================
@@ -10,9 +10,16 @@ import styles from './Footer.module.css';
    the legal bar. Link destinations are not built yet and point
    at "#"; the e-mail and phone are real mailto/tel links.
 
-   The closing wordmark is its own component: it shows on the
-   start page only (see ./FooterWordmark.tsx).
+   One footer for the whole site: the locale layout renders it
+   on every route, and every page gets it in full, closing
+   wordmark included. (The contact handoff drops the wordmark
+   away from the start page — Robin asked for the start page's
+   footer everywhere instead.)
    ============================================================ */
+
+const rich = {
+  b: (chunks: ReactNode) => <b className={styles.wordmarkStrong}>{chunks}</b>,
+};
 
 export function Footer() {
   const t = useTranslations('footer');
@@ -71,7 +78,9 @@ export function Footer() {
         </div>
       </div>
 
-      <FooterWordmark />
+      <p className={styles.wordmark} aria-hidden="true">
+        {t.rich('wordmark', rich)}
+      </p>
 
       <div className={styles.legal}>
         <span>{t('copyright')}</span>
