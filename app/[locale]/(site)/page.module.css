@@ -283,9 +283,9 @@
   transform: translateY(-3px);
 }
 
-.lilac { background: var(--lilac); }
-.mint { background: var(--mint); }
-.peach { background: var(--peach); }
+.iceViolet { background: var(--ice-violet); }
+.iceLemon { background: var(--ice-lemon); }
+.iceOrange { background: var(--ice-orange); }
 
 .cardLabel {
   font-size: 13px;
@@ -379,7 +379,7 @@
 .bannerMedia {
   position: relative;
   min-height: 360px;
-  background: var(--lilac);
+  background: var(--ice-violet);
 }
 
 /* ── Why 4else ──────────────────────────────────────────────── */
@@ -400,7 +400,7 @@
   aspect-ratio: 4 / 5;
   border-radius: var(--radius-panel);
   overflow: hidden;
-  background: var(--mint);
+  background: var(--ice-lemon);
 }
 
 /* The photo is landscape (1376×768) in a 4/5 portrait frame, so cover
@@ -555,9 +555,9 @@
   border: 1px solid var(--hairline);
 }
 
-.quoteLilac {
+.quoteViolet {
   border-color: transparent;
-  background: var(--lilac);
+  background: var(--ice-violet);
 }
 
 .quoteImage {
@@ -687,7 +687,7 @@
 
 .faqItem[open] .faqMarker::before,
 .faqItem[open] .faqMarker::after {
-  background: var(--ink);
+  background: var(--brand);
 }
 
 .faqItem[open] .faqMarker::after {
@@ -786,7 +786,7 @@
   gap: 22px;
   padding: clamp(56px, 8vw, 110px) clamp(24px, 5vw, 80px);
   border-radius: var(--radius-panel);
-  background: var(--ink);
+  background: var(--brand);
   color: var(--text-on-ink);
   text-align: center;
 }

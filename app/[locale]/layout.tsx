@@ -50,7 +50,7 @@ export async function generateMetadata({
 }
 
 export const viewport: Viewport = {
-  themeColor: '#F7F6F2',
+  themeColor: '#F7F7FA',
 };
 
 export default async function LocaleLayout({

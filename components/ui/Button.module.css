@@ -1,9 +1,9 @@
 /* ============================================================
    4else — pill buttons
    ------------------------------------------------------------
-   Four looks from the design: solid ink, outlined, the violet
-   hero button, and the two inverted variants used on the dark
-   hero and the dark CTA band.
+   Four looks from the design: solid (the brand navy), outlined,
+   the violet hero button, and the two inverted variants used on
+   the dark hero and the navy CTA band.
    ============================================================ */
 
 .pill {
@@ -28,12 +28,12 @@
 }
 
 .solid {
-  background: var(--ink);
+  background: var(--brand);
   color: var(--text-on-ink);
 }
 
 .solid:hover {
-  background: var(--ink-hover);
+  background: var(--brand-hover);
   color: var(--text-on-ink);
 }
 
@@ -65,7 +65,7 @@
 }
 
 .inverse:hover {
-  background: var(--lilac);
+  background: var(--ice-violet);
   color: var(--ink);
 }
 

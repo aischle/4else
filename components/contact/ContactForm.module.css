@@ -67,7 +67,7 @@
 }
 
 .chipActive {
-  background: var(--ink);
+  background: var(--brand);
   border-color: var(--ink);
   color: var(--text-on-ink);
 }
@@ -191,7 +191,7 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: var(--lilac);
+  background: var(--ice-violet);
   color: var(--accent);
 }
 

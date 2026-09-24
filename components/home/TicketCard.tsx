@@ -17,7 +17,7 @@ import styles from './TicketCard.module.css';
 
 const avatars = [
   { id: 'ticketAvatar1', tone: styles.avatarLilac },
-  { id: 'ticketAvatar2', tone: styles.avatarLime },
+  { id: 'ticketAvatar2', tone: styles.avatarLemon },
   { id: 'ticketAvatar3', tone: styles.avatarPeach },
 ] as const;
 

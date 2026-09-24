@@ -76,7 +76,7 @@ export default function KontaktPage({
             <ContactForm />
 
             <aside className={styles.cards} aria-label={t('cardsLabel')}>
-              <div className={`${styles.card} ${styles.lilac}`}>
+              <div className={`${styles.card} ${styles.iceViolet}`}>
                 <span className={styles.cardLabel}>{t('c1Label')}</span>
                 <div className={styles.person}>
                   <span className={styles.avatar} aria-hidden="true">
@@ -100,7 +100,7 @@ export default function KontaktPage({
                 </div>
               </div>
 
-              <div className={`${styles.card} ${styles.mint}`}>
+              <div className={`${styles.card} ${styles.iceLemon}`}>
                 <span className={styles.cardLabel}>{t('c2Label')}</span>
                 <p className={styles.cardBody}>{t('c2Body')}</p>
                 <a href={`mailto:${t('c2Email')}`} className={styles.cardMail}>
@@ -111,7 +111,7 @@ export default function KontaktPage({
                 </a>
               </div>
 
-              <div className={`${styles.card} ${styles.peach}`}>
+              <div className={`${styles.card} ${styles.iceOrange}`}>
                 <span className={styles.cardLabel}>{t('c3Label')}</span>
                 <p className={styles.cardBody}>
                   <b className={styles.cardStrong}>{t('c3Company')}</b>

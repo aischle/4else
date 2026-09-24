@@ -67,7 +67,7 @@
   background: var(--surface-on-dark-strong);
   font-size: 13px;
   font-weight: var(--w-medium);
-  color: var(--lilac);
+  color: var(--ice-violet);
   white-space: nowrap;
 }
 
@@ -77,7 +77,7 @@
   gap: 6px;
   font-size: 12px;
   font-weight: var(--w-semibold);
-  color: var(--lime);
+  color: var(--lemon);
   white-space: nowrap;
 }
 
@@ -86,7 +86,7 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--lime);
+  background: var(--lemon);
 }
 
 .titleBlock {
@@ -139,8 +139,8 @@
   background: var(--avatar-lilac);
 }
 
-.avatarLime {
-  background: var(--lime);
+.avatarLemon {
+  background: var(--lemon);
 }
 
 .avatarPeach {
@@ -189,7 +189,7 @@
   height: 36px;
   border-radius: var(--radius-tile);
   background: var(--surface-on-dark-strong);
-  color: var(--lilac);
+  color: var(--ice-violet);
 }
 
 .holderText {

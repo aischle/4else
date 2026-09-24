@@ -79,7 +79,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--lime);
+  background: var(--lemon);
 }
 
 .headline {
@@ -126,17 +126,17 @@
   border-radius: var(--radius-card);
 }
 
-.lilac {
+.iceViolet {
   gap: 14px;
-  background: var(--lilac);
+  background: var(--ice-violet);
 }
 
-.mint {
-  background: var(--mint);
+.iceLemon {
+  background: var(--ice-lemon);
 }
 
-.peach {
-  background: var(--peach);
+.iceOrange {
+  background: var(--ice-orange);
 }
 
 .cardLabel {
@@ -163,7 +163,7 @@
   background: var(--surface);
   font-size: 15px;
   font-weight: var(--w-bold);
-  color: var(--text-on-lilac);
+  color: var(--ink);
 }
 
 .personName {
@@ -393,7 +393,7 @@
   gap: 32px;
   padding: clamp(48px, 6vw, 88px) clamp(24px, 5vw, 80px);
   border-radius: var(--radius-panel);
-  background: var(--ink);
+  background: var(--brand);
   color: var(--text-on-ink);
 }
 

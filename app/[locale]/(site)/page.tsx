@@ -59,9 +59,9 @@ export default function HomePage({
   const tNewsletter = useTranslations('newsletter');
 
   const services = [
-    { id: 's1', tone: styles.lilac },
-    { id: 's2', tone: styles.mint },
-    { id: 's3', tone: styles.peach },
+    { id: 's1', tone: styles.iceViolet },
+    { id: 's2', tone: styles.iceLemon },
+    { id: 's3', tone: styles.iceOrange },
   ] as const;
 
   const reasons = ['r1', 'r2', 'r3'] as const;
@@ -276,7 +276,7 @@ export default function HomePage({
               <blockquote className={styles.quote}>{tTestimonials('t2Quote')}</blockquote>
               <figcaption className={styles.author}>{tTestimonials('t2Author')}</figcaption>
             </figure>
-            <figure className={`${styles.quoteCard} ${styles.quotePlain} ${styles.quoteLilac}`}>
+            <figure className={`${styles.quoteCard} ${styles.quotePlain} ${styles.quoteViolet}`}>
               <Stars label={tTestimonials('ratingLabel')} />
               <blockquote className={styles.quote}>{tTestimonials('t3Quote')}</blockquote>
               <figcaption className={`${styles.author} ${styles.authorStrong}`}>

@@ -61,11 +61,40 @@ instead, or stop the dev server first and restart it afterwards.
   no runtime request to Google). Exposed as `--font`.
 - **Tokens:** every colour, radius, shadow and layout width is a custom
   property in `styles/tokens.css`. Do not hardcode hex values in component CSS.
-- **One accent:** `--accent` (#5B5BD6, violet). Pastel card grounds
-  (`--lilac`, `--mint`, `--peach`) are surfaces, not accents.
-- **Ground:** `--page` (#F7F6F2, warm off-white); ink `--ink` (#111111).
-- **Buttons:** pills from `components/ui/Button.module.css` — `solid`,
-  `outline`, and `inverse` / `ghostOnInk` for the dark CTA band.
+
+### Colour: the client's palette (September 2026)
+
+The first block of `styles/tokens.css` holds her values under her own names
+(`--brand-*`); the semantic tokens point at them. Her brief: keep the existing
+colour world, sharpen and extend it.
+
+| Her name | Value | Token | Used for |
+|---|---|---|---|
+| Primär | `#41425E` | `--brand` | the dark brand base: solid pills, CTA blocks, active chip |
+| Sekundär | `#55556F` | `--brand-hover`, `--text-muted` | hover of the navy, eyebrows, numbers |
+| Überschriften | `#393951` | `--ink` | headings, ink text, ink borders |
+| Fliesstext | `#374151` | `--text-body` | running text |
+| digital accent | `#5B5BD6` | `--accent` | large headlines, links, interactions |
+| Akzent Lemon | `#B7C733` | `--lemon` | the paid state, status dots |
+| Akzent Orange | `#C04E18` | `--orange` | **defined, not yet placed** |
+| Eisviolett / Eis-Lemon / Eis-Orange | `#F0EEFF` `#F5F8DC` `#FBE9E1` | `--ice-violet` / `--ice-lemon` / `--ice-orange` | card grounds (the three contact boxes, the three service cards) |
+| Eisblau | `#E9F3F7` | `--ice-blue` | **defined, not yet placed** |
+
+- **`#41425E` and `#5B5BD6` never stand in for each other.** The navy is the
+  base; the violet is the brighter digital accent on top of it.
+- **Page ground:** `--page` `#F7F7FA`, a near-white with a trace of her violet,
+  and cooled greys for lines and soft fills, so the ground sits with her cool
+  ice colours and blue-grey text.
+- **The hero is the exception.** Its violet-black ground has to match the
+  background baked into Else's video, or the feathered edges show a box; its
+  two violets (`--accent-violet` `#7C5CF0`, `--accent-bright` `#A78BFA`) are
+  `#5B5BD6` lifted for legibility on near-black. Changing the ground means
+  re-rendering the video.
+- Every text/ground pairing was checked against WCAG AA; the tightest is the
+  accent on Eisviolett at 4.7:1.
+- **Buttons:** pills from `components/ui/Button.module.css` — `solid` (navy),
+  `outline`, `violet` (hero), and `inverse` / `ghostOnInk` for the navy CTA
+  band.
 - **Light only.** The design has no dark mode; `next-themes` is installed but
   not used.
 
