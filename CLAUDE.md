@@ -172,6 +172,9 @@ Things to know:
   itself: the first opens with the page, and opening another closes it. No
   script involved; a browser without `name` support (pre-2024) simply lets
   several stay open.
+  Each question carries its number, `(01)`…, derived from its position by
+  `lib/faq.ts` — not stored in the messages, so removing a pair renumbers the
+  rest by itself. The contact page's FAQ uses the same helper.
   `components/seo/FaqJsonLd.tsx` emits the `FAQPage` schema from the same
   message keys, so copy and structured data cannot drift. **To add or remove a
   pair, edit `FAQ_IDS` there and the `fNQuestion`/`fNAnswer` keys** — never

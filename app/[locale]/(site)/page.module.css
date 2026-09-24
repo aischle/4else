@@ -621,17 +621,27 @@
   border-top: 1px solid var(--hairline);
 }
 
-/* The question row. display:flex replaces the default list-item box,
-   which drops the disclosure triangle; the -webkit rule covers
-   Safari's separate marker. The state is carried by the drawn glyph. */
+/* The question row: number, question, sign — the contact page's
+   shape. display:grid replaces the default list-item box, which drops
+   the disclosure triangle; the -webkit rule covers Safari's separate
+   marker. The state is carried by the drawn glyph. */
 .faqQuestion {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 24px;
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
   padding: 24px 0;
   list-style: none;
   cursor: pointer;
+}
+
+.faqNum {
+  font-size: 14px;
+  font-weight: var(--w-semibold);
+  color: var(--text-muted);
+}
+
+.faqText {
   font-size: 20px;
   font-weight: var(--w-medium);
   letter-spacing: -0.02em;
@@ -748,7 +758,8 @@
 .faqAnswer {
   min-height: 0;
   margin: 0;
-  padding: 0 0 26px;
+  /* Indented to sit under the question, past the number column. */
+  padding: 0 44px 26px 68px;
   max-width: 62ch;
   font-size: 16px;
   color: var(--text-body);
@@ -841,5 +852,17 @@
   .statementText,
   .faqList {
     grid-column: 1 / -1;
+  }
+}
+
+/* On a phone the number column and the answer's indent would eat the
+   line length, so both shrink (same as the contact page). */
+@media (max-width: 620px) {
+  .faqQuestion {
+    grid-template-columns: 40px minmax(0, 1fr) auto;
+  }
+
+  .faqAnswer {
+    padding: 0 0 26px 52px;
   }
 }

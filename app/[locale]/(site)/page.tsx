@@ -8,6 +8,7 @@ import { MascotVideo } from '@/components/home/MascotVideo';
 import { TicketCard } from '@/components/home/TicketCard';
 import { NAV_FADE_START, NAV_FADE_TEXT, NAV_FADE_END } from '@/components/header/navTheme';
 import { FaqJsonLd, FAQ_IDS } from '@/components/seo/FaqJsonLd';
+import { faqNumber } from '@/lib/faq';
 import buttons from '@/components/ui/Button.module.css';
 import styles from './page.module.css';
 
@@ -303,15 +304,16 @@ export default function HomePage({
             </h2>
           </div>
           <div className={styles.faqList}>
-            {FAQ_IDS.map((id) => (
+            {FAQ_IDS.map((id, index) => (
               <details
                 key={id}
                 name="faq"
-                open={id === FAQ_IDS[0]}
+                open={index === 0}
                 className={styles.faqItem}
               >
                 <summary className={styles.faqQuestion}>
-                  <span>{tFaq(`${id}Question`)}</span>
+                  <span className={styles.faqNum}>{faqNumber(index)}</span>
+                  <span className={styles.faqText}>{tFaq(`${id}Question`)}</span>
                   {/* Drawn plus/minus. Decorative only — <details> already
                       conveys the expanded state to assistive technology. */}
                   <span className={styles.faqMarker} aria-hidden="true" />

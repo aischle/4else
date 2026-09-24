@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { ContactForm } from '@/components/contact/ContactForm';
+import { faqNumber } from '@/lib/faq';
 import buttons from '@/components/ui/Button.module.css';
 import styles from './page.module.css';
 
@@ -158,7 +159,7 @@ export default function KontaktPage({
                 className={styles.faqItem}
               >
                 <summary className={styles.faqQuestion}>
-                  <span className={styles.faqNum}>{t(`${id}Num`)}</span>
+                  <span className={styles.faqNum}>{faqNumber(index)}</span>
                   <span className={styles.faqText}>{t(`${id}Question`)}</span>
                   {/* Drawn plus/minus. Decorative — <details> already conveys
                       the expanded state to assistive technology. */}
