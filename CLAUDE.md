@@ -322,10 +322,15 @@ control that would need something unbuilt keeps `href="#"` and opens
   layout's `generateMetadata`.
 - **Favicon:** `app/icon.png` (512px), `app/apple-icon.png` (180px) and
   `app/favicon.ico` (32px). Next.js picks these up by filename and emits the
-  link tags itself — no `<head>` markup anywhere. The source is the mark from
-  4else.events (`cropped-4e_violett.png`, white "4e" on violet). Its violet is
-  `#60608B`, which is **not** the site's `--accent` (#5B5BD6); the apple icon
-  is flattened onto that same violet because iOS renders transparency black.
+  link tags itself — no `<head>` markup anywhere. The mark is the "4e" from
+  4else.events (white on a leaf-shaped tile), **redrawn in the client's
+  Primär `#41425E`** (it was the old violet `#60608B`). The recolour kept the
+  artwork's own antialiasing: each pixel was placed at the same point between
+  navy and white as it sat between violet and white, so the edges stay soft
+  and the glyph stays pure white. The apple icon is the 512px icon composited
+  onto a navy square and scaled — iOS renders transparency black, and
+  compositing (rather than the old flattened file) leaves no seam along the
+  leaf's outline.
 - `app/robots.ts` and `app/sitemap.ts` build absolute URLs from
   `NEXT_PUBLIC_SITE_URL` (see `.env.example`), falling back to
   `http://localhost:3007`. **Set it in Vercel** once the production domain is
