@@ -43,6 +43,9 @@
   --page: #F7F7FA;
   --surface: #FFFFFF;
   --fill-soft: #ECECF3;
+  /* The 404's giant background numerals: a step deeper than --page, so
+     they read on white without competing with Else in front of them. */
+  --ghost-numeral: #F0F0F5;
   --nav-glass: rgba(247, 247, 250, 0.82);
 
   /* The dark brand base, for surfaces: solid pills, the CTA blocks, the
@@ -91,8 +94,6 @@
   /* Shadows, tinted with the heading navy rather than neutral black */
   --shadow-hero: 0 30px 80px rgba(57, 57, 81, 0.12);
   --shadow-card: 0 20px 60px rgba(57, 57, 81, 0.07);
-  /* The 404's porthole, sitting on white */
-  --shadow-porthole: 0 24px 60px rgba(15, 10, 27, 0.25);
   --shadow-float: 0 8px 24px rgba(57, 57, 81, 0.14);
 
   /* The dimmed page behind a dialog */

@@ -1,9 +1,9 @@
 /* ============================================================
    4else — 404
    ------------------------------------------------------------
-   Values from the 404 handoff. Colours, radii and shadows are
-   tokens from styles/tokens.css; the fluid clamp() sizes are the
-   design's own.
+   Values from the 404 v2 handoff (variant 2b). Colours and radii
+   are tokens from styles/tokens.css; the fluid clamp() sizes are
+   the design's own.
    ============================================================ */
 
 /* The 404 stands on its own: no nav, no footer (it sits outside the
@@ -11,61 +11,57 @@
    itself in it, on white rather than the page's off-white. */
 .wrap {
   min-height: 100svh;
-  padding: clamp(40px, 8vw, 64px) var(--gutter);
+  padding: clamp(32px, 4vw, 40px) var(--gutter) clamp(56px, 6vw, 64px);
   display: grid;
   justify-items: center;
   align-content: center;
-  gap: 28px;
+  gap: 24px;
   background: var(--surface);
   text-align: center;
 }
 
-/* ── The numerals and the porthole ──────────────────────────── */
+/* ── The stage: the pale 404 behind, Else in front ──────────── */
 
-.code {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(8px, 1.5vw, 20px);
-  margin: 0;
-  font-size: clamp(140px, 22vw, 280px);
-  font-weight: var(--w-semibold);
-  letter-spacing: -0.06em;
-  line-height: 0.8;
-}
-
-/* Sized in em, so the window stays a circle of the same
-   proportion as the numerals at every width. */
-.porthole {
+/* 760×380 at full size; below that it scales at 2:1. It is a size
+   container, so the numerals can be sized against its width (cqw)
+   and always fill it, whatever the gutter around it.
+   It also yields to a short viewport: the text, the pills and the
+   padding take about 420px, and the stage gets what is left, so on a
+   720px-high laptop the page still fits and sits centred instead of
+   scrolling. 320px wide is the floor. */
+.stage {
   position: relative;
-  flex-shrink: 0;
-  width: 0.843em;
-  height: 0.843em;
-  border-radius: 50%;
-  overflow: hidden;
-  background: var(--hero-ground);
-  box-shadow:
-    0 0 0 10px var(--surface),
-    0 0 0 11px var(--hairline),
-    var(--shadow-porthole);
+  width: min(760px, 100%, max(320px, (100svh - 420px) * 2));
+  aspect-ratio: 760 / 380;
+  container-type: inline-size;
+  isolation: isolate;
 }
 
-.portholeImage {
-  object-fit: cover;
-  animation: drift 6s ease-in-out infinite;
+.ghost {
+  position: absolute;
+  inset: 6.3% 0 auto 0;
+  margin: 0;
+  font-size: 44.7cqw; /* 340px at full size */
+  font-weight: var(--w-bold);
+  letter-spacing: -0.07em;
+  line-height: 0.8;
+  color: var(--ghost-numeral);
+  user-select: none;
 }
 
-/* Else keeps watch: a slow drift, small enough to notice only
-   when you look at her. */
-@keyframes drift {
-  0%,
-  100% {
-    transform: translateY(-4px);
-  }
-
-  50% {
-    transform: translateY(4px);
-  }
+/* Full stage height, feet on its bottom edge, in front of the middle
+   0. The illustration has an off-white ground; multiply lets the
+   numerals show through it instead of a pale square. Centred with
+   auto margins rather than a transform: a transform lifts the image
+   onto its own compositor layer, where Chromium can drop the blend
+   and show the square after all. */
+.else {
+  position: absolute;
+  inset: auto 0 0;
+  height: 100%;
+  width: auto;
+  margin-inline: auto;
+  mix-blend-mode: multiply;
 }
 
 /* ── Text ───────────────────────────────────────────────────── */
@@ -73,13 +69,21 @@
 .text {
   display: grid;
   justify-items: center;
-  gap: 16px;
-  margin-top: 12px;
+  gap: 14px;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 12px;
+  font-weight: var(--w-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
 
 .headline {
   margin: 0;
-  max-width: 18ch;
+  max-width: 20ch;
   font-size: clamp(34px, 4.2vw, 52px);
   font-weight: var(--w-semibold);
   letter-spacing: -0.035em;
@@ -108,8 +112,14 @@
   gap: 8px;
 }
 
-/* The shared outline pill, on the page ground rather than white —
-   on this white page that is what makes it read as a button. */
+/* The design's padding, so the solid pill matches the soft ones in
+   height. */
+.home {
+  padding: 14px 24px;
+}
+
+/* The shared pill on the page ground rather than white — on this
+   white page that is what makes it read as a button. */
 .soft {
   padding: 14px 22px;
   border: 1px solid var(--hairline);
@@ -120,10 +130,4 @@
 .soft:hover {
   border-color: var(--ink);
   color: var(--ink);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .portholeImage {
-    animation: none;
-  }
 }

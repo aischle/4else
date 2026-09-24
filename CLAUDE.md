@@ -259,27 +259,34 @@ Sections: hero → form + three pastel cards → FAQ → dark CTA band. Copy in 
 ## 5c. 404 page
 
 `app/[locale]/not-found.tsx` (+ `not-found.module.css`), from the handoff
-`Z:\GoogleDrive\projects\4else\design_handoff_4else_404\`. The **0 of "404" is a
-porthole Else peeks through**, then the headline, one sentence and four ways
-back. Copy in the `notFound` namespace.
+`Z:\GoogleDrive\projects\4else\design_handoff_4else_404_v2\` (variant 2b,
+"Else rätselt über der 404"; it replaced the earlier porthole design).
+**Else stands puzzled in front of a giant, very pale "404"**, then the eyebrow
+"Fehler 404", the headline, one sentence and four ways back. Copy in the
+`notFound` namespace.
 
 - **It stands alone:** no nav and no footer, because it is outside the
-  `(site)` group. White ground, `min-height: 100svh`, content centred both
-  ways.
-- **The porthole** is sized in `em` (`0.843em` of the numerals), so it stays a
-  circle in the same proportion at every width. Its ring is three stacked
-  box-shadows ending in `--shadow-porthole`.
-- **The image** is `public/images/404/else-porthole.webp`, cut from
-  `public/images/home/mascot-poster.webp` (the video's first frame, the
-  sharpest source there is) with `crop=268:268:498:227`, scaled to 536px. The
-  handoff ships an 800px PNG of the same framing, but it is an upscale of that
-  same 268px region — the fresh cut is visibly sharper. **To re-cut it**, run
-  that crop again; for anything bigger, Else's face has to be rendered anew in
-  Firefly, not upscaled.
-- **She drifts** ±4px over 6s, off under `prefers-reduced-motion`.
-- **The numerals are a `<p>`**, not a heading — the page's heading is the
-  sentence below. "Fehler 404" is announced by a visually hidden span (the
-  global `srOnly` class); `aria-label` on a `<p>` has no role to hang on.
+  `(site)` group — deliberately, although the v2 handoff says to keep them.
+  White ground, `min-height: 100svh`, content centred both ways.
+- **The stage** is 760×380 at full size and scales at 2:1 below that. It is a
+  size container, so the numerals are sized in `cqw` (`44.7cqw` = 340px) and
+  always fill its width; Else is 100% of its height, feet on its bottom edge.
+  The numerals' colour is `--ghost-numeral`, a step deeper than `--page`.
+  **Not in the handoff:** the stage also shrinks with the viewport height
+  (`(100svh - 420px) * 2`, floor 320px), so a 720px-high laptop screen shows
+  the whole page centred instead of scrolling.
+- **The image** is `public/images/404/else-sucht.webp`, 900px, exported from
+  the handoff's 1254px `assets/else-sucht.png`. It is not transparent, so
+  `mix-blend-mode: multiply` lets the numerals show through it. The
+  handoff's own webp has an off-white ground (253/254), which still drew a
+  faint square on white; **the export lifts the highlights** (240–251 →
+  240–255, everything above to 255) so the ground is pure white. Repeat that
+  on a re-export; with a transparent export, drop the blend mode instead.
+  The image is centred with auto margins, not a transform. After replacing
+  the file, clear `.next/cache/images`, or the dev server keeps serving the
+  old optimised copy.
+- **The numerals are decoration** (`aria-hidden`); the visible eyebrow says
+  "Fehler 404" in words, and the heading is the sentence below.
 - **Title and noindex** come from `generateMetadata` in the catch-all, and
   Next keeps them even though that segment throws `notFound()` (verified:
   "Seite nicht gefunden — 4else", `noindex, follow`). The 404 status is what

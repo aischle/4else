@@ -257,10 +257,10 @@
     "privacy": "Datenschutz"
   },
   "notFound": {
-    "codeLabel": "Fehler 404",
-    "imageAlt": "Else, die 4else-Figur, späht durch die Null",
-    "headline": "Wir haben nachgeschaut. <accent>Hier kreist nichts.</accent>",
-    "body": "Die Seite gibt es nicht oder nicht mehr. Else hält weiter Ausschau – Du findest inzwischen schneller auf einem dieser Wege weiter:",
+    "eyebrow": "Fehler 404",
+    "imageAlt": "Else, die 4else-Figur, steht ratlos vor der 404",
+    "headline": "Wir haben nachgeschaut. <accent>Wirklich nichts da.</accent>",
+    "body": "Die Seite gibt es nicht oder nicht mehr. Else sucht noch – Du findest wahrscheinlich schneller auf einem dieser Wege weiter:",
     "home": "Startseite",
     "howItWorks": "So funktioniert's",
     "pricing": "Preise",
