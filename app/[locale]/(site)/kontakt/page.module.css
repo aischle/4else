@@ -112,17 +112,18 @@
 
 /* Else rests on the Beatrice panel: the negative bottom margin cancels
    the hero's bottom padding plus the band's top padding, overlaps 4px
-   more, and lowers her another 15px, the height of the glow under her
-   tail, so the tail itself meets the panel's edge and the glow spills
-   softly onto it. The 84px top margin is room for the bubble.
+   more, and lowers her another 2px, the height of the glow under her
+   tail, so the tail itself meets the panel's edge. The 84px top margin
+   is room for the bubble; 176px wide, like the bubble's maximum, so the
+   bubble never overhangs her.
    Positioned, so she paints over the panel, whose background is not. */
 .else {
   position: relative;
   flex-shrink: 0;
-  width: 200px;
-  height: 256px;
+  width: 176px;
+  height: 268px;
   margin: 84px 0 0 auto;
-  margin-bottom: calc(-1 * clamp(40px, 5vw, 64px) - clamp(8px, 1vw, 12px) - 4px - 15px);
+  margin-bottom: calc(-1 * clamp(40px, 5vw, 64px) - clamp(8px, 1vw, 12px) - 4px - 2px);
 }
 
 /* A transparent cut-out (public/images/kontakt/else-concierge.webp),

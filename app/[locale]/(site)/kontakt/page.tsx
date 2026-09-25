@@ -78,8 +78,8 @@ export default function KontaktPage({
                 <Image
                   src="/images/kontakt/else-concierge.webp"
                   alt={t('elseImageAlt')}
-                  width={200}
-                  height={256}
+                  width={176}
+                  height={268}
                   className={styles.elseImage}
                 />
                 <figcaption className={styles.elseBubble}>{t('elseBubble')}</figcaption>

@@ -243,11 +243,14 @@ band. Copy in the `kontakt` namespace, page title/description in
   with bow tie and service bell, rests right of the lead with her tail on the
   Beatrice panel's top edge, under a navy speech bubble (`elseBubble`; alt
   `elseImageAlt`). The image is `public/images/kontakt/else-concierge.webp`, a
-  **transparent** cut-out (469×600, trimmed to her outermost glow) that simply
-  fills the 200×256 `.else` box: no crop, no blend mode. The 404 keeps its
-  own `else-sucht.webp`. Below about 700px she wraps under the lead,
+  **transparent** cut-out (393×600) that simply fills the 176×268 `.else`
+  box: no crop, no blend mode. It is the client's second upload, a felt-
+  textured render (a first, smoother version was replaced the same day).
+  Export: trim to the visible glow (alpha > 4) plus 8px, and zero the alpha
+  ≤ 4 noise that otherwise reaches the canvas edges. The 404 keeps its own
+  `else-sucht.webp`. Below about 700px she wraps under the lead,
   right-aligned. Her negative bottom margin is the hero's bottom padding + the
-  band's top padding + 4px + 15px (the glow under her tail, so the tail itself
+  band's top padding + 4px + 2px (the glow under her tail, so the tail itself
   meets the edge); change either padding and change it too. `.else` is
   positioned, which paints her over the panel, whose background is not.
   Neither section may clip overflow.
