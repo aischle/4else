@@ -225,18 +225,30 @@ Things to know:
 lists itself. Design handoff:
 `Z:\GoogleDrive\projects\4else\design_handoff_4else_kontakt\` (its
 `reference/index.html` is a self-unpacking bundle; the markup sits in the
-JSON-escaped string near the end of the file).
+JSON-escaped string near the end of the file). The v4 update
+(`design_handoff_4else_kontakt_v4\`) added the Beatrice band.
 
-Sections: hero → form + three pastel cards → FAQ → dark CTA band. Copy in the
-`kontakt` namespace, page title/description in `meta.kontakt*`.
+Sections: hero → Beatrice band → form + two pastel cards → FAQ → dark CTA
+band. Copy in the `kontakt` namespace, page title/description in
+`meta.kontakt*`.
 
-- **No dark hero, no mascot** — those stay exclusive to the start page. Hero
-  and form share one white block that is pulled up under the sticky nav
+- **No dark hero, no mascot** — those stay exclusive to the start page. Hero,
+  Beatrice band and form share one white block that is pulled up under the sticky nav
   (`.white`, the same `margin-top: calc(var(--nav-h) * -1)` trick the start
   page's hero uses), so the glass bar reads as white here.
 - **The page speaks in the first person singular** ("Sprich mit mir", "Schreib
   mir"): the client's wording, September 2026. Keep new contact-page copy in
   the same voice; the FAQ and the start page keep "wir".
+- **The Beatrice band** introduces the "mir": a photo of the founder beside a
+  greeting and her direct contact (`beatrice*` keys; name, role, e-mail and
+  phone reuse `c1Name`/`c1Role`/`c1Email`/`c1Phone`, which `ContactForm`
+  also reads). It replaced the old "(01) Beratung & Demo" card, so the aside
+  holds only (01) Support and (02) Besuch. Photo and text sit side by side
+  from about 900px and stack below, photo first. The image is
+  `public/images/kontakt/beatrice-hohl.webp` (1264×848, original size; the
+  PNG original is in the handoff's `assets/`), cropped by
+  `object-position: 52% 22%` to keep her face and hands in frame at every
+  width. **`beatriceBody` is design copy, not yet approved by Beatrice.**
 - **The form has no backend** (`components/contact/ContactForm.tsx`). Six
   topic chips (`topic1`–`topic6`) share one message placeholder
   (`messagePlaceholder`). Submitting
@@ -258,7 +270,8 @@ Sections: hero → form + three pastel cards → FAQ → dark CTA band. Copy in 
   closing wordmark included. The contact handoff drops the wordmark away from
   the start page; Robin asked for one footer instead, so that variant is gone.
 - **Still open:** "Antwort innert 24 h" is the handoff's assumption, not a
-  confirmed promise. Datenschutz, Zum Login and both CTA buttons point at `#`.
+  confirmed promise; Beatrice's approval of `beatriceBody`. Datenschutz, Zum
+  Login and both CTA buttons point at `#`.
 
 ---
 

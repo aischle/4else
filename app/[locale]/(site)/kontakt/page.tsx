@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { ContactForm } from '@/components/contact/ContactForm';
@@ -10,14 +11,15 @@ import styles from './page.module.css';
 /* ============================================================
    4else — contact page
    ------------------------------------------------------------
-   Built from the design handoff "4else Kontakt". Sections, in
-   order: hero → form and contact cards → FAQ → dark CTA band;
-   the nav and footer come from the locale layout.
+   Built from the design handoff "4else Kontakt", with the v4
+   update. Sections, in order: hero → Beatrice band → form and
+   contact cards → FAQ → dark CTA band; the nav and footer come
+   from the locale layout.
 
    No dark hero and no mascot: those stay exclusive to the start
-   page. Instead the hero and the form sit on one white block
-   that runs up behind the sticky nav, so the bar reads as white
-   here.
+   page. Instead the hero, the Beatrice band and the form sit on
+   one white block that runs up behind the sticky nav, so the bar
+   reads as white here.
 
    The form has no backend yet — see components/contact/
    ContactForm.tsx. All copy lives in messages/de.json.
@@ -71,35 +73,54 @@ export default function KontaktPage({
           </div>
         </section>
 
+        {/* ── Beatrice: the person behind "Sprich mit mir" ───── */}
+        <section className={styles.beatrice} aria-labelledby="kontakt-beatrice">
+          <div className={styles.container}>
+            <div className={styles.beatricePanel}>
+              <div className={styles.beatricePhoto}>
+                <Image
+                  src="/images/kontakt/beatrice-hohl.webp"
+                  alt={t('beatriceImageAlt')}
+                  fill
+                  sizes="(max-width: 900px) 100vw, 58vw"
+                  className={styles.beatriceImage}
+                />
+              </div>
+
+              <div className={styles.beatriceText}>
+                <p className={styles.eyebrow}>{t('beatriceEyebrow')}</p>
+                <h2 id="kontakt-beatrice" className={styles.beatriceHeading}>
+                  {t.rich('beatriceHeading', rich)}
+                </h2>
+                <p className={styles.beatriceBody}>{t('beatriceBody')}</p>
+
+                <div className={styles.beatriceMeta}>
+                  <div className={styles.beatriceWho}>
+                    <b className={styles.beatriceName}>{t('c1Name')}</b>
+                    <span className={styles.beatriceRole}>{t('c1Role')}</span>
+                  </div>
+                  <div className={styles.beatriceWho}>
+                    <a href={`mailto:${t('c1Email')}`} className={styles.cardMail}>
+                      {t('c1Email')}
+                    </a>
+                    <a
+                      href={`tel:${t('c1Phone').replace(/\s+/g, '')}`}
+                      className={styles.cardPhone}
+                    >
+                      {t('c1Phone')}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className={styles.contact}>
           <div className={`${styles.container} ${styles.contactRow}`}>
             <ContactForm />
 
             <aside className={styles.cards} aria-label={t('cardsLabel')}>
-              <div className={`${styles.card} ${styles.iceViolet}`}>
-                <span className={styles.cardLabel}>{t('c1Label')}</span>
-                <div className={styles.person}>
-                  <span className={styles.avatar} aria-hidden="true">
-                    {t('c1Initials')}
-                  </span>
-                  <div>
-                    <b className={styles.personName}>{t('c1Name')}</b>
-                    <span className={styles.personRole}>{t('c1Role')}</span>
-                  </div>
-                </div>
-                <div className={styles.cardLinks}>
-                  <a href={`mailto:${t('c1Email')}`} className={styles.cardMail}>
-                    {t('c1Email')}
-                  </a>
-                  <a
-                    href={`tel:${t('c1Phone').replace(/\s+/g, '')}`}
-                    className={styles.cardPhone}
-                  >
-                    {t('c1Phone')}
-                  </a>
-                </div>
-              </div>
-
               <div className={`${styles.card} ${styles.iceLemon}`}>
                 <span className={styles.cardLabel}>{t('c2Label')}</span>
                 <p className={styles.cardBody}>{t('c2Body')}</p>

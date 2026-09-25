@@ -87,9 +87,9 @@
   --radius-card: 24px;
   --radius-panel: 28px;
   --radius-field: 14px;
-  /* The avatar tile on the contact page: round on one diagonal, sharp on
-     the other. */
-  --radius-leaf: 32px 8px 32px 8px;
+  /* A photo inside a panel: a step tighter than --radius-panel, so the
+     corners run parallel to the panel's. */
+  --radius-photo: 20px;
 
   /* Shadows, tinted with the heading navy rather than neutral black */
   --shadow-hero: 0 30px 80px rgba(57, 57, 81, 0.12);
