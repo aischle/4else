@@ -11,15 +11,16 @@ import styles from './page.module.css';
 /* ============================================================
    4else — contact page
    ------------------------------------------------------------
-   Built from the design handoff "4else Kontakt", with the v4
-   update. Sections, in order: hero → Beatrice band → form and
+   Built from the design handoff "4else Kontakt", with the v4 and
+   v5 updates. Sections, in order: hero → Beatrice band → form and
    contact cards → FAQ → dark CTA band; the nav and footer come
    from the locale layout.
 
-   No dark hero and no mascot: those stay exclusive to the start
-   page. Instead the hero, the Beatrice band and the form sit on
-   one white block that runs up behind the sticky nav, so the bar
-   reads as white here.
+   No dark hero and no video: those stay exclusive to the start
+   page. Here Else appears as the light, still image, standing on
+   the Beatrice panel beside the lead. The hero, the Beatrice band
+   and the form sit on one white block that runs up behind the
+   sticky nav, so the bar reads as white here.
 
    The form has no backend yet — see components/contact/
    ContactForm.tsx. All copy lives in messages/de.json.
@@ -69,7 +70,23 @@ export default function KontaktPage({
                 {t.rich('headline', rich)}
               </h1>
             </div>
-            <p className={styles.lead}>{t('lead')}</p>
+            <div className={styles.heroAside}>
+              <p className={styles.lead}>{t('lead')}</p>
+              {/* Else, standing on the Beatrice panel below, with a speech
+                  bubble over her head. */}
+              <figure className={styles.else}>
+                <div className={styles.elseCrop}>
+                  <Image
+                    src="/images/404/else-sucht.webp"
+                    alt={t('elseImageAlt')}
+                    width={314}
+                    height={314}
+                    className={styles.elseImage}
+                  />
+                </div>
+                <figcaption className={styles.elseBubble}>{t('elseBubble')}</figcaption>
+              </figure>
+            </div>
           </div>
         </section>
 

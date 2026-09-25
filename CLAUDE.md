@@ -226,16 +226,31 @@ lists itself. Design handoff:
 `Z:\GoogleDrive\projects\4else\design_handoff_4else_kontakt\` (its
 `reference/index.html` is a self-unpacking bundle; the markup sits in the
 JSON-escaped string near the end of the file). The v4 update
-(`design_handoff_4else_kontakt_v4\`) added the Beatrice band.
+(`design_handoff_4else_kontakt_v4\`) added the Beatrice band; v5
+(`design_handoff_4else_kontakt_v5\`) put Else in the hero and swapped the
+portrait. The v5 reference still shows older nav, badge and Beatrice copy —
+only its hero and portrait were taken over.
 
 Sections: hero → Beatrice band → form + two pastel cards → FAQ → dark CTA
 band. Copy in the `kontakt` namespace, page title/description in
 `meta.kontakt*`.
 
-- **No dark hero, no mascot** — those stay exclusive to the start page. Hero,
+- **No dark hero, no video** — those stay exclusive to the start page. Hero,
   Beatrice band and form share one white block that is pulled up under the sticky nav
   (`.white`, the same `margin-top: calc(var(--nav-h) * -1)` trick the start
   page's hero uses), so the glass bar reads as white here.
+- **Else in the hero** (v5): the still image from the 404
+  (`public/images/404/else-sucht.webp`, cropped to the figure by
+  `.elseImage`) stands right of the lead, feet on the Beatrice panel's top
+  edge, with a navy speech bubble (`elseBubble`; alt `elseImageAlt`). Below
+  about 700px she wraps under the lead, right-aligned. Her negative bottom
+  margin is the hero's bottom padding + the band's top padding + 4px; change
+  either padding and change it too. `.else` is positioned but has **no
+  z-index** on purpose: a z-index would make it its own stacking context, and
+  the image's `multiply` would stop blending with the panel, leaving a pale
+  strip where her feet overlap it. Positioned is enough to paint over the
+  panel, whose background is not positioned. Neither section may clip
+  overflow.
 - **The page speaks in the first person singular** ("Sprich mit mir", "Schreib
   mir"): the client's wording, September 2026. Keep new contact-page copy in
   the same voice; the FAQ and the start page keep "wir".
@@ -245,10 +260,10 @@ band. Copy in the `kontakt` namespace, page title/description in
   also reads). It replaced the old "(01) Beratung & Demo" card, so the aside
   holds only (01) Support and (02) Besuch. Photo and text sit side by side
   from about 900px and stack below, photo first. The image is
-  `public/images/kontakt/beatrice-hohl.webp` (1264×848, original size; the
-  PNG original is in the handoff's `assets/`), cropped by
-  `object-position: 52% 22%` to keep her face and hands in frame at every
-  width. **`beatriceBody` is design copy, since revised once on Beatrice's
+  `public/images/kontakt/beatrice-hohl.webp` (1264×848, original size, WebP
+  q85 from the v5 handoff's `assets/beatrice-kontakt-glamour.png`), cropped by
+  `object-position: 47% 25%` to keep her face and hands in frame at every
+  width. After replacing it, clear `.next/cache/images`. **`beatriceBody` is design copy, since revised once on Beatrice's
   feedback (see below).**
 - **The form has no backend** (`components/contact/ContactForm.tsx`). Six
   topic chips (`topic1`–`topic6`) share one message placeholder
