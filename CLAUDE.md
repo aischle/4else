@@ -371,10 +371,11 @@ mockup option C (Else) with option B's progress ring, September 2026.
 - **What it is:** Else's face in a white 52px disc inside a 3px violet ring
   that fills with the scroll (`--accent` on a `--hairline` track), a navy arrow
   badge at the top right, and on hover or focus the „Nach oben“ speech bubble
-  (`--radius-bubble`, the contact hero's shape). 64px overall, 56px below
-  640px; 24px from the bottom-right corner (16px on phones), respecting
-  safe-area insets. z-index 30, above the sticky nav (20); the wip dialog is
-  in the top layer anyway.
+  (`--radius-bubble`, the contact hero's shape). 64px overall, 24px from the
+  bottom-right corner, respecting safe-area insets. z-index 30, above the
+  sticky nav (20); the wip dialog is in the top layer anyway.
+- **Not on phones:** `display: none` below 640px, at Robin's request
+  (September 2026). Tablets and desktops keep it.
 - **When:** visible from 30% scroll depth, `scrollY ÷ (page height −
   viewport)`, hidden above it. `visibility: hidden` while hidden, which also
   keeps it out of the tab order and the accessibility tree.

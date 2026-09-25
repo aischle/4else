@@ -3,7 +3,7 @@
    ------------------------------------------------------------
    64px overall: a 3px progress ring around a 52px white disc
    with Else's face, and a navy arrow badge at the top right.
-   56px / 46px on phones. Above the page and the sticky nav
+   Hidden on phones (below 640px). Above the page and the sticky nav
    (z-index 20); the wip dialog sits in the top layer above it.
    ============================================================ */
 
@@ -159,13 +159,12 @@
 
 /* ── Narrow screens, motion, print ──────────────────────────── */
 
+/* Not on phones (Robin, September 2026): the corner is too small to
+   spare there. display: none also takes it out of the tab order and
+   the accessibility tree. */
 @media (max-width: 640px) {
   .button {
-    --size: 56px;
-    --inset: 5px;
-
-    right: max(16px, env(safe-area-inset-right));
-    bottom: max(16px, env(safe-area-inset-bottom));
+    display: none;
   }
 }
 
