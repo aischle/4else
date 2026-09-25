@@ -22,7 +22,9 @@ import styles from './ContactForm.module.css';
 
    When a handler exists: POST the fields plus the topic in
    onSubmit, and replace the notice with the success state from
-   the handoff (design_handoff_4else_kontakt/README.md §2).
+   the handoff (design_handoff_4else_kontakt/README.md §2), but
+   without its 24-hour promise: Beatrice declined that deadline
+   (September 2026), so the badge reads "Persönliche Antwort".
    ============================================================ */
 
 const TOPICS = [1, 2, 3, 4, 5, 6] as const;

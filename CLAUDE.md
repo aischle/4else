@@ -248,7 +248,8 @@ band. Copy in the `kontakt` namespace, page title/description in
   `public/images/kontakt/beatrice-hohl.webp` (1264×848, original size; the
   PNG original is in the handoff's `assets/`), cropped by
   `object-position: 52% 22%` to keep her face and hands in frame at every
-  width. **`beatriceBody` is design copy, not yet approved by Beatrice.**
+  width. **`beatriceBody` is design copy, since revised once on Beatrice's
+  feedback (see below).**
 - **The form has no backend** (`components/contact/ContactForm.tsx`). Six
   topic chips (`topic1`–`topic6`) share one message placeholder
   (`messagePlaceholder`). Submitting
@@ -269,9 +270,13 @@ band. Copy in the `kontakt` namespace, page title/description in
   rendered once by the locale layout, so every route carries it in full,
   closing wordmark included. The contact handoff drops the wordmark away from
   the start page; Robin asked for one footer instead, so that variant is gone.
-- **Still open:** "Antwort innert 24 h" is the handoff's assumption, not a
-  confirmed promise; Beatrice's approval of `beatriceBody`. Datenschutz, Zum
-  Login and both CTA buttons point at `#`.
+- **No promises Beatrice cannot keep.** Her feedback, September 2026: the
+  badge read "Antwort innert 24 h", a fixed deadline she cannot always meet,
+  and `beatriceBody` ended "bis zum ersten ausverkauften Event", a result
+  she cannot guarantee. They read "Persönliche Antwort" and "bis zum ersten
+  Ticketverkauf" now. Keep new contact-page copy to what 4else controls: no
+  response times, no sales outcomes.
+- **Still open:** Datenschutz, Zum Login and both CTA buttons point at `#`.
 
 ---
 
