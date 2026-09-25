@@ -362,6 +362,39 @@ control that would need something unbuilt keeps `href="#"` and opens
 
 ---
 
+## 5e. Scroll to top
+
+`components/ui/ScrollToTop.tsx` (+ `.module.css`), mounted once by the
+`(site)` layout, so every real page has it and the 404 does not. Robin chose
+mockup option C (Else) with option B's progress ring, September 2026.
+
+- **What it is:** Else's face in a white 52px disc inside a 3px violet ring
+  that fills with the scroll (`--accent` on a `--hairline` track), a navy arrow
+  badge at the top right, and on hover or focus the „Nach oben“ speech bubble
+  (`--radius-bubble`, the contact hero's shape). 64px overall, 56px below
+  640px; 24px from the bottom-right corner (16px on phones), respecting
+  safe-area insets. z-index 30, above the sticky nav (20); the wip dialog is
+  in the top layer anyway.
+- **When:** visible from 30% scroll depth, `scrollY ÷ (page height −
+  viewport)`, hidden above it. `visibility: hidden` while hidden, which also
+  keeps it out of the tab order and the accessibility tree.
+- **Scroll handling:** measured directly in the scroll listener (browsers fire
+  scroll at most once per frame). The ring's `stroke-dashoffset` is written to
+  the DOM, the circle has `pathLength="100"`; React state changes only when
+  the 30% line is crossed.
+- **Click:** smooth scroll to the top, `'instant'` under reduced motion (not
+  `'auto'`, which would inherit `html { scroll-behavior: smooth }`); focus
+  moves to the wordmark so keyboard users continue from the top.
+- **Image:** `public/images/ui/else-face.webp`, 192px, cut from the v5
+  handoff's `else-sucht.png` (`crop 505,270,845,610`, highlights lifted to
+  pure white like the 404 export). Label in `scrollTop.label`.
+- **Testing note:** in a hidden or background tab browsers pause scroll events
+  and smooth scrolling, so the button looks dead there. Test in a visible
+  window, or jump with `scrollTo({ behavior: 'instant' })` and dispatch a
+  `scroll` event yourself.
+
+---
+
 ## 6. SEO
 
 - Title and description come from `messages/*.json` (`meta` namespace) in the

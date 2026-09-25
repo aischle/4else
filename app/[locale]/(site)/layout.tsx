@@ -1,10 +1,11 @@
 import { Header } from '@/components/header/Header';
 import { Footer } from '@/components/footer/Footer';
+import { ScrollToTop } from '@/components/ui/ScrollToTop';
 
 /* ============================================================
    4else — the site frame
    ------------------------------------------------------------
-   Nav and footer for the real pages. It is a route group, so it
+   Nav, footer and the scroll-to-top button for the real pages. It is a route group, so it
    adds nothing to any URL: /kontakt stays /kontakt.
 
    The 404 lives one level up, outside this group, which is how
@@ -19,6 +20,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       <Header />
       <div className="appContent">{children}</div>
       <Footer />
+      <ScrollToTop />
     </>
   );
 }

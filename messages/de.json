@@ -270,5 +270,8 @@
     "pricing": "Preise",
     "contact": "Kontakt",
     "metaTitle": "Seite nicht gefunden"
+  },
+  "scrollTop": {
+    "label": "Nach oben"
   }
 }

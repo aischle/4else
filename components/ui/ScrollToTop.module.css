@@ -1,0 +1,189 @@
+/* ============================================================
+   4else — scroll to top
+   ------------------------------------------------------------
+   64px overall: a 3px progress ring around a 52px white disc
+   with Else's face, and a navy arrow badge at the top right.
+   56px / 46px on phones. Above the page and the sticky nav
+   (z-index 20); the wip dialog sits in the top layer above it.
+   ============================================================ */
+
+.button {
+  --size: 64px;
+  --inset: 6px;
+
+  position: fixed;
+  right: max(24px, env(safe-area-inset-right));
+  bottom: max(24px, env(safe-area-inset-bottom));
+  z-index: 30;
+  width: var(--size);
+  height: var(--size);
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+
+  /* Hidden until 30%: visibility also removes it from the tab order.
+     It flips to hidden only after the fade has run. */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition:
+    opacity var(--dur),
+    transform var(--dur),
+    visibility 0s linear var(--dur);
+}
+
+.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ── Progress ring ───────────────────────────────────────────── */
+
+/* Turned a quarter back, so the fill starts at 12 o'clock. The track is
+   the hairline: visible on the white page and on the navy CTA band. */
+.ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.track,
+.fill {
+  fill: none;
+  stroke-width: 3;
+}
+
+.track {
+  stroke: var(--hairline);
+}
+
+.fill {
+  stroke: var(--accent);
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+}
+
+/* ── Else ───────────────────────────────────────────────────── */
+
+.disc {
+  position: absolute;
+  inset: var(--inset);
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: var(--shadow-float);
+}
+
+/* She sits a little low and rises into view on hover, with a slight
+   overshoot. */
+.face {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translateY(4px);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.3, 1.4);
+}
+
+.button:hover .face,
+.button:focus-visible .face {
+  transform: translateY(0) scale(1.04);
+}
+
+/* ── Badge and bubble ───────────────────────────────────────── */
+
+.badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--brand);
+  color: var(--text-on-ink);
+  box-shadow: 0 0 0 2px var(--surface);
+}
+
+.badge svg {
+  width: 12px;
+  height: 12px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* The contact page's speech bubble, pointing at Else from the left. */
+.tip {
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 8px);
+  padding: 8px 13px;
+  border-radius: var(--radius-bubble);
+  background: var(--brand);
+  color: var(--text-on-ink);
+  font-size: 13px;
+  font-weight: var(--w-semibold);
+  line-height: 1.35;
+  white-space: nowrap;
+  box-shadow: var(--shadow-float);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(6px, -50%);
+  transition:
+    opacity var(--dur),
+    transform var(--dur);
+}
+
+.button:hover .tip,
+.button:focus-visible .tip {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+/* ── Narrow screens, motion, print ──────────────────────────── */
+
+@media (max-width: 640px) {
+  .button {
+    --size: 56px;
+    --inset: 5px;
+
+    right: max(16px, env(safe-area-inset-right));
+    bottom: max(16px, env(safe-area-inset-bottom));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .face,
+  .tip {
+    transition-duration: 0.01ms;
+  }
+
+  .button:hover .face,
+  .button:focus-visible .face {
+    transform: translateY(4px);
+  }
+}
+
+@media print {
+  .button {
+    display: none;
+  }
+}
