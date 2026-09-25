@@ -72,18 +72,16 @@ export default function KontaktPage({
             </div>
             <div className={styles.heroAside}>
               <p className={styles.lead}>{t('lead')}</p>
-              {/* Else, standing on the Beatrice panel below, with a speech
+              {/* Else, resting on the Beatrice panel below, with a speech
                   bubble over her head. */}
               <figure className={styles.else}>
-                <div className={styles.elseCrop}>
-                  <Image
-                    src="/images/404/else-sucht.webp"
-                    alt={t('elseImageAlt')}
-                    width={314}
-                    height={314}
-                    className={styles.elseImage}
-                  />
-                </div>
+                <Image
+                  src="/images/kontakt/else-concierge.webp"
+                  alt={t('elseImageAlt')}
+                  width={200}
+                  height={256}
+                  className={styles.elseImage}
+                />
                 <figcaption className={styles.elseBubble}>{t('elseBubble')}</figcaption>
               </figure>
             </div>

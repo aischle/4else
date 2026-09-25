@@ -239,18 +239,18 @@ band. Copy in the `kontakt` namespace, page title/description in
   Beatrice band and form share one white block that is pulled up under the sticky nav
   (`.white`, the same `margin-top: calc(var(--nav-h) * -1)` trick the start
   page's hero uses), so the glass bar reads as white here.
-- **Else in the hero** (v5): the still image from the 404
-  (`public/images/404/else-sucht.webp`, cropped to the figure by
-  `.elseImage`) stands right of the lead, feet on the Beatrice panel's top
-  edge, with a navy speech bubble (`elseBubble`; alt `elseImageAlt`). Below
-  about 700px she wraps under the lead, right-aligned. Her negative bottom
-  margin is the hero's bottom padding + the band's top padding + 4px; change
-  either padding and change it too. `.else` is positioned but has **no
-  z-index** on purpose: a z-index would make it its own stacking context, and
-  the image's `multiply` would stop blending with the panel, leaving a pale
-  strip where her feet overlap it. Positioned is enough to paint over the
-  panel, whose background is not positioned. Neither section may clip
-  overflow.
+- **Else in the hero** (v5, image swapped September 2026): Else as concierge,
+  with bow tie and service bell, rests right of the lead with her tail on the
+  Beatrice panel's top edge, under a navy speech bubble (`elseBubble`; alt
+  `elseImageAlt`). The image is `public/images/kontakt/else-concierge.webp`, a
+  **transparent** cut-out (469×600, trimmed to her outermost glow) that simply
+  fills the 200×256 `.else` box: no crop, no blend mode. The 404 keeps its
+  own `else-sucht.webp`. Below about 700px she wraps under the lead,
+  right-aligned. Her negative bottom margin is the hero's bottom padding + the
+  band's top padding + 4px + 15px (the glow under her tail, so the tail itself
+  meets the edge); change either padding and change it too. `.else` is
+  positioned, which paints her over the panel, whose background is not.
+  Neither section may clip overflow.
 - **The page speaks in the first person singular** ("Sprich mit mir", "Schreib
   mir"): the client's wording, September 2026. Keep new contact-page copy in
   the same voice; the FAQ and the start page keep "wir".
