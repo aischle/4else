@@ -65,6 +65,7 @@ export function Footer() {
             <li><a href="#" className={styles.link}>{t('knowWordpress')}</a></li>
             <li><a href="#" className={styles.link}>{t('knowWebshop')}</a></li>
             <li><a href="#" className={styles.link}>{t('knowSupport')}</a></li>
+            <li><a href="#" className={styles.link}>{t('knowInspiration')}</a></li>
           </ul>
         </div>
 
