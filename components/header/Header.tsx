@@ -30,7 +30,7 @@ import styles from './Header.module.css';
    front of the hash, so it leads home and scrolls there. Kontakt
    is the one item with a real route, and marks itself when the
    visitor is on it.
-   Pricing, About, Inspirationen (the future blog), Login and
+   About, Pricing, Inspirationen (the future blog), Login and
    Demo have no destination yet and point at "#".
    ============================================================ */
 
@@ -108,8 +108,8 @@ export function Header() {
 
         <nav className={styles.links} aria-label={t('label')}>
           <a href={section('tun')} className={styles.link}>{t('services')}</a>
-          <a href="#" className={styles.link}>{t('pricing')}</a>
           <a href="#" className={styles.link}>{t('about')}</a>
+          <a href="#" className={styles.link}>{t('pricing')}</a>
           <a href="#" className={styles.link}>{t('inspiration')}</a>
           <Link
             href="/kontakt"
