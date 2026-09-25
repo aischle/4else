@@ -234,12 +234,18 @@ Sections: hero → form + three pastel cards → FAQ → dark CTA band. Copy in 
   and form share one white block that is pulled up under the sticky nav
   (`.white`, the same `margin-top: calc(var(--nav-h) * -1)` trick the start
   page's hero uses), so the glass bar reads as white here.
-- **The form has no backend** (`components/contact/ContactForm.tsx`). Submitting
+- **The page speaks in the first person singular** ("Sprich mit mir", "Schreib
+  mir"): the client's wording, September 2026. Keep new contact-page copy in
+  the same voice; the FAQ and the start page keep "wir".
+- **The form has no backend** (`components/contact/ContactForm.tsx`). Six
+  topic chips (`topic1`–`topic6`) share one message placeholder
+  (`messagePlaceholder`). Submitting
   shows a notice saying so — deliberately *not* the design's success state,
   whose copy promises an answer within 24 hours and a copy in the sender's
   inbox. **When a handler exists**: POST the fields plus the chosen topic in
-  `onSubmit` (Support → support@4else.com, everything else → info@4else.com),
-  then swap the notice for the success state in the handoff's README §2.
+  `onSubmit` (Support, `topic3` → support@4else.com, everything else →
+  info@4else.com), then swap the notice for the success state in the
+  handoff's README §2.
 - **FAQ**: four pairs (`k1`–`k4`), same native `<details name>` pattern as the
   start page. **No `FaqJsonLd` here on purpose** — all four are re-phrasings of
   start-page questions, and the same Q&A on two URLs competes with itself.

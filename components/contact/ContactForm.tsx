@@ -9,9 +9,10 @@ import styles from './ContactForm.module.css';
    4else — contact form
    ------------------------------------------------------------
    The card from the design: topic chips, the fields, and the
-   consent row. The chosen topic changes the message
-   placeholder, which is the only reason this is a client
-   component.
+   consent row. The topic chips and the notice after submitting
+   are state, which is why this is a client component. Every
+   topic shares one message placeholder; the chosen topic is
+   kept for the POST once a handler exists.
 
    There is no backend yet. Submitting therefore does NOT show
    the design's success state — that copy promises an answer
@@ -24,7 +25,7 @@ import styles from './ContactForm.module.css';
    the handoff (design_handoff_4else_kontakt/README.md §2).
    ============================================================ */
 
-const TOPICS = [1, 2, 3, 4, 5] as const;
+const TOPICS = [1, 2, 3, 4, 5, 6] as const;
 
 export function ContactForm() {
   const t = useTranslations('kontakt');
@@ -152,7 +153,7 @@ export function ContactForm() {
             name="message"
             rows={5}
             required
-            placeholder={t(`hint${topic}`)}
+            placeholder={t('messagePlaceholder')}
             className={`${styles.input} ${styles.textarea}`}
           />
         </label>
