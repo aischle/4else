@@ -13,10 +13,9 @@
   "nav": {
     "label": "Hauptnavigation",
     "services": "Was wir tun",
-    "why": "Wieso 4else",
-    "steps": "So funktioniert's",
     "pricing": "Preise",
     "about": "Über uns",
+    "inspiration": "Inspirationen",
     "contact": "Kontakt",
     "login": "Login",
     "demo": "Demo ausprobieren"

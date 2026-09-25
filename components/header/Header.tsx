@@ -24,14 +24,14 @@ import styles from './Header.module.css';
    app/[locale]/page.tsx. A page without them, like the 404,
    keeps the light bar throughout.
 
-   The section links jump to anchors on the start page and hide
-   below 1000px, as in the design (there is no mobile menu yet).
-   Away from the start page they carry the route in front of the
-   hash, so they lead home and scroll there. Kontakt is the one
-   item with a real route, and marks itself when the visitor is
-   on it.
-   Pricing, About, Login and Demo have no destination yet and
-   point at "#".
+   The links hide below 1000px, as in the design (there is no
+   mobile menu yet). "Was wir tun" jumps to its anchor on the
+   start page; away from the start page it carries the route in
+   front of the hash, so it leads home and scrolls there. Kontakt
+   is the one item with a real route, and marks itself when the
+   visitor is on it.
+   Pricing, About, Inspirationen (the future blog), Login and
+   Demo have no destination yet and point at "#".
    ============================================================ */
 
 type Passed = Partial<Record<string, boolean>>;
@@ -108,10 +108,9 @@ export function Header() {
 
         <nav className={styles.links} aria-label={t('label')}>
           <a href={section('tun')} className={styles.link}>{t('services')}</a>
-          <a href={section('warum')} className={styles.link}>{t('why')}</a>
-          <a href={section('ablauf')} className={styles.link}>{t('steps')}</a>
           <a href="#" className={styles.link}>{t('pricing')}</a>
           <a href="#" className={styles.link}>{t('about')}</a>
+          <a href="#" className={styles.link}>{t('inspiration')}</a>
           <Link
             href="/kontakt"
             aria-current={onContact ? 'page' : undefined}

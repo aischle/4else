@@ -329,7 +329,7 @@ control that would need something unbuilt keeps `href="#"` and opens
   | Link | Says |
   |---|---|
   | `data-wip="backend"` | *Dafür fehlt noch das Backend.* — Login, Demo, Registrieren, Jetzt Event erstellen, Zum Login |
-  | no attribute | *Diese Seite ist noch nicht gestaltet.* — Preise, Über uns, the card links, Impressum, AGB, Datenschutz |
+  | no attribute | *Diese Seite ist noch nicht gestaltet.* — Preise, Über uns, Inspirationen (the future blog), the card links, Impressum, AGB, Datenschutz |
 
 - Copy lives in the `wip` namespace. Native `<dialog>`, so the backdrop,
   Escape, the focus trap and the focus return come from the browser; a click
