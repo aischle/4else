@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, type ReactNode } from 'react';
+import { useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { useTranslations } from 'next-intl';
 import buttons from '@/components/ui/Button.module.css';
 import styles from './ContactForm.module.css';
@@ -25,15 +25,40 @@ import styles from './ContactForm.module.css';
    the handoff (design_handoff_4else_kontakt/README.md §2), but
    without its 24-hour promise: Beatrice declined that deadline
    (September 2026), so the badge reads "Persönliche Antwort".
+
+   Validation is the browser's own, but its messages are not: a
+   browser writes them in its interface language, so an English
+   Chrome would say "Please fill out this field" on a German page.
+   Each required field therefore sets a German message from the
+   messages file when it turns up invalid, and clears it again as
+   soon as it is edited, so the browser re-checks the new value.
    ============================================================ */
 
 const TOPICS = [1, 2, 3, 4, 5, 6] as const;
+
+type Field = HTMLInputElement | HTMLTextAreaElement;
 
 export function ContactForm() {
   const t = useTranslations('kontakt');
   const [topic, setTopic] = useState<(typeof TOPICS)[number]>(1);
   const [notice, setNotice] = useState(false);
   const noticeRef = useRef<HTMLDivElement>(null);
+
+  /* Spread onto every field with a constraint. */
+  const validation = {
+    onInvalid: (event: FormEvent<Field>) => {
+      const field = event.currentTarget;
+      const { valueMissing, typeMismatch } = field.validity;
+      if (valueMissing) {
+        field.setCustomValidity(
+          field.type === 'checkbox' ? t('validationConsent') : t('validationRequired'),
+        );
+      } else if (typeMismatch) {
+        field.setCustomValidity(t('validationEmail'));
+      }
+    },
+    onChange: (event: FormEvent<Field>) => event.currentTarget.setCustomValidity(''),
+  };
 
   const rich = {
     privacy: (chunks: ReactNode) => (
@@ -106,6 +131,7 @@ export function ContactForm() {
             name="name"
             autoComplete="name"
             required
+            {...validation}
             placeholder={t('namePlaceholder')}
             className={styles.input}
           />
@@ -118,6 +144,7 @@ export function ContactForm() {
             name="email"
             autoComplete="email"
             required
+            {...validation}
             placeholder={t('emailPlaceholder')}
             className={styles.input}
           />
@@ -155,6 +182,7 @@ export function ContactForm() {
             name="message"
             rows={5}
             required
+            {...validation}
             placeholder={t('messagePlaceholder')}
             className={`${styles.input} ${styles.textarea}`}
           />
@@ -162,7 +190,13 @@ export function ContactForm() {
 
         <div className={styles.footerRow}>
           <label className={styles.consent}>
-            <input type="checkbox" name="consent" required className={styles.checkbox} />
+            <input
+              type="checkbox"
+              name="consent"
+              required
+              {...validation}
+              className={styles.checkbox}
+            />
             <span>{t.rich('consent', rich)}</span>
           </label>
           <button type="submit" className={`${buttons.pill} ${buttons.violet}`}>
