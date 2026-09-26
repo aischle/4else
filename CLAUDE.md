@@ -261,8 +261,11 @@ band. Copy in the `kontakt` namespace, page title/description in
   textured render (a first, smoother version was replaced the same day).
   Export: trim to the visible glow (alpha > 4) plus 8px, and zero the alpha
   ≤ 4 noise that otherwise reaches the canvas edges. The 404 keeps its own
-  `else-sucht.webp`. Below about 700px she wraps under the lead,
-  right-aligned. Her negative bottom margin is the hero's bottom padding + the
+  `else-sucht.webp`. **On phones (≤560px)** she never wraps under the
+  lead: she shrinks to `clamp(100px, 30vw, 176px)` wide (100px at 320,
+  ≈168px at 560), the lead takes the rest of the row, and the bubble is
+  capped at her width (13px type) so it cannot reach the lead, which there
+  runs up beside her head. Her negative bottom margin is the hero's bottom padding + the
   band's top padding + 4px + 2px (the glow under her tail, so the tail itself
   meets the edge); change either padding and change it too. **From 1100px
   the lead and Else form one right-aligned group, 20px apart**, with the lead

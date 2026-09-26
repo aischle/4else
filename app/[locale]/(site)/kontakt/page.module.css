@@ -185,6 +185,38 @@
   box-shadow: var(--shadow-float);
 }
 
+/* Phones: the full-size Else (176px) no longer fits beside the lead and
+   used to wrap underneath it, alone on the right. Here she shrinks with
+   the screen instead (30vw: 100px at 320, 117px at 390, ≈168px at 560,
+   so the step up to 176px at 561 is barely visible) and the lead
+   takes the rest of the row, so it stays left and she stays right, as on
+   desktop. The bubble is capped at her width: the lead now runs up beside
+   her head, and a bubble wider than Else would land on it. */
+@media (max-width: 560px) {
+  .heroAside {
+    flex-wrap: nowrap;
+    gap: 12px;
+  }
+
+  .lead {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .else {
+    width: clamp(100px, 30vw, 176px);
+    height: auto;
+    aspect-ratio: 176 / 268;
+  }
+
+  .elseBubble {
+    right: 0;
+    max-width: 100%;
+    padding: 9px 11px;
+    font-size: 13px;
+  }
+}
+
 /* ── Beatrice band ──────────────────────────────────────────── */
 
 /* Photo left, greeting and direct contact right, on one off-white
