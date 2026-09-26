@@ -443,8 +443,23 @@ it.
   `i18n.locales` filtered to `de-DE`, and German field titles and help texts.
   Sanity's own sign-in screen stays English; it is outside the Studio's
   language setting.
-- **Structure:** "Inspirationen" → Artikel (newest first), Autor:innen. The
-  Vision (GROQ) tool shows only for administrators.
+- **Structure:** "Inspirationen" → Alle Artikel, then three views by state:
+  **Online** (published, date passed), **Geplant** (date in the future) and
+  **Entwürfe** (drafts and unpublished changes), then Autor:innen. "Now" for
+  those filters is taken when the Studio loads (`$now` param). The Vision
+  (GROQ) tool shows only for administrators.
+- **Branding** mirrors the website:
+  - `@sanity/themer` `buildTheme`, per colour scheme:
+    - light: accent `#5B5BD6`, text `#393951`;
+    - dark: accent `#7C5CF0`, the site's dark-ground violet.
+
+    Version 0.7 takes `{light, dark}`, not the flat options in Sanity's docs.
+    It needs React ≥ 19.3.
+  - Logo: the navy "4e" mark (`components/StudioIcon.tsx`) in the top bar
+    and on the login screen.
+  - Favicons: the six files Sanity expects in `studio/static/`, derived from
+    the site's `app/icon.png`, `app/apple-icon.png` and `app/favicon.ico`.
+    `favicon.svg` wraps a PNG, as no vector of the mark exists.
 - **Commands** (in `studio/`): `npm run dev` (localhost:3333; also the
   `studio` entry in `.claude/launch.json`), `npm run build`,
   `npm run deploy` (publishes the hosted Studio; this is outward-facing, so
