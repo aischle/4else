@@ -139,8 +139,11 @@
 
 /* ── Article ────────────────────────────────────────────────── */
 
+/* 760px of text (~74 characters a line at 18px, the widest that still
+   reads comfortably); the side padding sits outside it. Images are sized
+   for this column (sizes="… 760px"). */
 .article {
-  max-width: 760px;
+  max-width: calc(760px + 2 * var(--gutter));
   margin: 0 auto;
   padding: clamp(40px, 6vw, 88px) var(--gutter) clamp(60px, 7vw, 110px);
 }

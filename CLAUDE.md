@@ -494,6 +494,10 @@ it.
   `inspirationen.module.css` are a plain first version in the site's tokens,
   to be replaced when a design handoff exists. Copy is in the
   `inspirationen` and `meta.inspirationen*` namespaces.
+- **Article column: 760px of text** (Robin found 664px too narrow). The
+  side padding sits outside it (`calc(760px + 2 * var(--gutter))`). At 18px
+  that is ~74 characters a line, the widest that still reads comfortably;
+  don't go past ~800px. Title, byline, hero and body share the column.
 - **Byline** (mockup option A, chosen by Robin): between the lead and the
   hero image, framed by two hairlines.
   - Left: the author's round photo (52px), name and role, from the
