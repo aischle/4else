@@ -79,7 +79,7 @@ export function MobileMenu({ items, lightText }: { items: NavItem[]; lightText: 
     <>
       <button
         type="button"
-        className={`${styles.toggle}${lightText ? ` ${styles.toggleLight}` : ''}`}
+        className={`${styles.toggle}${lightText ? ` ${styles.toggleInverse}` : ''}`}
         aria-label={t('menuOpen')}
         aria-expanded={open}
         aria-controls="site-menu"

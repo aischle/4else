@@ -9,8 +9,10 @@
 /* ── The round button in the bar ─────────────────────────── */
 
 /* Only below 1000px, where the links are gone. Two bars, the lower one
-   shorter. On the light bar it is the menu's own violet-black with white
-   bars, a preview of what it opens (Robin, September 2026). */
+   shorter. It inverts the ground it sits on (Robin, September 2026): on
+   the light bar it is the menu's own violet-black with white bars, over
+   the dark hero it is white with ink bars, like the Demo pill there. It
+   swaps with the bar's text, halfway down the start page's fade. */
 .toggle {
   position: relative;
   display: none;
@@ -23,7 +25,7 @@
   background: var(--hero-ground);
   color: var(--text-on-ink);
   cursor: pointer;
-  transition: background-color var(--dur), border-color var(--dur-theme), color var(--dur-theme);
+  transition: background-color var(--dur-theme), border-color var(--dur-theme), color var(--dur-theme);
 }
 
 .toggle i {
@@ -54,7 +56,23 @@
   outline-offset: 2px;
 }
 
-/* Over the dark hero, and inside the menu. */
+/* Over the dark hero. */
+.toggleInverse {
+  border-color: var(--surface);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.toggleInverse:hover {
+  border-color: var(--ice-violet);
+  background: var(--ice-violet);
+}
+
+.toggleInverse:focus-visible {
+  outline-color: var(--accent-bright);
+}
+
+/* The close button inside the menu: dark glass on the dark ground. */
 .toggleLight {
   border-color: var(--line-on-dark);
   background: var(--surface-on-dark-strong);

@@ -216,9 +216,10 @@ Things to know:
   `components/header/MobileMenu.tsx`). Below 1000px the section links,
   Login and Demo leave the bar, which keeps only the wordmark and a round
   menu button (44px); Demo sits in the menu (Robin's call: no duplicate).
-  On the light bar the button is the menu's own violet-black
-  (`--hero-ground`) with white bars, navy on hover; over the hero it keeps
-  the dark-glass look of the rest of the bar. The button opens a **full-screen menu** in the hero's
+  The button inverts its ground: on the light bar the menu's own
+  violet-black (`--hero-ground`) with white bars, navy on hover; over the
+  dark hero white with ink bars, Eisviolett on hover. It swaps with the
+  bar's text at the fade's middle mark. The button opens a **full-screen menu** in the hero's
   violet-black with its two lights: the five links large and numbered
   (01)–(05) with the FAQ's helper, the current page in `--accent-bright`,
   Login (`ghostOnInk`) and Demo (`violet`), the e-mail and phone, and Else's
