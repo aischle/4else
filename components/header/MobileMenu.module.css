@@ -8,8 +8,9 @@
 
 /* ── The round button in the bar ─────────────────────────── */
 
-/* Only below 1000px, where the links are gone. The pill's height, so
-   it lines up with Demo. Two bars, the lower one shorter. */
+/* Only below 1000px, where the links are gone. Two bars, the lower one
+   shorter. On the light bar it is the menu's own violet-black with white
+   bars, a preview of what it opens (Robin, September 2026). */
 .toggle {
   position: relative;
   display: none;
@@ -17,10 +18,10 @@
   width: 44px;
   height: 44px;
   padding: 0;
-  border: 1px solid var(--hairline-strong);
+  border: 1px solid var(--hero-ground);
   border-radius: 50%;
-  background: var(--surface);
-  color: var(--ink);
+  background: var(--hero-ground);
+  color: var(--text-on-ink);
   cursor: pointer;
   transition: background-color var(--dur), border-color var(--dur-theme), color var(--dur-theme);
 }
@@ -44,7 +45,8 @@
 }
 
 .toggle:hover {
-  background: var(--fill-soft);
+  border-color: var(--brand);
+  background: var(--brand);
 }
 
 .toggle:focus-visible {
