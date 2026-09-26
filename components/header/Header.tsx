@@ -6,6 +6,8 @@ import { Wordmark } from '@/components/brand/Wordmark';
 import { Link, getPathname, usePathname } from '@/lib/navigation';
 import type { Locale } from '@/lib/i18n';
 import { NAV_FADE_MARKS, NAV_FADE_START, NAV_FADE_TEXT, NAV_FADE_END } from './navTheme';
+import { MobileMenu } from './MobileMenu';
+import type { NavItem } from './navItems';
 import buttons from '@/components/ui/Button.module.css';
 import styles from './Header.module.css';
 
@@ -24,8 +26,10 @@ import styles from './Header.module.css';
    app/[locale]/page.tsx. A page without them, like the 404,
    keeps the light bar throughout.
 
-   The links hide below 1000px, as in the design (there is no
-   mobile menu yet). "Was wir tun" jumps to its anchor on the
+   The links and Login hide below 1000px, as in the design;
+   there a round button opens the full-screen menu
+   (./MobileMenu.tsx), which carries them. Both read one list
+   (./navItems.ts). "Was wir tun" jumps to its anchor on the
    start page; away from the start page it carries the route in
    front of the hash, so it leads home and scrolls there. Kontakt
    and Inspirationen (the blog) have real routes and mark
@@ -62,6 +66,14 @@ export function Header() {
   /* The blog overview is "the page"; an article inside it still lights up
      the link, without claiming aria-current. */
   const inBlog = pathname.startsWith('/inspirationen');
+
+  const items: NavItem[] = [
+    { key: 'services', href: section('tun') },
+    { key: 'about', href: '#' },
+    { key: 'pricing', href: '#' },
+    { key: 'inspiration', route: '/inspirationen', active: inBlog, current: pathname === '/inspirationen' },
+    { key: 'contact', route: '/kontakt', active: onContact, current: onContact },
+  ];
 
   useEffect(() => {
     const marks = NAV_FADE_MARKS.map((id) => document.getElementById(id)).filter(
@@ -110,23 +122,23 @@ export function Header() {
         <Wordmark />
 
         <nav className={styles.links} aria-label={t('label')}>
-          <a href={section('tun')} className={styles.link}>{t('services')}</a>
-          <a href="#" className={styles.link}>{t('about')}</a>
-          <a href="#" className={styles.link}>{t('pricing')}</a>
-          <Link
-            href="/inspirationen"
-            aria-current={pathname === '/inspirationen' ? 'page' : undefined}
-            className={`${styles.link}${inBlog ? ` ${styles.linkActive}` : ''}`}
-          >
-            {t('inspiration')}
-          </Link>
-          <Link
-            href="/kontakt"
-            aria-current={onContact ? 'page' : undefined}
-            className={`${styles.link}${onContact ? ` ${styles.linkActive}` : ''}`}
-          >
-            {t('contact')}
-          </Link>
+          {items.map((item) => {
+            const className = `${styles.link}${item.active ? ` ${styles.linkActive}` : ''}`;
+            return item.route ? (
+              <Link
+                key={item.key}
+                href={item.route}
+                aria-current={item.current ? 'page' : undefined}
+                className={className}
+              >
+                {t(item.key)}
+              </Link>
+            ) : (
+              <a key={item.key} href={item.href} className={className}>
+                {t(item.key)}
+              </a>
+            );
+          })}
         </nav>
 
         <div className={styles.actions}>
@@ -138,6 +150,7 @@ export function Header() {
           >
             {t('demo')}
           </a>
+          <MobileMenu items={items} lightText={lightText} />
         </div>
       </div>
     </header>

@@ -30,7 +30,11 @@
     "inspiration": "Inspirationen",
     "contact": "Kontakt",
     "login": "Login",
-    "demo": "Demo ausprobieren"
+    "demo": "Demo ausprobieren",
+    "menuOpen": "Menü öffnen",
+    "menuClose": "Menü schliessen",
+    "menuLabel": "Menü",
+    "menuBubble": "Wohin soll's gehen?"
   },
   "hero": {
     "badge": "Schweizer Plattform · 4else.com organisiert, 4else.one kassiert",

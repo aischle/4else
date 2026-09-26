@@ -212,12 +212,28 @@ Things to know:
   hand-write the schema text. Note the transaction fee (4,8 % + CHF 0.20) and
   the payment methods are now stated both here and on 4else.events; keep them
   in step.
-- **No mobile menu.** Like the design, the nav's section links hide below
-  1000px; only the wordmark, Login and Demo remain. Below 440px Login hides
-  too (it stays in the footer's "Loslegen" column) and the bar's gap drops to
-  12px; below 360px the Demo pill shrinks to 13px text and 14px side padding.
-  Wordmark + Login + Demo need ≈416px, so without this the pill ran off the
-  right edge of a 390px phone. The bar now fits down to 320px.
+- **Mobile menu** (mockup option A, chosen by Robin, September 2026;
+  `components/header/MobileMenu.tsx`). Below 1000px the section links and
+  Login leave the bar, which keeps the wordmark, Demo and a round menu
+  button (44px). The button opens a **full-screen menu** in the hero's
+  violet-black with its two lights: the five links large and numbered
+  (01)–(05) with the FAQ's helper, the current page in `--accent-bright`,
+  Login (`ghostOnInk`) and Demo (`violet`), the e-mail and phone, and Else's
+  face asking "Wohin soll's gehen?" (`nav.menu*` keys).
+  - Desktop links and menu read **one list**, `components/header/navItems.ts`
+    (built in `Header.tsx`), so they cannot drift apart.
+  - Native `<dialog>` with `showModal()`, like the wip dialog: Escape, focus
+    trap, inert page and focus return come from the browser. The page stops
+    scrolling while it is open (`html:has(.menu[open])`).
+  - It closes on every link that leads somewhere, on a route change and when
+    the window grows past 1000px. **"#" placeholders leave it open**: the wip
+    dialog opens on top, and closing that returns to the menu.
+  - `open` state is set in `close()` as well as in the dialog's close event,
+    because browsers deliver that event with the next frame, which a hidden
+    tab never gets.
+  - Narrow phones: up to 400px the Demo pill shrinks to 13px text and 12px
+    side padding and the actions' gap to 6px; below 360px Demo leaves the bar
+    (the menu has it). The bar fits down to 320px.
 - **Narrow phones (≤400px):** single long words set the page's minimum
   width, so type follows the screen there. Both hero headlines (start and
   contact) use `clamp(32px, 10.5vw, 42px)` below 400px, exactly 42px at
