@@ -111,11 +111,11 @@ export default async function InspirationenArticlePage({
         {article.mainImage && (
           <div className={styles.hero}>
             <Image
-              src={urlFor(article.mainImage).width(1680).height(1050).fit('crop').auto('format').url()}
+              src={urlFor(article.mainImage).width(2000).height(1250).fit('crop').auto('format').url()}
               alt={article.mainImage.alt ?? ''}
               fill
               priority
-              sizes="(max-width: 900px) 100vw, 840px"
+              sizes="(max-width: 1100px) 100vw, 992px"
               className={styles.cover}
             />
           </div>

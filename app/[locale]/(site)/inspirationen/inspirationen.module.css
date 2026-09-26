@@ -272,13 +272,17 @@
   }
 }
 
-/* Wider than the text: up to 60px further on each side (840px on a 720px
-   column). The overhang is whatever room is left beside the column after
-   the page gutters, capped at 60px, so on narrow screens it shrinks to
-   zero and the image never reaches the screen edge. 100cqw is the page
-   width without the scrollbar (.articleMain is the container). */
+/* Wider than the text, reaching halfway from the old 60px overhang to the
+   page's content edge (where the header's wordmark and button sit):
+   --space is the room between the text and that edge per side, and the
+   overhang is the midpoint of 60px and --space. That gives 136px, i.e.
+   992px on a 720px column, at desktop widths. Never beyond the edge: on
+   medium screens it meets the edge, and on narrow ones it matches the
+   text. 100cqw is the page width without the scrollbar (.articleMain is
+   the container). */
 .hero {
-  --overhang: clamp(0px, (100cqw - 2 * var(--gutter) - 720px) / 2, 60px);
+  --space: max(0px, (min(var(--container), 100cqw) - 2 * var(--gutter) - 720px) / 2);
+  --overhang: min(var(--space), (var(--space) + 60px) / 2);
 
   position: relative;
   aspect-ratio: 16 / 10;

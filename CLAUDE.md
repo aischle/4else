@@ -494,17 +494,21 @@ it.
   `inspirationen.module.css` are a plain first version in the site's tokens,
   to be replaced when a design handoff exists. Copy is in the
   `inspirationen` and `meta.inspirationen*` namespaces.
-- **Article column: 720px of text** with the **hero image at 840px** (Robin's
-  choice after trying 664 and 760).
+- **Article column: 720px of text** with the **hero image at 992px** (Robin's
+  choice after trying 664/760 text and an 840px image).
   - The side padding sits outside the text column:
     `calc(720px + 2 * var(--gutter))`. That gives ~70 characters a line at
     18px; don't go past ~800px of text.
-  - The hero breaks out by up to 60px per side. The overhang is
-    `clamp(0px, (100cqw − 2 × gutter − 720px) / 2, 60px)`, measured against
-    `.articleMain`, a size container. It shrinks with the screen and is gone
-    below ~790px, so the image never reaches the screen edge.
+  - The hero reaches halfway from the old 60px overhang to the page's content
+    edge, the line the header's wordmark and Demo button sit on (1144px at
+    desktop):
+    - `--space` = room between the text and that edge, per side;
+    - `--overhang` = `min(--space, (--space + 60px) / 2)`, measured against
+      `.articleMain`, a size container;
+    - result: 136px per side, a 992px image, 76px short of the header edge;
+      it meets the edge on medium screens and matches the text on phones.
   - Body images stay in the text column (`sizes` 720px). The hero is sized
-    for 840px (1680px source).
+    for 992px (2000px source).
 - **Byline** (mockup option A, chosen by Robin): between the lead and the
   hero image, framed by two hairlines.
   - Left: the author's round photo (52px), name and role, from the
