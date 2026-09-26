@@ -9,7 +9,7 @@ import {schemaTypes} from './schemaTypes'
 /* ============================================================
    4else — Studio for the blog "Inspirationen"
    ------------------------------------------------------------
-   Hosted by Sanity at https://4else.sanity.studio (npm run
+   Hosted by Sanity at https://fourelse.sanity.studio (npm run
    deploy); the website's /studio redirects there. Beatrice
    logs in with her own Sanity account as an Editor of project
    6e5n16nr. The whole interface is German.

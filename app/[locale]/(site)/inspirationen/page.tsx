@@ -10,7 +10,7 @@ import styles from './inspirationen.module.css';
    ------------------------------------------------------------
    Lists every published article from Sanity (project 6e5n16nr),
    newest first. Articles are written in the Studio at
-   4else.sanity.studio; this page picks them up within 60s, or
+   fourelse.sanity.studio; this page picks them up within 60s, or
    at once via the /api/revalidate webhook.
    ============================================================ */
 

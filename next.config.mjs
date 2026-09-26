@@ -14,8 +14,8 @@ const nextConfig = {
       /* The Studio for the blog is hosted by Sanity (studio/); /studio
          gives Beatrice a 4else address to remember. Temporary, so the
          target can move without browsers caching the old one. */
-      { source: '/studio', destination: 'https://4else.sanity.studio', permanent: false },
-      { source: '/studio/:path*', destination: 'https://4else.sanity.studio/:path*', permanent: false },
+      { source: '/studio', destination: 'https://fourelse.sanity.studio', permanent: false },
+      { source: '/studio/:path*', destination: 'https://fourelse.sanity.studio/:path*', permanent: false },
     ];
   },
 };

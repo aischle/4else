@@ -9,7 +9,7 @@ import type { PortableTextBlock } from '@portabletext/react';
    Read-only client for project 6e5n16nr. The dataset is public,
    so no token: the site only ever sees published documents.
    Content is written in the Studio (studio/, hosted at
-   4else.sanity.studio). The schema lives in studio/schemaTypes;
+   fourelse.sanity.studio). The schema lives in studio/schemaTypes;
    the shapes below mirror it.
 
    Every query shows an article only once its publishedAt has

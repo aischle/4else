@@ -433,7 +433,7 @@ herself in a **dedicated Studio**.
 React 19, Node ≥ 22.12. It is kept out of the site's TypeScript and ESLint,
 and git ignores its `node_modules`, `dist` and `.sanity`. Vercel never builds
 it.
-- **Hosted by Sanity** at `https://4else.sanity.studio` (`studioHost: '4else'`
+- **Hosted by Sanity** at `https://fourelse.sanity.studio` (`studioHost: 'fourelse'`
   in `sanity.cli.ts`, auto-updates on). The site's `/studio` and
   `/studio/*` redirect there (307, in `next.config.mjs`), so Beatrice has a
   4else address. Chosen over embedding it in the site: an embedded Studio
