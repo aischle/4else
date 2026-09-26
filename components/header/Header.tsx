@@ -125,7 +125,7 @@ export function Header() {
           <a
             href="#"
             data-wip="backend"
-            className={`${buttons.pill} ${lightText ? buttons.inverse : buttons.solid} ${buttons.small}`}
+            className={`${buttons.pill} ${lightText ? buttons.inverse : buttons.solid} ${buttons.small} ${styles.demo}`}
           >
             {t('demo')}
           </a>

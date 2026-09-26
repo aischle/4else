@@ -141,3 +141,25 @@
     display: none;
   }
 }
+
+/* Narrow phones. Wordmark (≈107px) + Login (≈69px) + the Demo pill
+   (≈168px) + gaps need ≈416px, more than a 390px phone has. Below 440px
+   Login steps aside (it is still in the footer's "Loslegen" column) and
+   the gap tightens; below 360px the Demo pill gets a little smaller too,
+   so the bar fits down to 320px. */
+@media (max-width: 440px) {
+  .inner {
+    gap: 12px;
+  }
+
+  .login {
+    display: none;
+  }
+}
+
+@media (max-width: 359px) {
+  .actions .demo {
+    padding-inline: 14px;
+    font-size: 13px;
+  }
+}

@@ -211,7 +211,11 @@ Things to know:
   the payment methods are now stated both here and on 4else.events; keep them
   in step.
 - **No mobile menu.** Like the design, the nav's section links hide below
-  1000px; only the wordmark, Login and Demo remain.
+  1000px; only the wordmark, Login and Demo remain. Below 440px Login hides
+  too (it stays in the footer's "Loslegen" column) and the bar's gap drops to
+  12px; below 360px the Demo pill shrinks to 13px text and 14px side padding.
+  Wordmark + Login + Demo need ≈416px, so without this the pill ran off the
+  right edge of a 390px phone. The bar now fits down to 320px.
 - **Images** live in `public/images/home/` and render through `next/image`
   (the mascot poster excepted — a `<video poster>` cannot use it).
   `participant.png` is 1.4 MB at source; `next/image` serves it resized.
