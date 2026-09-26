@@ -213,9 +213,9 @@ Things to know:
   the payment methods are now stated both here and on 4else.events; keep them
   in step.
 - **Mobile menu** (mockup option A, chosen by Robin, September 2026;
-  `components/header/MobileMenu.tsx`). Below 1000px the section links and
-  Login leave the bar, which keeps the wordmark, Demo and a round menu
-  button (44px). The button opens a **full-screen menu** in the hero's
+  `components/header/MobileMenu.tsx`). Below 1000px the section links,
+  Login and Demo leave the bar, which keeps only the wordmark and a round
+  menu button (44px); Demo sits in the menu (Robin's call: no duplicate). The button opens a **full-screen menu** in the hero's
   violet-black with its two lights: the five links large and numbered
   (01)–(05) with the FAQ's helper, the current page in `--accent-bright`,
   Login (`ghostOnInk`) and Demo (`violet`), the e-mail and phone, and Else's
@@ -231,9 +231,8 @@ Things to know:
   - `open` state is set in `close()` as well as in the dialog's close event,
     because browsers deliver that event with the next frame, which a hidden
     tab never gets.
-  - Narrow phones: up to 400px the Demo pill shrinks to 13px text and 12px
-    side padding and the actions' gap to 6px; below 360px Demo leaves the bar
-    (the menu has it). The bar fits down to 320px.
+  - With only two items, the bar fits any phone width; the narrow-phone
+    rules for the Demo pill are gone.
 - **Narrow phones (≤400px):** single long words set the page's minimum
   width, so type follows the screen there. Both hero headlines (start and
   contact) use `clamp(32px, 10.5vw, 42px)` below 400px, exactly 42px at

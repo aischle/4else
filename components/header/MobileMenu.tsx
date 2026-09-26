@@ -14,7 +14,7 @@ import styles from './MobileMenu.module.css';
    4else — full-screen menu below 1000px
    ------------------------------------------------------------
    Mockup option A, chosen by Robin (September 2026). A round
-   button beside the Demo pill opens the menu over the whole
+   button, the only control left in the bar, opens the menu over the whole
    screen, in the hero's violet-black: the five links large and
    numbered like the FAQ, Login and Demo, the e-mail and phone
    line, and Else asking where to go.

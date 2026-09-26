@@ -26,7 +26,7 @@ import styles from './Header.module.css';
    app/[locale]/page.tsx. A page without them, like the 404,
    keeps the light bar throughout.
 
-   The links and Login hide below 1000px, as in the design;
+   The links, Login and Demo hide below 1000px;
    there a round button opens the full-screen menu
    (./MobileMenu.tsx), which carries them. Both read one list
    (./navItems.ts). "Was wir tun" jumps to its anchor on the

@@ -136,39 +136,12 @@
   }
 }
 
-/* Below 1000px the links and Login move into the full-screen menu
-   (MobileMenu.tsx); the bar keeps the wordmark, Demo and the menu
-   button. */
+/* Below 1000px the links, Login and Demo move into the full-screen menu
+   (MobileMenu.tsx); the bar keeps the wordmark and the menu button.
+   (.actions .demo outweighs the pill's own display.) */
 @media (max-width: 1000px) {
   .links,
-  .login {
-    display: none;
-  }
-}
-
-@media (max-width: 440px) {
-  .inner {
-    gap: 12px;
-  }
-}
-
-/* Narrow phones. Wordmark (≈107px) + Demo (≈168px) + the menu button
-   (44px) + gaps need ≈340px of the row, more than a 375px phone has
-   inside its gutters. Up to 400px the Demo pill gets a little smaller;
-   below 360px it steps aside altogether, since the menu carries it too,
-   so the bar fits down to 320px. */
-@media (max-width: 400px) {
-  .actions {
-    gap: 6px;
-  }
-
-  .actions .demo {
-    padding-inline: 12px;
-    font-size: 13px;
-  }
-}
-
-@media (max-width: 359px) {
+  .login,
   .actions .demo {
     display: none;
   }
