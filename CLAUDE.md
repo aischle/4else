@@ -34,8 +34,10 @@ look at how temu.swiss does it.
 - **Styling:** CSS Modules on a token layer (`styles/tokens.css`); no CSS framework
 - **Hosting:** Vercel, with `@vercel/analytics` and `@vercel/speed-insights`
 - **Lint:** `next/core-web-vitals`
+- **Sanity** (`@sanity/client`, `@sanity/image-url`, `@portabletext/react`)
+  feeds the blog Inspirationen, see §5f. The Studio is a separate package
+  in `studio/`.
 - **Installed but not wired yet** (same as temu.swiss, ready when needed):
-  `@sanity/client`, `@sanity/image-url`, `@portabletext/react`,
   `@supabase/supabase-js`, `next-themes`, `lucide-react`
 
 Scripts:
@@ -373,7 +375,7 @@ control that would need something unbuilt keeps `href="#"` and opens
   | Link | Says |
   |---|---|
   | `data-wip="backend"` | *Dafür fehlt noch das Backend.* — Login, Demo, Registrieren, Jetzt Event erstellen, Zum Login |
-  | no attribute | *Diese Seite ist noch nicht gestaltet.* — Preise, Über uns, Inspirationen (the future blog), the card links, Impressum, AGB, Datenschutz |
+  | no attribute | *Diese Seite ist noch nicht gestaltet.* — Preise, Über uns, the card links, Impressum, AGB, Datenschutz |
 
 - Copy lives in the `wip` namespace. Native `<dialog>`, so the backdrop,
   Escape, the focus trap and the focus return come from the browser; a click
@@ -417,6 +419,77 @@ mockup option C (Else) with option B's progress ring, September 2026.
   and smooth scrolling, so the button looks dead there. Test in a visible
   window, or jump with `scrollTo({ behavior: 'instant' })` and dispatch a
   `scroll` event yourself.
+
+---
+
+## 5f. Inspirationen (blog) and the Studio
+
+The blog is **Inspirationen**, fed by Sanity project **`6e5n16nr`**,
+dataset `production` (public). It is 4else's own project: **not** Mechane's
+`lc29lnng`, which temu.swiss and Limen read. Beatrice writes and publishes
+herself in a **dedicated Studio**.
+
+**The Studio (`studio/`)** is its own npm package inside this repo: Sanity 6,
+React 19, Node ≥ 22.12. It is kept out of the site's TypeScript and ESLint,
+and git ignores its `node_modules`, `dist` and `.sanity`. Vercel never builds
+it.
+- **Hosted by Sanity** at `https://4else.sanity.studio` (`studioHost: '4else'`
+  in `sanity.cli.ts`, auto-updates on). The site's `/studio` and
+  `/studio/*` redirect there (307, in `next.config.mjs`), so Beatrice has a
+  4else address. Chosen over embedding it in the site: an embedded Studio
+  would pin Sanity v3 (the last line for React 18), weigh down every site
+  build, and only ship schema changes with a site deploy.
+- **German only:** `@sanity/locale-de-de` plus
+  `i18n.locales` filtered to `de-DE`, and German field titles and help texts.
+  Sanity's own sign-in screen stays English; it is outside the Studio's
+  language setting.
+- **Structure:** "Inspirationen" → Artikel (newest first), Autor:innen. The
+  Vision (GROQ) tool shows only for administrators.
+- **Commands** (in `studio/`): `npm run dev` (localhost:3333; also the
+  `studio` entry in `.claude/launch.json`), `npm run build`,
+  `npm run deploy` (publishes the hosted Studio; this is outward-facing, so
+  confirm first), `npm run schema:deploy`.
+- **`@sanity/icons` 5** exports each icon from its own path:
+  `import {UserIcon} from '@sanity/icons/User'`. The package root no longer
+  exports the icons.
+- **Schema** (`studio/schemaTypes/`):
+  - `article`: `title`, `slug`, `excerpt` (Anriss, ≤ 200), `mainImage` (alt
+    required), `publishedAt`, `author` → `author`, `body` (`blockContent`),
+    `seo.metaTitle` / `seo.metaDescription`;
+  - `author`: `name`, `role`, `photo`;
+  - `blockContent`: normal/H2/H3/quote, bullet/number lists, bold, italic,
+    link (`href`, `blank`), image (`alt`, `caption`).
+  **Adding a block type or style needs its renderer** in
+  `components/inspirationen/ArticleBody.tsx`. After a schema change, run
+  `npm run deploy` (or `schema:deploy`) so the hosted Studio has it. **Never
+  delete an "unknown field" in the Studio**: it can be real data under a
+  stale schema (it has already cost Mechane a field).
+- **Access:** editors are members of project 6e5n16nr, invited by Robin in
+  sanity.io/manage → Members. Beatrice gets the **Editor** role.
+
+**The site:**
+- `lib/sanity.ts` holds the read-only client (no token,
+  `perspective: 'published'`), `urlFor`, and the queries `getArticles`,
+  `getArticle` (wrapped in `cache()`) and `getArticleSlugs`. Every query
+  requires `publishedAt <= now()`, so **a future date schedules a post**.
+  The listing and the index fail soft (return `[]`).
+- Routes (`lib/routing.ts`): `/inspirationen` (overview, with an empty state
+  until the first article) and `/inspirationen/[slug]` (a 404 for unknown or
+  future slugs). Both revalidate every 60s. Styles in
+  `inspirationen.module.css` are a plain first version in the site's tokens,
+  to be replaced when a design handoff exists. Copy is in the
+  `inspirationen` and `meta.inspirationen*` namespaces.
+- Images come from `cdn.sanity.io` (`images.remotePatterns`). Body images
+  take their size from the asset ID (`image-<hash>-2000x1333-jpg`).
+- The sitemap adds one entry per article, with `_updatedAt`.
+- **Instant updates:** `app/api/revalidate` (POST, header
+  `x-webhook-secret` = `SANITY_REVALIDATE_SECRET`). Once the production
+  domain exists, create the webhook in sanity.io/manage → API → Webhooks:
+  URL `https://<domain>/api/revalidate`, filter `_type == "article"`, and set
+  the same secret in Vercel. Without the webhook, new articles appear within
+  60 seconds.
+- The header and footer links to Inspirationen are real routes now. The
+  header marks the link on the overview and on every article.
 
 ---
 

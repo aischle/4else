@@ -1,0 +1,30 @@
+{
+  "name": "4else-studio",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Sanity Studio for the 4else blog \"Inspirationen\" (project 6e5n16nr), hosted at 4else.sanity.studio.",
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "sanity dev --port 3333",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "schema:deploy": "sanity schema deploy",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@sanity/icons": "^5.2.2",
+    "@sanity/locale-de-de": "^1.1.37",
+    "@sanity/vision": "^6.16.0",
+    "react": "^19.2.2",
+    "react-dom": "^19.2.2",
+    "sanity": "^6.16.0",
+    "styled-components": "^6.1.18"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "typescript": "^5.8"
+  },
+  "engines": {
+    "node": ">=22.12"
+  }
+}

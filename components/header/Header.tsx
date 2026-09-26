@@ -28,10 +28,10 @@ import styles from './Header.module.css';
    mobile menu yet). "Was wir tun" jumps to its anchor on the
    start page; away from the start page it carries the route in
    front of the hash, so it leads home and scrolls there. Kontakt
-   is the one item with a real route, and marks itself when the
-   visitor is on it.
-   About, Pricing, Inspirationen (the future blog), Login and
-   Demo have no destination yet and point at "#".
+   and Inspirationen (the blog) have real routes and mark
+   themselves when the visitor is on them.
+   About, Pricing, Login and Demo have no destination yet and
+   point at "#".
    ============================================================ */
 
 type Passed = Partial<Record<string, boolean>>;
@@ -59,6 +59,9 @@ export function Header() {
   const home = pathname === '/' ? '' : getPathname({ locale: locale as Locale, href: '/' });
   const section = (hash: string) => `${home}#${hash}`;
   const onContact = pathname === '/kontakt';
+  /* The blog overview is "the page"; an article inside it still lights up
+     the link, without claiming aria-current. */
+  const inBlog = pathname.startsWith('/inspirationen');
 
   useEffect(() => {
     const marks = NAV_FADE_MARKS.map((id) => document.getElementById(id)).filter(
@@ -110,7 +113,13 @@ export function Header() {
           <a href={section('tun')} className={styles.link}>{t('services')}</a>
           <a href="#" className={styles.link}>{t('about')}</a>
           <a href="#" className={styles.link}>{t('pricing')}</a>
-          <a href="#" className={styles.link}>{t('inspiration')}</a>
+          <Link
+            href="/inspirationen"
+            aria-current={pathname === '/inspirationen' ? 'page' : undefined}
+            className={`${styles.link}${inBlog ? ` ${styles.linkActive}` : ''}`}
+          >
+            {t('inspiration')}
+          </Link>
           <Link
             href="/kontakt"
             aria-current={onContact ? 'page' : undefined}

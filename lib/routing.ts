@@ -21,5 +21,7 @@ export const routing = defineRouting({
   pathnames: {
     '/': '/',
     '/kontakt': '/kontakt',
+    '/inspirationen': '/inspirationen',
+    '/inspirationen/[slug]': '/inspirationen/[slug]',
   },
 });

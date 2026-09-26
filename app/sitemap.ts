@@ -3,6 +3,7 @@ import { routing } from '@/lib/routing';
 import { getPathname } from '@/lib/navigation';
 import { enabledLocales } from '@/lib/i18n';
 import { BASE_URL } from '@/lib/seo';
+import { getArticleSlugs } from '@/lib/sanity';
 
 /* ============================================================
    4else — sitemap
@@ -28,9 +29,13 @@ function alternatesFor(route: string): Record<string, string> {
   return languages;
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+/* Articles come from Sanity; the listing fails soft, so an unreachable
+   Sanity only drops the article entries, never the whole sitemap. */
+export const revalidate = 3600;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
-  return staticRoutes.flatMap((route) => {
+  const pages = staticRoutes.flatMap((route) => {
     const languages = alternatesFor(route);
     return enabledLocales.map((locale) => ({
       url: `${BASE_URL}${getPathname({ locale, href: route as never })}`,
@@ -40,4 +45,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: { languages },
     }));
   });
+
+  const articles = (await getArticleSlugs()).flatMap(({ slug, _updatedAt }) => {
+    const href = { pathname: '/inspirationen/[slug]', params: { slug } } as const;
+    const languages: Record<string, string> = {};
+    for (const locale of enabledLocales) {
+      languages[locale] = `${BASE_URL}${getPathname({ locale, href })}`;
+    }
+    languages['x-default'] = `${BASE_URL}${getPathname({ locale: routing.defaultLocale, href })}`;
+    return enabledLocales.map((locale) => ({
+      url: `${BASE_URL}${getPathname({ locale, href })}`,
+      lastModified: new Date(_updatedAt),
+      changeFrequency: 'monthly' as const,
+      priority: 0.5,
+      alternates: { languages },
+    }));
+  });
+
+  return [...pages, ...articles];
 }

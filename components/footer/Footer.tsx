@@ -1,14 +1,16 @@
 import type { ReactNode } from 'react';
 import { useTranslations } from 'next-intl';
 import { Wordmark } from '@/components/brand/Wordmark';
+import { Link } from '@/lib/navigation';
 import styles from './Footer.module.css';
 
 /* ============================================================
    4else — footer
    ------------------------------------------------------------
    Address block, three link columns, the giant wordmark, and
-   the legal bar. Link destinations are not built yet and point
-   at "#"; the e-mail and phone are real mailto/tel links.
+   the legal bar. Most link destinations are not built yet and
+   point at "#"; Inspirationen (the blog) is a real route, and
+   the e-mail and phone are real mailto/tel links.
 
    One footer for the whole site: the locale layout renders it
    on every route, and every page gets it in full, closing
@@ -65,7 +67,7 @@ export function Footer() {
             <li><a href="#" className={styles.link}>{t('knowWordpress')}</a></li>
             <li><a href="#" className={styles.link}>{t('knowWebshop')}</a></li>
             <li><a href="#" className={styles.link}>{t('knowSupport')}</a></li>
-            <li><a href="#" className={styles.link}>{t('knowInspiration')}</a></li>
+            <li><Link href="/inspirationen" className={styles.link}>{t('knowInspiration')}</Link></li>
           </ul>
         </div>
 

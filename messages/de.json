@@ -3,7 +3,19 @@
     "homeTitle": "4else — Dein Event. Massgeschneidert gestaltet. Direkt bezahlt.",
     "homeDescription": "4else gestaltet Kurse, Workshops und Events genau so, wie du sie brauchst – mit Eventseite, Anmeldung und integrierter Zahlungslösung. TWINT, Kreditkarte oder Rechnung: alles in einem Fluss.",
     "kontaktTitle": "Kontakt",
-    "kontaktDescription": "Ob erste Frage, Demo oder Hilfe bei einem laufenden Event – bei 4else landest Du direkt bei mir. Schreib mir über das Formular, per E-Mail oder ruf an."
+    "kontaktDescription": "Ob erste Frage, Demo oder Hilfe bei einem laufenden Event – bei 4else landest Du direkt bei mir. Schreib mir über das Formular, per E-Mail oder ruf an.",
+    "inspirationenTitle": "Inspirationen",
+    "inspirationenDescription": "Ideen, Tipps und Geschichten rund um Kurse, Workshops und Events – aus der Praxis von 4else."
+  },
+  "inspirationen": {
+    "eyebrow": "Magazin",
+    "headline": "Inspirationen",
+    "intro": "Ideen, Tipps und Geschichten rund um Kurse, Workshops und Events – aus der Praxis von 4else.",
+    "listLabel": "Alle Artikel",
+    "emptyTitle": "Die ersten Artikel sind in Arbeit.",
+    "emptyBody": "Schau bald wieder vorbei.",
+    "back": "Alle Inspirationen",
+    "byline": "von {name}"
   },
   "brand": {
     "name": "4else",
