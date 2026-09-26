@@ -212,9 +212,13 @@ Things to know:
   hand-write the schema text.
   **Else sits under the heading** with pencil and notepad
   (`public/images/home/else-notizen.webp`, a transparent 600×661 cut-out,
-  exported like the contact page's Else; alt `faq.elseImageAlt`): 300px
-  wide beside the list, 150–220px where the heading sits above it
-  (≤1000px). Note the transaction fee (4,8 % + CHF 0.20) and
+  exported like the contact page's Else; alt `faq.elseImageAlt`),
+  **centred under the heading's text**, not its column: the heading block
+  shrinks to its widest word beside the list (`min-content`) or its one
+  line above it (`fit-content`), and Else hangs from its middle without
+  widening it (`.faqHead`, `.faqElseRow`). 170–225px wide beside the list
+  (`15.6vw`), 112–165px above it (≤1000px); Robin had her 25% smaller
+  than the first 300px. Note the transaction fee (4,8 % + CHF 0.20) and
   the payment methods are now stated both here and on 4else.events; keep them
   in step.
 - **Mobile menu** (mockup option A, chosen by Robin, September 2026;

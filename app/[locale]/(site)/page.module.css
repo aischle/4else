@@ -616,21 +616,50 @@
   gap: clamp(32px, 6vw, 72px);
 }
 
-/* Else with pencil and notepad under the heading: a transparent cut-out
-   (public/images/home/else-notizen.webp, 600 × 661), trimmed to her
-   outline plus 8px, so it simply scales. Where the heading sits above
-   the list instead of beside it (≤1000px) she gets smaller, so the
-   questions stay close to their heading. */
-.faqElse {
-  display: block;
-  width: min(100%, 300px);
-  height: auto;
-  margin-top: clamp(12px, 2vw, 24px);
+/* Else with pencil and notepad, centred under the words "Häufige
+   Fragen": a transparent cut-out (public/images/home/else-notizen.webp,
+   600 × 661), trimmed to her outline plus 8px, so it simply scales.
+
+   Centring on the text, not the column, takes two steps:
+   - the heading block shrinks to its text. A wrapped line would still
+     fill the column, so beside the list, where the heading always
+     breaks after "Häufige", the block takes its widest word
+     (min-content); above the list it takes its one line (fit-content);
+   - Else must not widen that block. Her row adds nothing to it
+     (width 0, then 100% of the block), and she hangs from its middle,
+     so she may be a little wider than the word and still sit centred. */
+.faqHead {
+  width: fit-content;
 }
 
+@media (min-width: 1001px) {
+  .faqHead {
+    width: min-content;
+  }
+}
+
+.faqElseRow {
+  width: 0;
+  min-width: 100%;
+  margin-top: clamp(8px, 1.5vw, 18px);
+}
+
+.faqElse {
+  display: block;
+  /* 225px on a wide screen; narrower with the heading below that, so
+     she never reaches past the page margin (172px at 1100px). */
+  width: clamp(170px, 15.6vw, 225px);
+  max-width: none;
+  height: auto;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Where the heading sits above the list, she gets smaller, so the
+   questions stay close to their heading. */
 @media (max-width: 1000px) {
   .faqElse {
-    width: clamp(150px, 36vw, 220px);
+    width: clamp(112px, 27vw, 165px);
   }
 }
 

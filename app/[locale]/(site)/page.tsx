@@ -297,19 +297,21 @@ export default function HomePage({
           first starts open. */}
       <section id="faq" className={styles.section} aria-labelledby="faq-heading">
         <div className={`${styles.container} ${styles.faqGrid}`}>
-          <div className={styles.headStack}>
+          <div className={`${styles.headStack} ${styles.faqHead}`}>
             <p className={styles.eyebrow}>{tFaq('eyebrow')}</p>
             <h2 id="faq-heading" className={styles.sectionHeading}>
               {tFaq('heading')}
             </h2>
-            <Image
-              src="/images/home/else-notizen.webp"
-              alt={tFaq('elseImageAlt')}
-              width={600}
-              height={661}
-              sizes="(max-width: 1000px) 220px, 300px"
-              className={styles.faqElse}
-            />
+            <div className={styles.faqElseRow}>
+              <Image
+                src="/images/home/else-notizen.webp"
+                alt={tFaq('elseImageAlt')}
+                width={600}
+                height={661}
+                sizes="(max-width: 1000px) 165px, 225px"
+                className={styles.faqElse}
+              />
+            </div>
           </div>
           <div className={styles.faqList}>
             {FAQ_IDS.map((id, index) => (
