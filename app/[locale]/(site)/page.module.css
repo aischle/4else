@@ -616,6 +616,24 @@
   gap: clamp(32px, 6vw, 72px);
 }
 
+/* Else with pencil and notepad under the heading: a transparent cut-out
+   (public/images/home/else-notizen.webp, 600 × 661), trimmed to her
+   outline plus 8px, so it simply scales. Where the heading sits above
+   the list instead of beside it (≤1000px) she gets smaller, so the
+   questions stay close to their heading. */
+.faqElse {
+  display: block;
+  width: min(100%, 300px);
+  height: auto;
+  margin-top: clamp(12px, 2vw, 24px);
+}
+
+@media (max-width: 1000px) {
+  .faqElse {
+    width: clamp(150px, 36vw, 220px);
+  }
+}
+
 
 /* Heading left, list right across two of the three tracks — the
    design's proportion. Below the breakpoint the grid has fewer tracks

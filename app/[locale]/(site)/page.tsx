@@ -302,6 +302,14 @@ export default function HomePage({
             <h2 id="faq-heading" className={styles.sectionHeading}>
               {tFaq('heading')}
             </h2>
+            <Image
+              src="/images/home/else-notizen.webp"
+              alt={tFaq('elseImageAlt')}
+              width={600}
+              height={661}
+              sizes="(max-width: 1000px) 220px, 300px"
+              className={styles.faqElse}
+            />
           </div>
           <div className={styles.faqList}>
             {FAQ_IDS.map((id, index) => (

@@ -209,7 +209,12 @@ Things to know:
   `components/seo/FaqJsonLd.tsx` emits the `FAQPage` schema from the same
   message keys, so copy and structured data cannot drift. **To add or remove a
   pair, edit `FAQ_IDS` there and the `fNQuestion`/`fNAnswer` keys** — never
-  hand-write the schema text. Note the transaction fee (4,8 % + CHF 0.20) and
+  hand-write the schema text.
+  **Else sits under the heading** with pencil and notepad
+  (`public/images/home/else-notizen.webp`, a transparent 600×661 cut-out,
+  exported like the contact page's Else; alt `faq.elseImageAlt`): 300px
+  wide beside the list, 150–220px where the heading sits above it
+  (≤1000px). Note the transaction fee (4,8 % + CHF 0.20) and
   the payment methods are now stated both here and on 4else.events; keep them
   in step.
 - **Mobile menu** (mockup option A, chosen by Robin, September 2026;
