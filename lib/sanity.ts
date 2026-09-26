@@ -46,11 +46,15 @@ export type ArticleCard = {
   mainImage?: SanityImage;
 };
 
+export type Author = { name: string; role?: string; photo?: SanityImage };
+
 export type Article = ArticleCard & {
   _updatedAt: string;
   body: PortableTextBlock[];
-  author?: { name: string; role?: string };
+  author?: Author | null;
   seo?: { metaTitle?: string; metaDescription?: string };
+  /* Derived in getArticle, not stored in Sanity. */
+  readingMinutes: number;
 };
 
 export type ArticleSlug = { slug: string; _updatedAt: string };
@@ -67,7 +71,7 @@ const ARTICLE_QUERY = `*[${VISIBLE} && slug.current == $slug][0] {
   ${CARD},
   _updatedAt,
   body,
-  "author": author->{ name, role },
+  "author": author->{ name, role, photo },
   seo
 }`;
 
@@ -84,9 +88,27 @@ export async function getArticles(): Promise<ArticleCard[]> {
   }
 }
 
+/* Reading time at ~200 words per minute (as temu.swiss), from the text
+   of the body's blocks; images and other objects don't count. At least
+   one minute. */
+function readingMinutes(body: PortableTextBlock[] | undefined): number {
+  let words = 0;
+  for (const block of body ?? []) {
+    if (block._type !== 'block' || !Array.isArray(block.children)) continue;
+    for (const child of block.children as { text?: string }[]) {
+      words += (child.text ?? '').split(/\s+/).filter(Boolean).length;
+    }
+  }
+  return Math.max(1, Math.round(words / 200));
+}
+
 /* Wrapped in cache() so generateMetadata and the page share one query. */
 export const getArticle = cache(async (slug: string): Promise<Article | null> => {
-  return sanityClient.fetch<Article | null>(ARTICLE_QUERY, { slug });
+  const article = await sanityClient.fetch<Omit<Article, 'readingMinutes'> | null>(
+    ARTICLE_QUERY,
+    { slug },
+  );
+  return article ? { ...article, readingMinutes: readingMinutes(article.body) } : null;
 });
 
 export async function getArticleSlugs(): Promise<ArticleSlug[]> {

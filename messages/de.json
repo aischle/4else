@@ -15,7 +15,7 @@
     "emptyTitle": "Die ersten Artikel sind in Arbeit.",
     "emptyBody": "Schau bald wieder vorbei.",
     "back": "Alle Inspirationen",
-    "byline": "von {name}"
+    "readingTime": "{minutes} Min. Lesezeit"
   },
   "brand": {
     "name": "4else",

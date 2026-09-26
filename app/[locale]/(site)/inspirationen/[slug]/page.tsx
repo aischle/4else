@@ -65,6 +65,7 @@ export default async function InspirationenArticlePage({
   if (!article) notFound();
 
   const [t, format] = await Promise.all([getTranslations('inspirationen'), getFormatter()]);
+  const author = article.author;
 
   return (
     <main>
@@ -74,15 +75,38 @@ export default async function InspirationenArticlePage({
         </Link>
 
         <header className={styles.articleHead}>
-          <p className={styles.meta}>
-            <time dateTime={article.publishedAt}>
-              {format.dateTime(new Date(article.publishedAt), { dateStyle: 'long' })}
-            </time>
-            {article.author?.name && <> · {t('byline', { name: article.author.name })}</>}
-          </p>
           <h1 className={styles.articleTitle}>{article.title}</h1>
           <p className={styles.articleExcerpt}>{article.excerpt}</p>
         </header>
+
+        {/* Byline: who wrote it, then when and how long it reads. Without an
+            author only the date and reading time remain. */}
+        <div className={styles.byline}>
+          {author && (
+            <div className={styles.author}>
+              {author.photo && (
+                <Image
+                  src={urlFor(author.photo).width(112).height(112).fit('crop').auto('format').url()}
+                  alt=""
+                  width={52}
+                  height={52}
+                  className={styles.avatar}
+                />
+              )}
+              <p className={styles.authorText}>
+                <span className={styles.authorName}>{author.name}</span>
+                {author.role && <span className={styles.authorRole}>{author.role}</span>}
+              </p>
+            </div>
+          )}
+          <p className={styles.when}>
+            <time dateTime={article.publishedAt}>
+              {format.dateTime(new Date(article.publishedAt), { dateStyle: 'long' })}
+            </time>
+            <span className={styles.dot} aria-hidden="true" />
+            <span>{t('readingTime', { minutes: article.readingMinutes })}</span>
+          </p>
+        </div>
 
         {article.mainImage && (
           <div className={styles.hero}>

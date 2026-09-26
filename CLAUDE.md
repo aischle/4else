@@ -494,6 +494,17 @@ it.
   `inspirationen.module.css` are a plain first version in the site's tokens,
   to be replaced when a design handoff exists. Copy is in the
   `inspirationen` and `meta.inspirationen*` namespaces.
+- **Byline** (mockup option A, chosen by Robin): between the lead and the
+  hero image, framed by two hairlines.
+  - Left: the author's round photo (52px), name and role, from the
+    `author` reference.
+  - Right: the date and the reading time (`readingTime` message,
+    `readingMinutes` computed in `getArticle` at ~200 words per minute).
+  - Below 560px the date line drops under the author. Without an author,
+    only the date line shows.
+  - The avatar crops with the photo's **crop and hotspot** from the Studio.
+    Without them it shows the whole landscape photo shrunk to a circle, so
+    each author photo needs its crop set to head and shoulders.
 - Images come from `cdn.sanity.io` (`images.remotePatterns`). Body images
   take their size from the asset ID (`image-<hash>-2000x1333-jpg`).
 - The sitemap adds one entry per article, with `_updatedAt`.
