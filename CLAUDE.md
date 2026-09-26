@@ -251,7 +251,12 @@ band. Copy in the `kontakt` namespace, page title/description in
   `else-sucht.webp`. Below about 700px she wraps under the lead,
   right-aligned. Her negative bottom margin is the hero's bottom padding + the
   band's top padding + 4px + 2px (the glow under her tail, so the tail itself
-  meets the edge); change either padding and change it too. `.else` is
+  meets the edge); change either padding and change it too. **From 1100px
+  the lead and Else form one right-aligned group, 20px apart**, with the lead
+  at 23ch (≈306px; Instrument Sans's `ch` is ~0.665em). The spare width
+  opens between the headline and the lead, which Robin wants further from
+  the headline than from Else. Below 1100px the lead keeps 36ch under the
+  headline. `.else` is
   positioned, which paints her over the panel, whose background is not.
   Neither section may clip overflow.
 - **The page speaks in the first person singular** ("Sprich mit mir", "Schreib

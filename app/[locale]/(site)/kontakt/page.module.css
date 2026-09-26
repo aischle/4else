@@ -126,6 +126,29 @@
   margin-bottom: calc(-1 * clamp(40px, 5vw, 64px) - clamp(8px, 1vw, 12px) - 4px - 2px);
 }
 
+/* Once the lead and Else share a line, they move as one group, flush
+   right, 20px apart: the lead belongs to Else, and the spare width opens
+   between the headline and the lead instead. (The headline's
+   "Ganz persönlich." line is wider than its column at large sizes and
+   would otherwise crowd the lead.) The narrower lead is what frees that
+   width: 23ch is about 306px at 20px, since Instrument Sans's ch is
+   ~0.665em. Below 1100px nothing changes: the lead keeps 36ch and stays
+   under the headline, and Else keeps her margin-left: auto. */
+@media (min-width: 1100px) {
+  .heroAside {
+    justify-content: flex-end;
+    gap: 20px;
+  }
+
+  .lead {
+    max-width: 23ch;
+  }
+
+  .else {
+    margin-left: 0;
+  }
+}
+
 /* A transparent cut-out (public/images/kontakt/else-concierge.webp),
    trimmed to her outermost glow, so it simply fills the box. */
 .elseImage {
