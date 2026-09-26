@@ -242,3 +242,20 @@
 .qrInk {
   fill: var(--ink-deep);
 }
+
+/* ── Narrow phones ──────────────────────────────────────────── */
+
+/* Below 360px the details column would be 132px, and the date pill
+   (nowrap) needs ≈147px; the card's overflow: hidden would clip it.
+   A smaller thumbnail and tighter padding give the column 164px. */
+@media (max-width: 359px) {
+  .event {
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .thumb {
+    width: 72px;
+    height: 96px;
+  }
+}

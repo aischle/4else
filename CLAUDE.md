@@ -216,6 +216,15 @@ Things to know:
   12px; below 360px the Demo pill shrinks to 13px text and 14px side padding.
   Wordmark + Login + Demo need ≈416px, so without this the pill ran off the
   right edge of a 390px phone. The bar now fits down to 320px.
+- **Narrow phones (≤400px):** single long words set the page's minimum
+  width, so type follows the screen there. Both hero headlines (start and
+  contact) use `clamp(32px, 10.5vw, 42px)` below 400px, exactly 42px at
+  400px, so there is no jump ("Massgeschneidert" and the nbsp-joined
+  "Ganz persönlich." would otherwise be wider than the column). The
+  footer's giant wordmark floor is 36px, not 56px, and the hero ticket
+  gets a 72×96 thumbnail and 16px padding below 360px, so its nowrap date
+  pill isn't clipped. `/` and `/kontakt` have no horizontal overflow from
+  320px up. Keep it that way: no `overflow-x: hidden` on html or body.
 - **Images** live in `public/images/home/` and render through `next/image`
   (the mascot poster excepted — a `<video poster>` cannot use it).
   `participant.png` is 1.4 MB at source; `next/image` serves it resized.

@@ -91,6 +91,16 @@
   text-wrap: balance;
 }
 
+/* Narrow phones: "Ganz persönlich." is held together by a non-breaking
+   space, and at the 42px floor it is ≈306px, wider than a 320px phone's
+   column. Below 400px the size follows the screen instead; 10.5vw is
+   exactly 42px at 400px, so there is no jump. */
+@media (max-width: 400px) {
+  .headline {
+    font-size: clamp(32px, 10.5vw, 42px);
+  }
+}
+
 /* The lead and Else side by side; Else wraps under the lead when the
    column is too narrow for both. */
 .heroAside {

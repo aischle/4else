@@ -57,7 +57,10 @@
 .wordmark {
   margin: 70px 0 0;
   font-weight: var(--w-semibold);
-  font-size: clamp(56px, 13vw, 200px);
+  /* The 13vw term governs from 431px up. Below that the old 56px floor
+     made "ORGANISIERT." ≈350px wide, wider than a 360px phone; 36px lets
+     it keep scaling with the screen. */
+  font-size: clamp(36px, 13vw, 200px);
   line-height: 0.88;
   letter-spacing: -0.05em;
   text-transform: uppercase;

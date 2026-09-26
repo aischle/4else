@@ -152,6 +152,16 @@
   text-wrap: balance;
 }
 
+/* Narrow phones: at the 42px floor "Massgeschneidert" alone is ≈345px,
+   wider than a 360px phone's column, and one word cannot wrap. Below
+   400px the size follows the screen instead; 10.5vw is exactly 42px at
+   400px, so there is no jump. */
+@media (max-width: 400px) {
+  .heroHeadline {
+    font-size: clamp(32px, 10.5vw, 42px);
+  }
+}
+
 /* The <accent> tag in the message needs the brighter violet here: the
    light-ground --accent is too dark to read on the hero. */
 .heroHeadline .accent {
