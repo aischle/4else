@@ -68,7 +68,7 @@ export default async function InspirationenArticlePage({
   const author = article.author;
 
   return (
-    <main>
+    <main className={styles.articleMain}>
       <article className={styles.article}>
         <Link href="/inspirationen" className={styles.back}>
           <span aria-hidden="true">←</span> {t('back')}
@@ -111,11 +111,11 @@ export default async function InspirationenArticlePage({
         {article.mainImage && (
           <div className={styles.hero}>
             <Image
-              src={urlFor(article.mainImage).width(1600).height(1000).fit('crop').auto('format').url()}
+              src={urlFor(article.mainImage).width(1680).height(1050).fit('crop').auto('format').url()}
               alt={article.mainImage.alt ?? ''}
               fill
               priority
-              sizes="(max-width: 800px) 100vw, 760px"
+              sizes="(max-width: 900px) 100vw, 840px"
               className={styles.cover}
             />
           </div>

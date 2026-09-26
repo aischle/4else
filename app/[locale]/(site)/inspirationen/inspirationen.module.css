@@ -139,11 +139,16 @@
 
 /* ── Article ────────────────────────────────────────────────── */
 
-/* 760px of text (~74 characters a line at 18px, the widest that still
-   reads comfortably); the side padding sits outside it. Images are sized
-   for this column (sizes="… 760px"). */
+/* The page is a size container, so the hero image can measure how much
+   room there is beside the text column (see .hero). */
+.articleMain {
+  container-type: inline-size;
+}
+
+/* 720px of text (~70 characters a line at 18px); the side padding sits
+   outside it. The hero image breaks out to 840px, see .hero. */
 .article {
-  max-width: calc(760px + 2 * var(--gutter));
+  max-width: calc(720px + 2 * var(--gutter));
   margin: 0 auto;
   padding: clamp(40px, 6vw, 88px) var(--gutter) clamp(60px, 7vw, 110px);
 }
@@ -267,11 +272,18 @@
   }
 }
 
+/* Wider than the text: up to 60px further on each side (840px on a 720px
+   column). The overhang is whatever room is left beside the column after
+   the page gutters, capped at 60px, so on narrow screens it shrinks to
+   zero and the image never reaches the screen edge. 100cqw is the page
+   width without the scrollbar (.articleMain is the container). */
 .hero {
+  --overhang: clamp(0px, (100cqw - 2 * var(--gutter) - 720px) / 2, 60px);
+
   position: relative;
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  margin-bottom: clamp(32px, 4vw, 48px);
+  margin: 0 calc(-1 * var(--overhang)) clamp(32px, 4vw, 48px);
   border-radius: var(--radius-card);
   background: var(--fill-soft);
 }

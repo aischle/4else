@@ -66,7 +66,7 @@ const components: PortableTextComponents = {
             alt={value.alt ?? ''}
             width={width}
             height={height}
-            sizes="(max-width: 800px) 100vw, 760px"
+            sizes="(max-width: 800px) 100vw, 720px"
             className={styles.image}
           />
           {value.caption && <figcaption className={styles.caption}>{value.caption}</figcaption>}
