@@ -255,21 +255,23 @@ band. Copy in the `kontakt` namespace, page title/description in
   (`.white`, the same `margin-top: calc(var(--nav-h) * -1)` trick the start
   page's hero uses), so the glass bar reads as white here.
 - **Else in the hero** (v5, image swapped September 2026): Else as concierge,
-  with bow tie and service bell, rests right of the lead with her tail on the
-  Beatrice panel's top edge, under a navy speech bubble (`elseBubble`; alt
+  with bow tie and service bell, sits right of the lead on the Beatrice
+  panel's top edge, under a navy speech bubble (`elseBubble`; alt
   `elseImageAlt`). The image is `public/images/kontakt/else-concierge.webp`, a
-  **transparent** cut-out (393×600) that simply fills the 176×268 `.else`
-  box: no crop, no blend mode. It is the client's second upload, a felt-
-  textured render (a first, smoother version was replaced the same day).
-  Export: trim to the visible glow (alpha > 4) plus 8px, and zero the alpha
-  ≤ 4 noise that otherwise reaches the canvas edges. The 404 keeps its own
+  **transparent** cut-out (600×619) that simply fills the 260×268 `.else`
+  box: no crop, no blend mode. It is the client's third version (26
+  September 2026): seated, one arm open, the bell held out, felt-textured;
+  the box took the previous, slimmer figure's height. Export: zero the
+  alpha ≤ 4 noise that otherwise reaches the canvas edges, trim to what
+  remains plus 8px, scale to 600px wide. The 404 keeps its own
   `else-sucht.webp`. **On phones (≤560px)** she never wraps under the
-  lead: she shrinks to `clamp(100px, 30vw, 176px)` wide (100px at 320,
-  ≈168px at 560), the lead takes the rest of the row, and the bubble is
-  capped at her width (13px type) so it cannot reach the lead, which there
-  runs up beside her head. Her negative bottom margin is the hero's bottom padding + the
-  band's top padding + 4px + 2px (the glow under her tail, so the tail itself
-  meets the edge); change either padding and change it too. **From 1100px
+  lead: she shrinks to `clamp(110px, 34vw, 190px)` wide (110px at 320,
+  133px at 390, 190px at 560), the lead takes the rest of the row, and the
+  bubble is capped at her width (13px type) so it cannot reach the lead,
+  which there runs up beside her head. Her negative bottom margin is the
+  hero's bottom padding + the band's top padding + 4px + 2px (the export's
+  empty margin under her body, so the body itself meets the edge); change
+  either padding and change it too. **From 1100px
   the lead and Else form one right-aligned group, 20px apart**, with the lead
   at 23ch (≈306px; Instrument Sans's `ch` is ~0.665em). The spare width
   opens between the headline and the lead, which Robin wants further from

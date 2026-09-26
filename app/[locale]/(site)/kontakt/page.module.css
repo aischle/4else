@@ -123,14 +123,14 @@
 /* Else rests on the Beatrice panel: the negative bottom margin cancels
    the hero's bottom padding plus the band's top padding, overlaps 4px
    more, and lowers her another 2px, the height of the glow under her
-   tail, so the tail itself meets the panel's edge. The 84px top margin
-   is room for the bubble; 176px wide, like the bubble's maximum, so the
-   bubble never overhangs her.
+   body, so her body itself meets the panel's edge. The 84px top margin
+   is room for the bubble. The box keeps the image's own proportions
+   (600 × 619), at the height the previous, slimmer Else had.
    Positioned, so she paints over the panel, whose background is not. */
 .else {
   position: relative;
   flex-shrink: 0;
-  width: 176px;
+  width: 260px;
   height: 268px;
   margin: 84px 0 0 auto;
   margin-bottom: calc(-1 * clamp(40px, 5vw, 64px) - clamp(8px, 1vw, 12px) - 4px - 2px);
@@ -160,15 +160,15 @@
 }
 
 /* A transparent cut-out (public/images/kontakt/else-concierge.webp),
-   trimmed to her outermost glow, so it simply fills the box. */
+   trimmed to her outline plus 8px, so it simply fills the box. */
 .elseImage {
   display: block;
   width: 100%;
   height: 100%;
 }
 
-/* Never wider than Else, so it cannot reach the lead. The tight corner
-   points down at her. */
+/* Right-aligned over her head and the bell; 176px at most, so it never
+   reaches the lead. The tight corner points down at her. */
 .elseBubble {
   position: absolute;
   right: 4px;
@@ -185,12 +185,11 @@
   box-shadow: var(--shadow-float);
 }
 
-/* Phones: the full-size Else (176px) no longer fits beside the lead and
+/* Phones: the full-size Else (260px) no longer fits beside the lead and
    used to wrap underneath it, alone on the right. Here she shrinks with
-   the screen instead (30vw: 100px at 320, 117px at 390, ≈168px at 560,
-   so the step up to 176px at 561 is barely visible) and the lead
-   takes the rest of the row, so it stays left and she stays right, as on
-   desktop. The bubble is capped at her width: the lead now runs up beside
+   the screen instead (34vw: 110px at 320, 133px at 390, 190px at 560)
+   and the lead takes the rest of the row, so it stays left and she
+   stays right, as on desktop. The bubble is capped at her width: the lead now runs up beside
    her head, and a bubble wider than Else would land on it. */
 @media (max-width: 560px) {
   .heroAside {
@@ -204,9 +203,9 @@
   }
 
   .else {
-    width: clamp(100px, 30vw, 176px);
+    width: clamp(110px, 34vw, 190px);
     height: auto;
-    aspect-ratio: 176 / 268;
+    aspect-ratio: 600 / 619;
   }
 
   .elseBubble {

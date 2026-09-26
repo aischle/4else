@@ -78,7 +78,7 @@ export default function KontaktPage({
                 <Image
                   src="/images/kontakt/else-concierge.webp"
                   alt={t('elseImageAlt')}
-                  width={176}
+                  width={260}
                   height={268}
                   className={styles.elseImage}
                 />
