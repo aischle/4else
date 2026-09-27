@@ -68,6 +68,7 @@ const components: PortableTextComponents = {
             height={height}
             sizes="(max-width: 800px) 100vw, 720px"
             className={styles.image}
+            style={{ maxWidth: width }}
           />
           {value.caption && <figcaption className={styles.caption}>{value.caption}</figcaption>}
         </figure>

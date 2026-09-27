@@ -85,6 +85,10 @@
   margin: 1.8em 0;
 }
 
+/* The column's width, capped at the image's own (inline max-width in
+   ArticleBody.tsx): a small picture, like a 225px scan in an old article,
+   keeps its size instead of being blown up and blurred. The width and
+   height attributes keep its space reserved while it lazy-loads. */
 .image {
   display: block;
   width: 100%;

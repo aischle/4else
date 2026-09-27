@@ -539,6 +539,10 @@ it.
       it meets the edge on medium screens and matches the text on phones.
   - Body images stay in the text column (`sizes` 720px). The hero is sized
     for 992px (2000px source).
+  - A body image is never shown larger than its own pixel width (inline
+    `max-width` from the asset's dimensions, in `ArticleBody.tsx`): small
+    pictures in older articles, like the 225px scans in the Copytrack post,
+    stay sharp instead of being stretched to 720px.
 - **Byline** (mockup option A, chosen by Robin): between the lead and the
   hero image, framed by two hairlines.
   - Left: the author's round photo (52px), name and role, from the
