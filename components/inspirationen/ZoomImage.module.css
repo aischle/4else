@@ -125,8 +125,11 @@
   opacity: 0;
 }
 
+/* The page stops scrolling while the image is open. The scrollbar's
+   space stays reserved, so hiding it doesn't shift the page sideways. */
 :global(html):has(.dialog[open]) {
   overflow: hidden;
+  scrollbar-gutter: stable;
 }
 
 .frame {

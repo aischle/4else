@@ -161,9 +161,12 @@
   }
 }
 
-/* The page behind stays where it is while the menu is open. */
+/* The page behind stays where it is while the menu is open. The
+   scrollbar's space stays reserved, so hiding it doesn't shift the page
+   sideways. */
 :global(html):has(.menu[open]) {
   overflow: hidden;
+  scrollbar-gutter: stable;
 }
 
 .inner {

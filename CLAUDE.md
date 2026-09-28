@@ -237,7 +237,9 @@ Things to know:
     (built in `Header.tsx`), so they cannot drift apart.
   - Native `<dialog>` with `showModal()`, like the wip dialog: Escape, focus
     trap, inert page and focus return come from the browser. The page stops
-    scrolling while it is open (`html:has(.menu[open])`).
+    scrolling while it is open (`html:has(.menu[open])`), with
+    `scrollbar-gutter: stable` so the vanished scrollbar doesn't shift the
+    page sideways.
   - It closes on every link that leads somewhere, on a route change and when
     the window grows past 1000px. **"#" placeholders leave it open**: the wip
     dialog opens on top, and closing that returns to the menu.
@@ -596,7 +598,9 @@ it.
       has its size before the file loads; the file is fetched only on open,
       with a small preview behind it;
     - any click in the dialog, beside the image or on it, closes it, and so
-      does Escape;
+      does Escape. The page stops scrolling meanwhile, with
+      `scrollbar-gutter: stable` so it doesn't jump sideways when the
+      scrollbar disappears (Robin noticed a jump on close);
     - the image grows out of the card and shrinks back into it (FLIP, Web
       Animations API, 280ms), or only fades under reduced motion;
     - running animations are cancelled before measuring, and `open` is
