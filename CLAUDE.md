@@ -511,8 +511,9 @@ it.
 - **Structure:** "Inspirationen" → Alle Artikel, then three views by state:
   **Online** (published, date passed), **Geplant** (date in the future) and
   **Entwürfe** (drafts and unpublished changes), then Autor:innen. "Now" for
-  those filters is taken when the Studio loads (`$now` param). The Vision
-  (GROQ) tool shows only for administrators.
+  those filters is taken when the Studio loads (`$now` param). The top bar
+  holds Inhalte and **Vorschau** (§5h); the Vision (GROQ) tool and
+  Vercel-Zugang show only for administrators.
 - **Branding** mirrors the website:
   - `@sanity/themer` `buildTheme`, per colour scheme:
     - light: accent `#5B5BD6`, text `#393951`;
@@ -683,6 +684,81 @@ Copy in the `impressum` and `meta.impressum*` namespaces.
 - Not legal advice: the wording is the old page's, adapted; have it
   checked if the company data or the legal notices change.
 
+## 5h. Vorschau — Sanity visual editing
+
+Beatrice checks an article before publishing it in the Studio's
+**Vorschau** tool (Sanity's Presentation tool): the real website on the
+left, the editing form on the right. It shows drafts and future-dated
+articles; every text on the page is clickable and opens its field; the
+page refreshes as she types. Built September 2026 on `next-sanity` 13.
+Visitors see nothing of it.
+
+**How it works:**
+1. The Studio loads the site in an iframe and calls
+   `/api/draft-mode/enable` with a one-time secret. The route checks it
+   against Sanity with the read token and turns on Next's draft mode for
+   that browser only. No valid secret, no draft mode (401); no token, a
+   503 that says so.
+2. In draft mode, `sanityFetch` in `lib/sanity.ts` runs the same queries
+   with the token, uncached, in the perspective the Studio chose
+   (Entwürfe by default, stored in a cookie), and with `$preview`, which
+   drops the `publishedAt <= now()` filter. The texts come back with
+   **stega**, invisible characters recording each text's document and field.
+3. The locale layout mounts `components/preview/Preview` only in draft
+   mode. It lazily loads the overlays (`PreviewOverlays`, next-sanity's
+   `<VisualEditing>`), which read the stega and draw the click targets,
+   and the exit bar (`ExitPreview`).
+
+**Things to keep:**
+- **Visitors are untouched.** Draft mode is off for them, so pages stay
+  prerendered (the build lists them as ●) and get no stega. The preview's
+  JavaScript is behind `next/dynamic` in `Preview.tsx`: imported directly
+  into the layout, ~590 KB of it reached every visitor. Keep any new
+  preview-only client code behind that stub, and after changes check that
+  no chunk of a prerendered page contains `visual-editing` or `xstate`.
+- **Stega stays out of non-visible text.** Sanity's client already skips
+  dates, slugs, URLs, `href`/`url` fields and everything under `seo`. What
+  it does encode is cleaned with `stegaClean` wherever text leaves the
+  page: the article's `generateMetadata` and its FAQ structured data. Do
+  the same for any new metadata, JSON-LD or string comparison on content.
+- **Edits refresh the page through our handler.** Without the Live Content
+  API (not used here: it would change how visitors' pages are cached),
+  next-sanity refreshes only on Studio actions, not on edits.
+  `PreviewOverlays` passes a `refresh` handler that calls
+  `router.refresh()`. It also passes next-sanity's
+  `perspectiveChangeAction`, which is marked internal, so **`next-sanity` is
+  pinned to an exact version**: re-check `PreviewOverlays` when upgrading.
+- **`@sanity/client` stays on the major that next-sanity depends on** (7),
+  or two client copies clash in the types.
+- **The Studio installs into the site.** next-sanity lists `sanity` as a
+  required peer, so npm puts the Studio package (~145 MB with its
+  dependencies) into the site's `node_modules`. Nothing imports it; it
+  never reaches a page. The `npm audit` warnings from its CLI come from
+  there.
+- `generateStaticParams` and the sitemap use `getArticleSlugs`, which
+  never reads draft mode: they run outside a request.
+
+**Studio side** (`studio/presentation.ts`): `mainDocuments` opens the
+article for `/inspirationen/:slug`; `locations` shows "Verwendet auf" in
+the form. The site it previews is `SANITY_STUDIO_PREVIEW_URL`:
+`studio/.env.development` points `npm run dev` at localhost:3007, and the
+hosted Studio defaults to `https://4else.vercel.app`. **When the
+production domain exists**, change `SITE` and `allowOrigins` there and
+deploy the Studio.
+
+**Vercel Deployment Protection** covers 4else.vercel.app, which would show
+Vercel's login inside the Vorschau. The Studio's **Vercel-Zugang** tool
+(`@sanity/vercel-protection-bypass`, administrators only) stores Vercel's
+"Protection Bypass for Automation" secret in the dataset, and the
+Presentation tool then passes it with every preview request. Visitors stay
+locked out. If the protection is ever switched off, the tool can go.
+
+**Exit bar:** opened outside the Studio (its "open in new tab"), the page
+shows a navy "Vorschau mit Entwürfen · Vorschau beenden" capsule bottom
+left (`preview` messages), which ends draft mode through
+`/api/draft-mode/disable` and returns to the same page. Inside the Studio
+it stays hidden.
+
 ## 6. SEO
 
 - Title and description come from `messages/*.json` (`meta` namespace) in the
@@ -712,6 +788,9 @@ Copy `.env.example` to `.env.local`. Never commit `.env.local`.
 | Variable | Purpose |
 |---|---|
 | `NEXT_PUBLIC_SITE_URL` | Canonical origin for metadata, robots and sitemap |
+| `SANITY_API_READ_TOKEN` | Viewer token for the Vorschau (§5h); server only. In `.env.local` and in Vercel (Production and Preview) |
+| `NEXT_PUBLIC_SANITY_STUDIO_URL` | Optional; where preview overlays link outside the Studio (default `https://fourelse.sanity.studio`) |
+| `SANITY_REVALIDATE_SECRET` | Webhook secret for `/api/revalidate` (§5f) |
 
 ---
 

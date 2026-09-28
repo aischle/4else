@@ -331,5 +331,9 @@
   },
   "scrollTop": {
     "label": "Nach oben"
+  },
+  "preview": {
+    "label": "Vorschau mit Entwürfen",
+    "exit": "Vorschau beenden"
   }
 }

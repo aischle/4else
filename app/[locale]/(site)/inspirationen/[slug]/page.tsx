@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
+import { stegaClean } from '@sanity/client/stega';
 import { toPlainText } from '@portabletext/react';
 import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/server';
 import { ArticleBody } from '@/components/inspirationen/ArticleBody';
@@ -16,6 +17,10 @@ import styles from '../inspirationen.module.css';
    first request (dynamicParams) and everything revalidates
    every 60s or on the webhook. An unknown or not-yet-published
    slug is a real 404.
+
+   In the Studio's preview the texts carry stega, invisible edit
+   markers; stegaClean strips them wherever text leaves the
+   visible page (metadata, structured data).
    ============================================================ */
 
 export const revalidate = 60;
@@ -33,7 +38,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const article = await getArticle(slug);
+  const article = stegaClean(await getArticle(slug));
   if (!article) return {};
 
   const title = article.seo?.metaTitle || article.title;
@@ -71,7 +76,7 @@ export default async function InspirationenArticlePage({
   const [t, format] = await Promise.all([getTranslations('inspirationen'), getFormatter()]);
   const author = article.author;
   /* The article's FAQ blocks, as FAQPage structured data. */
-  const faq = faqItems(article.body).map((item) => ({
+  const faq = faqItems(stegaClean(article.body)).map((item) => ({
     question: item.question,
     answer: toPlainText(item.answer ?? []),
   }));

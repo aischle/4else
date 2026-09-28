@@ -1,20 +1,29 @@
 import { cache } from 'react';
-import { createClient, type ClientConfig } from '@sanity/client';
+import { cookies, draftMode } from 'next/headers';
+import { createClient, type ClientConfig, type QueryParams } from '@sanity/client';
 import { createImageUrlBuilder, type SanityImageSource } from '@sanity/image-url';
 import type { PortableTextBlock } from '@portabletext/react';
+import { resolvePerspectiveFromCookies } from 'next-sanity/live';
 
 /* ============================================================
    4else — Sanity (blog "Inspirationen")
    ------------------------------------------------------------
-   Read-only client for project 6e5n16nr. The dataset is public,
-   so no token: the site only ever sees published documents.
-   Content is written in the Studio (studio/, hosted at
-   fourelse.sanity.studio). The schema lives in studio/schemaTypes;
-   the shapes below mirror it.
+   Client for project 6e5n16nr. The dataset is public, so
+   visitors are served without a token and only ever see
+   published documents. Content is written in the Studio
+   (studio/, hosted at fourelse.sanity.studio). The schema lives
+   in studio/schemaTypes; the shapes below mirror it.
 
    Every query shows an article only once its publishedAt has
    passed, so a future date schedules a post. Pages revalidate
    every 60s; the /api/revalidate webhook makes it immediate.
+
+   Preview (draft mode, switched on by the Studio's Vorschau
+   tool through app/api/draft-mode/enable): the same queries
+   run with the read token, uncached, in the perspective the
+   Studio chose (drafts by default), show scheduled articles
+   too, and carry stega, the invisible edit markers the
+   click-to-edit overlays read. Visitors never reach that path.
    ============================================================ */
 
 const config: ClientConfig = {
@@ -23,9 +32,35 @@ const config: ClientConfig = {
   apiVersion: '2024-10-01',
   useCdn: process.env.NODE_ENV === 'production',
   perspective: 'published',
+  /* Off unless a preview fetch turns it on. studioUrl is where a click
+     on an overlay leads when the page is open outside the Studio. */
+  stega: {
+    enabled: false,
+    studioUrl: process.env.NEXT_PUBLIC_SANITY_STUDIO_URL || 'https://fourelse.sanity.studio',
+  },
 };
 
 export const sanityClient = createClient(config);
+
+/* Viewer token, server only: reads drafts in preview and lets the enable
+   route check the Studio's secret. Never sent to the browser. */
+export const readToken = process.env.SANITY_API_READ_TOKEN;
+
+/* Every query goes through here. Published unless draft mode is on, and
+   draft mode can only be switched on with a secret from the Studio. */
+async function sanityFetch<T>(query: string, params: QueryParams = {}): Promise<T> {
+  const { isEnabled: preview } = await draftMode();
+  if (!preview || !readToken) {
+    return sanityClient.fetch<T>(query, { ...params, preview: false });
+  }
+
+  const perspective = await resolvePerspectiveFromCookies({ cookies: await cookies() });
+  return sanityClient.fetch<T>(
+    query,
+    { ...params, preview: true },
+    { perspective, token: readToken, useCdn: false, stega: true, cache: 'no-store' },
+  );
+}
 
 const builder = createImageUrlBuilder(sanityClient);
 
@@ -98,7 +133,9 @@ export function faqItems(body: { _type: string }[] | undefined): FaqItem[] {
 
 /* ── Queries ────────────────────────────────────────────────── */
 
-const VISIBLE = `_type == "article" && defined(slug.current) && publishedAt <= now()`;
+/* $preview (set by sanityFetch) also shows articles dated in the future,
+   so a scheduled post can be checked before its day. */
+const VISIBLE = `_type == "article" && defined(slug.current) && (publishedAt <= now() || $preview)`;
 
 const CARD = `_id, title, "slug": slug.current, excerpt, publishedAt, mainImage`;
 
@@ -119,7 +156,7 @@ const SLUGS_QUERY = `*[${VISIBLE}] { "slug": slug.current, _updatedAt }`;
 
 export async function getArticles(): Promise<ArticleCard[]> {
   try {
-    return await sanityClient.fetch<ArticleCard[]>(ARTICLES_QUERY);
+    return await sanityFetch<ArticleCard[]>(ARTICLES_QUERY);
   } catch {
     return [];
   }
@@ -156,16 +193,17 @@ function readingMinutes(body: PortableTextBlock[] | undefined): number {
 
 /* Wrapped in cache() so generateMetadata and the page share one query. */
 export const getArticle = cache(async (slug: string): Promise<Article | null> => {
-  const article = await sanityClient.fetch<Omit<Article, 'readingMinutes'> | null>(
-    ARTICLE_QUERY,
-    { slug },
-  );
+  const article = await sanityFetch<Omit<Article, 'readingMinutes'> | null>(ARTICLE_QUERY, {
+    slug,
+  });
   return article ? { ...article, readingMinutes: readingMinutes(article.body) } : null;
 });
 
+/* Published only, never the preview: it feeds generateStaticParams and the
+   sitemap, which run outside any visitor's request. */
 export async function getArticleSlugs(): Promise<ArticleSlug[]> {
   try {
-    return await sanityClient.fetch<ArticleSlug[]>(SLUGS_QUERY);
+    return await sanityClient.fetch<ArticleSlug[]>(SLUGS_QUERY, { preview: false });
   } catch {
     return [];
   }

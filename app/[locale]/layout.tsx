@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import { draftMode } from 'next/headers';
 import { notFound } from 'next/navigation';
 import { Instrument_Sans } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
@@ -6,6 +7,7 @@ import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { WipDialog } from '@/components/ui/WipDialog';
+import { Preview } from '@/components/preview/Preview';
 import { routing } from '@/lib/routing';
 import { locales, type Locale } from '@/lib/i18n';
 import { BASE_URL, SITE_NAME } from '@/lib/seo';
@@ -66,6 +68,9 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale);
   const messages = await getMessages();
+  /* Draft mode is the Studio's preview (app/api/draft-mode). Reading it
+     keeps pages static: visitors never have it on. */
+  const { isEnabled: preview } = await draftMode();
 
   return (
     /* data-scroll-behavior: Next 16 no longer drops globals.css's
@@ -76,6 +81,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
           <WipDialog />
+          {preview && <Preview />}
         </NextIntlClientProvider>
         <Analytics />
         <SpeedInsights />

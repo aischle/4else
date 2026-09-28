@@ -6,11 +6,16 @@ import {EarthGlobeIcon} from '@sanity/icons/EarthGlobe'
 import {EditIcon} from '@sanity/icons/Edit'
 import {UserIcon} from '@sanity/icons/User'
 import {buildTheme} from '@sanity/themer'
+import {vercelProtectionBypassTool} from '@sanity/vercel-protection-bypass'
 import {visionTool} from '@sanity/vision'
 import {defineConfig} from 'sanity'
 import {structureTool, type StructureResolver} from 'sanity/structure'
 import {StudioIcon} from './components/StudioIcon'
+import {preview} from './presentation'
 import {schemaTypes} from './schemaTypes'
+
+/* The tool that stores the Vercel bypass secret (see presentation.ts). */
+const BYPASS_TOOL = 'vercel-protection-bypass'
 
 /* ============================================================
    4else — Studio for the blog "Inspirationen"
@@ -95,17 +100,23 @@ export default defineConfig({
   projectId: '6e5n16nr',
   dataset: 'production',
   theme,
-  plugins: [structureTool({structure, title: 'Inhalte'}), visionTool(), deDELocale()],
+  plugins: [
+    structureTool({structure, title: 'Inhalte'}),
+    preview,
+    visionTool(),
+    vercelProtectionBypassTool({name: BYPASS_TOOL, title: 'Vercel-Zugang'}),
+    deDELocale(),
+  ],
   schema: {types: schemaTypes},
   /* German only, whatever the browser's language: without this the
      Studio falls back to English for an English browser. */
   i18n: {
     locales: (prev) => prev.filter((locale) => locale.id === 'de-DE'),
   },
-  /* Vision (the GROQ query tool) is for the developer only: editors never
-     see it. */
+  /* Vision (the GROQ query tool) and the Vercel bypass setup are for the
+     developer only: editors never see them. */
   tools: (prev, {currentUser}) =>
     currentUser?.roles.some((role) => role.name === 'administrator')
       ? prev
-      : prev.filter((tool) => tool.name !== 'vision'),
+      : prev.filter((tool) => tool.name !== 'vision' && tool.name !== BYPASS_TOOL),
 })
