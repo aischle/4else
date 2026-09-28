@@ -6,6 +6,9 @@ const withNextIntl = createNextIntlPlugin('./lib/i18n-request.ts');
 const nextConfig = {
   reactStrictMode: true,
   images: {
+    /* Next 16 allows only 75 unless listed; the payment banner's
+       ticket uses 90 to keep its small print legible. */
+    qualities: [75, 90],
     /* Blog images from Sanity (project 6e5n16nr). */
     remotePatterns: [{ protocol: 'https', hostname: 'cdn.sanity.io', pathname: '/images/6e5n16nr/**' }],
   },

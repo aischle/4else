@@ -10,7 +10,7 @@ import { NextResponse, type NextRequest } from 'next/server';
    SANITY_REVALIDATE_SECRET in Vercel. Without it, pages still
    refresh on their own within 60 seconds.
 
-   The middleware matcher skips /api, so no locale prefix here.
+   The proxy matcher skips /api, so no locale prefix here.
    ============================================================ */
 
 export async function POST(request: NextRequest) {

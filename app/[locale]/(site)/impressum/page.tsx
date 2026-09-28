@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { use, type ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -33,10 +33,11 @@ function external(href: string) {
 const bold = (chunks: ReactNode) => <strong className={styles.strong}>{chunks}</strong>;
 
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'meta' });
 
   return {
@@ -58,10 +59,11 @@ function Row({ id, title, children }: { id: string; title: string; children: Rea
 }
 
 export default function ImpressumPage({
-  params: { locale },
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = use(params);
   setRequestLocale(locale);
 
   const t = useTranslations('impressum');

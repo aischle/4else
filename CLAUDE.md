@@ -23,21 +23,44 @@ folder (`4else Design System Sheet.dc.html`).
 
 ---
 
-## 2. Stack (mirrors temu.swiss)
+## 2. Stack
 
-The tech stack deliberately matches temu.swiss
-(`D:\CloudStation\www\www-local\temu_SWISS`). When in doubt about a pattern,
-look at how temu.swiss does it.
+The project started on the temu.swiss stack
+(`D:\CloudStation\www\www-local\temu_SWISS`), and many patterns still come
+from there; when in doubt about a pattern, look at how temu.swiss does it.
+**Versions are this project's own:** 4else does not follow temu.swiss's
+Next or React versions (Robin, September 2026). Keep it on current releases.
 
-- **Framework:** Next.js 14 (App Router), React 18.3, TypeScript 5.5 (strict)
+- **Framework:** Next.js 16 (App Router, Turbopack), React 19.3, TypeScript 5.5 (strict).
+  Upgraded from Next 14 / React 18 in September 2026 for Sanity's visual
+  editing (`next-sanity` 12+ needs Next 16). What the upgrade changed:
+  - `params` is a Promise. Async pages and layouts `await` it; the
+    synchronous ones that call `useTranslations` unwrap it with React's
+    `use()` instead, since hooks cannot run in an async component.
+  - The next-intl middleware is `proxy.ts` (Next 16's name for it).
+  - **Every layout and page calls `setRequestLocale`**, the `(site)` layout
+    included. Next 16 renders layouts and pages in parallel; a layout
+    without it lets its server components read the locale from the
+    request headers, which silently turns every page dynamic. After
+    changing a layout, check that `npm run build` still lists the routes
+    as ● (prerendered), not ƒ.
+  - `images.qualities` is `[75, 90]` in `next.config.mjs`; Next 16 coerces
+    any other `quality` to 75. Add a value there before using it.
+  - `<html data-scroll-behavior="smooth">`: Next 16 no longer turns off
+    `globals.css`'s smooth scrolling on its own during route changes.
 - **i18n:** next-intl v4, all routes under `app/[locale]/`
 - **Styling:** CSS Modules on a token layer (`styles/tokens.css`); no CSS framework
 - **Hosting:** Vercel, with `@vercel/analytics` and `@vercel/speed-insights`
-- **Lint:** `next/core-web-vitals`
+- **Lint:** ESLint 9 with a flat config (`eslint.config.mjs`) on
+  `eslint-config-next/core-web-vitals`; Next 16 removed `next lint`.
+  ESLint 10 waits for the React, import and a11y plugins Next bundles,
+  which do not support it yet. The two `react-hooks/set-state-in-effect`
+  exceptions (header marks, mobile menu on route change) sync state with
+  the DOM on purpose; each carries its reason.
 - **Sanity** (`@sanity/client`, `@sanity/image-url`, `@portabletext/react`)
   feeds the blog Inspirationen, see §5f. The Studio is a separate package
   in `studio/`.
-- **Installed but not wired yet** (same as temu.swiss, ready when needed):
+- **Installed but not wired yet** (ready when needed):
   `@supabase/supabase-js`, `next-themes`, `lucide-react`
 
 Scripts:
@@ -50,9 +73,10 @@ Scripts:
 | `npm run check:i18n` | Message-file integrity (§4) |
 | `npm run build` | Production build |
 
-**Build safety:** never run `npm run build` while `npm run dev` is running —
-both write to `.next/` and corrupt it. Use `npm run typecheck` to verify
-instead, or stop the dev server first and restart it afterwards.
+**Build and dev can run together** since Next 16: the dev server writes to
+`.next/dev`, the build to `.next/` (tested September 2026: a build with the
+dev server up left it serving normally). The old rule against it was a
+Next 14 limitation.
 
 ---
 
@@ -328,7 +352,7 @@ band. Copy in the `kontakt` namespace, page title/description in
   `public/images/kontakt/beatrice-hohl.webp` (1264×848, original size, WebP
   q85 from the v5 handoff's `assets/beatrice-kontakt-glamour.png`), cropped by
   `object-position: 47% 25%` to keep her face and hands in frame at every
-  width. After replacing it, clear `.next/cache/images`. **`beatriceBody` is design copy, since revised once on Beatrice's
+  width. After replacing it, clear `.next/dev/cache/images` (the dev server's image cache since Next 16). **`beatriceBody` is design copy, since revised once on Beatrice's
   feedback (see below).**
 - **The form has no backend** (`components/contact/ContactForm.tsx`). Six
   topic chips (`topic1`–`topic6`) share one message placeholder
@@ -387,14 +411,16 @@ band. Copy in the `kontakt` namespace, page title/description in
   240–255, everything above to 255) so the ground is pure white. Repeat that
   on a re-export; with a transparent export, drop the blend mode instead.
   The image is centred with auto margins, not a transform. After replacing
-  the file, clear `.next/cache/images`, or the dev server keeps serving the
+  the file, clear `.next/dev/cache/images` (the dev server's image cache since Next 16), or the dev server keeps serving the
   old optimised copy.
 - **The numerals are decoration** (`aria-hidden`); the visible eyebrow says
   "Fehler 404" in words, and the heading is the sentence below.
-- **Title and noindex** come from `generateMetadata` in the catch-all, and
-  Next keeps them even though that segment throws `notFound()` (verified:
-  "Seite nicht gefunden — 4else", `noindex, follow`). The 404 status is what
-  actually keeps it out of search indexes.
+- **Title and noindex** come from `generateMetadata` in the catch-all. Since
+  Next 16 they no longer sit in the server HTML, which carries the site's
+  default title and Next's own `noindex`; the catch-all's values ("Seite
+  nicht gefunden — 4else", `noindex, follow`) arrive with the page data and
+  replace them once it loads (checked on the dev server, September 2026).
+  The 404 status is what actually keeps it out of search indexes.
 
 ---
 

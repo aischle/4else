@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { use, type ReactNode } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
@@ -41,10 +41,11 @@ function Arrow() {
 }
 
 export default function HomePage({
-  params: { locale },
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = use(params);
   setRequestLocale(locale);
 
   const tHero = useTranslations('hero');

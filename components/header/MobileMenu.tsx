@@ -59,6 +59,9 @@ export function MobileMenu({ items, lightText }: { items: NavItem[]; lightText: 
     return () => element?.removeEventListener('close', onClose);
   }, []);
 
+  /* A route change closes the native dialog, which lives outside React
+     state; close() then mirrors that in `open`. */
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(close, [pathname, close]);
 
   useEffect(() => {

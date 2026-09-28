@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { Header } from '@/components/header/Header';
 import { Footer } from '@/components/footer/Footer';
 import { ScrollToTop } from '@/components/ui/ScrollToTop';
@@ -12,9 +13,23 @@ import { ScrollToTop } from '@/components/ui/ScrollToTop';
    it gets the html, the fonts and the German of the locale
    layout without the nav and the footer. A notFound() thrown in
    here finds it, because this group has no not-found of its own.
+
+   It sets the request locale itself: Next 16 renders layouts and
+   pages in parallel, and without it the footer's translations
+   would read the locale from the request headers, which makes
+   every page dynamic instead of prerendered.
    ============================================================ */
 
-export default function SiteLayout({ children }: { children: React.ReactNode }) {
+export default async function SiteLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   return (
     <>
       <Header />

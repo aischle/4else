@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { use, type ReactNode } from 'react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
@@ -33,10 +33,11 @@ const rich = {
 const faqs = ['k1', 'k2', 'k3', 'k4'] as const;
 
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'meta' });
 
   return {
@@ -47,10 +48,11 @@ export async function generateMetadata({
 }
 
 export default function KontaktPage({
-  params: { locale },
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = use(params);
   setRequestLocale(locale);
 
   const t = useTranslations('kontakt');

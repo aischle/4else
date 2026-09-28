@@ -32,10 +32,11 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'meta' });
 
   return {
@@ -55,18 +56,22 @@ export const viewport: Viewport = {
 
 export default async function LocaleLayout({
   children,
-  params: { locale },
+  params,
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
   if (!locales.includes(locale as Locale)) notFound();
 
   setRequestLocale(locale);
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={instrumentSans.variable}>
+    /* data-scroll-behavior: Next 16 no longer drops globals.css's
+       smooth scrolling on its own during route changes; with it, a
+       new page still starts at the top at once. */
+    <html lang={locale} className={instrumentSans.variable} data-scroll-behavior="smooth">
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           {children}

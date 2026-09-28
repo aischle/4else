@@ -28,10 +28,11 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({
-  params: { slug },
+  params,
 }: {
-  params: { locale: string; slug: string };
+  params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
+  const { slug } = await params;
   const article = await getArticle(slug);
   if (!article) return {};
 
@@ -57,10 +58,11 @@ export async function generateMetadata({
 }
 
 export default async function InspirationenArticlePage({
-  params: { locale, slug },
+  params,
 }: {
-  params: { locale: string; slug: string };
+  params: Promise<{ locale: string; slug: string }>;
 }) {
+  const { locale, slug } = await params;
   setRequestLocale(locale);
 
   const article = await getArticle(slug);

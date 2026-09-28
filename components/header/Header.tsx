@@ -81,6 +81,9 @@ export function Header() {
     );
 
     if (marks.length === 0) {
+      /* Whether the page has marks is only known from the DOM, after
+         render; a page without them keeps the light bar. */
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setPassed(ALL_PASSED);
       return;
     }
