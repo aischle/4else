@@ -59,6 +59,19 @@ export type Article = ArticleCard & {
 
 export type ArticleSlug = { slug: string; _updatedAt: string };
 
+/* An FAQ block in the article body (studio/schemaTypes/faq.ts). */
+export type FaqItem = { _key: string; question: string; answer: PortableTextBlock[] };
+export type FaqBlock = { _type: 'faq'; _key: string; title?: string; items?: FaqItem[] };
+
+export function isFaqBlock(block: { _type: string }): block is FaqBlock {
+  return block._type === 'faq';
+}
+
+/* Every question of every FAQ block in a body, in reading order. */
+export function faqItems(body: { _type: string }[] | undefined): FaqItem[] {
+  return (body ?? []).filter(isFaqBlock).flatMap((block) => block.items ?? []);
+}
+
 /* ── Queries ────────────────────────────────────────────────── */
 
 const VISIBLE = `_type == "article" && defined(slug.current) && publishedAt <= now()`;
@@ -89,15 +102,24 @@ export async function getArticles(): Promise<ArticleCard[]> {
 }
 
 /* Reading time at ~200 words per minute (as temu.swiss), from the text
-   of the body's blocks; images and other objects don't count. At least
-   one minute. */
-function readingMinutes(body: PortableTextBlock[] | undefined): number {
+   of the body's blocks and of its FAQ questions and answers; images
+   don't count. At least one minute. */
+function countWords(blocks: PortableTextBlock[] | undefined): number {
   let words = 0;
-  for (const block of body ?? []) {
+  for (const block of blocks ?? []) {
     if (block._type !== 'block' || !Array.isArray(block.children)) continue;
     for (const child of block.children as { text?: string }[]) {
       words += (child.text ?? '').split(/\s+/).filter(Boolean).length;
     }
+  }
+  return words;
+}
+
+function readingMinutes(body: PortableTextBlock[] | undefined): number {
+  let words = countWords(body);
+  for (const item of faqItems(body)) {
+    words += (item.question ?? '').split(/\s+/).filter(Boolean).length;
+    words += countWords(item.answer);
   }
   return Math.max(1, Math.round(words / 200));
 }

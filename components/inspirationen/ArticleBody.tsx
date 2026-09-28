@@ -4,7 +4,8 @@ import {
   type PortableTextBlock,
   type PortableTextComponents,
 } from '@portabletext/react';
-import { urlFor, type SanityImage } from '@/lib/sanity';
+import { urlFor, type FaqBlock, type SanityImage } from '@/lib/sanity';
+import { ArticleFaq } from './ArticleFaq';
 import styles from './ArticleBody.module.css';
 
 /* ============================================================
@@ -12,8 +13,9 @@ import styles from './ArticleBody.module.css';
    ------------------------------------------------------------
    Renders exactly what the Studio's blockContent offers
    (studio/schemaTypes/blockContent.ts): paragraphs, H2, H3,
-   quote, bullet and numbered lists, bold, italic, links and
-   images. Anything added there needs its renderer here.
+   quote, bullet and numbered lists, bold, italic, links,
+   images and FAQ blocks (./ArticleFaq.tsx). Anything added
+   there needs its renderer here.
    ============================================================ */
 
 type BodyImage = SanityImage & {
@@ -56,6 +58,10 @@ const components: PortableTextComponents = {
     },
   },
   types: {
+    /* The answers reuse these same components, so they read like the text. */
+    faq: ({ value }: { value: FaqBlock }) => (
+      <ArticleFaq value={value} components={components} headingClassName={styles.h2} />
+    ),
     image: ({ value }: { value: BodyImage }) => {
       if (!value?.asset) return null;
       const { width, height } = dimensions(value.asset._ref);

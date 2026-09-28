@@ -503,7 +503,12 @@ it.
     `seo.metaTitle` / `seo.metaDescription`;
   - `author`: `name`, `role`, `photo`;
   - `blockContent`: normal/H2/H3/quote, bullet/number lists, bold, italic,
-    link (`href`, `blank`), image (`alt`, `caption`).
+    link (`href`, `blank`), image (`alt`, `caption`), **FAQ block** (`faq`);
+  - `faq` (`faq.ts`): optional `title` (default "Häufige Fragen", shown as
+    the FAQ's h2) and `items`, each `question` (≤ 160) + `answer` (paragraphs,
+    bullet/number lists, bold, italic, links; the link annotation is shared
+    with the body as `linkAnnotation` in `blockContent.ts`). Beatrice
+    inserts it anywhere in the text, like an image.
   **Adding a block type or style needs its renderer** in
   `components/inspirationen/ArticleBody.tsx`. After a schema change, run
   `npm run deploy` (or `schema:deploy`) so the hosted Studio has it. **Never
@@ -556,6 +561,21 @@ it.
     each author photo needs its crop set to head and shoulders.
 - Images come from `cdn.sanity.io` (`images.remotePatterns`). Body images
   take their size from the asset ID (`image-<hash>-2000x1333-jpg`).
+- **FAQ blocks** render as the start page's accordion, narrowed to the text
+  column (`components/inspirationen/ArticleFaq.tsx` + `.module.css`, CSS
+  ported from the start page's FAQ, both animation techniques):
+  - numbered (01)…, drawn plus/minus, the first answer open;
+  - native `<details>`, no script; all items of one block share
+    `name="faq-<block _key>"`, so opening one closes the others and two FAQ
+    blocks in one article stay independent;
+  - answers go through the article's own Portable Text components (passed
+    in by `ArticleBody`), so lists and links look like the text.
+  The article page also emits a schema.org **FAQPage** from all its FAQ
+  blocks (`FaqPageJsonLd` in `components/seo/FaqJsonLd.tsx`, answers as
+  plain text via `toPlainText`; nothing without an FAQ). FAQ text counts
+  towards the reading time (`faqItems` / `readingMinutes` in
+  `lib/sanity.ts`). First used by "Event-Tools im Vergleich", whose
+  imported FAQ was converted into a block (September 2026).
 - The sitemap adds one entry per article, with `_updatedAt`.
 - **Instant updates:** `app/api/revalidate` (POST, header
   `x-webhook-secret` = `SANITY_REVALIDATE_SECRET`). Once the production

@@ -1,8 +1,32 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 
+/* A link in running text. Shared by the article body and the answers of
+   an FAQ block (./faq.ts), so both check addresses the same way. */
+export const linkAnnotation = defineArrayMember({
+  name: 'link',
+  title: 'Link',
+  type: 'object',
+  fields: [
+    defineField({
+      name: 'href',
+      title: 'Adresse',
+      type: 'url',
+      description: 'Vollständige Adresse, z. B. https://4else.events/kontakt',
+      validation: (rule) => rule.required().uri({scheme: ['http', 'https', 'mailto', 'tel']}),
+    }),
+    defineField({
+      name: 'blank',
+      title: 'In neuem Tab öffnen',
+      type: 'boolean',
+      initialValue: false,
+    }),
+  ],
+})
+
 /* The article body. Deliberately small: what a blog post needs and what
    the website renders (components/inspirationen/ArticleBody.tsx). Add a
-   style or block here only together with its renderer there. */
+   style or block here only together with its renderer there. Besides
+   text it holds images and FAQ blocks (./faq.ts). */
 export const blockContent = defineType({
   name: 'blockContent',
   title: 'Inhalt',
@@ -25,29 +49,7 @@ export const blockContent = defineType({
           {title: 'Fett', value: 'strong'},
           {title: 'Kursiv', value: 'em'},
         ],
-        annotations: [
-          defineArrayMember({
-            name: 'link',
-            title: 'Link',
-            type: 'object',
-            fields: [
-              defineField({
-                name: 'href',
-                title: 'Adresse',
-                type: 'url',
-                description: 'Vollständige Adresse, z. B. https://4else.events/kontakt',
-                validation: (rule) =>
-                  rule.required().uri({scheme: ['http', 'https', 'mailto', 'tel']}),
-              }),
-              defineField({
-                name: 'blank',
-                title: 'In neuem Tab öffnen',
-                type: 'boolean',
-                initialValue: false,
-              }),
-            ],
-          }),
-        ],
+        annotations: [linkAnnotation],
       },
     }),
     defineArrayMember({
@@ -70,5 +72,6 @@ export const blockContent = defineType({
         }),
       ],
     }),
+    defineArrayMember({type: 'faq'}),
   ],
 })

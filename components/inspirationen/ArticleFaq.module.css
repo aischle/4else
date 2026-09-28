@@ -1,0 +1,173 @@
+/* ============================================================
+   4else — FAQ block inside an article
+   ------------------------------------------------------------
+   Ported from the start page's FAQ (app/[locale]/(site)/
+   page.module.css, "FAQ"), scaled to the article's 720px text
+   column: a smaller number column, the question a step above
+   the running text, the answer indented under the question.
+   The disclosure animation is the same, in both techniques;
+   read the comments there before changing it. Tokens only.
+   ============================================================ */
+
+.faq {
+  margin: 2.2em 0;
+}
+
+/* The body's h2 sits above the list; its top margin comes from .faq. */
+.faq > h2 {
+  margin-top: 0;
+}
+
+.list {
+  border-bottom: 1px solid var(--hairline);
+}
+
+.item {
+  border-top: 1px solid var(--hairline);
+}
+
+/* Number, question, sign. display:grid drops the default list-item box
+   and with it the disclosure triangle; the -webkit rule covers Safari's
+   separate marker. */
+.question {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 0;
+  list-style: none;
+  cursor: pointer;
+}
+
+.question::-webkit-details-marker {
+  display: none;
+}
+
+.question:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.number {
+  font-size: 14px;
+  font-weight: var(--w-semibold);
+  color: var(--text-muted);
+}
+
+.text {
+  font-size: clamp(18px, 1.5vw, 19px);
+  font-weight: var(--w-medium);
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+/* Plus/minus from two bars; the vertical one fades out on open. */
+.marker {
+  position: relative;
+  width: 16px;
+  height: 16px;
+}
+
+.marker::before,
+.marker::after {
+  content: '';
+  position: absolute;
+  background: var(--text-muted);
+  transition: opacity var(--dur), background-color var(--dur);
+}
+
+.marker::before {
+  top: 7px;
+  left: 0;
+  width: 16px;
+  height: 2px;
+}
+
+.marker::after {
+  top: 0;
+  left: 7px;
+  width: 2px;
+  height: 16px;
+}
+
+.item[open] .marker::before,
+.item[open] .marker::after {
+  background: var(--brand);
+}
+
+.item[open] .marker::after {
+  opacity: 0;
+}
+
+/* The disclosure animation: grid rows from 0fr to 1fr as the
+   cross-browser baseline (content-visibility with allow-discrete holds
+   the answer through the close) … */
+.item::details-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  content-visibility: hidden;
+  transition:
+    grid-template-rows var(--dur),
+    content-visibility var(--dur) allow-discrete;
+}
+
+.item[open]::details-content {
+  grid-template-rows: 1fr;
+  content-visibility: visible;
+}
+
+/* … and, where interpolate-size exists, the height in pixels, which
+   closes without the fr row's stutter. Must stay above the
+   reduced-motion block. */
+@supports (interpolate-size: allow-keywords) {
+  .item {
+    interpolate-size: allow-keywords;
+  }
+
+  .item::details-content {
+    display: block;
+    block-size: 0;
+    overflow: clip;
+    transition:
+      block-size var(--dur),
+      content-visibility var(--dur) allow-discrete;
+  }
+
+  .item[open]::details-content {
+    block-size: auto;
+  }
+}
+
+/* Under the question, past the number column (48px + 12px gap).
+   min-height:0 lets the grid row reach 0fr. */
+.answer {
+  min-height: 0;
+  padding: 0 28px 22px 60px;
+}
+
+.answer > :last-child {
+  margin-bottom: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item::details-content,
+  .item[open]::details-content,
+  .marker::before,
+  .marker::after {
+    transition-duration: 0.01ms;
+  }
+}
+
+/* On a phone the number column and the indent shrink, so the answer
+   keeps its line length (as on the start page). */
+@media (max-width: 620px) {
+  .question {
+    grid-template-columns: 40px minmax(0, 1fr) auto;
+  }
+
+  .answer {
+    padding: 0 0 20px 52px;
+  }
+}

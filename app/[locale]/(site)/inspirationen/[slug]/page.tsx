@@ -1,10 +1,12 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
+import { toPlainText } from '@portabletext/react';
 import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/server';
 import { ArticleBody } from '@/components/inspirationen/ArticleBody';
+import { FaqPageJsonLd } from '@/components/seo/FaqJsonLd';
 import { Link } from '@/lib/navigation';
-import { getArticle, getArticleSlugs, urlFor } from '@/lib/sanity';
+import { faqItems, getArticle, getArticleSlugs, urlFor } from '@/lib/sanity';
 import styles from '../inspirationen.module.css';
 
 /* ============================================================
@@ -66,6 +68,11 @@ export default async function InspirationenArticlePage({
 
   const [t, format] = await Promise.all([getTranslations('inspirationen'), getFormatter()]);
   const author = article.author;
+  /* The article's FAQ blocks, as FAQPage structured data. */
+  const faq = faqItems(article.body).map((item) => ({
+    question: item.question,
+    answer: toPlainText(item.answer ?? []),
+  }));
 
   return (
     <main className={styles.articleMain}>
@@ -123,6 +130,7 @@ export default async function InspirationenArticlePage({
 
         <ArticleBody value={article.body} />
       </article>
+      <FaqPageJsonLd items={faq} />
     </main>
   );
 }

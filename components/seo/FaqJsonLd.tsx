@@ -4,7 +4,8 @@ import { useTranslations } from 'next-intl';
    4else — FAQ structured data (JSON-LD)
    ------------------------------------------------------------
    Emits the schema.org FAQPage node for the start page's FAQ
-   section. Questions and answers are read from the same `faq`
+   section (FaqJsonLd) and for blog articles with an FAQ block
+   (FaqPageJsonLd, below). Questions and answers are read from the same `faq`
    message keys the visible accordion renders, so the structured
    data and the copy on the page cannot drift apart.
 
@@ -61,4 +62,28 @@ export function FaqJsonLd() {
       dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPage) }}
     />
   );
+}
+
+/* The same FAQPage node for any list of plain-text pairs — used by blog
+   articles, whose FAQ blocks come from Sanity (see
+   app/[locale]/(site)/inspirationen/[slug]/page.tsx). Renders nothing
+   for an empty list. */
+export function FaqPageJsonLd({ items }: { items: { question: string; answer: string }[] }) {
+  if (items.length === 0) return null;
+
+  const faqPage = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map(({ question, answer }) => ({
+      '@type': 'Question',
+      name: question,
+      acceptedAnswer: { '@type': 'Answer', text: answer },
+    })),
+  };
+
+  /* Editor text from Sanity: "<" is escaped so no answer can close the
+     script element early. */
+  const json = JSON.stringify(faqPage).replace(/</g, '\\u003c');
+
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json }} />;
 }
