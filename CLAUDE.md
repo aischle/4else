@@ -641,8 +641,8 @@ Copy in the `impressum` and `meta.impressum*` namespaces.
 - **AGB** links to the old site's AGB for now
   (`4else.events/allgemeine-geschaeftsbedingungen/`); point it at the new
   AGB page once there is one.
-- The Datenschutz-Generator.de attribution under the last section stays:
-  the old text came from that generator.
+- No generator attribution: the old page's "Erstellt mit dem kostenlosen
+  Datenschutz-Generator.de …" line was removed at Robin's request.
 - **Look:** the Inspirationen overview's header, then the sections as rows
   on hairlines, title left (290px, wide enough for
   "Berufshaftpflichtversicherung") and content right from 800px, stacked

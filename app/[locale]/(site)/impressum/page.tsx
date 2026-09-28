@@ -20,7 +20,6 @@ import styles from './page.module.css';
    ============================================================ */
 
 const TERMS_URL = 'https://4else.events/allgemeine-geschaeftsbedingungen/';
-const GENERATOR_URL = 'https://datenschutz-generator.de/';
 
 function external(href: string) {
   return function ExternalLink(chunks: ReactNode) {
@@ -154,8 +153,6 @@ export default function ImpressumPage({
           <p>{t('imagesLicence')}</p>
         </Row>
       </div>
-
-      <p className={styles.note}>{t.rich('generator', { link: external(GENERATOR_URL) })}</p>
     </main>
   );
 }

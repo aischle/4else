@@ -141,13 +141,6 @@
   border-radius: 2px;
 }
 
-/* The generator attribution under the last section. */
-.note {
-  margin: 20px 0 0;
-  font-size: 14px;
-  color: var(--text-muted);
-}
-
 /* Phones: the UID label is long; label above value there. */
 @media (max-width: 480px) {
   .facts {
