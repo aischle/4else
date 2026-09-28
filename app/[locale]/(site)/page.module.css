@@ -388,8 +388,21 @@
 
 .bannerMedia {
   position: relative;
+  display: grid;
+  place-items: center;
   min-height: 360px;
+  padding: clamp(24px, 4vw, 56px);
   background: var(--ice-violet);
+}
+
+/* The ticket as a white card: its own proportions, never cropped. */
+.ticketImage {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  border-radius: var(--radius-field);
+  box-shadow: var(--shadow-card);
 }
 
 /* ── Why 4else ──────────────────────────────────────────────── */

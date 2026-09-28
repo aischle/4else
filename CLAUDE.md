@@ -260,6 +260,13 @@ Things to know:
 - **Images** live in `public/images/home/` and render through `next/image`
   (the mascot poster excepted — a `<video poster>` cannot use it).
   `participant.png` is 1.4 MB at source; `next/image` serves it resized.
+- **The payment banner's ticket** ("Keine offenen Rechnungen mehr.") is
+  `public/images/home/ticket-passion.png`: a real 4else ticket with sample
+  data (PASSION Pferdewelt 2026, "Max Muster"), from Robin (September 2026),
+  cropped to the ticket and above its tear-off line (644×472). It is wider
+  than the panel is tall, so it sits whole as a white card on Eisviolett
+  (`.ticketImage`, `--shadow-card`), never cropped; `quality={90}` keeps
+  its small print legible. It replaced the portrait `ticket.jpg`.
 
 ---
 

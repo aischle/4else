@@ -173,13 +173,18 @@ export default function HomePage({
             </a>
             <p className={styles.poweredBy}>{tPayment.rich('poweredBy', rich)}</p>
           </div>
+          {/* A real 4else ticket (sample data), shown whole as a card on the
+              violet ground; it is wider than the panel is tall, so filling
+              the panel would cut its sides. */}
           <div className={styles.bannerMedia}>
             <Image
-              src="/images/home/ticket.jpg"
+              src="/images/home/ticket-passion.png"
               alt={tPayment('imageAlt')}
-              fill
-              sizes="(min-width: 1240px) 572px, (min-width: 760px) 50vw, 100vw"
-              className={styles.cover}
+              width={644}
+              height={472}
+              quality={90}
+              sizes="(min-width: 1240px) 500px, (min-width: 760px) 44vw, 90vw"
+              className={styles.ticketImage}
             />
           </div>
         </div>
