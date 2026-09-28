@@ -407,7 +407,7 @@ control that would need something unbuilt keeps `href="#"` and opens
   | Link | Says |
   |---|---|
   | `data-wip="backend"` | *Dafür fehlt noch das Backend.* — Login, Demo, Registrieren, Jetzt Event erstellen, Zum Login |
-  | no attribute | *Diese Seite ist noch nicht gestaltet.* — Preise, Über uns, the card links, Impressum, AGB, Datenschutz |
+  | no attribute | *Diese Seite ist noch nicht gestaltet.* — Preise, Über uns, the card links, AGB, Datenschutz |
 
 - Copy lives in the `wip` namespace. Native `<dialog>`, so the backdrop,
   Escape, the focus trap and the focus return come from the browser; a click
@@ -619,6 +619,36 @@ it.
   header marks the link on the overview and on every article.
 
 ---
+
+## 5g. Impressum
+
+`app/[locale]/(site)/impressum/page.tsx` (+ `page.module.css`), route
+`/impressum` in `lib/routing.ts` (so it is in the sitemap); the footer's
+"Impressum" link points at it, so the wip dialog no longer applies there.
+Copy in the `impressum` and `meta.impressum*` namespaces.
+
+- **Source:** the old site's Impressum (4else.events/impressum), brought up
+  to date with Robin (September 2026):
+  - e-mail `info@4else.com`, not the old `info@fourelse.com`;
+  - Swiss terms: "UID (Unternehmens-Identifikationsnummer)", not "USt-ID";
+    "Verantwortlich für den Inhalt", not "Journalistisch-redaktionelle
+    Angebote"; ss throughout;
+  - "du", like the rest of the site, also in the legal notices;
+  - the 4my.horse social media list dropped; the two old product
+    paragraphs replaced by one note on 4else.com and 4else.one.
+- **One source for company data:** name, street, city, e-mail and phone are
+  the footer's `footer.*` keys, so footer and Impressum cannot disagree.
+- **AGB** links to the old site's AGB for now
+  (`4else.events/allgemeine-geschaeftsbedingungen/`); point it at the new
+  AGB page once there is one.
+- The Datenschutz-Generator.de attribution under the last section stays:
+  the old text came from that generator.
+- **Look:** the Inspirationen overview's header, then the sections as rows
+  on hairlines, title left (290px, wide enough for
+  "Berufshaftpflichtversicherung") and content right from 800px, stacked
+  below.
+- Not legal advice: the wording is the old page's, adapted; have it
+  checked if the company data or the legal notices change.
 
 ## 6. SEO
 

@@ -9,8 +9,8 @@ import styles from './Footer.module.css';
    ------------------------------------------------------------
    Address block, three link columns, the giant wordmark, and
    the legal bar. Most link destinations are not built yet and
-   point at "#"; Inspirationen (the blog) is a real route, and
-   the e-mail and phone are real mailto/tel links.
+   point at "#"; Inspirationen (the blog) and the Impressum are real
+   routes, and the e-mail and phone are real mailto/tel links.
 
    One footer for the whole site: the locale layout renders it
    on every route, and every page gets it in full, closing
@@ -88,7 +88,7 @@ export function Footer() {
       <div className={styles.legal}>
         <span>{t('copyright')}</span>
         <nav aria-label={t('legalLabel')}>
-          <a href="#" className={styles.legalLink}>{t('imprint')}</a>
+          <Link href="/impressum" className={styles.legalLink}>{t('imprint')}</Link>
           {' · '}
           <a href="#" className={styles.legalLink}>{t('terms')}</a>
           {' · '}
