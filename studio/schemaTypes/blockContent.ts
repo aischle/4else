@@ -26,7 +26,8 @@ export const linkAnnotation = defineArrayMember({
 /* The article body. Deliberately small: what a blog post needs and what
    the website renders (components/inspirationen/ArticleBody.tsx). Add a
    style or block here only together with its renderer there. Besides
-   text it holds images and FAQ blocks (./faq.ts). */
+   text it holds images, FAQ blocks (./faq.ts) and link cards
+   (./linkCard.ts). */
 export const blockContent = defineType({
   name: 'blockContent',
   title: 'Inhalt',
@@ -73,5 +74,6 @@ export const blockContent = defineType({
       ],
     }),
     defineArrayMember({type: 'faq'}),
+    defineArrayMember({type: 'linkCard'}),
   ],
 })

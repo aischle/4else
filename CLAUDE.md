@@ -509,6 +509,11 @@ it.
     bullet/number lists, bold, italic, links; the link annotation is shared
     with the body as `linkAnnotation` in `blockContent.ts`). Beatrice
     inserts it anywhere in the text, like an image.
+  - `linkCard` (`linkCard.ts`): `label` (Kategorie, default "Tool-Tipp"),
+    `name` (≤ 40), `title` (≤ 90), `text` (≤ 300), `url` (http/https) and an
+    optional `image` (hotspot, `alt` required). For a tool, partner or site
+    worth a click; first used for Limen in the Limen article (September
+    2026, replacing the old site's promo box).
   **Adding a block type or style needs its renderer** in
   `components/inspirationen/ArticleBody.tsx`. After a schema change, run
   `npm run deploy` (or `schema:deploy`) so the hosted Studio has it. **Never
@@ -576,6 +581,29 @@ it.
   towards the reading time (`faqItems` / `readingMinutes` in
   `lib/sanity.ts`). First used by "Event-Tools im Vergleich", whose
   imported FAQ was converted into a block (September 2026).
+- **Link cards** (`components/inspirationen/LinkCard.tsx`, mockup option A,
+  chosen by Robin): a white card, image left (on top ≤ 620px), then
+  "Kategorie · Name", title, description clipped at three lines, and a
+  footer with the name's initial, the domain and "Entdecken →".
+  - **The card is not one big link**, because the image is its own button.
+    The title's link stretches over the text column (`::after`), always
+    opens in a new tab, and hovering it lifts the card.
+  - **The image enlarges** (`ZoomImage.tsx`, a client component):
+    - a magnifier shows on hover and focus, or small and permanent on
+      touch screens;
+    - a click opens a native `<dialog>` at the image's own width, at most
+      the screen minus 24px all round. The width is set inline so the box
+      has its size before the file loads; the file is fetched only on open,
+      with a small preview behind it;
+    - any click in the dialog, beside the image or on it, closes it, and so
+      does Escape;
+    - the image grows out of the card and shrinks back into it (FLIP, Web
+      Animations API, 280ms), or only fades under reduced motion;
+    - running animations are cancelled before measuring, and `open` is
+      also set directly, as in the mobile menu.
+  - Card title and text count towards the reading time. `assetSize()` in
+    `lib/sanity.ts` reads an asset's size from its id (also used by body
+    images).
 - The sitemap adds one entry per article, with `_updatedAt`.
 - **Instant updates:** `app/api/revalidate` (POST, header
   `x-webhook-secret` = `SANITY_REVALIDATE_SECRET`). Once the production

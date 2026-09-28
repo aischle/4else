@@ -4,8 +4,9 @@ import {
   type PortableTextBlock,
   type PortableTextComponents,
 } from '@portabletext/react';
-import { urlFor, type FaqBlock, type SanityImage } from '@/lib/sanity';
+import { assetSize, urlFor, type FaqBlock, type LinkCardBlock, type SanityImage } from '@/lib/sanity';
 import { ArticleFaq } from './ArticleFaq';
+import { LinkCard } from './LinkCard';
 import styles from './ArticleBody.module.css';
 
 /* ============================================================
@@ -14,22 +15,15 @@ import styles from './ArticleBody.module.css';
    Renders exactly what the Studio's blockContent offers
    (studio/schemaTypes/blockContent.ts): paragraphs, H2, H3,
    quote, bullet and numbered lists, bold, italic, links,
-   images and FAQ blocks (./ArticleFaq.tsx). Anything added
-   there needs its renderer here.
+   images, FAQ blocks (./ArticleFaq.tsx) and link cards
+   (./LinkCard.tsx). Anything added there needs its renderer
+   here.
    ============================================================ */
 
 type BodyImage = SanityImage & {
   asset?: { _ref?: string };
   caption?: string;
 };
-
-/* A Sanity image asset id carries its size: image-<hash>-2000x1333-jpg. */
-function dimensions(ref: string | undefined): { width: number; height: number } {
-  const match = ref?.match(/-(\d+)x(\d+)-/);
-  return match
-    ? { width: Number(match[1]), height: Number(match[2]) }
-    : { width: 1600, height: 1000 };
-}
 
 const components: PortableTextComponents = {
   block: {
@@ -62,9 +56,10 @@ const components: PortableTextComponents = {
     faq: ({ value }: { value: FaqBlock }) => (
       <ArticleFaq value={value} components={components} headingClassName={styles.h2} />
     ),
+    linkCard: ({ value }: { value: LinkCardBlock }) => <LinkCard value={value} />,
     image: ({ value }: { value: BodyImage }) => {
       if (!value?.asset) return null;
-      const { width, height } = dimensions(value.asset._ref);
+      const { width, height } = assetSize(value.asset._ref);
       return (
         <figure className={styles.figure}>
           <Image

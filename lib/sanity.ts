@@ -63,6 +63,30 @@ export type ArticleSlug = { slug: string; _updatedAt: string };
 export type FaqItem = { _key: string; question: string; answer: PortableTextBlock[] };
 export type FaqBlock = { _type: 'faq'; _key: string; title?: string; items?: FaqItem[] };
 
+/* A link card in the article body (studio/schemaTypes/linkCard.ts). */
+export type LinkCardImage = SanityImage & {
+  asset?: { _ref?: string };
+  hotspot?: { x: number; y: number };
+};
+export type LinkCardBlock = {
+  _type: 'linkCard';
+  _key: string;
+  label?: string;
+  name: string;
+  title: string;
+  text?: string;
+  url: string;
+  image?: LinkCardImage;
+};
+
+/* A Sanity image asset id carries its size: image-<hash>-2000x1333-jpg. */
+export function assetSize(ref: string | undefined): { width: number; height: number } {
+  const match = ref?.match(/-(\d+)x(\d+)-/);
+  return match
+    ? { width: Number(match[1]), height: Number(match[2]) }
+    : { width: 1600, height: 1000 };
+}
+
 export function isFaqBlock(block: { _type: string }): block is FaqBlock {
   return block._type === 'faq';
 }
@@ -102,8 +126,8 @@ export async function getArticles(): Promise<ArticleCard[]> {
 }
 
 /* Reading time at ~200 words per minute (as temu.swiss), from the text
-   of the body's blocks and of its FAQ questions and answers; images
-   don't count. At least one minute. */
+   of the body's blocks, its FAQ questions and answers, and its link
+   cards; images don't count. At least one minute. */
 function countWords(blocks: PortableTextBlock[] | undefined): number {
   let words = 0;
   for (const block of blocks ?? []) {
@@ -117,9 +141,15 @@ function countWords(blocks: PortableTextBlock[] | undefined): number {
 
 function readingMinutes(body: PortableTextBlock[] | undefined): number {
   let words = countWords(body);
+  const count = (text: string | undefined) => (text ?? '').split(/\s+/).filter(Boolean).length;
   for (const item of faqItems(body)) {
-    words += (item.question ?? '').split(/\s+/).filter(Boolean).length;
+    words += count(item.question);
     words += countWords(item.answer);
+  }
+  for (const block of body ?? []) {
+    if (block._type !== 'linkCard') continue;
+    const card = block as unknown as LinkCardBlock;
+    words += count(card.title) + count(card.text);
   }
   return Math.max(1, Math.round(words / 200));
 }

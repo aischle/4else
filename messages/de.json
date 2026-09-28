@@ -15,7 +15,11 @@
     "emptyTitle": "Die ersten Artikel sind in Arbeit.",
     "emptyBody": "Schau bald wieder vorbei.",
     "back": "Alle Inspirationen",
-    "readingTime": "{minutes} Min. Lesezeit"
+    "readingTime": "{minutes} Min. Lesezeit",
+    "linkCardCta": "Entdecken",
+    "linkCardNewTab": "(öffnet in neuem Tab)",
+    "zoomOpen": "Bild vergrössern",
+    "zoomClose": "Bild schliessen"
   },
   "brand": {
     "name": "4else",
