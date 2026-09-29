@@ -19,7 +19,17 @@ export const article = defineType({
       title: 'Titel',
       type: 'string',
       group: 'content',
-      validation: (rule) => rule.required().max(90),
+      description: 'Am besten 40 bis 70 Zeichen.',
+      /* A warning from 70 (publishing still works), a hard stop at 125.
+         Past ~70 the heading runs to four lines and more on a phone. */
+      validation: (rule) => [
+        rule.required().max(125),
+        rule
+          .max(70)
+          .warning(
+            'Über 70 Zeichen: Auf dem Handy wird der Titel sehr lang. Für Google am besten zusätzlich einen kürzeren „Titel für Suchmaschinen“ setzen.',
+          ),
+      ],
     }),
     defineField({
       name: 'slug',
@@ -94,7 +104,15 @@ export const article = defineType({
           name: 'metaTitle',
           title: 'Titel für Suchmaschinen',
           type: 'string',
-          validation: (rule) => rule.max(60),
+          description: 'Höchstens 60 Zeichen, sonst kürzt Google ihn.',
+          /* A warning from 60 (Google cuts the title link at about that
+             length), a hard stop at 100. */
+          validation: (rule) => [
+            rule.max(100),
+            rule
+              .max(60)
+              .warning('Über 60 Zeichen: Google zeigt den Titel in den Suchergebnissen gekürzt.'),
+          ],
         }),
         defineField({
           name: 'metaDescription',

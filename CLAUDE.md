@@ -537,6 +537,12 @@ it.
   - `article`: `title`, `slug`, `excerpt` (Anriss, ≤ 200), `mainImage` (alt
     required), `publishedAt`, `author` → `author`, `body` (`blockContent`),
     `seo.metaTitle` / `seo.metaDescription`;
+    **title lengths** (Robin, September 2026, after Beatrice found 90 too
+    short): `title` warns from 70 characters and stops at 125;
+    `seo.metaTitle` warns from 60 and stops at 100. A warning still lets
+    her publish. Past ~70 the article heading runs to four lines and more
+    on a phone, and Google cuts title links at ~60 (the site adds
+    " — 4else"), so long titles want a shorter `metaTitle`;
   - `author`: `name`, `role`, `photo`;
   - `blockContent`: normal/H2/H3/quote, bullet/number lists, bold, italic,
     link (`href`, `blank`), image (`alt`, `caption`), **FAQ block** (`faq`);
