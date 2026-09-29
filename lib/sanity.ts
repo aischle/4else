@@ -114,6 +114,18 @@ export type LinkCardBlock = {
   image?: LinkCardImage;
 };
 
+/* A callout in the article body (studio/schemaTypes/callout.ts). tone
+   arrives stega-encoded in the preview: compare it only after stegaClean
+   (components/inspirationen/Callout.tsx). */
+export type CalloutTone = 'wissen' | 'wichtig' | 'tipp';
+export type CalloutBlock = {
+  _type: 'callout';
+  _key: string;
+  tone?: string;
+  title?: string;
+  content?: PortableTextBlock[];
+};
+
 /* A Sanity image asset id carries its size: image-<hash>-2000x1333-jpg. */
 export function assetSize(ref: string | undefined): { width: number; height: number } {
   const match = ref?.match(/-(\d+)x(\d+)-/);
@@ -163,8 +175,8 @@ export async function getArticles(): Promise<ArticleCard[]> {
 }
 
 /* Reading time at ~200 words per minute (as temu.swiss), from the text
-   of the body's blocks, its FAQ questions and answers, and its link
-   cards; images don't count. At least one minute. */
+   of the body's blocks, its FAQ questions and answers, its link cards
+   and its callouts; images don't count. At least one minute. */
 function countWords(blocks: PortableTextBlock[] | undefined): number {
   let words = 0;
   for (const block of blocks ?? []) {
@@ -184,9 +196,13 @@ function readingMinutes(body: PortableTextBlock[] | undefined): number {
     words += countWords(item.answer);
   }
   for (const block of body ?? []) {
-    if (block._type !== 'linkCard') continue;
-    const card = block as unknown as LinkCardBlock;
-    words += count(card.title) + count(card.text);
+    if (block._type === 'linkCard') {
+      const card = block as unknown as LinkCardBlock;
+      words += count(card.title) + count(card.text);
+    } else if (block._type === 'callout') {
+      const callout = block as unknown as CalloutBlock;
+      words += count(callout.title) + countWords(callout.content);
+    }
   }
   return Math.max(1, Math.round(words / 200));
 }

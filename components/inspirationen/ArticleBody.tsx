@@ -4,8 +4,16 @@ import {
   type PortableTextBlock,
   type PortableTextComponents,
 } from '@portabletext/react';
-import { assetSize, urlFor, type FaqBlock, type LinkCardBlock, type SanityImage } from '@/lib/sanity';
+import {
+  assetSize,
+  urlFor,
+  type CalloutBlock,
+  type FaqBlock,
+  type LinkCardBlock,
+  type SanityImage,
+} from '@/lib/sanity';
 import { ArticleFaq } from './ArticleFaq';
+import { Callout } from './Callout';
 import { LinkCard } from './LinkCard';
 import styles from './ArticleBody.module.css';
 
@@ -15,9 +23,9 @@ import styles from './ArticleBody.module.css';
    Renders exactly what the Studio's blockContent offers
    (studio/schemaTypes/blockContent.ts): paragraphs, H2, H3,
    quote, bullet and numbered lists, bold, italic, links,
-   images, FAQ blocks (./ArticleFaq.tsx) and link cards
-   (./LinkCard.tsx). Anything added there needs its renderer
-   here.
+   images, FAQ blocks (./ArticleFaq.tsx), link cards
+   (./LinkCard.tsx) and callouts (./Callout.tsx). Anything added
+   there needs its renderer here.
    ============================================================ */
 
 type BodyImage = SanityImage & {
@@ -57,6 +65,8 @@ const components: PortableTextComponents = {
       <ArticleFaq value={value} components={components} headingClassName={styles.h2} />
     ),
     linkCard: ({ value }: { value: LinkCardBlock }) => <LinkCard value={value} />,
+    /* Its text, like the FAQ's answers, reads through these components. */
+    callout: ({ value }: { value: CalloutBlock }) => <Callout value={value} components={components} />,
     image: ({ value }: { value: BodyImage }) => {
       if (!value?.asset) return null;
       const { width, height } = assetSize(value.asset._ref);

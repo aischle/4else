@@ -56,7 +56,10 @@
     "linkCardCta": "Entdecken",
     "linkCardNewTab": "(öffnet in neuem Tab)",
     "zoomOpen": "Bild vergrössern",
-    "zoomClose": "Bild schliessen"
+    "zoomClose": "Bild schliessen",
+    "calloutWissen": "Gut zu wissen",
+    "calloutWichtig": "Wichtig",
+    "calloutTipp": "Unser Tipp"
   },
   "brand": {
     "name": "4else",

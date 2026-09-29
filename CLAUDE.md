@@ -556,6 +556,12 @@ it.
     optional `image` (hotspot, `alt` required). For a tool, partner or site
     worth a click; first used for Limen in the Limen article (September
     2026, replacing the old site's promo box).
+  - `callout` (`callout.ts`, "Hinweisbox"): `tone` (`wissen` Gut zu
+    wissen / `wichtig` Wichtig / `tipp` Unser Tipp, default `wissen`),
+    optional `title` (≤ 90) and `content` (paragraphs, bullet/number
+    lists, bold, italic, links via `linkAnnotation`). **No subheadings
+    inside** (Robin, September 2026): a box has one title, and long
+    multi-section passages stay normal article text.
   **Adding a block type or style needs its renderer** in
   `components/inspirationen/ArticleBody.tsx`. After a schema change, run
   `npm run deploy` (or `schema:deploy`) so the hosted Studio has it. **Never
@@ -649,6 +655,28 @@ it.
     `lib/sanity.ts` reads an asset's size from its id (also used by body
     images).
 - The sitemap adds one entry per article, with `_updatedAt`.
+- **Callouts** (`components/inspirationen/Callout.tsx` + `.module.css`),
+  replacing the old site's flat grey boxes. Robin reviewed four mockups
+  (https://claude.ai/artifact/Pf57h9R9CJVZHaHWVHLAkQ) and chose a mix
+  (September 2026):
+  - **Gut zu wissen** (option B): Eisblau, a navy info icon left of the
+    uppercase label;
+  - **Wichtig** (option C's third tone): Eis-Orange, an orange "!" in the
+    same place. It is Akzent Orange's first use on the site, and only as
+    a graphic: orange text on Eis-Orange fails contrast;
+  - **Unser Tipp** (option D): Eisviolett, Else's face
+    (`public/images/ui/else-face.webp`, 56px, `alt=""`) on the top edge
+    beside a navy speech bubble.
+  - The labels are the site's copy (`inspirationen.callout*`), not
+    Sanity's; the Studio only picks the tone. **The tone is
+    `stegaClean`ed** before it is compared (in the Vorschau it carries
+    stega, §5h), and anything unknown falls back to Gut zu wissen.
+  - An `<aside>` named by its label and title. The text goes through the
+    article's own Portable Text components, a size down (17px). Title and
+    text count towards the reading time.
+  - The two grey boxes of "Kurs absagen" were converted by Claude as a
+    draft (September 2026): the first as Gut zu wissen, the second
+    ("Unsere Empfehlung") as Unser Tipp.
 - **Instant updates:** `app/api/revalidate` (POST, header
   `x-webhook-secret` = `SANITY_REVALIDATE_SECRET`). Once the production
   domain exists, create the webhook in sanity.io/manage → API → Webhooks:

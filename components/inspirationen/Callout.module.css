@@ -1,0 +1,149 @@
+/* ============================================================
+   4else — callout inside an article (Callout.tsx)
+   ------------------------------------------------------------
+   From the chosen mockup mix: a tinted panel on --radius-card in
+   the text column, a label row, an optional title, then the
+   text a size below the running text. One ground per tone;
+   lemon and orange appear only as graphics, never as text, so
+   every label keeps its contrast. Tokens only.
+   ============================================================ */
+
+.callout {
+  display: grid;
+  gap: 10px;
+  margin: 1.8em 0;
+  padding: 26px 32px 30px;
+  border-radius: var(--radius-card);
+}
+
+.wissen {
+  background: var(--ice-blue);
+  --icon: var(--brand);
+}
+
+.wichtig {
+  background: var(--ice-orange);
+  --icon: var(--orange);
+}
+
+/* Else sits on the top edge: the extra top padding makes room for the
+   half of her that hangs inside, the extra margin for the half above. */
+.tipp {
+  position: relative;
+  margin-top: 2.6em;
+  padding-top: 44px;
+  background: var(--ice-violet);
+}
+
+/* Label row (Gut zu wissen, Wichtig): icon, then the label in the
+   site's eyebrow style. */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 12px;
+  font-weight: var(--w-semibold);
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.icon {
+  flex: none;
+  width: 26px;
+  height: 26px;
+}
+
+.iconGround {
+  fill: var(--icon);
+}
+
+.iconGlyph {
+  fill: var(--surface);
+}
+
+/* Unser Tipp: Else's face in a white disc ringed with the panel's
+   ground, beside a navy bubble whose tight corner points at her (the
+   contact hero's pairing). */
+.who {
+  position: absolute;
+  top: -26px;
+  left: 26px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.face {
+  display: block;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: 0 0 0 3px var(--ice-violet), var(--shadow-float);
+}
+
+.bubble {
+  padding: 6px 14px;
+  border-radius: 18px 18px 18px 4px;
+  background: var(--brand);
+  color: var(--text-on-ink);
+  font-size: 14px;
+  font-weight: var(--w-semibold);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+  color: var(--ink);
+  text-wrap: balance;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* The article's own paragraphs and lists (ArticleBody's components),
+   a size down and closer together than in the running text. */
+.body {
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.body > p,
+.body > ul,
+.body > ol {
+  margin: 0 0 0.8em;
+}
+
+.body > :last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 560px) {
+  .callout {
+    padding: 22px 20px 24px;
+    border-radius: 20px;
+  }
+
+  .tipp {
+    padding-top: 40px;
+  }
+
+  .who {
+    left: 16px;
+  }
+
+  .title {
+    font-size: 19px;
+  }
+
+  .body {
+    font-size: 16px;
+  }
+}
