@@ -31,10 +31,10 @@ import styles from './Header.module.css';
    (./MobileMenu.tsx), which carries them. Both read one list
    (./navItems.ts). "Was wir tun" jumps to its anchor on the
    start page; away from the start page it carries the route in
-   front of the hash, so it leads home and scrolls there. Kontakt
-   and Inspirationen (the blog) have real routes and mark
+   front of the hash, so it leads home and scrolls there. Kontakt,
+   Preise and Inspirationen (the blog) have real routes and mark
    themselves when the visitor is on them.
-   About, Pricing, Login and Demo have no destination yet and
+   About, Login and Demo have no destination yet and
    point at "#".
    ============================================================ */
 
@@ -63,6 +63,7 @@ export function Header() {
   const home = pathname === '/' ? '' : getPathname({ locale: locale as Locale, href: '/' });
   const section = (hash: string) => `${home}#${hash}`;
   const onContact = pathname === '/kontakt';
+  const onPricing = pathname === '/preise';
   /* The blog overview is "the page"; an article inside it still lights up
      the link, without claiming aria-current. */
   const inBlog = pathname.startsWith('/inspirationen');
@@ -70,7 +71,7 @@ export function Header() {
   const items: NavItem[] = [
     { key: 'services', href: section('tun') },
     { key: 'about', href: '#' },
-    { key: 'pricing', href: '#' },
+    { key: 'pricing', route: '/preise', active: onPricing, current: onPricing },
     { key: 'inspiration', route: '/inspirationen', active: inBlog, current: pathname === '/inspirationen' },
     { key: 'contact', route: '/kontakt', active: onContact, current: onContact },
   ];

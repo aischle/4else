@@ -65,9 +65,9 @@ export default function NotFound() {
         <a href={`${home}#ablauf`} className={`${buttons.pill} ${styles.soft}`}>
           {t('howItWorks')}
         </a>
-        <a href="#" className={`${buttons.pill} ${styles.soft}`}>
+        <Link href="/preise" className={`${buttons.pill} ${styles.soft}`}>
           {t('pricing')}
-        </a>
+        </Link>
         <Link href="/kontakt" className={`${buttons.pill} ${styles.soft}`}>
           {t('contact')}
         </Link>

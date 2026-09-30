@@ -243,7 +243,8 @@ Things to know:
   widening it (`.faqHead`, `.faqElseRow`). 170–225px wide beside the list
   (`15.6vw`), 112–165px above it (≤1000px); Robin had her 25% smaller
   than the first 300px. Note the transaction fee (4,8 % + CHF 0.20) and
-  the payment methods are now stated both here and on 4else.events; keep them
+  the payment methods are now stated here, on the pricing page (§5i: its
+  copy and the calculator's `RATE`/`FIXED`) and on 4else.events; keep them
   in step.
 - **Mobile menu** (mockup option A, chosen by Robin, September 2026;
   `components/header/MobileMenu.tsx`). Below 1000px the section links,
@@ -440,7 +441,7 @@ control that would need something unbuilt keeps `href="#"` and opens
   | Link | Says |
   |---|---|
   | `data-wip="backend"` | *Dafür fehlt noch das Backend.* — Login, Demo, Registrieren, Jetzt Event erstellen, Zum Login |
-  | no attribute | *Diese Seite ist noch nicht gestaltet.* — Preise, Über uns, the card links, AGB, Datenschutz |
+  | no attribute | *Diese Seite ist noch nicht gestaltet.* — Über uns, the card links, AGB, Datenschutz |
 
 - Copy lives in the `wip` namespace. Native `<dialog>`, so the backdrop,
   Escape, the focus trap and the focus return come from the browser; a click
@@ -825,6 +826,55 @@ shows a navy "Vorschau mit Entwürfen · Vorschau beenden" capsule bottom
 left (`preview` messages), which ends draft mode through
 `/api/draft-mode/disable` and returns to the same page. Inside the Studio
 it stays hidden.
+
+## 5i. Pricing page
+
+`app/[locale]/(site)/preise/page.tsx` (+ `page.module.css`), route
+`/preise` in `lib/routing.ts` (so it is in the sitemap), from the handoff
+`Z:\GoogleDrive\projects\4else\design_handoff_4else_preise\` (Robin,
+September 2026). Copy in the `preise` namespace, title and description in
+`meta.preise*`; the title is `absolute` ("Preise – Was kostet 4else?"),
+since the layout's " — 4else" would repeat the name. The nav's "Preise",
+the footer's and the 404's now link here.
+
+Sections: hero and plans on one white block (pulled up under the nav, as
+on the contact page) → payment panel with the fee calculator → FAQ on a
+white band → the contact page's CTA band with a sub-line.
+
+- **Else** is the coat-and-question-marks figure from the handoff's
+  `assets/else-sucht.png`, the same picture the 404 already serves as
+  `public/images/404/else-sucht.webp` (ground lifted to pure white), so
+  no new export: the README's "reuse else-concierge" contradicted the
+  design and Robin's attachment. A 180 × 260 box crops the square image
+  as the design does (314px wide at −70/−18), in percentages so it scales;
+  on phones (≤560px) she shrinks beside the lead, as on the contact page.
+- **Plans**: Free (white, hairline), Premium (`--brand`, lemon "Beliebt",
+  `violet` button, `--shadow-hero`), Business (`--ice-violet`, `solid`
+  button to /kontakt). Free and Premium buttons need the backend
+  (`data-wip="backend"`). **Three columns or one**, never two plus a lone
+  Business card: one column below 950px (the handoff's check list).
+- **Billing toggle without JavaScript**: two radios styled as the pill;
+  `.plans:has(.monthlyInput:checked)` swaps Premium's two prices (CHF 114
+  per year by default, CHF 24 per month). **Select by class, not by id**:
+  CSS modules rename ids too, and an `#id` in the module never matches
+  (found while testing). "–60 %" is lemon on the navy half (5.2:1); the
+  accent there reads 1.8:1.
+- **Fee calculator** (`components/pricing/FeeCalculator.tsx`, the page's
+  only client component): CHF 5–300 in steps of 5, default 45; fee =
+  4.8 % + CHF 0.20 rounded to the Rappen, payout the rest; `<output>` and
+  `aria-valuetext`, results `aria-live`. The payment panel stacks below
+  about 900px (400px columns, not the handoff's 340, which still split on
+  a 768px tablet).
+- **Copy deviations from the handoff**, on purpose: the fee is written
+  "4,8 %" as on the start page; the FAQ intro drops "Antwort innert 24 h"
+  (no response times, Beatrice's rule in §5b), reading "Nicht dabei?
+  Schreib Beatrice." "Du/Dein" are capitalised, as the handoff asks.
+- **FAQ**: five pairs (`q1`–`q5`), the contact page's numbered
+  `<details name="preise-faq">` pattern, first open. No FAQPage schema.
+- **Data caveat (the handoff's)**: plan features and prices come from
+  4else.com's price sheet; confirm them with the client before launch.
+  Checked at 1440, 1024, 768 and 390 (September 2026): no horizontal
+  scroll, toggle and calculator working.
 
 ## 6. SEO
 

@@ -1,0 +1,807 @@
+/* ============================================================
+   4else — pricing page (/preise)
+   ------------------------------------------------------------
+   Values from the pricing handoff, its warm-palette hex values
+   mapped to styles/tokens.css. The hero, the FAQ and the CTA band
+   are the contact page's (app/[locale]/(site)/kontakt/
+   page.module.css): keep the two in step when one changes.
+   ============================================================ */
+
+/* ── Shared ─────────────────────────────────────────────────── */
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.accent {
+  color: var(--accent);
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 12px;
+  font-weight: var(--w-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ── White block: hero + plans ──────────────────────────────── */
+
+/* As on the contact page: pulled up under the sticky bar, so the glass
+   reads as white here. */
+.white {
+  margin-top: calc(var(--nav-h) * -1);
+  padding-top: var(--nav-h);
+  background: var(--surface);
+}
+
+/* ── Hero ───────────────────────────────────────────────────── */
+
+/* No bottom padding: Else stands on the hero's bottom edge and the
+   plans follow directly. */
+.hero {
+  padding: clamp(56px, 7vw, 104px) 0 0;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  align-items: end;
+  gap: clamp(24px, 4vw, 56px);
+}
+
+.heroIntro {
+  display: grid;
+  justify-items: start;
+  gap: 26px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px 8px 10px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-pill);
+  background: var(--page);
+  font-size: 13px;
+  font-weight: var(--w-medium);
+  color: var(--text-body);
+  white-space: nowrap;
+}
+
+.badgeDot {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--lemon);
+}
+
+.headline {
+  margin: 0;
+  font-size: clamp(42px, 5.4vw, 80px);
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+/* Narrow phones: type follows the screen, as on the other heroes
+   (CLAUDE.md §5, "Narrow phones"). */
+@media (max-width: 400px) {
+  .headline {
+    font-size: clamp(32px, 10.5vw, 42px);
+  }
+}
+
+/* The lead and Else side by side; Else wraps under the lead when the
+   column is too narrow for both. */
+.heroAside {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(12px, 2vw, 28px);
+}
+
+.lead {
+  flex: 1 1 260px;
+  max-width: 36ch;
+  margin: 0 0 clamp(20px, 3vw, 40px);
+  font-size: clamp(17px, 1.3vw, 20px);
+  color: var(--text-body);
+  text-wrap: pretty;
+}
+
+/* Else with the coat (public/images/404/else-sucht.webp, the 404's
+   image: its ground lifted to pure white, so it sits on the white hero
+   without a box). The 180 × 260 box shows her from the question marks
+   down to her feet; the image inside is 314px square at desktop size,
+   placed as in the design (left −70, top −18). The offsets are
+   percentages of that box, so the crop scales with it on phones.
+   84px top margin: room for the bubble. */
+.else {
+  position: relative;
+  flex-shrink: 0;
+  width: 180px;
+  aspect-ratio: 180 / 260;
+  margin: 84px 0 0 auto;
+}
+
+.elseCrop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.elseImage {
+  position: absolute;
+  left: -38.889%;
+  top: -6.923%;
+  width: 174.444%;
+  max-width: none;
+  height: auto;
+}
+
+/* Right-aligned over her head, capped at her width so it never reaches
+   the lead. The tight corner points down at her. */
+.elseBubble {
+  position: absolute;
+  right: 4px;
+  bottom: calc(100% + 10px);
+  width: max-content;
+  max-width: 176px;
+  padding: 12px 16px;
+  border-radius: var(--radius-bubble);
+  background: var(--brand);
+  color: var(--text-on-ink);
+  font-size: 14px;
+  font-weight: var(--w-semibold);
+  line-height: 1.35;
+  box-shadow: var(--shadow-float);
+}
+
+/* Phones: Else shrinks with the screen beside the lead instead of
+   wrapping under it (the contact page's rule), and the bubble keeps to
+   her width. */
+@media (max-width: 560px) {
+  .heroAside {
+    flex-wrap: nowrap;
+    gap: 12px;
+  }
+
+  .lead {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .else {
+    width: clamp(104px, 32vw, 180px);
+  }
+
+  .elseBubble {
+    right: 0;
+    max-width: 100%;
+    padding: 9px 11px;
+    font-size: 13px;
+  }
+}
+
+/* ── Plans ──────────────────────────────────────────────────── */
+
+.plans {
+  padding: clamp(24px, 3vw, 40px) 0 clamp(60px, 7vw, 110px);
+}
+
+.plansInner {
+  display: grid;
+  gap: 28px;
+}
+
+.plansHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* The billing switch: two radios, visually hidden, their labels as the
+   pill's two halves. */
+.toggle {
+  display: inline-flex;
+  margin: 0;
+  padding: 4px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-pill);
+  background: var(--page);
+}
+
+.toggleInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+}
+
+.toggleLabel {
+  padding: 9px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: var(--w-semibold);
+  color: var(--text-body);
+  cursor: pointer;
+  transition: background-color var(--dur) ease-out, color var(--dur) ease-out;
+}
+
+.toggleInput:checked + .toggleLabel {
+  background: var(--brand);
+  color: var(--text-on-ink);
+}
+
+.toggleInput:focus-visible + .toggleLabel {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.toggleSave {
+  margin-left: 6px;
+  color: var(--accent);
+}
+
+/* On the navy half the accent fails contrast (1.8:1, and the bright
+   violet 3.7:1); lemon reads at 5.2:1, as on the Premium card's checks. */
+.toggleInput:checked + .toggleLabel .toggleSave {
+  color: var(--lemon);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  align-items: stretch;
+  gap: 16px;
+}
+
+/* Three in a row, or one: auto-fit alone gives two plus a lone Business
+   card on tablets (about 580–870px of content), which the handoff's
+   checks rule out. Three 280px cards and two 16px gaps need 872px of
+   content, which the gutter leaves from about 950px of window. */
+@media (max-width: 949px) {
+  .cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: clamp(28px, 3vw, 40px);
+  border-radius: var(--radius-panel);
+}
+
+.free {
+  border: 1px solid var(--hairline);
+  background: var(--surface);
+}
+
+.premium {
+  background: var(--brand);
+  color: var(--text-on-ink);
+  box-shadow: var(--shadow-hero);
+}
+
+.business {
+  background: var(--ice-violet);
+}
+
+.popular {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--lemon);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: var(--w-semibold);
+  letter-spacing: 0.04em;
+}
+
+.cardHead {
+  display: grid;
+  gap: 6px;
+}
+
+.cardName {
+  margin: 0;
+  font-size: 22px;
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.02em;
+}
+
+.premium .cardName {
+  color: var(--text-on-ink);
+}
+
+.cardDescription {
+  margin: 0;
+  font-size: 15px;
+  color: var(--text-muted);
+}
+
+.premium .cardDescription,
+.premium .period {
+  color: var(--text-on-ink-muted);
+}
+
+.business .cardDescription,
+.business .period {
+  color: var(--text-body);
+}
+
+.price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0;
+}
+
+.amount {
+  font-size: clamp(40px, 4vw, 56px);
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.period {
+  font-size: 15px;
+  color: var(--text-muted);
+}
+
+/* Premium's two prices: yearly by default, monthly when that radio is
+   checked. Matched by class, not by its id: CSS modules rename ids too.
+   Without :has() support the yearly price simply stays. */
+.monthly {
+  display: none;
+}
+
+.plans:has(.monthlyInput:checked) .monthly {
+  display: flex;
+}
+
+.plans:has(.monthlyInput:checked) .yearly {
+  display: none;
+}
+
+.cta {
+  justify-content: center;
+  padding: 14px 24px;
+}
+
+.features {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 22px 0 0;
+  border-top: 1px solid var(--hairline);
+  list-style: none;
+  font-size: 15px;
+  color: var(--text-body);
+}
+
+.premium .features {
+  border-top-color: var(--line-on-dark);
+  color: var(--text-on-ink);
+}
+
+.business .features {
+  border-top-color: var(--hairline-strong);
+}
+
+.feature {
+  display: flex;
+  gap: 10px;
+}
+
+.check {
+  flex-shrink: 0;
+  font-weight: var(--w-bold);
+  color: var(--accent);
+}
+
+.premium .check {
+  color: var(--lemon);
+}
+
+.plansNote {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* ── Payment ────────────────────────────────────────────────── */
+
+.pay {
+  padding: clamp(60px, 7vw, 110px) var(--gutter);
+}
+
+/* 400px columns, not the handoff's 340: at 340 the panel still splits
+   on a 768px tablet, where the handoff wants the fee column below the
+   text. 400 keeps both side by side from about 900px. */
+.payPanel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+  max-width: var(--container);
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-panel);
+  background: var(--surface);
+}
+
+.payText {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 22px;
+  padding: clamp(36px, 5vw, 72px);
+}
+
+.payHeading {
+  margin: 0;
+  font-size: clamp(34px, 4.4vw, 60px);
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.payBody {
+  margin: 0;
+  max-width: 46ch;
+  font-size: 18px;
+  color: var(--text-body);
+  text-wrap: pretty;
+}
+
+.methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.method {
+  padding: 8px 14px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-pill);
+  background: var(--page);
+  font-size: 14px;
+  font-weight: var(--w-semibold);
+}
+
+.payNote {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.feeSide {
+  display: grid;
+  align-content: center;
+  gap: 28px;
+  padding: clamp(36px, 5vw, 72px);
+  background: var(--ice-violet);
+}
+
+.feeFigure {
+  display: grid;
+  gap: 8px;
+}
+
+.feeEyebrow {
+  font-size: 12px;
+  font-weight: var(--w-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-body);
+}
+
+.feeLine {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 14px;
+  margin: 0;
+}
+
+.feeRate {
+  font-size: clamp(56px, 7vw, 96px);
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  color: var(--accent);
+}
+
+.feeFixed {
+  font-size: clamp(24px, 2.6vw, 36px);
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+/* ── FAQ ────────────────────────────────────────────────────── */
+
+/* The contact page's FAQ, on a white band with hairlines top and
+   bottom (the handoff), between the page-ground payment and CTA
+   sections. */
+.faq {
+  padding: clamp(60px, 7vw, 110px) 0;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  background: var(--surface);
+}
+
+.faqGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  align-items: start;
+  gap: clamp(32px, 6vw, 90px);
+}
+
+.faqIntro {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+}
+
+.faqHeading {
+  margin: 0;
+  max-width: 14ch;
+  font-size: clamp(32px, 4.4vw, 56px);
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+}
+
+.faqLead {
+  margin: 0;
+  max-width: 36ch;
+  font-size: 18px;
+  color: var(--text-body);
+}
+
+.faqLink {
+  font-weight: var(--w-semibold);
+  color: var(--text-strong);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.faqLink:hover {
+  color: var(--accent);
+}
+
+.faqList {
+  grid-column: span 2;
+  min-width: 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.faqItem {
+  border-top: 1px solid var(--hairline);
+}
+
+.faqQuestion {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 0;
+  list-style: none;
+  cursor: pointer;
+}
+
+.faqQuestion::-webkit-details-marker {
+  display: none;
+}
+
+.faqNum {
+  font-size: 14px;
+  font-weight: var(--w-semibold);
+  color: var(--text-muted);
+}
+
+.faqText {
+  font-size: 21px;
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.faqMarker {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  margin: 0 7px;
+}
+
+.faqMarker::before,
+.faqMarker::after {
+  content: '';
+  position: absolute;
+  background: var(--accent);
+  transition: opacity var(--dur);
+}
+
+.faqMarker::before {
+  top: 8px;
+  left: 0;
+  width: 18px;
+  height: 2px;
+}
+
+.faqMarker::after {
+  top: 0;
+  left: 8px;
+  width: 2px;
+  height: 18px;
+}
+
+.faqItem[open] .faqMarker::after {
+  opacity: 0;
+}
+
+/* The start page's two-technique disclosure animation (see
+   app/[locale]/(site)/page.module.css). */
+.faqItem::details-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  content-visibility: hidden;
+  transition:
+    grid-template-rows var(--dur),
+    content-visibility var(--dur) allow-discrete;
+}
+
+.faqItem[open]::details-content {
+  grid-template-rows: 1fr;
+  content-visibility: visible;
+}
+
+@supports (interpolate-size: allow-keywords) {
+  .faqItem {
+    interpolate-size: allow-keywords;
+  }
+
+  .faqItem::details-content {
+    display: block;
+    block-size: 0;
+    overflow: clip;
+    transition:
+      block-size var(--dur),
+      content-visibility var(--dur) allow-discrete;
+  }
+
+  .faqItem[open]::details-content {
+    block-size: auto;
+  }
+}
+
+.faqAnswer {
+  min-height: 0;
+  margin: 0;
+  padding: 0 44px 26px 68px;
+  max-width: 64ch;
+  font-size: 16px;
+  color: var(--text-body);
+}
+
+/* ── CTA ────────────────────────────────────────────────────── */
+
+/* The contact page's band, plus the sub-line under the heading. */
+.ctaSection {
+  padding: clamp(60px, 7vw, 100px) var(--gutter);
+}
+
+.ctaBand {
+  max-width: var(--container);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: clamp(48px, 6vw, 88px) clamp(24px, 5vw, 80px);
+  border-radius: var(--radius-panel);
+  background: var(--brand);
+  color: var(--text-on-ink);
+}
+
+.ctaText {
+  display: grid;
+  gap: 14px;
+}
+
+.ctaHeading {
+  margin: 0;
+  max-width: 18ch;
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.035em;
+  line-height: 1;
+  text-wrap: balance;
+  color: var(--text-on-ink);
+}
+
+.ctaSub {
+  margin: 0;
+  max-width: 44ch;
+  font-size: 20px;
+  font-weight: var(--w-regular);
+  line-height: 1.4;
+  color: var(--text-on-ink-muted);
+}
+
+.ctaButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ── Focus ──────────────────────────────────────────────────── */
+
+.faqQuestion:focus-visible,
+.faqLink:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ── Narrow screens ─────────────────────────────────────────── */
+
+@media (max-width: 1000px) {
+  .faqList {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 620px) {
+  .faqQuestion {
+    grid-template-columns: 40px minmax(0, 1fr) auto;
+  }
+
+  .faqAnswer {
+    padding: 0 0 26px 52px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggleLabel,
+  .faqItem::details-content,
+  .faqItem[open]::details-content,
+  .faqMarker::before,
+  .faqMarker::after {
+    transition-duration: 0.01ms;
+  }
+}

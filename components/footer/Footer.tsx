@@ -56,7 +56,7 @@ export function Footer() {
             <li><a href="#" data-wip="backend" className={styles.link}>{t('startDemo')}</a></li>
             <li><a href="#" data-wip="backend" className={styles.link}>{t('startRegister')}</a></li>
             <li><a href="#" data-wip="backend" className={styles.link}>{t('startLogin')}</a></li>
-            <li><a href="#" className={styles.link}>{t('startPricing')}</a></li>
+            <li><Link href="/preise" className={styles.link}>{t('startPricing')}</Link></li>
           </ul>
         </div>
 

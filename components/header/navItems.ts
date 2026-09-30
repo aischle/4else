@@ -10,7 +10,7 @@
 
 export type NavItem = {
   key: 'services' | 'about' | 'pricing' | 'inspiration' | 'contact';
-  route?: '/inspirationen' | '/kontakt';
+  route?: '/inspirationen' | '/kontakt' | '/preise';
   href?: string;
   /** Lit up: the visitor is on this page or inside it. */
   active?: boolean;
