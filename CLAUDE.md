@@ -687,19 +687,25 @@ it.
     draft (September 2026): the first as Gut zu wissen, the second
     ("Unsere Empfehlung") as Unser Tipp.
 - **Tables** (`components/inspirationen/ArticleTable.tsx` + `.module.css`,
-  from the mockup Robin approved,
+  option B of the mockups,
   https://claude.ai/artifact/Rdi2L6ES7sts6H7tjw2CTR, September 2026). For
   Beatrice's comparisons ("Doodle versus 4else"), cells with ✅ ❌ ⚠️ as
   plain text.
-  - No frame or fill: rows on `--hairline`, the header row in the eyebrow
-    style over a `--hairline-strong` rule, the first column as ink row
-    labels (`th scope="row"`, 30%) when there is a header row.
+  - The first, frameless version read too little as a table (Robin);
+    B makes it a white panel (`--hairline`, `--radius-field`,
+    `--shadow-card`), the header row on Eisviolett with uppercase labels
+    in `--accent` (4.7:1), even rows banded in `--page`, the first column
+    as ink row labels (`th scope="row"`, 30%) when there is a header row.
+  - `.wrap` is the inline-size container, `.panel` inside it carries the
+    look and scrolls a wide table: a container query cannot restyle its
+    own container.
   - **Phone: one card per row**, below 620px of the table's own width
-    (the wrapper is an inline-size container): the first cell as title,
+    (the wrapper is an inline-size container): the panel steps aside and
+    each card opens with an Eisviolett title strip (the first cell), then
     each value under its column name from `data-label` (header text,
     `stegaClean`ed since it is an attribute). Empty cells are hidden in
-    the cards. **Without a header row** the grid stays and scrolls
-    sideways inside the wrapper; the page never does.
+    the cards. **Without a header row** the grid stays in its panel and
+    scrolls sideways inside it; the page never does.
   - Ragged rows are padded to the widest row; a cell's blocks render one
     line each. Cell text counts towards the reading time.
   - The Doodle article's table, flattened into 24 paragraphs by the

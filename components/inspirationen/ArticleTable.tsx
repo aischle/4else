@@ -6,9 +6,10 @@ import styles from './ArticleTable.module.css';
 /* ============================================================
    4else — table inside an article (studio/schemaTypes/table.ts)
    ------------------------------------------------------------
-   From the mockup Robin approved (September 2026): no frame or
-   fill, rows on hairlines, the header row in the eyebrow style,
-   the first column as ink row labels.
+   Option B of the mockups (Robin, September 2026): a white panel
+   with a hairline and a soft shadow, the header row on
+   Eisviolett with its labels in the violet accent, every second
+   row faintly banded, the first column as ink row labels.
 
    On a narrow column (its own container, ≤ 620px) a table with a
    header row turns into one card per row: the first cell as the
@@ -52,39 +53,41 @@ export function ArticleTable({ value }: { value: TableBlock }) {
 
   return (
     <div className={styles.wrap}>
-      <table className={`${styles.table} ${hasHeader ? styles.cards : styles.plain}`}>
-        {hasHeader && (
-          <thead>
-            {head.map((row) => (
+      <div className={styles.panel}>
+        <table className={`${styles.table} ${hasHeader ? styles.cards : styles.plain}`}>
+          {hasHeader && (
+            <thead>
+              {head.map((row) => (
+                <tr key={row._key}>
+                  {cellsOf(row).map((cell, i) => (
+                    <th key={cell?._key ?? i} scope="col">
+                      <Cell cell={cell} />
+                    </th>
+                  ))}
+                </tr>
+              ))}
+            </thead>
+          )}
+          <tbody>
+            {body.map((row) => (
               <tr key={row._key}>
-                {cellsOf(row).map((cell, i) => (
-                  <th key={cell?._key ?? i} scope="col">
-                    <Cell cell={cell} />
-                  </th>
-                ))}
+                {cellsOf(row).map((cell, i) =>
+                  /* With a header row the first column labels its row. */
+                  hasHeader && i === 0 ? (
+                    <th key={cell?._key ?? i} scope="row">
+                      <Cell cell={cell} />
+                    </th>
+                  ) : (
+                    <td key={cell?._key ?? i} data-label={labels[i] || undefined}>
+                      <Cell cell={cell} />
+                    </td>
+                  ),
+                )}
               </tr>
             ))}
-          </thead>
-        )}
-        <tbody>
-          {body.map((row) => (
-            <tr key={row._key}>
-              {cellsOf(row).map((cell, i) =>
-                /* With a header row the first column labels its row. */
-                hasHeader && i === 0 ? (
-                  <th key={cell?._key ?? i} scope="row">
-                    <Cell cell={cell} />
-                  </th>
-                ) : (
-                  <td key={cell?._key ?? i} data-label={labels[i] || undefined}>
-                    <Cell cell={cell} />
-                  </td>
-                ),
-              )}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

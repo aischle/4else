@@ -1,52 +1,56 @@
 /* ============================================================
    4else — table inside an article (ArticleTable.tsx)
    ------------------------------------------------------------
-   From the approved mockup: part of the text, not a box. Rows
-   on hairlines, the header in the eyebrow style, first and last
-   cells flush with the text column. Its own inline-size
-   container, so the phone cards follow the column's width, not
-   the window's. Tokens only.
+   Option B of the mockups (Robin, September 2026,
+   https://claude.ai/artifact/Rdi2L6ES7sts6H7tjw2CTR): a white
+   panel on a hairline with a soft shadow, the header row on
+   Eisviolett with uppercase labels in the violet accent (4.7:1),
+   even rows banded in the page ground so a line can be followed
+   across. Tokens only.
+
+   .wrap is the inline-size container the phone cards measure;
+   .panel inside it carries the look and scrolls a wide table,
+   because a container query cannot restyle its own container.
    ============================================================ */
 
 .wrap {
   container-type: inline-size;
   margin: 1.6em 0 1.8em;
+}
+
+.panel {
   overflow-x: auto;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-field);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
 }
 
 .table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   font-size: 16px;
   line-height: 1.55;
 }
 
 .table th,
 .table td {
-  padding: 14px 16px;
+  padding: 14px 18px;
   text-align: left;
   vertical-align: top;
-  border-bottom: 1px solid var(--hairline);
   overflow-wrap: break-word;
 }
 
-.table tr > :first-child {
-  padding-left: 0;
-}
-
-.table tr > :last-child {
-  padding-right: 0;
-}
-
 .table thead th {
-  padding-top: 0;
-  padding-bottom: 12px;
-  border-bottom-color: var(--hairline-strong);
+  padding-top: 13px;
+  padding-bottom: 13px;
+  background: var(--ice-violet);
   font-size: 12px;
   font-weight: var(--w-semibold);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--accent);
 }
 
 .table tbody th {
@@ -55,8 +59,8 @@
   color: var(--ink);
 }
 
-.table tbody tr:last-child > * {
-  border-bottom: 0;
+.table tbody tr:nth-child(even) > * {
+  background: var(--page);
 }
 
 /* One line per block of a cell. */
@@ -64,15 +68,24 @@
   display: block;
 }
 
-/* Without a header row: the grid stays, and a wide table scrolls in
-   .wrap rather than squeezing every cell to a word. */
+/* Without a header row: the grid stays, and a wide table scrolls inside
+   the panel rather than squeezing every cell to a word. */
 .plain td {
   min-width: 8em;
 }
 
-/* Narrow column, with a header row: one card per row. The header stays
-   in the markup for assistive technology, visually hidden. */
+/* Narrow column, with a header row: one card per row, each opening with
+   an Eisviolett title strip. The header stays in the markup for
+   assistive technology, visually hidden. */
 @container (max-width: 620px) {
+  .panel:has(.cards) {
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
   .cards thead {
     position: absolute;
     width: 1px;
@@ -97,16 +110,16 @@
   }
 
   .cards tr {
-    padding: 16px 18px;
+    overflow: hidden;
+    padding-bottom: 14px;
     border: 1px solid var(--hairline);
     border-radius: var(--radius-field);
     background: var(--surface);
+    box-shadow: var(--shadow-card);
   }
 
-  .cards tbody th,
-  .cards td {
-    padding: 0;
-    border: 0;
+  .cards tbody tr:nth-child(even) > * {
+    background: transparent;
   }
 
   /* width: auto again here: the grid's 30% first column is a more
@@ -114,8 +127,18 @@
   .cards tbody th {
     width: auto;
     margin-bottom: 10px;
-    font-size: 17px;
+    padding: 12px 16px;
+    background: var(--ice-violet);
+    font-size: 16px;
     line-height: 1.35;
+  }
+
+  .cards tbody tr:nth-child(even) > th {
+    background: var(--ice-violet);
+  }
+
+  .cards td {
+    padding: 0 16px;
   }
 
   .cards td + td {
