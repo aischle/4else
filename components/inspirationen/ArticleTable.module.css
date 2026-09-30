@@ -1,0 +1,140 @@
+/* ============================================================
+   4else — table inside an article (ArticleTable.tsx)
+   ------------------------------------------------------------
+   From the approved mockup: part of the text, not a box. Rows
+   on hairlines, the header in the eyebrow style, first and last
+   cells flush with the text column. Its own inline-size
+   container, so the phone cards follow the column's width, not
+   the window's. Tokens only.
+   ============================================================ */
+
+.wrap {
+  container-type: inline-size;
+  margin: 1.6em 0 1.8em;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.table th,
+.table td {
+  padding: 14px 16px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--hairline);
+  overflow-wrap: break-word;
+}
+
+.table tr > :first-child {
+  padding-left: 0;
+}
+
+.table tr > :last-child {
+  padding-right: 0;
+}
+
+.table thead th {
+  padding-top: 0;
+  padding-bottom: 12px;
+  border-bottom-color: var(--hairline-strong);
+  font-size: 12px;
+  font-weight: var(--w-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.table tbody th {
+  width: 30%;
+  font-weight: var(--w-semibold);
+  color: var(--ink);
+}
+
+.table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+
+/* One line per block of a cell. */
+.line {
+  display: block;
+}
+
+/* Without a header row: the grid stays, and a wide table scrolls in
+   .wrap rather than squeezing every cell to a word. */
+.plain td {
+  min-width: 8em;
+}
+
+/* Narrow column, with a header row: one card per row. The header stays
+   in the markup for assistive technology, visually hidden. */
+@container (max-width: 620px) {
+  .cards thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .cards,
+  .cards tbody,
+  .cards tr,
+  .cards th,
+  .cards td {
+    display: block;
+    width: auto;
+  }
+
+  .cards tbody {
+    display: grid;
+    gap: 10px;
+  }
+
+  .cards tr {
+    padding: 16px 18px;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-field);
+    background: var(--surface);
+  }
+
+  .cards tbody th,
+  .cards td {
+    padding: 0;
+    border: 0;
+  }
+
+  /* width: auto again here: the grid's 30% first column is a more
+     specific rule and would squeeze the card's title. */
+  .cards tbody th {
+    width: auto;
+    margin-bottom: 10px;
+    font-size: 17px;
+    line-height: 1.35;
+  }
+
+  .cards td + td {
+    margin-top: 10px;
+  }
+
+  /* A padded or empty cell has nothing to show under its label. */
+  .cards td:empty {
+    display: none;
+  }
+
+  .cards td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 2px;
+    font-size: 11px;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+}

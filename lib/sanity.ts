@@ -126,6 +126,14 @@ export type CalloutBlock = {
   content?: PortableTextBlock[];
 };
 
+/* A table in the article body (studio/schemaTypes/table.ts), in the shape
+   the Studio's table editing writes: rows of cells, each cell a few text
+   blocks. headerRows counts the rows at the top that are headers (0 or 1
+   in practice). */
+export type TableCell = { _key: string; value?: PortableTextBlock[] };
+export type TableRow = { _key: string; cells?: TableCell[] };
+export type TableBlock = { _type: 'table'; _key: string; headerRows?: number; rows?: TableRow[] };
+
 /* A Sanity image asset id carries its size: image-<hash>-2000x1333-jpg. */
 export function assetSize(ref: string | undefined): { width: number; height: number } {
   const match = ref?.match(/-(\d+)x(\d+)-/);
@@ -175,8 +183,8 @@ export async function getArticles(): Promise<ArticleCard[]> {
 }
 
 /* Reading time at ~200 words per minute (as temu.swiss), from the text
-   of the body's blocks, its FAQ questions and answers, its link cards
-   and its callouts; images don't count. At least one minute. */
+   of the body's blocks, its FAQ questions and answers, its link cards,
+   callouts and tables; images don't count. At least one minute. */
 function countWords(blocks: PortableTextBlock[] | undefined): number {
   let words = 0;
   for (const block of blocks ?? []) {
@@ -202,6 +210,9 @@ function readingMinutes(body: PortableTextBlock[] | undefined): number {
     } else if (block._type === 'callout') {
       const callout = block as unknown as CalloutBlock;
       words += count(callout.title) + countWords(callout.content);
+    } else if (block._type === 'table') {
+      const table = block as unknown as TableBlock;
+      for (const row of table.rows ?? []) for (const cell of row.cells ?? []) words += countWords(cell.value);
     }
   }
   return Math.max(1, Math.round(words / 200));

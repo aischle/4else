@@ -562,6 +562,15 @@ it.
     lists, bold, italic, links via `linkAnnotation`). **No subheadings
     inside** (Robin, September 2026): a box has one title, and long
     multi-section passages stay normal article text.
+  - `table` (`table.ts`, "Tabelle"): the **Studio's own Portable Text
+    table editing** (Studio ≥ 6.6), switched on for the body only
+    (`components.portableText.plugins` in `blockContent.ts`), no plugin
+    package. Beatrice edits it inline: rows and columns, a header-row
+    toggle; a new table starts 3×3 with a header row. The canonical
+    names are what that editing binds to: `headerRows`, `rows[]` `row` →
+    `cells[]` `cell` → `value[]` blocks (normal style, bold/italic only).
+    **Keep `headerRows` declared**, or the header toggle silently does
+    nothing.
   **Adding a block type or style needs its renderer** in
   `components/inspirationen/ArticleBody.tsx`. After a schema change, run
   `npm run deploy` (or `schema:deploy`) so the hosted Studio has it. **Never
@@ -677,6 +686,24 @@ it.
   - The two grey boxes of "Kurs absagen" were converted by Claude as a
     draft (September 2026): the first as Gut zu wissen, the second
     ("Unsere Empfehlung") as Unser Tipp.
+- **Tables** (`components/inspirationen/ArticleTable.tsx` + `.module.css`,
+  from the mockup Robin approved,
+  https://claude.ai/artifact/Rdi2L6ES7sts6H7tjw2CTR, September 2026). For
+  Beatrice's comparisons ("Doodle versus 4else"), cells with ✅ ❌ ⚠️ as
+  plain text.
+  - No frame or fill: rows on `--hairline`, the header row in the eyebrow
+    style over a `--hairline-strong` rule, the first column as ink row
+    labels (`th scope="row"`, 30%) when there is a header row.
+  - **Phone: one card per row**, below 620px of the table's own width
+    (the wrapper is an inline-size container): the first cell as title,
+    each value under its column name from `data-label` (header text,
+    `stegaClean`ed since it is an attribute). Empty cells are hidden in
+    the cards. **Without a header row** the grid stays and scrolls
+    sideways inside the wrapper; the page never does.
+  - Ragged rows are padded to the widest row; a cell's blocks render one
+    line each. Cell text counts towards the reading time.
+  - The Doodle article's table, flattened into 24 paragraphs by the
+    import, was rebuilt as a table by Claude, as a draft (September 2026).
 - **Instant updates:** `app/api/revalidate` (POST, header
   `x-webhook-secret` = `SANITY_REVALIDATE_SECRET`). Once the production
   domain exists, create the webhook in sanity.io/manage → API → Webhooks:
