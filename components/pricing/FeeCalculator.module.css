@@ -1,5 +1,95 @@
-/* 4else — fee calculator (FeeCalculator.tsx), from the pricing handoff.
-   A white card on the Eisviolett fee column. Tokens only. */
+/* 4else — the pricing page's fee panel (FeeCalculator.tsx): the
+   Eisviolett column with the licence switch, the big TWINT rate, the
+   slider card and the note. Tokens only. */
+
+.panel {
+  display: grid;
+  align-content: center;
+  gap: 24px;
+  padding: clamp(36px, 5vw, 72px);
+  background: var(--ice-violet);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* The licence switch: the billing toggle's pill, on white. */
+.switch {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-self: start;
+  gap: 2px;
+  margin: 0;
+  padding: 4px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+}
+
+.option {
+  position: relative;
+  cursor: pointer;
+}
+
+.optionInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+}
+
+.optionText {
+  display: inline-block;
+  padding: 9px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: var(--w-semibold);
+  color: var(--text-body);
+  transition: background-color var(--dur) ease-out, color var(--dur) ease-out;
+}
+
+.optionDetail {
+  font-weight: var(--w-medium);
+}
+
+.optionInput:checked + .optionText {
+  background: var(--brand);
+  color: var(--text-on-ink);
+}
+
+.optionInput:focus-visible + .optionText {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.figure {
+  display: grid;
+  gap: 8px;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: var(--w-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-body);
+}
+
+.rate {
+  font-size: clamp(56px, 7vw, 96px);
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  color: var(--accent);
+}
 
 .card {
   display: grid;
@@ -50,17 +140,17 @@
   border-top: 1px solid var(--hairline);
 }
 
-.figure {
+.amount {
   display: grid;
   gap: 2px;
 }
 
-.figureLabel {
+.amountLabel {
   font-size: 13px;
   color: var(--text-muted);
 }
 
-.figureValue {
+.amountValue {
   font-size: 18px;
   font-weight: var(--w-semibold);
   letter-spacing: -0.02em;
@@ -70,4 +160,44 @@
 
 .payout {
   color: var(--accent);
+}
+
+.note {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-body);
+}
+
+/* Phones: "Kursverwaltung (Free / Premium)" and "Connect" no longer fit
+   on one line of the pill, and a pill broken over two lines looks
+   broken. The switch spans the column instead, the detail drops under
+   "Kursverwaltung", and the corners tighten from pill to field. */
+@media (max-width: 520px) {
+  .switch {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, auto);
+    justify-self: stretch;
+    border-radius: 18px;
+  }
+
+  .optionText {
+    display: grid;
+    align-content: center;
+    height: 100%;
+    border-radius: 14px;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .optionDetail {
+    display: block;
+    font-size: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .optionText {
+    transition-duration: 0.01ms;
+  }
 }

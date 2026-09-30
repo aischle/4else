@@ -13,6 +13,11 @@ import { useTranslations } from 'next-intl';
    rendered order: add a pair here and in messages/de.json, and
    both surfaces pick it up.
 
+   f10 ("Ist 4else DSG-konform?") is held back (October 2026):
+   Beatrice wants the storage location confirmed and no blanket
+   "DSG-konform" claim until then. Its keys stay in the messages;
+   put 'f10' back between f9 and f11 once confirmed.
+
    There is no `about` reference to an Organization node — this
    is the only JSON-LD on the site so far, so there is nothing
    to point at. Wire it up if a sitewide @graph is ever added.
@@ -28,7 +33,6 @@ export const FAQ_IDS = [
   'f7',
   'f8',
   'f9',
-  'f10',
   'f11',
 ] as const;
 

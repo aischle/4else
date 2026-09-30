@@ -234,6 +234,14 @@ Things to know:
   message keys, so copy and structured data cannot drift. **To add or remove a
   pair, edit `FAQ_IDS` there and the `fNQuestion`/`fNAnswer` keys** — never
   hand-write the schema text.
+  **Ten are shown since October 2026** (Beatrice's pricing change request):
+  **f10** ("Ist 4else DSG-konform?") is out of `FAQ_IDS` until she confirms
+  the storage location and wording (keys kept; put it back between f9 and
+  f11), and **f2**'s fee sentence was rewritten to her wording, without the
+  flat "+ CHF 0.20". The same request took "DSG-konform, in der Schweiz
+  gehostet" out of `why.r3Body` and "Hosting in der Schweiz" out of the
+  payment banner (`payment.poweredBy`). No blanket DSG or hosting claims
+  until confirmed; the contact page's `k3` still makes one (open).
   **Else sits under the heading** with pencil and notepad
   (`public/images/home/else-notizen.webp`, a transparent 600×661 cut-out,
   exported like the contact page's Else; alt `faq.elseImageAlt`),
@@ -242,10 +250,11 @@ Things to know:
   line above it (`fit-content`), and Else hangs from its middle without
   widening it (`.faqHead`, `.faqElseRow`). 170–225px wide beside the list
   (`15.6vw`), 112–165px above it (≤1000px); Robin had her 25% smaller
-  than the first 300px. Note the transaction fee (4,8 % + CHF 0.20) and
-  the payment methods are now stated here, on the pricing page (§5i: its
-  copy and the calculator's `RATE`/`FIXED`) and on 4else.events; keep them
-  in step.
+  than the first 300px. Note the transaction fee and the payment methods
+  are stated here (f2), on the pricing page (§5i: its copy and the
+  calculator's `RATES`) and on 4else.one; keep them in step. Beatrice's
+  wording (October 2026): 4.8 % plus fees depending on the payment method,
+  cheaper with Connect; **never a flat or average "+ CHF 0.20"**.
 - **Mobile menu** (mockup option A, chosen by Robin, September 2026;
   `components/header/MobileMenu.tsx`). Below 1000px the section links,
   Login and Demo leave the bar, which keeps only the wordmark and a round
@@ -830,51 +839,82 @@ it stays hidden.
 ## 5i. Pricing page
 
 `app/[locale]/(site)/preise/page.tsx` (+ `page.module.css`), route
-`/preise` in `lib/routing.ts` (so it is in the sitemap), from the handoff
-`Z:\GoogleDrive\projects\4else\design_handoff_4else_preise\` (Robin,
-September 2026). Copy in the `preise` namespace, title and description in
-`meta.preise*`; the title is `absolute` ("Preise – Was kostet 4else?"),
-since the layout's " — 4else" would repeat the name. The nav's "Preise",
-the footer's and the 404's now link here.
+`/preise` in `lib/routing.ts` (so it is in the sitemap). First built from
+the handoff `Z:\GoogleDrive\projects\4else\design_handoff_4else_preise\`
+(September 2026), then **reworked to Beatrice's change request of 30
+September 2026** (her wording throughout, lowercase du, "4.8 %"). Copy in
+the `preise` namespace, title and description in `meta.preise*`; the title
+is `absolute` ("Preise – Was kostet 4else?"), since the layout's
+" — 4else" would repeat the name. The nav's "Preise", the footer's and the
+404's link here.
 
 Sections: hero and plans on one white block (pulled up under the nav, as
-on the contact page) → payment panel with the fee calculator → FAQ on a
-white band → the contact page's CTA band with a sub-line.
+on the contact page) → payment panel with the fee panel → FAQ on a white
+band → the contact page's CTA band with a sub-line.
 
-- **Else** is the coat-and-question-marks figure from the handoff's
-  `assets/else-sucht.png`, the same picture the 404 already serves as
-  `public/images/404/else-sucht.webp` (ground lifted to pure white), so
-  no new export: the README's "reuse else-concierge" contradicted the
-  design and Robin's attachment. A 180 × 260 box crops the square image
-  as the design does (314px wide at −70/−18), in percentages so it scales;
-  on phones (≤560px) she shrinks beside the lead, as on the contact page.
-- **Plans**: Free (white, hairline), Premium (`--brand`, lemon "Beliebt",
-  `violet` button, `--shadow-hero`), Business (`--ice-violet`, `solid`
-  button to /kontakt). Free and Premium buttons need the backend
-  (`data-wip="backend"`). **Three columns or one**, never two plus a lone
-  Business card: one column below 950px (the handoff's check list).
+- **Three offers, Free · Premium · Connect** (Business is gone; "Premium
+  Connect" / "Premium + Zahlungslösung" are not used; "4else Connect" only
+  in orders and invoices):
+
+  | | Monatlich | Jährlich |
+  |---|---|---|
+  | Free | CHF 0 | CHF 0 |
+  | Premium | CHF 24 | CHF 114 ("entspricht CHF 9.50 pro Monat") |
+  | Connect | CHF 15 | CHF 180 ("entspricht CHF 15 pro Monat"), no yearly discount |
+
+  Licence prices exclude VAT (the footnote says so). The saving shows **on
+  Premium only** ("rund 60 %", lemon on navy, 5.2:1); the toggle itself
+  carries no "–60 %" any more. Premium is navy with the lemon label "Für
+  Vielnutzer" (it replaced "Beliebt"); Connect is Eisviolett. Freigabegruppen
+  are left out until confirmed.
+- **Where the buttons go**: Free and Premium "Kostenlos starten" and the CTA
+  band's "Jetzt kostenlos starten" lead to the free sign-up of 4else.com,
+  `https://www.4else.com/de/user/login#tab-register` (from the old site;
+  Premium is switched on in the app afterwards). Connect's "Zahlungslösung
+  anfragen" goes to `/kontakt`. "Demo ausprobieren" keeps the wip dialog.
+- **The note under the plans** points to the further licences and the full
+  calculator. Their detail page does not exist yet, so it links to
+  `https://4else.one/was-kostet-die-shoploesung-4else-one/` (new tab).
+  **Swap `MORE_URL` in the page when the detail page is built.**
 - **Billing toggle without JavaScript**: two radios styled as the pill;
-  `.plans:has(.monthlyInput:checked)` swaps Premium's two prices (CHF 114
-  per year by default, CHF 24 per month). **Select by class, not by id**:
-  CSS modules rename ids too, and an `#id` in the module never matches
-  (found while testing). "–60 %" is lemon on the navy half (5.2:1); the
-  accent there reads 1.8:1.
-- **Fee calculator** (`components/pricing/FeeCalculator.tsx`, the page's
-  only client component): CHF 5–300 in steps of 5, default 45; fee =
-  4.8 % + CHF 0.20 rounded to the Rappen, payout the rest; `<output>` and
-  `aria-valuetext`, results `aria-live`. The payment panel stacks below
-  about 900px (400px columns, not the handoff's 340, which still split on
-  a 768px tablet).
-- **Copy deviations from the handoff**, on purpose: the fee is written
-  "4,8 %" as on the start page; the FAQ intro drops "Antwort innert 24 h"
-  (no response times, Beatrice's rule in §5b), reading "Nicht dabei?
-  Schreib Beatrice." "Du/Dein" are capitalised, as the handoff asks.
-- **FAQ**: five pairs (`q1`–`q5`), the contact page's numbered
-  `<details name="preise-faq">` pattern, first open. No FAQPage schema.
-- **Data caveat (the handoff's)**: plan features and prices come from
-  4else.com's price sheet; confirm them with the client before launch.
-  Checked at 1440, 1024, 768 and 390 (September 2026): no horizontal
-  scroll, toggle and calculator working.
+  `.plans:has(.monthlyInput:checked)` swaps the Premium and Connect price
+  blocks. **Select by class, not by id**: CSS modules rename ids too, and an
+  `#id` in the module never matches.
+- **Fee panel** (`components/pricing/FeeCalculator.tsx`, the page's only
+  client component, the whole Eisviolett column): a switch "Kursverwaltung
+  (Free / Premium) | Connect" (Kursverwaltung first), the big rate that
+  follows it, the ticket-price slider (CHF 5–300, steps of 5, default 45)
+  and the note "Beispiel für TWINT …". **TWINT only, no fixed surcharge**:
+  4.8 % or 2 %, fee = price × rate rounded to the Rappen, payout the rest.
+  Beatrice's check: CHF 130 → 6.24 / 123.76 and 2.60 / 127.40 (verified).
+  Never add a flat or average "+ CHF 0.20": fixed fees differ by payment
+  method and belong on the detail page. On phones (≤520px) the switch spans
+  the column, "(Free / Premium)" under "Kursverwaltung".
+- **Else** is `public/images/preise/else-portemonnaie.webp` (October 2026,
+  Else dropping a coin into her purse): a transparent cut-out exported like
+  the concierge (alpha ≤ 4 zeroed, trimmed + 8px, 600 × 758), so it fills its
+  206 × 260 box; on phones (≤560px) she shrinks beside the lead. The 404
+  keeps `else-sucht.webp`.
+- **Product naming**: the offer is the "4else Zahlungslösung", Payrexx the
+  provider behind it; 4else.de is the payment solution's sign-up and login
+  address, never a product name. The payment eyebrow reads "4else kassiert".
+- **FAQ**: `q1`–`q4` shown, the contact page's numbered `<details
+  name="preise-faq">` pattern, first open, no FAQPage schema. **`q5` (data
+  storage) is written but held back** until Beatrice confirms the Swiss
+  location: add it to `faqs` in the page then.
+- **Removed on her request, keep them out**: "kein Vertrag / keine
+  Kündigungsfrist" (also from the CTA sub-line), "Keine Provision",
+  "DSG-konform", "ohne Zwischenplattform", "Hosting in der Schweiz".
+- **Still open** (not built): the detail page (Starter CHF 228, Plus CHF
+  348, Connect CHF 180 per year, Business / Enterprise on request; fees per
+  payment method, fixed and minimum fees; PayPal via the merchant account;
+  the annual cost calculator) once the tariffs are confirmed; moving the old
+  4else.one content in, with redirects; terms and cancellation wording; a
+  privacy page to link (today only the old site's
+  `4else.events/datenschutzerklaerung/`).
+- Checked at 1440, 1024, 768 and 390 (October 2026): no horizontal scroll,
+  one card column below 950px, the payment panel stacking, the toggle and
+  the fee panel working.
 
 ## 6. SEO
 

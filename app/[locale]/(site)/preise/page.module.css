@@ -128,34 +128,23 @@
   text-wrap: pretty;
 }
 
-/* Else with the coat (public/images/404/else-sucht.webp, the 404's
-   image: its ground lifted to pure white, so it sits on the white hero
-   without a box). The 180 × 260 box shows her from the question marks
-   down to her feet; the image inside is 314px square at desktop size,
-   placed as in the design (left −70, top −18). The offsets are
-   percentages of that box, so the crop scales with it on phones.
+/* Else with her purse (public/images/preise/else-portemonnaie.webp,
+   October 2026): a transparent cut-out, trimmed to her outline plus
+   8px, 600 × 758, so it simply fills the box, as the contact page's
+   concierge does. 260px high, the height of the design's figure.
    84px top margin: room for the bubble. */
 .else {
   position: relative;
   flex-shrink: 0;
-  width: 180px;
-  aspect-ratio: 180 / 260;
+  width: 206px;
+  aspect-ratio: 600 / 758;
   margin: 84px 0 0 auto;
 }
 
-.elseCrop {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-}
-
 .elseImage {
-  position: absolute;
-  left: -38.889%;
-  top: -6.923%;
-  width: 174.444%;
-  max-width: none;
-  height: auto;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 /* Right-aligned over her head, capped at her width so it never reaches
@@ -165,7 +154,7 @@
   right: 4px;
   bottom: calc(100% + 10px);
   width: max-content;
-  max-width: 176px;
+  max-width: 190px;
   padding: 12px 16px;
   border-radius: var(--radius-bubble);
   background: var(--brand);
@@ -191,7 +180,7 @@
   }
 
   .else {
-    width: clamp(104px, 32vw, 180px);
+    width: clamp(110px, 34vw, 206px);
   }
 
   .elseBubble {
@@ -260,17 +249,6 @@
   outline-offset: 2px;
 }
 
-.toggleSave {
-  margin-left: 6px;
-  color: var(--accent);
-}
-
-/* On the navy half the accent fails contrast (1.8:1, and the bright
-   violet 3.7:1); lemon reads at 5.2:1, as on the Premium card's checks. */
-.toggleInput:checked + .toggleLabel .toggleSave {
-  color: var(--lemon);
-}
-
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
@@ -278,7 +256,7 @@
   gap: 16px;
 }
 
-/* Three in a row, or one: auto-fit alone gives two plus a lone Business
+/* Three in a row, or one: auto-fit alone gives two plus a lone Connect
    card on tablets (about 580–870px of content), which the handoff's
    checks rule out. Three 280px cards and two 16px gaps need 872px of
    content, which the gutter leaves from about 950px of window. */
@@ -308,11 +286,12 @@
   box-shadow: var(--shadow-hero);
 }
 
-.business {
+.connect {
   background: var(--ice-violet);
 }
 
-.popular {
+/* "Für Vielnutzer" (it replaced "Beliebt"): the lemon pill, top right. */
+.label {
   position: absolute;
   top: 22px;
   right: 22px;
@@ -348,13 +327,25 @@
 }
 
 .premium .cardDescription,
-.premium .period {
+.premium .period,
+.premium .equivalent,
+.premium .after,
+.premium .cardNote {
   color: var(--text-on-ink-muted);
 }
 
-.business .cardDescription,
-.business .period {
+.connect .cardDescription,
+.connect .period,
+.connect .equivalent,
+.connect .after {
   color: var(--text-body);
+}
+
+/* The price, then its small print: "entspricht …", the saving, the
+   Connect fees line. */
+.priceBlock {
+  display: grid;
+  gap: 6px;
 }
 
 .price {
@@ -377,24 +368,62 @@
   color: var(--text-muted);
 }
 
-/* Premium's two prices: yearly by default, monthly when that radio is
-   checked. Matched by class, not by its id: CSS modules rename ids too.
-   Without :has() support the yearly price simply stays. */
+.equivalent {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* Premium only (the change request): the yearly saving, in lemon on
+   the navy card (5.2:1). */
+.saving {
+  margin: 0;
+  font-size: 13px;
+  font-weight: var(--w-semibold);
+  color: var(--lemon);
+}
+
+/* Premium's and Connect's two prices: yearly by default, monthly when
+   that radio is checked. Matched by class, not by its id: CSS modules
+   rename ids too. Without :has() support the yearly price simply
+   stays. */
 .monthly {
   display: none;
 }
 
 .plans:has(.monthlyInput:checked) .monthly {
-  display: flex;
+  display: grid;
 }
 
 .plans:has(.monthlyInput:checked) .yearly {
   display: none;
 }
 
+/* The button and the line under it. */
+.action {
+  display: grid;
+  gap: 10px;
+}
+
 .cta {
   justify-content: center;
   padding: 14px 24px;
+}
+
+.after {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+/* "Online-Zahlungen optional möglich …", last in the Free and Premium
+   cards. */
+.cardNote {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-muted);
 }
 
 .features {
@@ -413,7 +442,7 @@
   color: var(--text-on-ink);
 }
 
-.business .features {
+.connect .features {
   border-top-color: var(--hairline-strong);
 }
 
@@ -432,10 +461,36 @@
   color: var(--lemon);
 }
 
+/* Under the cards: the pointer to the further licences, then the
+   small print. */
+.plansFoot {
+  display: grid;
+  gap: 8px;
+}
+
+.plansMore {
+  margin: 0;
+  max-width: 72ch;
+  font-size: 16px;
+  color: var(--text-body);
+  text-wrap: pretty;
+}
+
 .plansNote {
   margin: 0;
   font-size: 14px;
   color: var(--text-muted);
+}
+
+.inlineLink {
+  font-weight: var(--w-semibold);
+  color: var(--text-strong);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.inlineLink:hover {
+  color: var(--accent);
 }
 
 /* ── Payment ────────────────────────────────────────────────── */
@@ -507,49 +562,7 @@
   color: var(--text-muted);
 }
 
-.feeSide {
-  display: grid;
-  align-content: center;
-  gap: 28px;
-  padding: clamp(36px, 5vw, 72px);
-  background: var(--ice-violet);
-}
-
-.feeFigure {
-  display: grid;
-  gap: 8px;
-}
-
-.feeEyebrow {
-  font-size: 12px;
-  font-weight: var(--w-semibold);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-body);
-}
-
-.feeLine {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 14px;
-  margin: 0;
-}
-
-.feeRate {
-  font-size: clamp(56px, 7vw, 96px);
-  font-weight: var(--w-semibold);
-  letter-spacing: -0.05em;
-  line-height: 0.9;
-  color: var(--accent);
-}
-
-.feeFixed {
-  font-size: clamp(24px, 2.6vw, 36px);
-  font-weight: var(--w-semibold);
-  letter-spacing: -0.03em;
-  line-height: 1;
-}
+/* The Eisviolett fee column is components/pricing/FeeCalculator. */
 
 /* ── FAQ ────────────────────────────────────────────────────── */
 
@@ -590,17 +603,6 @@
   max-width: 36ch;
   font-size: 18px;
   color: var(--text-body);
-}
-
-.faqLink {
-  font-weight: var(--w-semibold);
-  color: var(--text-strong);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.faqLink:hover {
-  color: var(--accent);
 }
 
 .faqList {
@@ -773,7 +775,7 @@
 /* ── Focus ──────────────────────────────────────────────────── */
 
 .faqQuestion:focus-visible,
-.faqLink:focus-visible {
+.inlineLink:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
