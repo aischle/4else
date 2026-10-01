@@ -229,6 +229,7 @@ export default function PreisePage({
                     <span className={styles.period}>{t('connectPeriodYearly')}</span>
                   </p>
                   <p className={styles.equivalent}>{t('connectEquivalentYearly')}</p>
+                  <p className={styles.saving}>{t('connectSavingYearly')}</p>
                   <p className={styles.equivalent}>{t('connectFees')}</p>
                 </div>
                 <div className={`${styles.priceBlock} ${styles.monthly}`}>
@@ -236,6 +237,7 @@ export default function PreisePage({
                     <b className={styles.amount}>{t('connectPriceMonthly')}</b>
                     <span className={styles.period}>{t('connectPeriodMonthly')}</span>
                   </p>
+                  <p className={styles.saving}>{t('connectSavingMonthly')}</p>
                   <p className={styles.equivalent}>{t('connectFees')}</p>
                 </div>
                 <div className={styles.action}>

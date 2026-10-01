@@ -374,13 +374,18 @@
   color: var(--text-muted);
 }
 
-/* Premium only (the change request): the yearly saving, in lemon on
-   the navy card (5.2:1). */
+/* The yearly saving, on Premium (rund 60 %) and Connect (rund 48 %):
+   lemon on the navy card (5.2:1); on Eisviolett lemon fails, so the
+   accent (4.7:1). */
 .saving {
   margin: 0;
   font-size: 13px;
   font-weight: var(--w-semibold);
   color: var(--lemon);
+}
+
+.connect .saving {
+  color: var(--accent);
 }
 
 /* Premium's and Connect's two prices: yearly by default, monthly when

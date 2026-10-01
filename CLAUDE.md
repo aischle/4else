@@ -860,11 +860,18 @@ band → the contact page's CTA band with a sub-line.
   |---|---|---|
   | Free | CHF 0 | CHF 0 |
   | Premium | CHF 24 | CHF 114 ("entspricht CHF 9.50 pro Monat") |
-  | Connect | CHF 15 | CHF 180 ("entspricht CHF 15 pro Monat"), no yearly discount |
+  | Connect | CHF 29 | CHF 180 ("entspricht CHF 15 pro Monat") |
 
-  Licence prices exclude VAT (the footnote says so). The saving shows **on
-  Premium only** ("rund 60 %", lemon on navy, 5.2:1); the toggle itself
-  carries no "–60 %" any more. Premium is navy with the lemon label "Für
+  Licence prices exclude VAT (the footnote says so). **Connect includes
+  Premium at both terms.** It was CHF 15 a month at first, which made it
+  cheaper than Premium alone when paid monthly; Beatrice set CHF 29 (1
+  October 2026), so Connect costs more than Premium either way. **Keep
+  that order** if prices change. The yearly saving shows on the two cards
+  that have one: Premium "rund 60 %" (114 vs 12 × 24 = 288; lemon on navy,
+  5.2:1) and Connect "rund 48 %" (180 vs 12 × 29 = 348; `--accent` on
+  Eisviolett, 4.7:1, as lemon fails there). Recompute them when a price
+  changes. The toggle itself carries no "–60 %". Premium is navy with the
+  lemon label "Für
   Vielnutzer" (it replaced "Beliebt"); Connect is Eisviolett. Freigabegruppen
   are left out until confirmed.
 - **Where the buttons go**: Free and Premium "Kostenlos starten" and the CTA
