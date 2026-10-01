@@ -1,6 +1,29 @@
 import {DocumentTextIcon} from '@sanity/icons/DocumentText'
 import {defineField, defineType} from 'sanity'
 
+/* What an article's address may be: lowercase words of letters and
+   digits, joined by single hyphens. */
+const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
+
+/* "Generieren" for German titles, so the result always passes SLUG:
+   umlauts spelled out (für → fuer), other accents dropped, everything
+   else a hyphen, hyphens collapsed and trimmed, at most 96 characters
+   without a dangling hyphen. */
+function slugify(input: string): string {
+  return input
+    .toLowerCase()
+    .replace(/ä/g, 'ae')
+    .replace(/ö/g, 'oe')
+    .replace(/ü/g, 'ue')
+    .replace(/ß/g, 'ss')
+    .normalize('NFKD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 96)
+    .replace(/-+$/, '')
+}
+
 /* One blog post on 4else.events/inspirationen. The website only shows
    published articles whose "Veröffentlicht am" is not in the future, so
    a future date is a simple way to schedule a post. */
@@ -38,8 +61,18 @@ export const article = defineType({
       group: 'content',
       description:
         'Der letzte Teil der Adresse, z. B. 4else.events/inspirationen/mein-artikel. Mit „Generieren“ aus dem Titel erstellen. Nach der Veröffentlichung nicht mehr ändern, sonst funktionieren geteilte Links nicht mehr.',
-      options: {source: 'title', maxLength: 96},
-      validation: (rule) => rule.required(),
+      options: {source: 'title', maxLength: 96, slugify},
+      /* Only what the site can put in /inspirationen/<slug>: an imported
+         slug with slashes ("/alter-pfad/") once turned an article into a
+         404 (October 2026). */
+      validation: (rule) =>
+        rule.required().custom((slug?: {current?: string}) => {
+          const value = slug?.current
+          if (!value) return true
+          return SLUG.test(value)
+            ? true
+            : 'Nur Kleinbuchstaben, Ziffern und Bindestriche – keine Schrägstriche, Leerzeichen oder Umlaute. Am einfachsten mit „Generieren“ aus dem Titel erstellen.'
+        }),
     }),
     defineField({
       name: 'excerpt',

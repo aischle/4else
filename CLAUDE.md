@@ -547,6 +547,13 @@ it.
   - `article`: `title`, `slug`, `excerpt` (Anriss, ≤ 200), `mainImage` (alt
     required), `publishedAt`, `author` → `author`, `body` (`blockContent`),
     `seo.metaTitle` / `seo.metaDescription`;
+    **the slug is validated** (October 2026): only lowercase letters,
+    digits and single hyphens (`SLUG` in `article.ts`). An imported slug
+    `/4else-event-tool-…-plattformzwang/` (the old WordPress path, with
+    slashes) made its article a 404 although it was published; it was
+    fixed and republished. "Generieren" uses the file's own `slugify`
+    (ä→ae, ö→oe, ü→ue, ß→ss, accents dropped, everything else a hyphen), so
+    a generated slug always passes;
     **title lengths** (Robin, September 2026, after Beatrice found 90 too
     short): `title` warns from 70 characters and stops at 125;
     `seo.metaTitle` warns from 60 and stops at 100. A warning still lets
