@@ -2,6 +2,7 @@ import { use, type ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { ExternalLink } from 'lucide-react';
 import { Link } from '@/lib/navigation';
 import styles from './page.module.css';
 
@@ -158,8 +159,10 @@ export default function ImpressumPage({
           <p>
             {t.rich('madeBy', {
               link: (chunks) => (
-                <a href="https://temu.swiss" className={styles.link}>
+                <a href="https://temu.swiss" target="_blank" rel="noopener noreferrer" className={`${styles.link} ${styles.externalLink}`}>
                   {chunks}
+                  <ExternalLink className={styles.externalIcon} size={14} strokeWidth={2} aria-hidden="true" />
+                  <span className="srOnly"> {t('newTab')}</span>
                 </a>
               ),
             })}

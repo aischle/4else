@@ -48,7 +48,8 @@
     "images3": "in älteren Artikeln auch Gratisplattformen wie Pixabay, Unsplash und Death to Stock Photo",
     "imagesLicence": "Die Bilder unterstehen den Lizenzbedingungen dieser Anbieter und dürfen ohne Absprache nicht verwendet werden.",
     "madeByTitle": "Konzept, Design und Umsetzung",
-    "madeBy": "<link>Temu Swiss</link>"
+    "madeBy": "<link>Temu Swiss</link>",
+    "newTab": "(öffnet in neuem Tab)"
   },
   "agb": {
     "eyebrow": "AGB",
@@ -397,6 +398,7 @@
     "wordmark": "Gestaltet.\nOrganisiert.\n<b>Bezahlt.</b>",
     "copyright": "© 2026 fourelse ag. All rights reserved.",
     "credit": "Website von <link>Temu Swiss</link>",
+    "newTab": "(öffnet in neuem Tab)",
     "legalLabel": "Rechtliches",
     "imprint": "Impressum",
     "terms": "AGB",

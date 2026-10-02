@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { useTranslations } from 'next-intl';
+import { ExternalLink } from 'lucide-react';
 import { Wordmark } from '@/components/brand/Wordmark';
 import { Link } from '@/lib/navigation';
 import styles from './Footer.module.css';
@@ -94,8 +95,10 @@ export function Footer() {
           {' · '}
           {t.rich('credit', {
             link: (chunks) => (
-              <a href="https://temu.swiss" className={styles.creditLink}>
+              <a href="https://temu.swiss" target="_blank" rel="noopener noreferrer" className={styles.creditLink}>
                 {chunks}
+                <ExternalLink className={styles.creditIcon} size={12} strokeWidth={2} aria-hidden="true" />
+                <span className="srOnly"> {t('newTab')}</span>
               </a>
             ),
           })}

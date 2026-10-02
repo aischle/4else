@@ -97,7 +97,16 @@
    literal #D90A2C, 4.87:1 on the page's #F7F7FA. It keeps its colour on
    hover and takes an underline instead. */
 .creditLink {
+  /* Positioned so the hidden "(öffnet in neuem Tab)" stays inside it. */
+  position: relative;
   color: #d90a2c;
+}
+
+/* The new-tab glyph after the name, in the link's red. */
+.creditIcon {
+  display: inline-block;
+  margin-left: 3px;
+  vertical-align: -1px;
 }
 
 .creditLink:hover {

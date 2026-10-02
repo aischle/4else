@@ -135,6 +135,19 @@
   color: var(--ink);
 }
 
+/* A link that opens a new tab (the Temu Swiss credit): positioned so the
+   hidden "(öffnet in neuem Tab)" stays inside it, the glyph after the
+   name in the link's own colour. */
+.externalLink {
+  position: relative;
+}
+
+.externalIcon {
+  display: inline-block;
+  margin-left: 4px;
+  vertical-align: -2px;
+}
+
 .link:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
