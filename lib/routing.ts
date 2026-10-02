@@ -24,6 +24,7 @@ export const routing = defineRouting({
     '/preise': '/preise',
     '/impressum': '/impressum',
     '/agb': '/agb',
+    '/datenschutz': '/datenschutz',
     '/inspirationen': '/inspirationen',
     '/inspirationen/[slug]': '/inspirationen/[slug]',
   },

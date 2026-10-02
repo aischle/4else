@@ -390,7 +390,8 @@ band. Copy in the `kontakt` namespace, page title/description in
   she cannot guarantee. They read "Persönliche Antwort" and "bis zum ersten
   Ticketverkauf" now. Keep new contact-page copy to what 4else controls: no
   response times, no sales outcomes.
-- **Still open:** Datenschutz, Zum Login and both CTA buttons point at `#`.
+- **Still open:** Zum Login and both CTA buttons point at `#`. The form's
+  consent links to `/datenschutz` (§5k).
 
 ---
 
@@ -450,7 +451,7 @@ control that would need something unbuilt keeps `href="#"` and opens
   | Link | Says |
   |---|---|
   | `data-wip="backend"` | *Dafür fehlt noch das Backend.* — Login, Demo, Registrieren, Jetzt Event erstellen, Zum Login |
-  | no attribute | *Diese Seite ist noch nicht gestaltet.* — Über uns, the card links, Datenschutz |
+  | no attribute | *Diese Seite ist noch nicht gestaltet.* — Über uns, the card links |
 
 - Copy lives in the `wip` namespace. Native `<dialog>`, so the backdrop,
   Escape, the focus trap and the focus return come from the browser; a click
@@ -928,16 +929,14 @@ band → the contact page's CTA band with a sub-line.
   348, Connect CHF 180 per year, Business / Enterprise on request; fees per
   payment method, fixed and minimum fees; PayPal via the merchant account;
   the annual cost calculator) once the tariffs are confirmed; moving the old
-  4else.one content in, with redirects; terms and cancellation wording; a
-  privacy page to link (today only the old site's
-  `4else.events/datenschutzerklaerung/`).
+  4else.one content in, with redirects; terms and cancellation wording.
 - Checked at 1440, 1024, 768 and 390 (October 2026): no horizontal scroll,
   one card column below 950px, the payment panel stacking, the toggle and
   the fee panel working.
 
 ## 5j. AGB
 
-`app/[locale]/(site)/agb/page.tsx` (+ `page.module.css`), route `/agb` in
+`app/[locale]/(site)/agb/page.tsx`, laid out by `LegalDocument` (below), route `/agb` in
 `lib/routing.ts` (so it is in the sitemap). Title "AGB" (→ "AGB — 4else"),
 description in `meta.agb*`, copy in the `agb` namespace. The footer's
 "AGB" and the Impressum's AGB row link here. Built October 2026.
@@ -966,24 +965,29 @@ description in `meta.agb*`, copy in the `agb` namespace. The footer's
     page alone. Payrexx's own terms are not referenced (suggestion);
   - (08) the analytics sentence made general ("Analyse-Dienste wie z. B.
     Google Analytics oder Vercel Analytics", Robin), plus a link to the
-    Datenschutzerklärung — still the old site's (`PRIVACY_URL` in the page);
+    Datenschutzerklärung (`/datenschutz`, §5k);
   - (12) Kontakt, new;
   - typos and grammar ("Gerichtsstand", "Postfincance", "Verzugsfolgen").
 - **For a lawyer:** "Gerichtsstand … Hüntwangen ZH" (Hüntwangen has no court
   of its own; the Bezirksgericht Bülach is competent), the broad liability
   exclusion, and that the AGB say nothing on how changes to them are
   announced. Not legal advice.
-- **Text structure:** `SECTIONS` in the page sets the order and the ids
-  (the anchors, `/agb#datenschutz`); a section's paragraphs are its `p1`,
-  `p2`, … keys, read with `t.raw`, so a paragraph is added in the messages
-  alone. Rich tags: `<b>`, `<pricing>` (→ /preise), `<privacy>`; the
+- **Text structure** (shared with the Datenschutz page):
+  `components/legal/LegalDocument.tsx` (+ `.module.css`) renders header,
+  spine and sections from a namespace; `SECTIONS` in the page sets the
+  order and the ids (the anchors, `/agb#datenschutz`). Inside a section the
+  keys stand in reading order: `pN` a paragraph, `hN` a sub-heading,
+  `listN` a list with items `iN`, read with `t.raw`, so text is added in
+  the messages alone. Rich tags: `<b>`, `<url>` (the address is the text),
+  `<mail>`, `<imprint>`, `<pricing>` (→ /preise), `<privacy>`
+  (→ /datenschutz); page markup goes before or after a section through
+  `extras` (`CompanyCard`, the footer's address). The
   numbers "(01)" come from `faqNumber`, never from the messages. The
   headline carries a soft hyphen (U+00AD) between "Geschäfts" and
   "bedingungen", escaped in the JSON, which breaks it on phones only.
 - **Layout** after Limen's terms page (translimen.io/de/terms): a 240px
   spine left, the text right at 68ch. The spine is
-  `components/legal/LegalToc.tsx` (client), reusable for a future
-  Datenschutz page: sticky at `--nav-h` + 32px from 960px, a hairline
+  `components/legal/LegalToc.tsx` (client): sticky at `--nav-h` + 32px from 960px, a hairline
   rail, the section being read in `--accent` with a 2px bar and
   `aria-current="location"` (the last heading above 30% of the viewport;
   at the page's bottom the last section). Below 960px it is a white panel
@@ -991,6 +995,71 @@ description in `meta.agb*`, copy in the `agb` namespace. The footer's
   Kontakt block an Eisviolett panel.
 - Checked at 1440, 1024, 768, 390 and 320 (October 2026): no horizontal
   scroll, the spine sticky and marking, jumps landing under the nav.
+
+## 5k. Datenschutzerklärung
+
+`app/[locale]/(site)/datenschutz/page.tsx`, laid out by `LegalDocument`
+like the AGB (§5j), route `/datenschutz` in `lib/routing.ts`. Title and
+description in `meta.datenschutz*`, copy in the `datenschutz` namespace
+(~130 KB, 29 sections). The footer's "Datenschutz", the contact form's
+consent and the AGB's (08) link here. Built October 2026.
+
+- **Source:** the old site's policy (4else.events/datenschutzerklaerung),
+  made with the Datenschutz-Generator.de, "Stand: 1. September 2026".
+  Robin's calls: **full port, adapted** (every section, DSGVO and DSG
+  parts kept); **du**, like the Impressum; **no generator credit**, as
+  fourelse has a paid licence. "Stand: Oktober 2026" in the header.
+- **Converted by script**, not retyped: Swiss ss, every formal "Sie/Ihr"
+  turned into du sentence by sentence (the remaining "Sie" are third
+  person), the generator's typos fixed ("d. .h.", "ine Funktion",
+  "Reichweitemessung", "CCS", "sei sollten", "rapperswil" …), bold labels
+  and `<url>` tags derived from the text. To regenerate after a new
+  generator export, redo the same steps and re-read the result; never
+  paste the export in unconverted.
+- **Website parts changed, for Beatrice to approve:**
+  - Hosting: **Vercel** added (Vercel Inc., Covina, USA; Swiss-U.S. DPF,
+    checked on vercel.com October 2026); **Wordfence removed** (the old
+    WordPress firewall). **METANET kept**: confirm what it still hosts
+    (e-mail? 4else.com?), since "E-Mail-Versand und -Hosting" describes
+    the webhoster's mail;
+  - Cookies: **Borlabs and the consent-tool paragraph removed**; instead
+    "Cookies auf dieser Website": no analysis or advertising cookies, one
+    session cookie `NEXT_LOCALE` (next-intl, the language), and the
+    Vorschau's cookies for editors. **Keep this true**: a new cookie or
+    tracker needs this section, and possibly a consent banner;
+  - Blog: **Sanity** added (Sanity AS, Norway, and Sanity US Inc.; images
+    from cdn.sanity.io; SCCs per Sanity's policy);
+  - Analytics: **Koko Analytics removed** (WordPress); **Vercel Web
+    Analytics and Speed Insights** added: cookieless, a request hash
+    discarded after 24 hours, no IP stored (Vercel's analytics privacy page,
+    October 2026). The section's generic text (profiles, IP masking,
+    cookies up to two years) is the generator's and was kept;
+  - Newsletter: **Mailmint removed** (WordPress plugin). Which tool sends
+    the newsletter now? The site's form is not connected (§5);
+  - Plug-ins: "Schriftarten auf dieser Website" added (Instrument Sans
+    comes with the site, no request to Google). **Google Fonts, Google
+    Maps and YouTube-Videos kept**: true for 4else.com? Remove them if not;
+  - Social media: **Instagram added** (the footer shows it); X and
+    YouTube kept;
+  - Präambel: one sentence naming the website, 4else.com and the 4else
+    Zahlungslösung; Payrexx noted as the base of the Zahlungslösung.
+- **Open:** the controller's e-mail is still
+  `beatrice.hohl@fourelse.com` from the old policy (the Impressum uses
+  info@4else.com); the business-side services (bexio, Zoom, Google Meet,
+  Telegram, ChatGPT/OpenAI, LinkedIn, X, YouTube) are Beatrice's choices
+  from September 2026 and stay until she says otherwise. The contact
+  page's k3 and the held-back FAQ answers still claim Swiss hosting; this
+  policy does not, as the site is on Vercel. Not legal advice.
+- **Spine with 29 sections:** taller than the screen, so it scrolls in
+  its own box (thin bar) and keeps the marked section in view inside it;
+  on phones the long list is a box of its own (`LONG` in `LegalToc`).
+- **Client messages:** the locale layout passes the browser only
+  `CLIENT_NAMESPACES` (the namespaces client components read, Wordmark's
+  `brand` included), not every message; before, the whole file rode along
+  on every page, and this policy alone is ~130 KB. A new client component
+  that reads messages needs its namespace added there.
+- Checked at 1440 and 390 (October 2026): no horizontal scroll, 29
+  sections, the spine following to (25), all provider links answering.
 
 ## 6. SEO
 

@@ -3,6 +3,7 @@
 import { useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { useTranslations } from 'next-intl';
 import buttons from '@/components/ui/Button.module.css';
+import { Link } from '@/lib/navigation';
 import styles from './ContactForm.module.css';
 
 /* ============================================================
@@ -62,9 +63,9 @@ export function ContactForm() {
 
   const rich = {
     privacy: (chunks: ReactNode) => (
-      <a href="#" className={styles.inlineLink}>
+      <Link href="/datenschutz" className={styles.inlineLink}>
         {chunks}
-      </a>
+      </Link>
     ),
     mail: (chunks: ReactNode) => (
       <a href={`mailto:${t('c1Email')}`} className={styles.inlineLink}>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './LegalToc.module.css';
 
 /* ============================================================
@@ -18,12 +18,45 @@ import styles from './LegalToc.module.css';
    reach the line. The links are plain anchors, so the browser
    updates the hash and the smooth scroll stands down under
    reduced motion by itself (globals.css).
+
+   A long list (the privacy policy has 29 sections) is taller
+   than the screen and scrolls in its own box; the marked item is
+   then kept in view inside it, without moving the page. On
+   phones a long list is a box of its own height (LONG).
    ============================================================ */
 
 export type TocItem = { id: string; number: string; label: string };
 
+const LONG = 14;
+
+/* The nearest ancestor that scrolls its content. */
+function scrollBox(el: HTMLElement) {
+  for (let node = el.parentElement; node; node = node.parentElement) {
+    const overflow = getComputedStyle(node).overflowY;
+    if ((overflow === 'auto' || overflow === 'scroll') && node.scrollHeight > node.clientHeight) {
+      return node;
+    }
+  }
+  return null;
+}
+
 export function LegalToc({ label, items }: { label: string; items: TocItem[] }) {
   const [active, setActive] = useState(items[0]?.id);
+  const listRef = useRef<HTMLOListElement>(null);
+
+  useEffect(() => {
+    /* Only where the spine stays beside the text (the page's 960px). */
+    if (!window.matchMedia('(min-width: 960px)').matches) return;
+    const link = listRef.current?.querySelector<HTMLElement>('[aria-current]');
+    if (!link) return;
+    const box = scrollBox(link);
+    if (!box) return;
+    const item = link.getBoundingClientRect();
+    const frame = box.getBoundingClientRect();
+    const margin = 48;
+    if (item.top < frame.top + margin) box.scrollTop -= frame.top + margin - item.top;
+    else if (item.bottom > frame.bottom - margin) box.scrollTop += item.bottom - frame.bottom + margin;
+  }, [active]);
 
   useEffect(() => {
     const headings = items
@@ -56,7 +89,10 @@ export function LegalToc({ label, items }: { label: string; items: TocItem[] }) 
       <p className={styles.head} aria-hidden="true">
         {label}
       </p>
-      <ol className={styles.list}>
+      <ol
+        ref={listRef}
+        className={items.length > LONG ? `${styles.list} ${styles.listLong}` : styles.list}
+      >
         {items.map((item) => {
           const isActive = item.id === active;
           return (

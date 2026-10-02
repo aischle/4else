@@ -29,6 +29,16 @@
   border-left: 1px solid var(--hairline);
 }
 
+/* Phones: a long list (the privacy policy's 29 sections) would push
+   the text a screen and more down; it scrolls in its own box. */
+@media (max-width: 959px) {
+  .listLong {
+    max-height: min(360px, 55svh);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+
 .link {
   display: grid;
   grid-template-columns: 34px minmax(0, 1fr);

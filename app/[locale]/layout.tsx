@@ -28,6 +28,24 @@ const instrumentSans = Instrument_Sans({
   variable: '--font-instrument',
 });
 
+/* The message namespaces client components read. Only these go to
+   the browser: server components get every message on the server,
+   and the legal texts (the privacy policy alone is ~130 KB) would
+   otherwise ride along on every page. A new client component that
+   calls useTranslations needs its namespace here, and so does any
+   component a client component imports (Wordmark). */
+const CLIENT_NAMESPACES = [
+  'brand', // Wordmark, inside Header and MobileMenu
+  'nav', // Header, MobileMenu
+  'footer', // MobileMenu
+  'kontakt', // ContactForm
+  'newsletter', // NewsletterForm
+  'preise', // FeeCalculator
+  'preview', // ExitPreview
+  'scrollTop', // ScrollToTop
+  'wip', // WipDialog
+] as const;
+
 /* Prerender every locale at build time. */
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -67,7 +85,8 @@ export default async function LocaleLayout({
   if (!locales.includes(locale as Locale)) notFound();
 
   setRequestLocale(locale);
-  const messages = await getMessages();
+  const all = await getMessages();
+  const messages = Object.fromEntries(CLIENT_NAMESPACES.map((key) => [key, all[key]]));
   /* Draft mode is the Studio's preview (app/api/draft-mode). Reading it
      keeps pages static: visitors never have it on. */
   const { isEnabled: preview } = await draftMode();

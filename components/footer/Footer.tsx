@@ -115,7 +115,7 @@ export function Footer() {
           {' · '}
           <Link href="/agb" className={styles.legalLink}>{t('terms')}</Link>
           {' · '}
-          <a href="#" className={styles.legalLink}>{t('privacy')}</a>
+          <Link href="/datenschutz" className={styles.legalLink}>{t('privacy')}</Link>
         </nav>
       </div>
     </footer>
