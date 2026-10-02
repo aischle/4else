@@ -2,6 +2,7 @@ import { use, type ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { Link } from '@/lib/navigation';
 import styles from './page.module.css';
 
 /* ============================================================
@@ -19,17 +20,6 @@ import styles from './page.module.css';
    of the copy lives in the `impressum` namespace.
    ============================================================ */
 
-const TERMS_URL = 'https://4else.events/allgemeine-geschaeftsbedingungen/';
-
-function external(href: string) {
-  return function ExternalLink(chunks: ReactNode) {
-    return (
-      <a href={href} target="_blank" rel="noopener noreferrer" className={styles.link}>
-        {chunks}
-      </a>
-    );
-  };
-}
 const bold = (chunks: ReactNode) => <strong className={styles.strong}>{chunks}</strong>;
 
 export async function generateMetadata({
@@ -142,7 +132,15 @@ export default function ImpressumPage({
         </Row>
 
         <Row id="impressum-agb" title={t('termsTitle')}>
-          <p>{t.rich('termsBody', { link: external(TERMS_URL) })}</p>
+          <p>
+            {t.rich('termsBody', {
+              link: (chunks) => (
+                <Link href="/agb" className={styles.link}>
+                  {chunks}
+                </Link>
+              ),
+            })}
+          </p>
         </Row>
 
         <Row id="impressum-bilder" title={t('imagesTitle')}>

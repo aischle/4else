@@ -450,7 +450,7 @@ control that would need something unbuilt keeps `href="#"` and opens
   | Link | Says |
   |---|---|
   | `data-wip="backend"` | *Dafür fehlt noch das Backend.* — Login, Demo, Registrieren, Jetzt Event erstellen, Zum Login |
-  | no attribute | *Diese Seite ist noch nicht gestaltet.* — Über uns, the card links, AGB, Datenschutz |
+  | no attribute | *Diese Seite ist noch nicht gestaltet.* — Über uns, the card links, Datenschutz |
 
 - Copy lives in the `wip` namespace. Native `<dialog>`, so the backdrop,
   Escape, the focus trap and the focus return come from the browser; a click
@@ -756,9 +756,7 @@ Copy in the `impressum` and `meta.impressum*` namespaces.
     paragraphs replaced by one note on 4else.com and 4else.one.
 - **One source for company data:** name, street, city, e-mail and phone are
   the footer's `footer.*` keys, so footer and Impressum cannot disagree.
-- **AGB** links to the old site's AGB for now
-  (`4else.events/allgemeine-geschaeftsbedingungen/`); point it at the new
-  AGB page once there is one.
+- **AGB** links to the site's own `/agb` (§5j).
 - No generator attribution: the old page's "Erstellt mit dem kostenlosen
   Datenschutz-Generator.de …" line was removed at Robin's request.
 - **Look:** the Inspirationen overview's header, then the sections as rows
@@ -929,6 +927,63 @@ band → the contact page's CTA band with a sub-line.
 - Checked at 1440, 1024, 768 and 390 (October 2026): no horizontal scroll,
   one card column below 950px, the payment panel stacking, the toggle and
   the fee panel working.
+
+## 5j. AGB
+
+`app/[locale]/(site)/agb/page.tsx` (+ `page.module.css`), route `/agb` in
+`lib/routing.ts` (so it is in the sitemap). Title "AGB" (→ "AGB — 4else"),
+description in `meta.agb*`, copy in the `agb` namespace. The footer's
+"AGB" and the Impressum's AGB row link here. Built October 2026.
+
+- **Source:** the old site's AGB (4else.events/allgemeine-geschaeftsbedingungen,
+  "Hüntwangen, Mai 2020"). Robin's call: **port + factual updates**, every
+  clause keeps its substance; **"der Kunde"**, third person, not the site's
+  du (the lead above the text is site copy and says du); **"Stand: Oktober
+  2026"**. Company name and address come from the `footer.*` keys, as on
+  the Impressum.
+- **Changed against 2020, for Beatrice to approve:**
+  - (01) adds what fourelse offers (4else.com, the 4else Zahlungslösung /
+    4else.one) and "Wohnsitz **oder Sitz**", since most customers are
+    organisations;
+  - (02) names the offers: Free (no licence cost, advertising possible),
+    Premium (werbefrei), Connect (Premium + cheaper transaction fees);
+    Premium and Connect are the "Premium-Services". So **Connect shares
+    Premium's 30 days / one year, the automatic renewal and the cancellation
+    in the user account** (04) — confirm, as Connect is requested by contact;
+  - (05) prices on the pricing page, CHF, licences excl. VAT;
+    "PostFinance" spelled right;
+  - **(06) 4else Zahlungslösung, new**: Payrexx, payout to the customer's
+    account less fees, fees per licence and payment method (pricing page),
+    cheaper with Connect, Gratis-Tickets free. Only what the pricing page
+    states; **no rate in the AGB**, so a price change touches the pricing
+    page alone. Payrexx's own terms are not referenced (suggestion);
+  - (08) the analytics sentence made general ("Analyse-Dienste wie z. B.
+    Google Analytics oder Vercel Analytics", Robin), plus a link to the
+    Datenschutzerklärung — still the old site's (`PRIVACY_URL` in the page);
+  - (12) Kontakt, new;
+  - typos and grammar ("Gerichtsstand", "Postfincance", "Verzugsfolgen").
+- **For a lawyer:** "Gerichtsstand … Hüntwangen ZH" (Hüntwangen has no court
+  of its own; the Bezirksgericht Bülach is competent), the broad liability
+  exclusion, and that the AGB say nothing on how changes to them are
+  announced. Not legal advice.
+- **Text structure:** `SECTIONS` in the page sets the order and the ids
+  (the anchors, `/agb#datenschutz`); a section's paragraphs are its `p1`,
+  `p2`, … keys, read with `t.raw`, so a paragraph is added in the messages
+  alone. Rich tags: `<b>`, `<pricing>` (→ /preise), `<privacy>`; the
+  numbers "(01)" come from `faqNumber`, never from the messages. The
+  headline carries a soft hyphen (U+00AD) between "Geschäfts" and
+  "bedingungen", escaped in the JSON, which breaks it on phones only.
+- **Layout** after Limen's terms page (translimen.io/de/terms): a 240px
+  spine left, the text right at 68ch. The spine is
+  `components/legal/LegalToc.tsx` (client), reusable for a future
+  Datenschutz page: sticky at `--nav-h` + 32px from 960px, a hairline
+  rail, the section being read in `--accent` with a 2px bar and
+  `aria-current="location"` (the last heading above 30% of the viewport;
+  at the page's bottom the last section). Below 960px it is a white panel
+  above the text, without the marking. "Stand" is an Eisviolett pill, the
+  Kontakt block an Eisviolett panel.
+- Checked at 1440, 1024, 768, 390 and 320 (October 2026): no horizontal
+  scroll, the spine sticky and marking, jumps landing under the nav.
 
 ## 6. SEO
 

@@ -9,7 +9,9 @@
     "preiseTitle": "Preise – Was kostet 4else?",
     "preiseDescription": "Starte kostenlos und erweitere nach Bedarf: klare Preise für Eventorganisation, Teilnehmerverwaltung und Online-Zahlungen – ohne versteckte Kosten.",
     "impressumTitle": "Impressum",
-    "impressumDescription": "Impressum der fourelse ag in Hüntwangen: Anbieter, Kontakt, Handelsregister und rechtliche Hinweise zu 4else."
+    "impressumDescription": "Impressum der fourelse ag in Hüntwangen: Anbieter, Kontakt, Handelsregister und rechtliche Hinweise zu 4else.",
+    "agbTitle": "AGB",
+    "agbDescription": "Die Allgemeinen Geschäftsbedingungen der fourelse ag für 4else: Leistungen, Vertragsdauer, Preise, 4else Zahlungslösung, Datenschutz und Haftung."
   },
   "impressum": {
     "eyebrow": "Rechtliches",
@@ -38,13 +40,87 @@
     "copyright": "<b>Urheber- und Markenrechte:</b> Alle Inhalte dieser Website, wie Texte, Fotografien, Grafiken, Marken und Warenzeichen, sind durch die jeweiligen Schutzrechte (Urheber- und Markenrechte) geschützt. Ihre Verwendung, Vervielfältigung usw. unterliegt unseren Rechten oder denen der jeweiligen Urheber bzw. Rechteinhaber.",
     "violations": "<b>Hinweise auf Rechtsverstösse:</b> Solltest du auf unserer Website Rechtsverstösse bemerken, bitten wir dich um einen Hinweis. Rechtswidrige Inhalte und Links entfernen wir nach Kenntnisnahme umgehend.",
     "termsTitle": "Allgemeine Geschäftsbedingungen",
-    "termsBody": "Unsere <link>Allgemeinen Geschäftsbedingungen</link> findest du vorläufig auf unserer bisherigen Website.",
+    "termsBody": "Es gelten unsere <link>Allgemeinen Geschäftsbedingungen</link>.",
     "imagesTitle": "Bildnachweise",
     "imagesIntro": "Das verwendete Bildmaterial stammt aus eigenen Quellen oder von diesen Plattformen:",
     "images1": "iStock",
     "images2": "Canva, Canva AI, ChatGPT, Grok",
     "images3": "in älteren Artikeln auch Gratisplattformen wie Pixabay, Unsplash und Death to Stock Photo",
     "imagesLicence": "Die Bilder unterstehen den Lizenzbedingungen dieser Anbieter und dürfen ohne Absprache nicht verwendet werden."
+  },
+  "agb": {
+    "eyebrow": "AGB",
+    "headline": "Allgemeine Geschäfts\u00ADbedingungen",
+    "lead": "Lizenz-, Nutzungs- und Geschäftsbedingungen der fourelse ag: was gilt, wenn du 4else nutzt.",
+    "updated": "Stand: Oktober 2026",
+    "tocLabel": "Auf dieser Seite",
+    "sections": {
+      "grundlagen": {
+        "title": "Grundlagen",
+        "p1": "Diese Lizenz-, Nutzungs- und Betriebsbedingungen (AGB) gelten für alle Verträge der {company}, {street}, {city} (nachfolgend fourelse). Sie gelten auch für Vertragsverlängerungen oder -änderungen, auch wenn sie nicht nochmals ausdrücklich vereinbart werden. Anders lautende Bedingungen, z. B. des Kunden, sind ausdrücklich ausgeschlossen.",
+        "p2": "fourelse bietet unter dem Namen 4else die Kursverwaltung 4else.com (Eventseiten, Anmeldung und Teilnehmerverwaltung) und die 4else Zahlungslösung für Online-Zahlungen (4else.one) an.",
+        "p3": "Das Angebot steht Personen mit Wohnsitz oder Sitz in der Schweiz offen. Nehmen Kunden mit Wohnsitz oder Sitz im Ausland das Angebot in Anspruch, geschieht dies auf eigene Gefahr. Diesbezüglich wird jede Haftung ausgeschlossen, und der Kunde anerkennt ausdrücklich das schweizerische Recht."
+      },
+      "leistungen": {
+        "title": "Leistungen von fourelse",
+        "p1": "fourelse stellt dem Kunden Online-Produkte gemäss Produkteliste sowie die dazugehörigen Online-Plattformen zur Verfügung (fourelse-Services). Dabei wird zwischen dem kostenlosen Angebot (Free-Service) und den bezahlten Lizenzen (Premium-Services) unterschieden.",
+        "p2": "<b>Free</b> ist ohne Lizenzkosten; fourelse kann dafür Werbung einblenden. Auswahl, Form und Art der Werbung sind allein Sache von fourelse. <b>Premium</b> erweitert die Kursverwaltung und ist werbefrei. <b>Connect</b> umfasst Premium und bietet günstigere Transaktionsgebühren für die 4else Zahlungslösung. Premium und Connect sind Premium-Services im Sinne dieser AGB. Den aktuellen Leistungsumfang beschreibt die <pricing>Preisseite</pricing>.",
+        "p3": "fourelse verpflichtet sich, die vom Kunden übertragenen elektronischen Daten sicher aufzubewahren. Die Kundenangaben werden digital verschlüsselt.",
+        "p4": "fourelse kann das Angebot jederzeit nach entsprechender Vorankündigung anpassen und/oder verändern."
+      },
+      "pflichten": {
+        "title": "Pflichten des Kunden",
+        "p1": "Der Kunde verpflichtet sich ausdrücklich, darauf zu achten, dass seine Daten keine illegalen oder straf-, zivil- oder öffentlich-rechtlich relevanten Inhalte enthalten. Insbesondere muss er über die nötigen Urheberrechte an aufgeschalteten Informationen, Fotos und Dokumenten verfügen und jederzeit die datenschutz-, wettbewerbs- und persönlichkeitsrechtlichen Anforderungen einhalten.",
+        "p2": "Weiter verpflichtet er sich, Angaben über sich und/oder seine Gesellschaft wahrheitsgetreu und korrekt zu machen und zu verwenden. fourelse behält sich entsprechend vor, Inhalte oder Benutzerkonten jederzeit zu überprüfen, zurückzuweisen und/oder zu löschen.",
+        "p3": "Die Anbindung ans Internet ist Sache des Kunden, ebenso die Aufbewahrung der Zugangsdaten (Administration, Private-Link, Anmeldung usw.). Der Kunde verpflichtet sich, von sämtlichen Daten auf der Plattform ein lokales Backup bei sich anzulegen. fourelse übernimmt keine Haftung für Datenverluste auf ihren Services und behält sich vor, nicht mehr verwendete Daten zu löschen."
+      },
+      "vertrag": {
+        "title": "Vertragsbeginn, -dauer und -übertragung",
+        "p1": "Der Vertrag tritt mit dem elektronischen Einverständnis zu diesen Bedingungen oder mit der schriftlichen Unterzeichnung des fourelse-Services in Kraft.",
+        "p2": "Die Vertragsdauer der Premium-Services beträgt 30 Tage oder wahlweise ein Jahr. Der Vertrag erneuert sich jeweils automatisch um die gleiche Dauer, sofern der Kunde ihn nicht spätestens eine Arbeitswoche vor Ende der Vertragsdauer beendet. Die Kündigung kann direkt im Benutzerkonto vorgenommen werden.",
+        "p3": "Bleibt die Zahlung aus, behält sich fourelse vor, den Service vorübergehend einzustellen oder auf die Free-Version zu reduzieren. Weitere Verzugsfolgen bleiben vorbehalten.",
+        "p4": "Alle Nebenabreden, Zusicherungen und Änderungen sind für fourelse nur nach schriftlicher Bestätigung verbindlich. fourelse allein ist berechtigt, dieses Vertragsverhältnis sowie alle weiteren Verhältnisse mit dem Kunden auf eine andere Vertragspartei zu übertragen. Nach erfolgter Kündigung hat der Kunde keinen Anspruch auf Rückerstattung allfällig geleisteter Initialzahlungen."
+      },
+      "preise": {
+        "title": "Preise, Zahlung und Verrechnung",
+        "p1": "Die aktuellen Preise stehen auf der <pricing>Preisseite</pricing>. Alle Preise verstehen sich in Schweizer Franken (CHF), Lizenzpreise exklusive Mehrwertsteuer.",
+        "p2": "Der Kunde verpflichtet sich, den Servicebetrag der Premium-Services jeweils vor Beginn der Serviceperiode (per Kreditkarte, PostFinance oder PayPal) oder innert dreissig (30) Tagen nach Rechnungsstellung ohne Abzüge zu bezahlen.",
+        "p3": "Offerten von fourelse sind 30 Tage gültig. Alle Preisangaben auf Preislisten, im Internet oder in Prospekten sind, sofern nicht ausdrücklich anders vermerkt, unverbindlich und können von fourelse jederzeit angepasst werden.",
+        "p4": "Der Kunde verzichtet ausdrücklich auf jede Verrechnungseinrede gegenüber fourelse. Nicht oder nur teilweise benutzte Dienstleistungen werden nicht rückvergütet."
+      },
+      "zahlungsloesung": {
+        "title": "4else Zahlungslösung",
+        "p1": "Mit der 4else Zahlungslösung kann der Kunde Zahlungen seiner Teilnehmenden online entgegennehmen, z. B. per TWINT, Kreditkarte, Rechnung oder PayPal. Die Zahlungen werden über den Zahlungsdienstleister Payrexx abgewickelt und abzüglich der Gebühren auf das Konto des Kunden ausbezahlt.",
+        "p2": "Die Zahlungslösung kann mit jedem Angebot genutzt werden, mit Free und Premium ohne zusätzliche Lizenzkosten. Für jede Zahlung fallen Transaktionsgebühren an; ihre Höhe hängt von der Lizenz und der Zahlungsart ab, mit Connect sind sie günstiger. Die geltenden Sätze stehen auf der <pricing>Preisseite</pricing>. Gratis-Tickets bleiben gebührenfrei."
+      },
+      "eigentum": {
+        "title": "Eigentums- und Urheberrechte",
+        "p1": "fourelse behält jederzeit das vollständige Eigentum sowie sämtliche Immaterialgüterrechte und/oder anderen Rechte an den Softwarekomponenten, Tools, Produkten und an der Onlineplattform. Der Kunde erhält einzig das Nutzungsrecht während der Vertragsdauer. Nach Vertragsende erlischt jede Befugnis des Kunden, die Services zu nutzen, zu übertragen, zu kopieren oder in anderer Weise zu verwenden."
+      },
+      "datenschutz": {
+        "title": "Datenschutz",
+        "p1": "fourelse verpflichtet sich, die Schweizer Datenschutzbestimmungen einzuhalten. Der Kunde anerkennt ausdrücklich, dass fourelse Profildaten sowie das Nutzungsverhalten auf der Plattform mit Analyse-Diensten wie z. B. Google Analytics oder Vercel Analytics sowie mittels Cookies speichern und für sich und für Dritte, mit denen fourelse zusammenarbeitet, verwenden darf.",
+        "p2": "Die vom Kunden unter diesem Vertrag gespeicherten oder gesicherten Kundendaten gehören allein und ausschliesslich dem Kunden. Der Kunde kann – auch während der Laufzeit dieses Vertrages – jederzeit die sofortige Herausgabe aller Daten auf der Plattform gegen Aufwandsentschädigung verlangen und bei Auflösung des Vertrages von fourelse eine schriftliche Erklärung verlangen, dass fourelse keine Plattform-Daten des Kunden mehr aufbewahrt.",
+        "p3": "Adressen können über verschiedene Dienste (z. B. Google, Facebook) angebunden werden. Solche Adressdaten sowie die dazugehörigen Passwörter und Zugangsdaten werden grundsätzlich nicht gespeichert.",
+        "p4": "Wie fourelse Personendaten bearbeitet, beschreibt die <privacy>Datenschutzerklärung</privacy>."
+      },
+      "haftung": {
+        "title": "Gewährleistung und Haftung",
+        "p1": "fourelse übernimmt keine Garantie für die Verfügbarkeit der Services oder für technischen Support. fourelse schliesst jede Haftung aus, soweit gesetzlich möglich und zulässig; dies gilt auch für Drittpersonen. Die Verantwortung für eine erfolgreiche Nutzung des Portals liegt allein beim Kunden."
+      },
+      "wirksamkeit": {
+        "title": "Wirksamkeit der Bedingungen",
+        "p1": "Sollte eine Bestimmung dieses Vertrages unwirksam sein oder werden, so berührt dies die übrigen Bestimmungen nicht. Anstelle der unwirksamen Bestimmung gilt eine Ersatzbestimmung, die dem Zweck der Vereinbarung entspricht oder ihm zumindest nahekommt und welche die Parteien zur Erreichung des gleichen wirtschaftlichen Ergebnisses vereinbart hätten. Dasselbe gilt für allfällige Lücken in diesen Bestimmungen."
+      },
+      "gerichtsstand": {
+        "title": "Gerichtsstand und anwendbares Recht",
+        "p1": "Das Rechtsverhältnis untersteht dem schweizerischen Recht. Gerichtsstand sind die ordentlichen Gerichte in Hüntwangen ZH (Schweiz)."
+      },
+      "kontakt": {
+        "title": "Kontakt",
+        "p1": "Fragen zu diesen AGB beantworten wir gerne:"
+      }
+    }
   },
   "inspirationen": {
     "eyebrow": "Magazin",

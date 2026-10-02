@@ -9,7 +9,7 @@ import styles from './Footer.module.css';
    ------------------------------------------------------------
    Address block, three link columns, the giant wordmark, and
    the legal bar. Most link destinations are not built yet and
-   point at "#"; Inspirationen (the blog) and the Impressum are real
+   point at "#"; Inspirationen (the blog), the Impressum and the AGB are real
    routes, and the e-mail and phone are real mailto/tel links.
 
    One footer for the whole site: the locale layout renders it
@@ -90,7 +90,7 @@ export function Footer() {
         <nav aria-label={t('legalLabel')}>
           <Link href="/impressum" className={styles.legalLink}>{t('imprint')}</Link>
           {' · '}
-          <a href="#" className={styles.legalLink}>{t('terms')}</a>
+          <Link href="/agb" className={styles.legalLink}>{t('terms')}</Link>
           {' · '}
           <a href="#" className={styles.legalLink}>{t('privacy')}</a>
         </nav>

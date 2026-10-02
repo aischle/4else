@@ -23,6 +23,7 @@ export const routing = defineRouting({
     '/kontakt': '/kontakt',
     '/preise': '/preise',
     '/impressum': '/impressum',
+    '/agb': '/agb',
     '/inspirationen': '/inspirationen',
     '/inspirationen/[slug]': '/inspirationen/[slug]',
   },

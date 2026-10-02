@@ -1,0 +1,79 @@
+/* ============================================================
+   4else — legal page spine
+   ------------------------------------------------------------
+   A hairline rail with the numbered sections; the one being
+   read turns violet, with a 2px violet bar laid over the rail.
+   Sticky from 960px (the page sets the column); below that the
+   page shows it as a white panel above the text, unmarked.
+   Tokens only.
+   ============================================================ */
+
+.toc {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.head {
+  margin: 0 0 14px;
+  font-size: 12px;
+  font-weight: var(--w-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-left: 1px solid var(--hairline);
+}
+
+.link {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  margin-left: -1px;
+  padding: 7px 0 7px 16px;
+  border-left: 2px solid transparent;
+  color: var(--text-body);
+  text-decoration: none;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.link:hover {
+  color: var(--ink);
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.num {
+  font-size: 12px;
+  font-weight: var(--w-semibold);
+  font-variant-numeric: tabular-nums;
+  line-height: calc(14px * 1.4);
+  color: var(--text-muted);
+}
+
+/* Only where the spine stays in view beside the text (the AGB
+   page's 960px); above the text, a marked item would mean nothing. */
+@media (min-width: 960px) {
+  .linkActive {
+    border-left-color: var(--accent);
+    color: var(--accent);
+    font-weight: var(--w-semibold);
+  }
+
+  .linkActive .num {
+    color: var(--accent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link {
+    transition: none;
+  }
+}
