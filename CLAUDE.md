@@ -767,7 +767,7 @@ Copy in the `impressum` and `meta.impressum*` namespaces.
   checked if the company data or the legal notices change.
 - **The agency credit (Robin, October 2026):** the Impressum's last row,
   "Konzept, Design und Umsetzung", reads "Temu Swiss" linked to
-  temu.swiss, and the footer's legal bar adds "Website von Temu Swiss"
+  temu.swiss, and the footer's legal bar adds "Webauftritt von Temu Swiss"
   after the copyright, in the bar's own size and colour (`footer.credit`,
   `impressum.madeByTitle` / `madeBy`). The brand name is the link text,
   never a keyword. Agreed with Beatrice in exchange for a 50% effort

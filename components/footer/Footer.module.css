@@ -99,13 +99,21 @@
 .creditLink {
   /* Positioned so the hidden "(öffnet in neuem Tab)" stays inside it. */
   position: relative;
+  white-space: nowrap;
   color: #d90a2c;
+}
+
+/* An inline-block, so the hover underline does not run on under the
+   space to the icon. */
+.creditMark {
+  display: inline-block;
+  text-decoration: none;
 }
 
 /* The new-tab glyph after the name, in the link's red. */
 .creditIcon {
   display: inline-block;
-  margin-left: 3px;
+  margin-left: 2px;
   vertical-align: -1px;
 }
 

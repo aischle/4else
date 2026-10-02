@@ -140,11 +140,19 @@
    name in the link's own colour. */
 .externalLink {
   position: relative;
+  white-space: nowrap;
+}
+
+/* An inline-block, so the link's underline does not run on under the
+   space to the icon. */
+.externalMark {
+  display: inline-block;
+  text-decoration: none;
 }
 
 .externalIcon {
   display: inline-block;
-  margin-left: 4px;
+  margin-left: 2px;
   vertical-align: -2px;
 }
 

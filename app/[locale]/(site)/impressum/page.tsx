@@ -161,7 +161,14 @@ export default function ImpressumPage({
               link: (chunks) => (
                 <a href="https://temu.swiss" target="_blank" rel="noopener noreferrer" className={`${styles.link} ${styles.externalLink}`}>
                   {chunks}
-                  <ExternalLink className={styles.externalIcon} size={14} strokeWidth={2} aria-hidden="true" />
+                  {/* The space and the icon sit OUTSIDE the underline (Robin): an
+                      underlined space ran on to the icon and read as no gap at all.
+                      Non-breaking, and the link does not wrap, so the icon never
+                      starts a line of its own. */}
+                  <span className={styles.externalMark} aria-hidden="true">
+                    {'\u00a0'}
+                    <ExternalLink className={styles.externalIcon} size={14} strokeWidth={2} />
+                  </span>
                   <span className="srOnly"> {t('newTab')}</span>
                 </a>
               ),
