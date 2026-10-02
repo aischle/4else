@@ -945,9 +945,11 @@ description in `meta.agb*`, copy in the `agb` namespace. The footer's
 
 - **Source:** the old site's AGB (4else.events/allgemeine-geschaeftsbedingungen,
   "Hüntwangen, Mai 2020"). Robin's call: **port + factual updates**, every
-  clause keeps its substance; **"der Kunde"**, third person, not the site's
-  du (the lead above the text is site copy and says du); **"Stand: Oktober
-  2026"**. Company name and address come from the `footer.*` keys, as on
+  clause keeps its substance; **"Stand: Oktober 2026"**. **In du**, like
+  the rest of the site, the Impressum and the Datenschutz page (Robin,
+  October 2026; the first version said "der Kunde", as in 2020). (01)
+  says once that "du" means the person or organisation using 4else, as
+  most customers are associations and businesses. Company name and address come from the `footer.*` keys, as on
   the Impressum.
 - **Changed against 2020, for Beatrice to approve:**
   - (01) adds what fourelse offers (4else.com, the 4else Zahlungslösung /

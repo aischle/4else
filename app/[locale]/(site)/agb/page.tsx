@@ -11,7 +11,8 @@ import { CompanyCard, LegalDocument } from '@/components/legal/LegalDocument';
    2020"), every clause kept, brought up to date with what this
    site states: the offers Free, Premium and Connect, the 4else
    Zahlungslösung on Payrexx, CHF and VAT, the pricing page.
-   The legal text speaks of "der Kunde", as in 2020.
+   In du, like the rest of the site; (01) says that "du" includes
+   organisations.
 
    Copy in the `agb` namespace, laid out by `LegalDocument`;
    SECTIONS sets the order. Company name and address come from
