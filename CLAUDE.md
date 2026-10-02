@@ -241,7 +241,9 @@ Things to know:
   flat "+ CHF 0.20". The same request took "DSG-konform, in der Schweiz
   gehostet" out of `why.r3Body` and "Hosting in der Schweiz" out of the
   payment banner (`payment.poweredBy`). No blanket DSG or hosting claims
-  until confirmed; the contact page's `k3` still makes one (open).
+  until confirmed. The contact page's `k3` ("Wo werden meine Daten
+  gespeichert?") no longer claims Swiss hosting: it points to the
+  Datenschutzerklärung (October 2026).
   **Else sits under the heading** with pencil and notepad
   (`public/images/home/else-notizen.webp`, a transparent 600×661 cut-out,
   exported like the contact page's Else; alt `faq.elseImageAlt`),
@@ -1043,9 +1045,10 @@ link here. Built October 2026.
     wording, for a lawyer too);
   - the services (bexio, Zoom, Google Meet, Telegram, OpenAI, LinkedIn,
     Instagram, X, YouTube) are her September 2026 choices plus Instagram.
-- The policy claims **no Swiss hosting** (the site is on Vercel); the
-  contact page's k3 and the held-back FAQ answers still do. Not legal
-  advice; have a lawyer read it once.
+- The policy claims **no Swiss hosting** (the site is on Vercel), and
+  neither does the contact page's k3 any more (it links here); the
+  held-back f10 and q5 still do, so keep them out until rewritten. Not
+  legal advice; have a lawyer read it once.
 - **Spine:** twelve items fit; `LegalToc` still scrolls and follows a
   list taller than the screen, and boxes a list of more than `LONG` (14)
   on phones.

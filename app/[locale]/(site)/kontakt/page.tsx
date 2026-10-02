@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { ContactForm } from '@/components/contact/ContactForm';
 import { faqNumber } from '@/lib/faq';
+import { Link } from '@/lib/navigation';
 import buttons from '@/components/ui/Button.module.css';
 import styles from './page.module.css';
 
@@ -28,6 +29,15 @@ import styles from './page.module.css';
 
 const rich = {
   accent: (chunks: ReactNode) => <span className={styles.accent}>{chunks}</span>,
+};
+
+/* FAQ answers may link to the privacy policy (k3). */
+const faqRich = {
+  privacy: (chunks: ReactNode) => (
+    <Link href="/datenschutz" className={styles.faqLink}>
+      {chunks}
+    </Link>
+  ),
 };
 
 const faqs = ['k1', 'k2', 'k3', 'k4'] as const;
@@ -203,7 +213,7 @@ export default function KontaktPage({
                       the expanded state to assistive technology. */}
                   <span className={styles.faqMarker} aria-hidden="true" />
                 </summary>
-                <p className={styles.faqAnswer}>{t(`${id}Answer`)}</p>
+                <p className={styles.faqAnswer}>{t.rich(`${id}Answer`, faqRich)}</p>
               </details>
             ))}
           </div>
