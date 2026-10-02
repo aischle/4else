@@ -94,7 +94,7 @@ export function Footer() {
           {' · '}
           {t.rich('credit', {
             link: (chunks) => (
-              <a href="https://temu.swiss" className={styles.legalLink}>
+              <a href="https://temu.swiss" className={styles.creditLink}>
                 {chunks}
               </a>
             ),

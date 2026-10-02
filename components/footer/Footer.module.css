@@ -93,6 +93,23 @@
   color: var(--ink);
 }
 
+/* The Temu Swiss credit (Robin, October 2026): Temu's own red, the
+   literal #D90A2C, 4.87:1 on the page's #F7F7FA. It keeps its colour on
+   hover and takes an underline instead. */
+.creditLink {
+  color: #d90a2c;
+}
+
+.creditLink:hover {
+  color: #d90a2c;
+  text-decoration: underline;
+}
+
+.creditLink:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 .link:focus-visible,
 .legalLink:focus-visible {
   outline: 2px solid var(--accent);
