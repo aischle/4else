@@ -967,9 +967,14 @@ description in `meta.agb*`, copy in the `agb` namespace. The footer's
     cheaper with Connect, Gratis-Tickets free. Only what the pricing page
     states; **no rate in the AGB**, so a price change touches the pricing
     page alone. Payrexx's own terms are not referenced (suggestion);
-  - (08) the analytics sentence made general ("Analyse-Dienste wie z. B.
-    Google Analytics oder Vercel Analytics", Robin), plus a link to the
-    Datenschutzerklärung (`/datenschutz`, §5k);
+  - (08) rewritten in October 2026 to match the Datenschutzerklärung
+    (`/datenschutz`, §5k), which it now points to: the 2020 sentence that
+    fourelse may record usage with analytics and cookies "für sich und für
+    Dritte" is gone (it contradicted the policy; this narrows what fourelse
+    reserves). New: organisers are responsible for their participants'
+    data, fourelse processes it on their behalf (as in the policy). Kept:
+    the data belongs to the customer, handover and deletion confirmation,
+    address imports without stored passwords;
   - (12) Kontakt, new;
   - typos and grammar ("Gerichtsstand", "Postfincance", "Verzugsfolgen").
 - **For a lawyer:** "Gerichtsstand … Hüntwangen ZH" (Hüntwangen has no court

@@ -105,10 +105,10 @@
       },
       "datenschutz": {
         "title": "Datenschutz",
-        "p1": "fourelse verpflichtet sich, die Schweizer Datenschutzbestimmungen einzuhalten. Du anerkennst ausdrücklich, dass fourelse Profildaten sowie das Nutzungsverhalten auf der Plattform mit Analyse-Diensten wie z. B. Google Analytics oder Vercel Analytics sowie mittels Cookies speichern und für sich und für Dritte, mit denen fourelse zusammenarbeitet, verwenden darf.",
-        "p2": "Die Daten, die du unter diesem Vertrag speicherst oder sicherst, gehören allein und ausschliesslich dir. Du kannst – auch während der Laufzeit dieses Vertrages – jederzeit die sofortige Herausgabe aller deiner Daten auf der Plattform gegen Aufwandsentschädigung verlangen und bei Auflösung des Vertrages von fourelse eine schriftliche Erklärung verlangen, dass fourelse keine deiner Plattform-Daten mehr aufbewahrt.",
-        "p3": "Adressen können über verschiedene Dienste (z. B. Google, Facebook) angebunden werden. Solche Adressdaten sowie die dazugehörigen Passwörter und Zugangsdaten werden grundsätzlich nicht gespeichert.",
-        "p4": "Wie fourelse Personendaten bearbeitet, beschreibt die <privacy>Datenschutzerklärung</privacy>."
+        "p1": "fourelse hält sich an das Schweizer Datenschutzgesetz (DSG). Welche Personendaten fourelse bearbeitet, wozu, bei welchen Dienstleistern und wie lange, beschreibt die <privacy>Datenschutzerklärung</privacy>. Sie gilt ergänzend zu diesen AGB.",
+        "p2": "Für die Personendaten deiner Teilnehmenden bist du verantwortlich. fourelse bearbeitet sie in deinem Auftrag und nur, um dir die fourelse-Services bereitzustellen.",
+        "p3": "Die Daten, die du unter diesem Vertrag speicherst oder sicherst, gehören allein und ausschliesslich dir. Du kannst – auch während der Laufzeit dieses Vertrages – jederzeit die sofortige Herausgabe aller deiner Daten auf der Plattform gegen Aufwandsentschädigung verlangen und bei Auflösung des Vertrages von fourelse eine schriftliche Erklärung verlangen, dass fourelse keine deiner Plattform-Daten mehr aufbewahrt.",
+        "p4": "Adressen können über verschiedene Dienste (z. B. Google, Facebook) angebunden werden. Solche Adressdaten sowie die dazugehörigen Passwörter und Zugangsdaten werden grundsätzlich nicht gespeichert."
       },
       "haftung": {
         "title": "Gewährleistung und Haftung",
