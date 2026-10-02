@@ -46,7 +46,9 @@
     "images1": "iStock",
     "images2": "Canva, Canva AI, ChatGPT, Grok",
     "images3": "in älteren Artikeln auch Gratisplattformen wie Pixabay, Unsplash und Death to Stock Photo",
-    "imagesLicence": "Die Bilder unterstehen den Lizenzbedingungen dieser Anbieter und dürfen ohne Absprache nicht verwendet werden."
+    "imagesLicence": "Die Bilder unterstehen den Lizenzbedingungen dieser Anbieter und dürfen ohne Absprache nicht verwendet werden.",
+    "madeByTitle": "Konzept, Design und Umsetzung",
+    "madeBy": "<link>Temu Swiss</link>"
   },
   "agb": {
     "eyebrow": "AGB",
@@ -394,6 +396,7 @@
     "followTelegram": "Telegram",
     "wordmark": "Gestaltet.\nOrganisiert.\n<b>Bezahlt.</b>",
     "copyright": "© 2026 fourelse ag. All rights reserved.",
+    "credit": "Website von <link>Temu Swiss</link>",
     "legalLabel": "Rechtliches",
     "imprint": "Impressum",
     "terms": "AGB",

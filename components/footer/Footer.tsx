@@ -86,7 +86,20 @@ export function Footer() {
       </p>
 
       <div className={styles.legal}>
-        <span>{t('copyright')}</span>
+        {/* The agency credit (Robin, October 2026): one quiet line beside
+            the copyright, in the legal bar's own size and colour, the
+            brand name as the link text and nothing more. */}
+        <span>
+          {t('copyright')}
+          {' · '}
+          {t.rich('credit', {
+            link: (chunks) => (
+              <a href="https://temu.swiss" className={styles.legalLink}>
+                {chunks}
+              </a>
+            ),
+          })}
+        </span>
         <nav aria-label={t('legalLabel')}>
           <Link href="/impressum" className={styles.legalLink}>{t('imprint')}</Link>
           {' · '}

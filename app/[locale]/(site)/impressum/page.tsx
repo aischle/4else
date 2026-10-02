@@ -152,6 +152,19 @@ export default function ImpressumPage({
           </ul>
           <p>{t('imagesLicence')}</p>
         </Row>
+
+        {/* Who built the site (Robin, October 2026), the last row. */}
+        <Row id="impressum-umsetzung" title={t('madeByTitle')}>
+          <p>
+            {t.rich('madeBy', {
+              link: (chunks) => (
+                <a href="https://temu.swiss" className={styles.link}>
+                  {chunks}
+                </a>
+              ),
+            })}
+          </p>
+        </Row>
       </div>
     </main>
   );
