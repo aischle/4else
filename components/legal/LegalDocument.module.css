@@ -86,7 +86,7 @@
     align-self: start;
     max-height: calc(100svh - var(--nav-h) - 64px);
     overflow-y: auto;
-    /* A long spine (Datenschutz) scrolls; a quiet bar for it. */
+    /* A spine taller than the screen scrolls; a quiet bar for it. */
     scrollbar-width: thin;
     scrollbar-color: var(--hairline-strong) transparent;
     padding: 0;

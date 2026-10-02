@@ -1,53 +1,37 @@
 import { use } from 'react';
 import type { Metadata } from 'next';
+import { useTranslations } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { CompanyCard, LegalDocument } from '@/components/legal/LegalDocument';
 
 /* ============================================================
    4else — Datenschutzerklärung
    ------------------------------------------------------------
-   The old site's privacy policy (4else.events, Datenschutz-
-   Generator, "Stand: 1. September 2026"), every section kept,
-   in Swiss spelling and du, its website parts brought up to
-   this site: Vercel instead of the WordPress hosting, firewall,
-   cookie banner and analytics plugins; Sanity for the blog;
-   the font served with the site. See CLAUDE.md §5k.
+   Twelve sections in plain du (October 2026), condensed from the
+   old site's generator policy: what the Swiss DSG asks a privacy
+   notice to say (controller, data and purposes, recipients,
+   transfers abroad, retention, rights), this website's real setup
+   (Vercel, Sanity, one language cookie) and one paragraph for the
+   EU's DSGVO. See CLAUDE.md §5k.
 
    Copy in the `datenschutz` namespace, laid out by
    `LegalDocument`; SECTIONS sets the order. The controller's
-   address comes from the footer's keys.
+   name and address come from the footer's keys.
    ============================================================ */
 
 const SECTIONS = [
-  'praeambel',
-  'verantwortlicher',
-  'uebersicht',
-  'rechtsgrundlagen',
+  'geltung',
+  'verantwortlich',
+  'daten',
+  'website',
+  'zahlungen',
+  'dienstleister',
+  'social',
+  'ausland',
+  'aufbewahrung',
   'sicherheit',
-  'uebermittlung',
-  'datentransfers',
-  'speicherung',
   'rechte',
-  'leistungen',
-  'geschaeftsprozesse',
-  'plattformen',
-  'anbieter',
-  'zahlung',
-  'hosting',
-  'cookies',
-  'apps',
-  'nutzerkonto',
-  'blog',
-  'kontakt',
-  'ki',
-  'videokonferenzen',
-  'newsletter',
-  'webanalyse',
-  'socialmedia',
-  'plugins',
-  'hilfswerkzeuge',
   'aenderungen',
-  'begriffe',
 ] as const;
 
 export async function generateMetadata({
@@ -69,11 +53,14 @@ export default function DatenschutzPage({ params }: { params: Promise<{ locale: 
   const { locale } = use(params);
   setRequestLocale(locale);
 
+  const company = useTranslations('footer');
+
   return (
     <LegalDocument
       namespace="datenschutz"
       sections={SECTIONS}
-      extras={{ verantwortlicher: { before: <CompanyCard /> } }}
+      values={{ company: company('company') }}
+      extras={{ verantwortlich: { before: <CompanyCard /> } }}
     />
   );
 }

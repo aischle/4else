@@ -1000,66 +1000,61 @@ description in `meta.agb*`, copy in the `agb` namespace. The footer's
 
 `app/[locale]/(site)/datenschutz/page.tsx`, laid out by `LegalDocument`
 like the AGB (§5j), route `/datenschutz` in `lib/routing.ts`. Title and
-description in `meta.datenschutz*`, copy in the `datenschutz` namespace
-(~130 KB, 29 sections). The footer's "Datenschutz", the contact form's
-consent and the AGB's (08) link here. Built October 2026.
+description in `meta.datenschutz*`, copy in the `datenschutz` namespace.
+The footer's "Datenschutz", the contact form's consent and the AGB's (08)
+link here. Built October 2026.
 
-- **Source:** the old site's policy (4else.events/datenschutzerklaerung),
-  made with the Datenschutz-Generator.de, "Stand: 1. September 2026".
-  Robin's calls: **full port, adapted** (every section, DSGVO and DSG
-  parts kept); **du**, like the Impressum; **no generator credit**, as
-  fourelse has a paid licence. "Stand: Oktober 2026" in the header.
-- **Converted by script**, not retyped: Swiss ss, every formal "Sie/Ihr"
-  turned into du sentence by sentence (the remaining "Sie" are third
-  person), the generator's typos fixed ("d. .h.", "ine Funktion",
-  "Reichweitemessung", "CCS", "sei sollten", "rapperswil" …), bold labels
-  and `<url>` tags derived from the text. To regenerate after a new
-  generator export, redo the same steps and re-read the result; never
-  paste the export in unconverted.
-- **Website parts changed, for Beatrice to approve:**
-  - Hosting: **Vercel** added (Vercel Inc., Covina, USA; Swiss-U.S. DPF,
-    checked on vercel.com October 2026); **Wordfence removed** (the old
-    WordPress firewall). **METANET kept**: confirm what it still hosts
-    (e-mail? 4else.com?), since "E-Mail-Versand und -Hosting" describes
-    the webhoster's mail;
-  - Cookies: **Borlabs and the consent-tool paragraph removed**; instead
-    "Cookies auf dieser Website": no analysis or advertising cookies, one
-    session cookie `NEXT_LOCALE` (next-intl, the language), and the
-    Vorschau's cookies for editors. **Keep this true**: a new cookie or
-    tracker needs this section, and possibly a consent banner;
-  - Blog: **Sanity** added (Sanity AS, Norway, and Sanity US Inc.; images
-    from cdn.sanity.io; SCCs per Sanity's policy);
-  - Analytics: **Koko Analytics removed** (WordPress); **Vercel Web
-    Analytics and Speed Insights** added: cookieless, a request hash
-    discarded after 24 hours, no IP stored (Vercel's analytics privacy page,
-    October 2026). The section's generic text (profiles, IP masking,
-    cookies up to two years) is the generator's and was kept;
-  - Newsletter: **Mailmint removed** (WordPress plugin). Which tool sends
-    the newsletter now? The site's form is not connected (§5);
-  - Plug-ins: "Schriftarten auf dieser Website" added (Instrument Sans
-    comes with the site, no request to Google). **Google Fonts, Google
-    Maps and YouTube-Videos kept**: true for 4else.com? Remove them if not;
-  - Social media: **Instagram added** (the footer shows it); X and
-    YouTube kept;
-  - Präambel: one sentence naming the website, 4else.com and the 4else
-    Zahlungslösung; Payrexx noted as the base of the Zahlungslösung.
-- **Open:** the controller's e-mail is still
-  `beatrice.hohl@fourelse.com` from the old policy (the Impressum uses
-  info@4else.com); the business-side services (bexio, Zoom, Google Meet,
-  Telegram, ChatGPT/OpenAI, LinkedIn, X, YouTube) are Beatrice's choices
-  from September 2026 and stay until she says otherwise. The contact
-  page's k3 and the held-back FAQ answers still claim Swiss hosting; this
-  policy does not, as the site is on Vercel. Not legal advice.
-- **Spine with 29 sections:** taller than the screen, so it scrolls in
-  its own box (thin bar) and keeps the marked section in view inside it;
-  on phones the long list is a box of its own (`LONG` in `LegalToc`).
+- **Twelve sections, ~11,500 characters, in plain du** (Robin, October
+  2026). A full port of the old site's generator policy (4else.events,
+  Datenschutz-Generator.de, "Stand: 1. September 2026"; 29 sections,
+  ~127,000 characters) came first and was cut by ~90 % as far too long;
+  it is in the git history (`a30fcde`). The short version is **our own
+  text**, so the generator credit and licence no longer matter, but it no
+  longer updates with the generator: **a new service provider, cookie or
+  tracker has to be added here by hand.**
+- **What it keeps** (the DSG's duty to inform): controller and contact,
+  data and purposes, recipients by name, transfers abroad and their
+  safeguards, retention, rights incl. the EDÖB, plus this website's real
+  setup and one paragraph for people in the EU (DSGVO rights and the Art. 6
+  legal bases). **Cut:** the per-section "Verarbeitete Datenarten …"
+  blocks, the doubled EU/CH texts, the glossary, the generic modules
+  (Einkauf, IT services, apps …).
+- **Sections:** Worum es geht · Verantwortlich und Kontakt (the address
+  card from the footer's keys) · Welche Daten wir bearbeiten und wozu ·
+  Diese Website · Zahlungen · Dienstleister · Soziale Netzwerke ·
+  Bekanntgabe ins Ausland · Wie lange wir Daten aufbewahren ·
+  Datensicherheit · Deine Rechte · Änderungen.
+- **This website, as stated there — keep it true:** hosting on Vercel
+  (USA, Swiss-U.S. DPF, checked October 2026), logs at most 30 days;
+  Vercel Web Analytics and Speed Insights without cookies (a request hash,
+  discarded after 24 hours); one session cookie `NEXT_LOCALE` (next-intl,
+  the language) plus the Vorschau's cookies for editors; blog images from
+  Sanity (Norway, USA); the font served with the site. A new cookie or
+  tracker needs this section changed, and possibly a consent banner.
+- **For Beatrice to confirm:**
+  - METANET: what it still hosts (e-mail? 4else.com?);
+  - the newsletter tool (Mailmint, the old WordPress plugin, is gone);
+  - Google Fonts, Maps and YouTube "soweit in 4else.com eingebunden":
+    remove the line if 4else.com uses none of them;
+  - the controller's e-mail, still `beatrice.hohl@fourelse.com` from the
+    old policy (the Impressum uses info@4else.com);
+  - "wir bearbeiten sie in deinem Auftrag": organisers are responsible
+    for their participants' data, fourelse processes it for them (new
+    wording, for a lawyer too);
+  - the services (bexio, Zoom, Google Meet, Telegram, OpenAI, LinkedIn,
+    Instagram, X, YouTube) are her September 2026 choices plus Instagram.
+- The policy claims **no Swiss hosting** (the site is on Vercel); the
+  contact page's k3 and the held-back FAQ answers still do. Not legal
+  advice; have a lawyer read it once.
+- **Spine:** twelve items fit; `LegalToc` still scrolls and follows a
+  list taller than the screen, and boxes a list of more than `LONG` (14)
+  on phones.
 - **Client messages:** the locale layout passes the browser only
   `CLIENT_NAMESPACES` (the namespaces client components read, Wordmark's
-  `brand` included), not every message; before, the whole file rode along
-  on every page, and this policy alone is ~130 KB. A new client component
-  that reads messages needs its namespace added there.
-- Checked at 1440 and 390 (October 2026): no horizontal scroll, 29
-  sections, the spine following to (25), all provider links answering.
+  `brand` included), not every message. A new client component that
+  reads messages needs its namespace added there.
+- Checked at 1440 and 375 (October 2026): no horizontal scroll, 12
+  sections, ~1,300 words.
 
 ## 6. SEO
 

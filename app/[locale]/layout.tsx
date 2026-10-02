@@ -30,7 +30,7 @@ const instrumentSans = Instrument_Sans({
 
 /* The message namespaces client components read. Only these go to
    the browser: server components get every message on the server,
-   and the legal texts (the privacy policy alone is ~130 KB) would
+   and the long texts (AGB, Datenschutz, the FAQs) would
    otherwise ride along on every page. A new client component that
    calls useTranslations needs its namespace here, and so does any
    component a client component imports (Wordmark). */

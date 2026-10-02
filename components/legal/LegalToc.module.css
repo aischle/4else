@@ -29,7 +29,7 @@
   border-left: 1px solid var(--hairline);
 }
 
-/* Phones: a long list (the privacy policy's 29 sections) would push
+/* Phones: a long list (more than LONG items) would push
    the text a screen and more down; it scrolls in its own box. */
 @media (max-width: 959px) {
   .listLong {

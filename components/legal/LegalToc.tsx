@@ -19,7 +19,7 @@ import styles from './LegalToc.module.css';
    updates the hash and the smooth scroll stands down under
    reduced motion by itself (globals.css).
 
-   A long list (the privacy policy has 29 sections) is taller
+   A long list (more than LONG sections) can be taller
    than the screen and scrolls in its own box; the marked item is
    then kept in view inside it, without moving the page. On
    phones a long list is a box of its own height (LONG).
