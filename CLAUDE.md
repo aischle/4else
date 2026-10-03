@@ -977,10 +977,33 @@ description in `meta.agb*`, copy in the `agb` namespace. The footer's
     address imports without stored passwords;
   - (12) Kontakt, new;
   - typos and grammar ("Gerichtsstand", "Postfincance", "Verzugsfolgen").
-- **For a lawyer:** "Gerichtsstand … Hüntwangen ZH" (Hüntwangen has no court
-  of its own; the Bezirksgericht Bülach is competent), the broad liability
-  exclusion, and that the AGB say nothing on how changes to them are
-  announced. Not legal advice.
+- **Beatrice's revision (3 October 2026)**, taken over verbatim from the
+  page text she sent back:
+  - (03) the backup *duty*, the exclusion of liability for data loss and
+    the deletion of unused data are gone; instead "Wir empfehlen dir,
+    wichtige Daten über die verfügbaren Exportfunktionen zusätzlich
+    selbst zu sichern" (the AGB's only "wir" outside Kontakt);
+  - (04) late payment: only after a reminder and its grace period;
+    suspend, reduce to Free or switch the payment solution to the model
+    without licence fee and with higher transaction fees, announced in
+    advance with date, scope and fees, with the right to terminate before
+    that date; open licence invoices stay due;
+  - (05) new p3: prices hold for the agreed period, licence price changes
+    apply from the next renewal at the earliest and are announced before
+    the notice period ends;
+  - (06) p2 in her words (no extra licence fee with Free/Premium, a
+    Premium licence stays paid, fees by licence and payment method);
+  - (08) handover on request, individual exports may cost after prior
+    agreement, **deletion after the contract ends** (as on the
+    Datenschutz page), backups cleared in regular cycles; one paragraph
+    with the address-import sentence;
+  - (11) "ausschliesslicher Gerichtsstand Hüntwangen ZH … soweit
+    gesetzlich zulässig", mandatory jurisdictions reserved.
+- **For a lawyer:** "Gerichtsstand Hüntwangen ZH" (Hüntwangen has no court
+  of its own; the Bezirksgericht Bülach is competent; her wording now
+  reserves mandatory jurisdictions), the broad liability exclusion, and
+  that the AGB say nothing on how changes to them are announced. Not
+  legal advice.
 - **Text structure** (shared with the Datenschutz page):
   `components/legal/LegalDocument.tsx` (+ `.module.css`) renders header,
   spine and sections from a namespace; `SECTIONS` in the page sets the

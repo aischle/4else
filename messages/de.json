@@ -78,26 +78,27 @@
         "title": "Deine Pflichten",
         "p1": "Du verpflichtest dich ausdrücklich, darauf zu achten, dass deine Daten keine illegalen oder straf-, zivil- oder öffentlich-rechtlich relevanten Inhalte enthalten. Insbesondere musst du über die nötigen Urheberrechte an aufgeschalteten Informationen, Fotos und Dokumenten verfügen und jederzeit die datenschutz-, wettbewerbs- und persönlichkeitsrechtlichen Anforderungen einhalten.",
         "p2": "Weiter verpflichtest du dich, Angaben über dich und/oder deine Organisation wahrheitsgetreu und korrekt zu machen und zu verwenden. fourelse behält sich entsprechend vor, Inhalte oder Benutzerkonten jederzeit zu überprüfen, zurückzuweisen und/oder zu löschen.",
-        "p3": "Die Anbindung ans Internet ist deine Sache, ebenso die Aufbewahrung deiner Zugangsdaten (Administration, Private-Link, Anmeldung usw.). Du verpflichtest dich, von sämtlichen Daten auf der Plattform ein lokales Backup bei dir anzulegen. fourelse übernimmt keine Haftung für Datenverluste auf ihren Services und behält sich vor, nicht mehr verwendete Daten zu löschen."
+        "p3": "Die Anbindung ans Internet ist deine Sache, ebenso die Aufbewahrung deiner Zugangsdaten (Administration, Private-Link, Anmeldung usw.). Wir empfehlen dir, wichtige Daten über die verfügbaren Exportfunktionen zusätzlich selbst zu sichern."
       },
       "vertrag": {
         "title": "Vertragsbeginn, -dauer und -übertragung",
         "p1": "Der Vertrag tritt in Kraft, sobald du diesen Bedingungen elektronisch zustimmst oder den fourelse-Service schriftlich unterzeichnest.",
         "p2": "Die Vertragsdauer der Premium-Services beträgt 30 Tage oder wahlweise ein Jahr. Der Vertrag erneuert sich jeweils automatisch um die gleiche Dauer, sofern du ihn nicht spätestens eine Arbeitswoche vor Ende der Vertragsdauer beendest. Kündigen kannst du direkt im Benutzerkonto.",
-        "p3": "Bleibt deine Zahlung aus, behält sich fourelse vor, den Service vorübergehend einzustellen oder auf die Free-Version zu reduzieren. Weitere Verzugsfolgen bleiben vorbehalten.",
+        "p3": "Bleibt eine fällige Lizenzzahlung trotz Mahnung und Ablauf der darin gesetzten Nachfrist aus, kann fourelse den Service vorübergehend einstellen, auf Free reduzieren oder die Zahlungslösung auf ein Modell ohne laufende Lizenzgebühr und mit höheren Transaktionsgebühren umstellen. Kostenpflichtige Zusatzleistungen wie die Premium-Funktionen von 4else.com sind in diesem Modell nicht enthalten. Eine solche Umstellung kündigt fourelse vorab an und nennt dabei das Umstellungsdatum, den künftig verfügbaren Leistungsumfang sowie die geltenden Gebühren. Du kannst den Vertrag über die Zahlungslösung vor dem Umstellungsdatum unabhängig von der regulären Kündigungsfrist beenden. Offene Lizenzrechnungen für bereits bezogene Vertragsperioden bleiben geschuldet.",
         "p4": "Alle Nebenabreden, Zusicherungen und Änderungen sind für fourelse nur nach schriftlicher Bestätigung verbindlich. fourelse allein ist berechtigt, dieses Vertragsverhältnis sowie alle weiteren Verhältnisse mit dir auf eine andere Vertragspartei zu übertragen. Nach erfolgter Kündigung hast du keinen Anspruch auf Rückerstattung allfällig geleisteter Initialzahlungen."
       },
       "preise": {
         "title": "Preise, Zahlung und Verrechnung",
         "p1": "Die aktuellen Preise stehen auf der <pricing>Preisseite</pricing>. Alle Preise verstehen sich in Schweizer Franken (CHF), Lizenzpreise exklusive Mehrwertsteuer.",
         "p2": "Du verpflichtest dich, den Servicebetrag der Premium-Services jeweils vor Beginn der Serviceperiode (per Kreditkarte, PostFinance oder PayPal) oder innert dreissig (30) Tagen nach Rechnungsstellung ohne Abzüge zu bezahlen.",
-        "p3": "Offerten von fourelse sind 30 Tage gültig. Alle Preisangaben auf Preislisten, im Internet oder in Prospekten sind, sofern nicht ausdrücklich anders vermerkt, unverbindlich und können von fourelse jederzeit angepasst werden.",
-        "p4": "Du verzichtest ausdrücklich auf jede Verrechnungseinrede gegenüber fourelse. Nicht oder nur teilweise benutzte Dienstleistungen werden nicht rückvergütet."
+        "p3": "Für die vereinbarte Vertragsperiode gelten die bei Vertragsabschluss beziehungsweise Vertragsverlängerung vereinbarten Preise. Änderungen der Lizenzpreise gelten frühestens ab der nächsten Vertragsverlängerung und werden vor Ablauf der Kündigungsfrist mitgeteilt.",
+        "p4": "Offerten von fourelse sind 30 Tage gültig. Alle Preisangaben auf Preislisten, im Internet oder in Prospekten sind, sofern nicht ausdrücklich anders vermerkt, unverbindlich und können von fourelse jederzeit angepasst werden.",
+        "p5": "Du verzichtest ausdrücklich auf jede Verrechnungseinrede gegenüber fourelse. Nicht oder nur teilweise benutzte Dienstleistungen werden nicht rückvergütet."
       },
       "zahlungsloesung": {
         "title": "4else Zahlungslösung",
         "p1": "Mit der 4else Zahlungslösung kannst du Zahlungen deiner Teilnehmenden online entgegennehmen, z. B. per TWINT, Kreditkarte, Rechnung oder PayPal. Die Zahlungen werden über den Zahlungsdienstleister Payrexx abgewickelt und abzüglich der Gebühren auf dein Konto ausbezahlt.",
-        "p2": "Die Zahlungslösung kann mit jedem Angebot genutzt werden, mit Free und Premium ohne zusätzliche Lizenzkosten. Für jede Zahlung fallen Transaktionsgebühren an; ihre Höhe hängt von der Lizenz und der Zahlungsart ab, mit Connect sind sie günstiger. Die geltenden Sätze stehen auf der <pricing>Preisseite</pricing>. Gratis-Tickets bleiben gebührenfrei."
+        "p2": "Du kannst die 4else Zahlungslösung auch mit Free oder Premium nutzen. Dafür fällt keine zusätzliche Lizenzgebühr für die Zahlungslösung an; für abgewickelte Zahlungen werden Transaktionsgebühren verrechnet. Eine bestehende Premium-Lizenz bleibt kostenpflichtig. Die Höhe der Transaktionsgebühren hängt vom gewählten Lizenzmodell und der Zahlungsart ab. Mit Connect gelten günstigere Transaktionsgebühren. Die jeweiligen Gebühren stehen auf der <pricing>Preisseite</pricing>. Für kostenlose Tickets fallen keine Transaktionsgebühren an."
       },
       "eigentum": {
         "title": "Eigentums- und Urheberrechte",
@@ -107,8 +108,7 @@
         "title": "Datenschutz",
         "p1": "fourelse hält sich an das Schweizer Datenschutzgesetz (DSG). Welche Personendaten fourelse bearbeitet, wozu, bei welchen Dienstleistern und wie lange, beschreibt die <privacy>Datenschutzerklärung</privacy>. Sie gilt ergänzend zu diesen AGB.",
         "p2": "Für die Personendaten deiner Teilnehmenden bist du verantwortlich. fourelse bearbeitet sie in deinem Auftrag und nur, um dir die fourelse-Services bereitzustellen.",
-        "p3": "Die Daten, die du unter diesem Vertrag speicherst oder sicherst, gehören allein und ausschliesslich dir. Du kannst – auch während der Laufzeit dieses Vertrages – jederzeit die sofortige Herausgabe aller deiner Daten auf der Plattform gegen Aufwandsentschädigung verlangen und bei Auflösung des Vertrages von fourelse eine schriftliche Erklärung verlangen, dass fourelse keine deiner Plattform-Daten mehr aufbewahrt.",
-        "p4": "Adressen können über verschiedene Dienste (z. B. Google, Facebook) angebunden werden. Solche Adressdaten sowie die dazugehörigen Passwörter und Zugangsdaten werden grundsätzlich nicht gespeichert."
+        "p3": "Die Daten, die du unter diesem Vertrag speicherst oder sicherst, gehören allein und ausschliesslich dir. Du kannst die Herausgabe deiner auf der Plattform gespeicherten Daten verlangen. Für individuelle Exporte kann nach vorgängiger Vereinbarung eine Aufwandsentschädigung anfallen. Nach Vertragsende werden deine Daten gelöscht, soweit keine gesetzlichen Aufbewahrungspflichten entgegenstehen. Daten in Sicherungskopien werden im Rahmen der regulären Löschzyklen entfernt. Adressen können über verschiedene Dienste (z. B. Google, Facebook) angebunden werden. Solche Adressdaten sowie die dazugehörigen Passwörter und Zugangsdaten werden grundsätzlich nicht gespeichert."
       },
       "haftung": {
         "title": "Gewährleistung und Haftung",
@@ -120,7 +120,7 @@
       },
       "gerichtsstand": {
         "title": "Gerichtsstand und anwendbares Recht",
-        "p1": "Das Rechtsverhältnis untersteht dem schweizerischen Recht. Gerichtsstand sind die ordentlichen Gerichte in Hüntwangen ZH (Schweiz)."
+        "p1": "Das Rechtsverhältnis untersteht dem schweizerischen Recht. Für Streitigkeiten aus diesem Vertragsverhältnis ist, soweit gesetzlich zulässig, ausschliesslicher Gerichtsstand Hüntwangen ZH (Schweiz). Zwingende gesetzliche Gerichtsstände bleiben vorbehalten."
       },
       "kontakt": {
         "title": "Kontakt",
