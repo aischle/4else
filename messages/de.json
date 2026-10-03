@@ -64,7 +64,7 @@
         "title": "Grundlagen",
         "p1": "Diese Lizenz-, Nutzungs- und Betriebsbedingungen (AGB) gelten für alle Verträge der {company}, {street}, {city} (nachfolgend fourelse). Sie gelten auch für Vertragsverlängerungen oder -änderungen, auch wenn sie nicht nochmals ausdrücklich vereinbart werden. Anders lautende Bedingungen, z. B. deine eigenen, sind ausdrücklich ausgeschlossen.",
         "p2": "«Du» meint in diesen AGB die Person oder Organisation, die 4else nutzt, also zum Beispiel auch einen Verein oder ein Unternehmen.",
-        "p3": "fourelse bietet unter dem Namen 4else die Kursverwaltung 4else.com (Eventseiten, Anmeldung und Teilnehmerverwaltung) und die 4else Zahlungslösung für Online-Zahlungen (4else.one) an.",
+        "p3": "fourelse bietet unter dem Namen 4else die Kursverwaltung 4else.com (Eventseiten, Anmeldung und Teilnehmerverwaltung) und die 4else Zahlungslösung für Online-Zahlungen (4else.de) an.",
         "p4": "Das Angebot steht Personen und Organisationen mit Wohnsitz oder Sitz in der Schweiz offen. Nutzt du es mit Wohnsitz oder Sitz im Ausland, tust du das auf eigene Gefahr. Diesbezüglich ist jede Haftung ausgeschlossen, und du anerkennst ausdrücklich das schweizerische Recht."
       },
       "leistungen": {
@@ -83,14 +83,14 @@
       "vertrag": {
         "title": "Vertragsbeginn, -dauer und -übertragung",
         "p1": "Der Vertrag tritt in Kraft, sobald du diesen Bedingungen elektronisch zustimmst oder den fourelse-Service schriftlich unterzeichnest.",
-        "p2": "Die Vertragsdauer der Premium-Services beträgt 30 Tage oder wahlweise ein Jahr. Der Vertrag erneuert sich jeweils automatisch um die gleiche Dauer, sofern du ihn nicht spätestens eine Arbeitswoche vor Ende der Vertragsdauer beendest. Kündigen kannst du direkt im Benutzerkonto.",
+        "p2": "Die Vertragsdauer der Premium-Services beträgt wahlweise 30 Tage oder ein Jahr. Der Vertrag erneuert sich jeweils automatisch um die gleiche Dauer, sofern du ihn nicht spätestens eine Arbeitswoche vor Ende der Vertragsdauer beendest. Kündigen kannst du direkt im Benutzerkonto.",
         "p3": "Bleibt eine fällige Lizenzzahlung trotz Mahnung und Ablauf der darin gesetzten Nachfrist aus, kann fourelse den Service vorübergehend einstellen, auf Free reduzieren oder die Zahlungslösung auf ein Modell ohne laufende Lizenzgebühr und mit höheren Transaktionsgebühren umstellen. Kostenpflichtige Zusatzleistungen wie die Premium-Funktionen von 4else.com sind in diesem Modell nicht enthalten. Eine solche Umstellung kündigt fourelse vorab an und nennt dabei das Umstellungsdatum, den künftig verfügbaren Leistungsumfang sowie die geltenden Gebühren. Du kannst den Vertrag über die Zahlungslösung vor dem Umstellungsdatum unabhängig von der regulären Kündigungsfrist beenden. Offene Lizenzrechnungen für bereits bezogene Vertragsperioden bleiben geschuldet.",
         "p4": "Alle Nebenabreden, Zusicherungen und Änderungen sind für fourelse nur nach schriftlicher Bestätigung verbindlich. fourelse allein ist berechtigt, dieses Vertragsverhältnis sowie alle weiteren Verhältnisse mit dir auf eine andere Vertragspartei zu übertragen. Nach erfolgter Kündigung hast du keinen Anspruch auf Rückerstattung allfällig geleisteter Initialzahlungen."
       },
       "preise": {
         "title": "Preise, Zahlung und Verrechnung",
         "p1": "Die aktuellen Preise stehen auf der <pricing>Preisseite</pricing>. Alle Preise verstehen sich in Schweizer Franken (CHF), Lizenzpreise exklusive Mehrwertsteuer.",
-        "p2": "Du verpflichtest dich, den Servicebetrag der Premium-Services jeweils vor Beginn der Serviceperiode (per Kreditkarte, PostFinance oder PayPal) oder innert dreissig (30) Tagen nach Rechnungsstellung ohne Abzüge zu bezahlen.",
+        "p2": "Du verpflichtest dich, den Servicebetrag der Premium-Services jeweils vor Beginn der Serviceperiode oder innert dreissig (30) Tagen nach Rechnungsstellung ohne Abzüge zu bezahlen.",
         "p3": "Für die vereinbarte Vertragsperiode gelten die bei Vertragsabschluss beziehungsweise Vertragsverlängerung vereinbarten Preise. Änderungen der Lizenzpreise gelten frühestens ab der nächsten Vertragsverlängerung und werden vor Ablauf der Kündigungsfrist mitgeteilt.",
         "p4": "Offerten von fourelse sind 30 Tage gültig. Alle Preisangaben auf Preislisten, im Internet oder in Prospekten sind, sofern nicht ausdrücklich anders vermerkt, unverbindlich und können von fourelse jederzeit angepasst werden.",
         "p5": "Du verzichtest ausdrücklich auf jede Verrechnungseinrede gegenüber fourelse. Nicht oder nur teilweise benutzte Dienstleistungen werden nicht rückvergütet."

@@ -953,7 +953,8 @@ description in `meta.agb*`, copy in the `agb` namespace. The footer's
   the Impressum.
 - **Changed against 2020, for Beatrice to approve:**
   - (01) adds what fourelse offers (4else.com, the 4else Zahlungslösung /
-    4else.one) and "Wohnsitz **oder Sitz**", since most customers are
+    4else.de: Beatrice, 3 October 2026, as customers' accounts live under
+    4else.de, e.g. name.4else.de, while 4else.one is the website) and "Wohnsitz **oder Sitz**", since most customers are
     organisations;
   - (02) names the offers: Free (no licence cost, advertising possible),
     Premium (werbefrei), Connect (Premium + cheaper transaction fees);
@@ -999,6 +1000,9 @@ description in `meta.agb*`, copy in the `agb` namespace. The footer's
     with the address-import sentence;
   - (11) "ausschliesslicher Gerichtsstand Hüntwangen ZH … soweit
     gesetzlich zulässig", mandatory jurisdictions reserved.
+  - three follow-ups the same day: (01) 4else.de instead of 4else.one,
+    (04) "beträgt wahlweise 30 Tage oder ein Jahr", (05) no payment methods
+    listed for the licence payment.
 - **For a lawyer:** "Gerichtsstand Hüntwangen ZH" (Hüntwangen has no court
   of its own; the Bezirksgericht Bülach is competent; her wording now
   reserves mandatory jurisdictions), the broad liability exclusion, and
