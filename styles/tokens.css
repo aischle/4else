@@ -130,6 +130,12 @@
   --ink-deep: #120C1D;
   --hero-glow-core: rgba(49, 32, 75, 0.9);
   --hero-glow-violet: rgba(91, 91, 214, 0.16);
+  /* The hero ground as a veil over a photo (article banners), so white
+     text stays legible: a gradient from the left, or an even veil. */
+  --photo-shade: rgba(15, 10, 27, 0.88);
+  --photo-shade-mid: rgba(15, 10, 27, 0.66);
+  --photo-shade-soft: rgba(15, 10, 27, 0.12);
+  --photo-shade-even: rgba(15, 10, 27, 0.62);
 
   /* Violets — brighter than --accent, which is meant for light grounds */
   --accent-bright: #A78BFA;

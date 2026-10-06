@@ -1,0 +1,298 @@
+/* ============================================================
+   4else — article banner
+   ------------------------------------------------------------
+   Two widths out of the 720px text column:
+   - .voll runs from edge to edge: 50cqw is half the page, as the
+     article page (.articleMain) is the size container;
+   - .bild takes the hero image's overhang (inspirationen.module.css,
+     .hero): 992px at desktop widths, the text width on phones.
+   Each ground sets the colours its text uses as custom
+   properties; dark grounds get white text, the light ice
+   colours ink. The banner is an inline-size container of its
+   own, so a narrow one puts its photo above the text.
+   Tokens only.
+   ============================================================ */
+
+.banner {
+  container: banner / inline-size;
+  margin-block: clamp(40px, 5vw, 56px);
+}
+
+.voll {
+  margin-inline: calc(50% - 50cqw);
+}
+
+.bild {
+  --space: max(0px, (min(var(--container), 100cqw) - 2 * var(--gutter) - 720px) / 2);
+  --overhang: min(var(--space), (var(--space) + 60px) / 2);
+  margin-inline: calc(-1 * var(--overhang));
+}
+
+.panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--banner-ground);
+  color: var(--banner-text);
+}
+
+.bild .panel {
+  border-radius: var(--radius-panel);
+}
+
+/* ── Grounds ────────────────────────────────────────────────── */
+
+.navy {
+  --banner-ground: var(--brand);
+  --banner-text: var(--text-on-ink-muted);
+  --banner-title: var(--text-on-ink);
+  --banner-kicker: var(--text-on-ink-muted);
+  --banner-icon: var(--text-on-ink);
+  --banner-icon-ground: transparent;
+  --banner-icon-line: var(--line-on-ink);
+}
+
+.nacht {
+  --banner-ground: var(--hero-ground);
+  --banner-text: var(--text-on-dark-body);
+  --banner-title: var(--text-on-ink);
+  --banner-kicker: var(--accent-bright);
+  --banner-icon: var(--accent-bright);
+  --banner-icon-ground: var(--surface-on-dark);
+  --banner-icon-line: var(--line-on-dark);
+  background-image:
+    radial-gradient(60% 120% at 18% 0%, var(--hero-glow-core) 0%, transparent 70%),
+    radial-gradient(50% 110% at 85% 100%, var(--hero-glow-violet) 0%, transparent 70%);
+}
+
+.violett {
+  --banner-ground: var(--accent);
+  --banner-text: var(--text-on-ink);
+  --banner-title: var(--text-on-ink);
+  --banner-kicker: var(--text-on-ink);
+  --banner-icon: var(--text-on-ink);
+  --banner-icon-ground: transparent;
+  --banner-icon-line: var(--line-on-ink);
+}
+
+.eisviolett,
+.eisblau,
+.eislemon,
+.eisorange {
+  --banner-text: var(--text-body);
+  --banner-title: var(--ink);
+  --banner-kicker: var(--ink);
+  --banner-icon: var(--brand);
+  --banner-icon-ground: var(--surface);
+  --banner-icon-line: transparent;
+}
+
+.eisviolett {
+  --banner-ground: var(--ice-violet);
+  /* The accent passes on Eisviolett (4.7:1), not on the other ice grounds. */
+  --banner-kicker: var(--accent);
+  --banner-icon: var(--accent);
+}
+
+.eisblau {
+  --banner-ground: var(--ice-blue);
+}
+
+.eislemon {
+  --banner-ground: var(--ice-lemon);
+}
+
+.eisorange {
+  --banner-ground: var(--ice-orange);
+  /* Orange only as a graphic: as text it fails on Eis-Orange. */
+  --banner-icon: var(--orange);
+}
+
+.foto {
+  --banner-ground: var(--hero-ground);
+  --banner-text: var(--text-on-dark-strong);
+  --banner-title: var(--text-on-ink);
+  --banner-kicker: var(--text-on-dark-strong);
+  --banner-icon: var(--text-on-ink);
+  --banner-icon-ground: transparent;
+  --banner-icon-line: var(--line-on-ink);
+}
+
+/* ── Photo ──────────────────────────────────────────────────── */
+
+.photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.photoImage {
+  object-fit: cover;
+}
+
+.photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    var(--photo-shade) 0%,
+    var(--photo-shade-mid) 40%,
+    var(--photo-shade-soft) 75%,
+    transparent 100%
+  );
+}
+
+.mitte .photo::after {
+  background: var(--photo-shade-even);
+}
+
+/* ── Content ────────────────────────────────────────────────── */
+
+.inner {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  padding: clamp(48px, 6vw, 76px) var(--gutter);
+}
+
+.voll .inner {
+  max-width: var(--container);
+  margin-inline: auto;
+}
+
+.bild .inner {
+  padding: clamp(40px, 5vw, 60px) clamp(24px, 5vw, 56px);
+}
+
+.foto .inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: clamp(380px, 36vw, 500px);
+}
+
+.bild .foto .inner {
+  min-height: clamp(340px, 32vw, 420px);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.mitte .content {
+  align-items: center;
+  max-width: 640px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.links .content {
+  align-items: flex-start;
+  max-width: 560px;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--banner-icon-line);
+  background: var(--banner-icon-ground);
+  color: var(--banner-icon);
+}
+
+.icon svg {
+  width: 30px;
+  height: 30px;
+}
+
+.face {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-pill);
+  object-fit: cover;
+}
+
+.kicker {
+  margin: 4px 0 -6px;
+  font-size: 12px;
+  font-weight: var(--w-semibold);
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--banner-kicker);
+}
+
+.title {
+  margin: 0;
+  max-width: 22ch;
+  font-size: clamp(26px, 2.6vw, 32px);
+  font-weight: var(--w-semibold);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  color: var(--banner-title);
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* A full-width photo carries the largest title, as in the mockup. */
+.voll .foto.links .title {
+  font-size: clamp(30px, 3.4vw, 44px);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.text {
+  max-width: 62ch;
+}
+
+.text > :last-child {
+  margin-bottom: 0;
+}
+
+.text a {
+  color: inherit;
+}
+
+.text a:hover {
+  color: var(--banner-title);
+}
+
+.text strong {
+  color: var(--banner-title);
+}
+
+.button {
+  margin-top: 8px;
+}
+
+/* ── Narrow banners: the photo above the text ───────────────── */
+
+@container banner (max-width: 640px) {
+  .foto .photo {
+    position: relative;
+    aspect-ratio: 16 / 9;
+  }
+
+  .foto .photo::after {
+    display: none;
+  }
+
+  .foto .inner,
+  .bild .foto .inner {
+    min-height: 0;
+  }
+
+  .bild .inner {
+    padding: 36px 24px 40px;
+  }
+
+  .voll .inner {
+    padding: 48px var(--gutter) 52px;
+  }
+}

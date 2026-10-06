@@ -126,6 +126,28 @@ export type CalloutBlock = {
   content?: PortableTextBlock[];
 };
 
+/* A banner in the article body (studio/schemaTypes/banner.ts). Its choices
+   arrive stega-encoded in the preview: compare them only after stegaClean
+   (components/inspirationen/Banner.tsx). */
+export type BannerImage = SanityImage & {
+  asset?: { _ref?: string };
+  hotspot?: { x: number; y: number };
+};
+export type BannerBlock = {
+  _type: 'banner';
+  _key: string;
+  width?: string;
+  background?: string;
+  color?: string;
+  image?: BannerImage;
+  align?: string;
+  icon?: string;
+  kicker?: string;
+  title?: string;
+  content?: PortableTextBlock[];
+  button?: { label?: string; url?: string; style?: string };
+};
+
 /* A table in the article body (studio/schemaTypes/table.ts), in the shape
    the Studio's table editing writes: rows of cells, each cell a few text
    blocks. headerRows counts the rows at the top that are headers (0 or 1
@@ -184,7 +206,7 @@ export async function getArticles(): Promise<ArticleCard[]> {
 
 /* Reading time at ~200 words per minute (as temu.swiss), from the text
    of the body's blocks, its FAQ questions and answers, its link cards,
-   callouts and tables; images don't count. At least one minute. */
+   callouts, tables and banners; images don't count. At least one minute. */
 function countWords(blocks: PortableTextBlock[] | undefined): number {
   let words = 0;
   for (const block of blocks ?? []) {
@@ -210,6 +232,9 @@ function readingMinutes(body: PortableTextBlock[] | undefined): number {
     } else if (block._type === 'callout') {
       const callout = block as unknown as CalloutBlock;
       words += count(callout.title) + countWords(callout.content);
+    } else if (block._type === 'banner') {
+      const banner = block as unknown as BannerBlock;
+      words += count(banner.kicker) + count(banner.title) + countWords(banner.content);
     } else if (block._type === 'table') {
       const table = block as unknown as TableBlock;
       for (const row of table.rows ?? []) for (const cell of row.cells ?? []) words += countWords(cell.value);

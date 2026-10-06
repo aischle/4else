@@ -7,6 +7,7 @@ import {
 import {
   assetSize,
   urlFor,
+  type BannerBlock,
   type CalloutBlock,
   type FaqBlock,
   type LinkCardBlock,
@@ -15,6 +16,7 @@ import {
 } from '@/lib/sanity';
 import { ArticleFaq } from './ArticleFaq';
 import { ArticleTable } from './ArticleTable';
+import { Banner } from './Banner';
 import { Callout } from './Callout';
 import { LinkCard } from './LinkCard';
 import styles from './ArticleBody.module.css';
@@ -26,8 +28,8 @@ import styles from './ArticleBody.module.css';
    (studio/schemaTypes/blockContent.ts): paragraphs, H2, H3,
    quote, bullet and numbered lists, bold, italic, links,
    images, FAQ blocks (./ArticleFaq.tsx), link cards
-   (./LinkCard.tsx), callouts (./Callout.tsx) and tables
-   (./ArticleTable.tsx). Anything added there needs its renderer
+   (./LinkCard.tsx), callouts (./Callout.tsx), tables
+   (./ArticleTable.tsx) and banners (./Banner.tsx). Anything added there needs its renderer
    here.
    ============================================================ */
 
@@ -71,6 +73,8 @@ const components: PortableTextComponents = {
     /* Its text, like the FAQ's answers, reads through these components. */
     callout: ({ value }: { value: CalloutBlock }) => <Callout value={value} components={components} />,
     table: ({ value }: { value: TableBlock }) => <ArticleTable value={value} />,
+    /* Its text, too, reads through these components. */
+    banner: ({ value }: { value: BannerBlock }) => <Banner value={value} components={components} />,
     image: ({ value }: { value: BodyImage }) => {
       if (!value?.asset) return null;
       const { width, height } = assetSize(value.asset._ref);

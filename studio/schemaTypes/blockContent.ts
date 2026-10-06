@@ -27,7 +27,8 @@ export const linkAnnotation = defineArrayMember({
    the website renders (components/inspirationen/ArticleBody.tsx). Add a
    style or block here only together with its renderer there. Besides
    text it holds images, FAQ blocks (./faq.ts), link cards
-   (./linkCard.ts), callouts (./callout.ts) and tables (./table.ts).
+   (./linkCard.ts), callouts (./callout.ts), tables (./table.ts) and
+   banners (./banner.ts).
    Table editing is the Studio's own, switched on for this field only. */
 export const blockContent = defineType({
   name: 'blockContent',
@@ -78,6 +79,7 @@ export const blockContent = defineType({
     defineArrayMember({type: 'linkCard'}),
     defineArrayMember({type: 'callout'}),
     defineArrayMember({type: 'table'}),
+    defineArrayMember({type: 'banner'}),
   ],
   components: {
     portableText: {

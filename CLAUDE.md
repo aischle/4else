@@ -591,6 +591,15 @@ it.
     `cells[]` `cell` → `value[]` blocks (normal style, bold/italic only).
     **Keep `headerRows` declared**, or the header toggle silently does
     nothing.
+  - `banner` (`banner.ts`, "Banner"), October 2026, two field groups:
+    **Aussehen** — `width` (`voll` / `bild`), `background` (`farbe` /
+    `foto`), `color` (seven, hidden with a photo), `image` (hotspot, alt
+    required; required with `foto`, hidden otherwise), `align` (`mitte` /
+    `links`), `icon` (`none` `info` `achtung` `tipp` `haekchen` `termin`
+    `else`); **Text** — `kicker` (≤ 40), `title` (required, warns from
+    60, stops at 90), `content` (paragraphs, bold, italic, links),
+    `button` (`label` + `url`, both or neither; `style` `gefuellt` /
+    `umriss`).
   **Adding a block type or style needs its renderer** in
   `components/inspirationen/ArticleBody.tsx`. After a schema change, run
   `npm run deploy` (or `schema:deploy`) so the hosted Studio has it. **Never
@@ -730,6 +739,44 @@ it.
     line each. Cell text counts towards the reading time.
   - The Doodle article's table, flattened into 24 paragraphs by the
     import, was rebuilt as a table by Claude, as a draft (September 2026).
+- **Banners** (`components/inspirationen/Banner.tsx` + `.module.css`),
+  from the mockups Robin approved unchanged (October 2026,
+  https://claude.ai/artifact/YS1F4yQoESXMGjNxHQ97Hs, boards A–F, the
+  icons, phone and Studio boards). A band across the article:
+  - **Volle Breite** breaks out of the text column with
+    `margin-inline: calc(50% - 50cqw)` (`.articleMain` is the size
+    container; the banner is a container of its own, so its own `cqw`
+    still measure the page). **Bildbreite** reuses the hero's `--space` /
+    `--overhang` (992px at desktop, the text width on phones) with
+    `--radius-panel`.
+  - **Grounds**: Navy, Violett-Schwarz (the hero ground with its two
+    glows), Digital-Violett, Eisviolett, Eisblau, Eis-Lemon, Eis-Orange,
+    or a photo. Each ground sets `--banner-*` custom properties; dark
+    ones white text, the ice ones ink. The accent as kicker and icon only
+    on Eisviolett (4.7:1); orange only as the icon on Eis-Orange.
+  - **Photo**: `next/image` `fill`, `object-position` from the hotspot,
+    under the `--photo-shade*` tokens (the hero ground translucent): a
+    gradient from the left for left-aligned text, an even veil when
+    centred. **Below 640px of banner width the photo stands above the
+    text** (16:9) on the hero ground, without the veil.
+  - **Icons**: the mockups' five line icons inline (24px grid, 1.75
+    stroke) in a 64px disc (a hairline ring on dark, white on the ice
+    grounds), or Else's face (`/images/ui/else-face.webp`).
+  - **Button**: filled = `inverse` on dark / `solid` on light; outline =
+    `ghostOnInk` / `outline`. Added beyond the mockups so both of their
+    looks (B filled, E outlined) are available.
+  - The title is a `<p>` naming the `<aside>`, like the callout's, so the
+    article's outline stays with its headings. Every choice is
+    `stegaClean`ed before it is compared; unknown values fall back to the
+    first option. Kicker, title and text count towards the reading time.
+  - **Tutorial**: the draft "So funktioniert der Banner im Studio"
+    (`/inspirationen/banner-im-studio`, id
+    `6aae2f99-8c2c-4cce-9a96-443ab9c65428`, author Beatrice) explains each
+    field and shows nine banners covering every width, ground, alignment,
+    icon and both button styles. Photo:
+    `image-cec810f2d9b4694883a388e41af64cce893424e6-1983x793-jpg`
+    (from `Z:\GoogleDrive\projects\4else\balken foto generated.png`).
+    Keep it a draft unless Beatrice wants it public.
 - **Instant updates:** `app/api/revalidate` (POST, header
   `x-webhook-secret` = `SANITY_REVALIDATE_SECRET`). Once the production
   domain exists, create the webhook in sanity.io/manage → API → Webhooks:
